@@ -1,55 +1,18 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import { MapPin, Star, Clock } from 'lucide-react';
-import { Restaurant } from '@/data/restaurants';
+import { MapPin } from 'lucide-react';
+import { Restaurant } from '@/data/types';
 
 interface RestaurantCardProps {
   restaurant: Restaurant;
 }
 
-function PriceRange({ range }: { range: string }) {
-  const maxPrice = 4;
-  const activeCount = range.length;
-
-  return (
-    <span className="font-semibold">
-      {Array.from({ length: maxPrice }).map((_, i) => (
-        <span
-          key={i}
-          className={i < activeCount ? 'text-[#E63946]' : 'text-gray-300'}
-        >
-          £
-        </span>
-      ))}
-    </span>
-  );
-}
-
-function Rating({ rating }: { rating: number }) {
-  return (
-    <div className="flex items-center gap-1">
-      <Star className="w-4 h-4 fill-[#F4A261] text-[#F4A261]" />
-      <span className="font-semibold text-[#1D3557]">{rating.toFixed(1)}</span>
-    </div>
-  );
-}
-
 export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
-  const cuisineColors: Record<string, string> = {
-    British: 'bg-[#1D3557]',
-    Indian: 'bg-[#E63946]',
-    Italian: 'bg-[#2A9D8F]',
-    Asian: 'bg-[#F4A261]',
-    European: 'bg-[#457B9D]',
-    Pub: 'bg-[#8B4513]',
-    Eclectic: 'bg-[#9B59B6]',
-  };
+  const hasImage = restaurant.images.length > 0;
 
   return (
-    <Link href={`/restaurants/${restaurant.slug}`}>
-      <div className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover cursor-pointer">
-        {/* Image */}
-        <div className="relative h-48 overflow-hidden">
+    <div className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover h-full">
+      {hasImage && (
+        <div className="relative h-44 overflow-hidden">
           <Image
             src={restaurant.images[0]}
             alt={restaurant.name}
@@ -58,34 +21,51 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute top-4 left-4">
-            <span className={`badge text-white ${cuisineColors[restaurant.cuisine] || 'bg-gray-500'}`}>
-              {restaurant.cuisine}
+            <span className="badge bg-[#1D3557] text-white">{restaurant.cuisine}</span>
+          </div>
+        </div>
+      )}
+
+      <div className="p-5">
+        {!hasImage && (
+          <span className="badge bg-[#1D3557] text-white mb-3 inline-block">{restaurant.cuisine}</span>
+        )}
+
+        <div className="flex items-start justify-between mb-2">
+          <h3 className="text-lg font-bold text-[#1D3557] line-clamp-1 flex-1">
+            {restaurant.name}
+          </h3>
+          {restaurant.priceRange && (
+            <span className="text-sm text-[#E63946] font-semibold ml-2 whitespace-nowrap">
+              {restaurant.priceRange}
             </span>
-          </div>
+          )}
         </div>
 
-        {/* Content */}
-        <div className="p-5">
-          <div className="flex items-start justify-between mb-2">
-            <h3 className="text-xl font-bold text-[#1D3557] line-clamp-1 flex-1">
-              {restaurant.name}
-            </h3>
-            <Rating rating={restaurant.rating} />
-          </div>
+        <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+          {restaurant.description}
+        </p>
 
-          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-            {restaurant.shortDescription}
-          </p>
-
-          <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-2 text-gray-500">
-              <MapPin className="w-4 h-4 text-[#E63946]" />
-              <span className="line-clamp-1">{restaurant.address.split(',')[0]}</span>
-            </div>
-            <PriceRange range={restaurant.priceRange} />
+        {restaurant.mustTry.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-3">
+            {restaurant.mustTry.slice(0, 3).map((item, i) => (
+              <span key={i} className="text-xs bg-[#F1FAEE] text-[#1D3557] px-2 py-1 rounded-full">
+                {item}
+              </span>
+            ))}
+            {restaurant.mustTry.length > 3 && (
+              <span className="text-xs text-gray-400">+{restaurant.mustTry.length - 3}</span>
+            )}
           </div>
-        </div>
+        )}
+
+        {restaurant.address && (
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <MapPin className="w-3.5 h-3.5 text-[#E63946]" />
+            <span className="line-clamp-1">{restaurant.address}</span>
+          </div>
+        )}
       </div>
-    </Link>
+    </div>
   );
 }

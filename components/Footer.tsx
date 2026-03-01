@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { MapPin, Mail, Phone, Instagram, Twitter, Facebook } from 'lucide-react';
+import { MapPin, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -13,24 +13,12 @@ export default function Footer() {
                 <MapPin className="w-6 h-6 text-white" />
               </div>
               <span className="font-bold text-xl">
-                Discover<span className="text-[#F4A261]">London</span>
+                Discover<span className="text-[#F4A261]">GB</span>
               </span>
             </Link>
             <p className="text-white/70 mb-4 max-w-md">
-              Your ultimate guide to exploring London and the United Kingdom.
-              Discover the best attractions, restaurants, and hidden gems.
+              英国与欧洲的美食、景点与生活指南。发现最好的餐厅、景点和隐藏的宝藏。
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="text-white/70 hover:text-[#F4A261] transition-colors">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-white/70 hover:text-[#F4A261] transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-white/70 hover:text-[#F4A261] transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -38,18 +26,23 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4 text-[#F4A261]">Explore</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/attractions" className="text-white/70 hover:text-white transition-colors">
-                  Tourist Attractions
+                <Link href="/london" className="text-white/70 hover:text-white transition-colors">
+                  London
                 </Link>
               </li>
               <li>
-                <Link href="/restaurants" className="text-white/70 hover:text-white transition-colors">
-                  Restaurants & Dining
+                <Link href="/othercities" className="text-white/70 hover:text-white transition-colors">
+                  Other Cities
+                </Link>
+              </li>
+              <li>
+                <Link href="/europa" className="text-white/70 hover:text-white transition-colors">
+                  Europa
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="text-white/70 hover:text-white transition-colors">
-                  About London
+                  About
                 </Link>
               </li>
             </ul>
@@ -61,22 +54,19 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-white/70">
                 <Mail className="w-4 h-4" />
-                <span>hello@discoverlondon.com</span>
+                <span>hello@discovergb.uk</span>
               </li>
-              <li className="flex items-center gap-2 text-white/70">
-                <Phone className="w-4 h-4" />
-                <span>+44 20 1234 5678</span>
-              </li>
-              <li className="flex items-center gap-2 text-white/70">
-                <MapPin className="w-4 h-4" />
-                <span>London, United Kingdom</span>
+              <li>
+                <Link href="/contact" className="text-white/70 hover:text-white transition-colors">
+                  反馈建议
+                </Link>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/50 text-sm">
-          <p>&copy; {new Date().getFullYear()} DiscoverLondon. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} DiscoverGB. All rights reserved.</p>
         </div>
       </div>
     </footer>
