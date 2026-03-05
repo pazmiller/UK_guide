@@ -9,6 +9,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+
 export const metadata: Metadata = {
   title: "Discover London | Your Guide to the UK's Capital",
   description: "Explore London's iconic landmarks, world-class museums, historic sites, and incredible restaurants. Your ultimate guide to the best of the UK.",

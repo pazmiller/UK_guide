@@ -4,13 +4,17 @@ import { Restaurant } from '@/data/types';
 
 interface RestaurantCardProps {
   restaurant: Restaurant;
+  onClick?: () => void;
 }
 
-export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
+export default function RestaurantCard({ restaurant, onClick }: RestaurantCardProps) {
   const hasImage = restaurant.images.length > 0;
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover h-full">
+    <div
+      className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover h-full cursor-pointer"
+      onClick={onClick}
+    >
       {hasImage && (
         <div className="relative h-44 overflow-hidden">
           <Image

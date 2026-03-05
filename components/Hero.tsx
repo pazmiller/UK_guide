@@ -25,10 +25,10 @@ export default function Hero()
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn" style={{ animationDelay: '0.4s' }}>
-          <Link href="/attractions" className="btn-primary text-lg">
+          <Link href="/london/attractions" className="btn-primary text-lg">
             Explore Attractions
           </Link>
-          <Link href="/restaurants" className="btn-secondary text-lg border-2 border-white/30">
+          <Link href="/london/restaurants" className="btn-secondary text-lg border-2 border-white/30">
             Find Restaurants
           </Link>
         </div>

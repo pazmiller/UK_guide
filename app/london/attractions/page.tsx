@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import AttractionCard from '@/components/AttractionCard';
+import ClickableAttractionGrid from '@/components/ClickableAttractionGrid';
 import AvoidSection from '@/components/AvoidSection';
 import { londonAttractions, londonAvoids } from '@/data/london/attractions';
 
@@ -38,11 +38,7 @@ export default function LondonAttractionsPage() {
       {/* Attractions Grid */}
       <section className="py-16 bg-[#F1FAEE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {londonAttractions.map((attraction) => (
-              <AttractionCard key={attraction.id} attraction={attraction} />
-            ))}
-          </div>
+          <ClickableAttractionGrid attractions={londonAttractions} />
         </div>
       </section>
 

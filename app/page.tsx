@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { ArrowRight, MapPin, Building, Globe } from 'lucide-react';
 import Hero from '@/components/Hero';
-import RestaurantCard from '@/components/RestaurantCard';
+import BlindsTransition from '@/components/BlindsTransition';
+import ClickableRestaurantGrid from '@/components/ClickableRestaurantGrid';
 import { londonRestaurants } from '@/data/london/restaurants';
 
 export default function Home()
@@ -29,91 +30,101 @@ export default function Home()
         </div>
       </section>
 
-      {/* Explore Sections */}
-      <section className="py-20 bg-[#F1FAEE]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-[#1D3557] text-center mb-12">
-            Explore
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* London */}
-            <Link href="/london" className="group">
-              <div className="relative overflow-hidden rounded-2xl shadow-xl h-64">
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80)' }}
-                />
-                <div className="absolute inset-0 bg-[#1D3557]/60 group-hover:bg-[#1D3557]/50 transition-colors" />
-                <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                  <MapPin className="w-8 h-8 text-[#F4A261] mb-2" />
-                  <h3 className="text-2xl font-bold text-white mb-1">London</h3>
-                  <p className="text-white/80 text-sm">餐厅、景点、甜品饮品</p>
-                </div>
-              </div>
-            </Link>
+      {/* Explore + Featured Restaurants — shared animated background */}
+      <div className="relative overflow-hidden">
+        <BlindsTransition
+          fill
+          front="/bg1.jpg"
+          back="/bg2.jpg"
+          slats={12}
+          duration={1000}
+          pauseMs={2000}
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-[#1D3557]/55 pointer-events-none" />
 
-            {/* Other Cities */}
-            <Link href="/othercities" className="group">
-              <div className="relative overflow-hidden rounded-2xl shadow-xl h-64">
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=800&q=80)' }}
-                />
-                <div className="absolute inset-0 bg-[#1D3557]/60 group-hover:bg-[#1D3557]/50 transition-colors" />
-                <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                  <Building className="w-8 h-8 text-[#F4A261] mb-2" />
-                  <h3 className="text-2xl font-bold text-white mb-1">Other Cities</h3>
-                  <p className="text-white/80 text-sm">York, Glasgow, Southampton, Swansea</p>
+        {/* Explore */}
+        <section className="relative z-10 py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-4xl font-bold text-white text-center mb-12 drop-shadow">
+              Explore
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* London */}
+              <Link href="/london" className="group">
+                <div className="relative overflow-hidden rounded-2xl shadow-xl h-64">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80)' }}
+                  />
+                  <div className="absolute inset-0 bg-[#1D3557]/60 group-hover:bg-[#1D3557]/50 transition-colors" />
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6">
+                    <MapPin className="w-8 h-8 text-[#F4A261] mb-2" />
+                    <h3 className="text-2xl font-bold text-white mb-1">London</h3>
+                    <p className="text-white/80 text-sm">餐厅、景点、甜品饮品</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
 
-            {/* Europa */}
-            <Link href="/europa" className="group">
-              <div className="relative overflow-hidden rounded-2xl shadow-xl h-64">
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=800&q=80)' }}
-                />
-                <div className="absolute inset-0 bg-[#1D3557]/60 group-hover:bg-[#1D3557]/50 transition-colors" />
-                <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                  <Globe className="w-8 h-8 text-[#F4A261] mb-2" />
-                  <h3 className="text-2xl font-bold text-white mb-1">Europa</h3>
-                  <p className="text-white/80 text-sm">Iceland, Poland</p>
+              {/* Other Cities */}
+              <Link href="/othercities" className="group">
+                <div className="relative overflow-hidden rounded-2xl shadow-xl h-64">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=800&q=80)' }}
+                  />
+                  <div className="absolute inset-0 bg-[#1D3557]/60 group-hover:bg-[#1D3557]/50 transition-colors" />
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6">
+                    <Building className="w-8 h-8 text-[#F4A261] mb-2" />
+                    <h3 className="text-2xl font-bold text-white mb-1">Other Cities</h3>
+                    <p className="text-white/80 text-sm">York, Glasgow, Southampton, Swansea</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
+              </Link>
 
-      {/* Featured Restaurants */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
-            <div>
-              <h2 className="text-4xl font-bold text-[#1D3557] mb-2">
-                London 推荐餐厅
-              </h2>
-              <p className="text-gray-600">
-                精选伦敦美食推荐
-              </p>
+              {/* Europa */}
+              <Link href="/europa" className="group">
+                <div className="relative overflow-hidden rounded-2xl shadow-xl h-64">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=800&q=80)' }}
+                  />
+                  <div className="absolute inset-0 bg-[#1D3557]/60 group-hover:bg-[#1D3557]/50 transition-colors" />
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6">
+                    <Globe className="w-8 h-8 text-[#F4A261] mb-2" />
+                    <h3 className="text-2xl font-bold text-white mb-1">Europa</h3>
+                    <p className="text-white/80 text-sm">Iceland, Poland</p>
+                  </div>
+                </div>
+              </Link>
             </div>
-            <Link
-              href="/london/restaurants"
-              className="mt-4 md:mt-0 text-[#E63946] font-semibold flex items-center gap-2 hover:gap-3 transition-all"
-            >
-              View All <ArrowRight className="w-5 h-5" />
-            </Link>
           </div>
+        </section>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredRestaurants.map( ( restaurant ) => (
-              <RestaurantCard key={restaurant.id} restaurant={restaurant} />
-            ) )}
+        {/* Featured Restaurants */}
+        <section className="relative z-10 py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+              <div>
+                <h2 className="text-4xl font-bold text-white mb-2 drop-shadow">
+                  London 推荐餐厅
+                </h2>
+                <p className="text-white/80">
+                  精选伦敦美食推荐
+                </p>
+              </div>
+              <Link
+                href="/london/restaurants"
+                className="mt-4 md:mt-0 text-[#F4A261] font-semibold flex items-center gap-2 hover:gap-3 transition-all"
+              >
+                View All <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+
+            <ClickableRestaurantGrid restaurants={featuredRestaurants} />
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* CTA Section */}
       <section className="py-20 bg-[#1D3557]">
@@ -122,7 +133,7 @@ export default function Home()
             Ready to Explore?
           </h2>
           <p className="text-xl text-white/80 mb-8">
-            从伦敦到欧洲大陆，发现更多美食与精彩景点。
+            从伦敦到欧陆，发现更多美食与精彩景点。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/london" className="btn-primary text-lg">

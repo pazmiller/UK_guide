@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { MapPin, Mail } from 'lucide-react';
 
-export default function Footer() {
+export default function Footer()
+{
   return (
     <footer className="bg-[#1D3557] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -54,7 +55,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-white/70">
                 <Mail className="w-4 h-4" />
-                <span>hello@discovergb.uk</span>
+                <span>联系米勒二世</span>
               </li>
               <li>
                 <Link href="/contact" className="text-white/70 hover:text-white transition-colors">
@@ -66,7 +67,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/50 text-sm">
-          <p>&copy; {new Date().getFullYear()} DiscoverGB. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Miller the Second of His Name. All rights reserved.</p>
         </div>
       </div>
     </footer>

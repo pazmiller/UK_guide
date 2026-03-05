@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import RestaurantCard from '@/components/RestaurantCard';
+import RestaurantFilteredGrid from '@/components/RestaurantFilteredGrid';
 import { londonRestaurants } from '@/data/london/restaurants';
 
 export default function LondonRestaurantsPage() {
@@ -37,11 +37,7 @@ export default function LondonRestaurantsPage() {
       {/* Restaurants Grid */}
       <section className="py-16 bg-[#F1FAEE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {londonRestaurants.map((restaurant) => (
-              <RestaurantCard key={restaurant.id} restaurant={restaurant} />
-            ))}
-          </div>
+          <RestaurantFilteredGrid restaurants={londonRestaurants} />
         </div>
       </section>
     </div>

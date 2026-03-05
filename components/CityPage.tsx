@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import RestaurantCard from './RestaurantCard';
-import AttractionCard from './AttractionCard';
+import RestaurantFilteredGrid from './RestaurantFilteredGrid';
+import ClickableAttractionGrid from './ClickableAttractionGrid';
 import AvoidSection from './AvoidSection';
 import TipsSection from './TipsSection';
 import { CityData } from '@/data/types';
@@ -50,11 +50,7 @@ export default function CityPage({ data, backLink, backLabel }: CityPageProps) {
             <h2 className="text-3xl font-bold text-[#1D3557] mb-8">
               推荐餐厅
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {data.restaurants.map((r) => (
-                <RestaurantCard key={r.id} restaurant={r} />
-              ))}
-            </div>
+            <RestaurantFilteredGrid restaurants={data.restaurants} />
           </div>
         </section>
       )}
@@ -66,11 +62,7 @@ export default function CityPage({ data, backLink, backLabel }: CityPageProps) {
             <h2 className="text-3xl font-bold text-[#1D3557] mb-8">
               甜品 / 咖啡 / 饮品
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {data.cafes.map((c) => (
-                <RestaurantCard key={c.id} restaurant={c} />
-              ))}
-            </div>
+            <RestaurantFilteredGrid restaurants={data.cafes} />
           </div>
         </section>
       )}
@@ -82,11 +74,7 @@ export default function CityPage({ data, backLink, backLabel }: CityPageProps) {
             <h2 className="text-3xl font-bold text-[#1D3557] mb-8">
               景点推荐
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {data.attractions.map((a) => (
-                <AttractionCard key={a.id} attraction={a} />
-              ))}
-            </div>
+            <ClickableAttractionGrid attractions={data.attractions} />
           </div>
         </section>
       )}

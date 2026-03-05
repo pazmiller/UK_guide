@@ -3,13 +3,17 @@ import { Attraction } from '@/data/types';
 
 interface AttractionCardProps {
   attraction: Attraction;
+  onClick?: () => void;
 }
 
-export default function AttractionCard({ attraction }: AttractionCardProps) {
+export default function AttractionCard({ attraction, onClick }: AttractionCardProps) {
   const hasImage = attraction.images.length > 0;
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover cursor-pointer h-full">
+    <div
+      className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover cursor-pointer h-full"
+      onClick={onClick}
+    >
       {hasImage && (
         <div className="relative h-48 overflow-hidden">
           <Image
