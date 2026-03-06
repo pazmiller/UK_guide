@@ -49,10 +49,11 @@ html {
 
 /* Click word pop animation */
 @keyframes word-pop {
-  0%   { opacity: 1; transform: translate(-50%, 0)    scale(0)   rotate(-8deg); }
-  20%  { opacity: 1; transform: translate(-50%, -24px) scale(1.25) rotate(5deg); }
-  55%  { opacity: 1; transform: translate(-50%, -52px) scale(1.0)  rotate(-3deg); }
-  100% { opacity: 0; transform: translate(-50%, -90px) scale(0.85) rotate(1deg); }
+  0%   { opacity: 1; transform: translate(-50%, 0)     scale(0)    rotate(-8deg); }
+  15%  { opacity: 1; transform: translate(-50%, -24px)  scale(1.25) rotate(5deg); }
+  40%  { opacity: 1; transform: translate(-50%, -52px)  scale(1.0)  rotate(-3deg); }
+  70%  { opacity: 1; transform: translate(-50%, -72px)  scale(0.95) rotate(1deg); }
+  100% { opacity: 0; transform: translate(-50%, -110px) scale(0.85) rotate(0deg); }
 }
 
 .word-pop {
@@ -61,7 +62,7 @@ html {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-size: 1.5rem;
   white-space: nowrap;
-  animation: word-pop 1.35s ease-out forwards;
+  animation: word-pop 2.4s ease-out forwards;
   text-shadow:
     0 0 8px rgba(255,255,255,0.7),
     2px 2px 0 rgba(0,0,0,0.35);

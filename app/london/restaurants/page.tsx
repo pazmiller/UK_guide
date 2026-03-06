@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import RestaurantFilteredGrid from '@/components/RestaurantFilteredGrid';
-import { londonRestaurants } from '@/data/london/restaurants';
+import AvoidSection from '@/components/AvoidSection';
+import { londonRestaurants, londonRestaurantAvoids } from '@/data/london/restaurants';
 
 export default function LondonRestaurantsPage() {
   return (
@@ -40,6 +41,9 @@ export default function LondonRestaurantsPage() {
           <RestaurantFilteredGrid restaurants={londonRestaurants} />
         </div>
       </section>
+
+      {/* Restaurant Avoids */}
+      <AvoidSection items={londonRestaurantAvoids} title="伦敦餐厅避雷" />
     </div>
   );
 }

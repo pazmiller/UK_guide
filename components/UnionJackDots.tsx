@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 
-const WORDS = [ '啾咪', 'To be or not to be', 'That is the question', 'The game is afoot!', '西八巴', 'Oi', '林北跟你讲', 'Chanmeimei', 'Pompipi了', 'See it Say it Sorted', '保护好你的手机', 'bowowaer', "don't get mugged", "It's Chewsday", 'innit mate', 'what a plunker', 'A lovely cup of Tea', 'go get some Chippy' ] as const;
+const WORDS = [ '啾咪', 'To be or not to be', 'That is the question', 'The game is afoot!', '西八巴', 'Oi', '哎呀媽呀', '林北跟你讲', '天啦嚕', 'Come next day', 'Do you have appointment?', 'Chanmeimei', 'Pompipi了', 'See it Say it Sorted', '保护好你的手机', 'bowowaer', "don't get mugged", "It's Chewsday", 'innit mate', 'what a plunker', 'A lovely cup of Tea', 'go get some Chippy' ] as const;
 const WORD_COLORS = [ '#FFD700', '#FF6B9D', '#7BFF7B', '#87CEEB', '#FFB347', '#DA70D6' ];
 
 type PopLabel = { id: number; x: number; y: number; word: string; color: string };
@@ -26,7 +26,7 @@ export default function UnionJackDots()
     setTimeout( () =>
     {
       setPops( prev => prev.filter( p => p.id !== id ) );
-    }, 1400 );
+    }, 2500 );
   }, [] );
 
   useEffect( () =>

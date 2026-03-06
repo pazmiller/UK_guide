@@ -1,4 +1,4 @@
-import { Restaurant } from '../types';
+import { Restaurant, AvoidItem } from '../types';
 
 export const londonRestaurants: Restaurant[] = [
   {
@@ -9,8 +9,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '马来西亚餐厅',
     description: '开了很久的餐厅，整体稳定，可选种类丰富都蛮好吃的。',
     priceRange: '£25+/人',
-    images: [ '/Med Salleh Kopitiam.jpg' ],
-    mustTry: [ 'Chicken Rice', 'Nasi Lemak', 'Roti Canai' ],
+    images: ['/Med Salleh Kopitiam.jpg'],
+    mustTry: ['Chicken Rice', 'Nasi Lemak', 'Roti Canai'],
   },
   {
     id: 'lon-r5',
@@ -20,8 +20,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '地中海餐厅',
     description: '装修氛围很有代入感；分量偏小但口味稳定不踩雷。',
     priceRange: '~£40/人',
-    images: [ '/CERU.jpg' ],
-    mustTry: [ 'Three in One Dip + Pita Bread', "Bird's Nest 甜品" ],
+    images: ['/CERU.jpg'],
+    mustTry: ['Three in One Dip + Pita Bread', "Bird's Nest 甜品"],
   },
   {
     id: 'lon-r10',
@@ -31,8 +31,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '现代泰式 tapas',
     description: 'Tapas 有趣、菜单常换；部分菜会非常辣（不一定吃得饱但体验感强）。牛排肉非常好。招牌粉丝煲，不是不好吃，只是性价比不高，取决于之前有没有吃过类似的砂锅粉丝煲。',
     priceRange: '£40+/人',
-    images: [ '/kiln.jpg' ],
-    mustTry: [ '牛排肉', '菜单常换（不固定）' ],
+    images: ['/kiln.jpg'],
+    mustTry: ['牛排肉', '菜单常换（不固定）'],
   },
   {
     id: 'lon-r6',
@@ -42,8 +42,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '马来西亚华人餐厅',
     description: '平均水准高；即便过了开店巅峰期，分量与服务仍保持高评分区间。',
     priceRange: '£30+/人',
-    images: [ 'https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800' ],
-    mustTry: [ '白咖喱面', '烤鸡翅', '炒米粉', '火山骨', '红豆冰' ],
+    images: ['/YiQi.jpg'],
+    mustTry: ['白咖喱面', '烤鸡翅', '炒米粉', '火山骨', '红豆冰'],
   },
   {
     id: 'lon-r1',
@@ -53,8 +53,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '桂林米粉/糖水小馆（口味清淡友好）',
     description: '适合口味清淡的食客，桂林米粉和糖水评价很好。',
     priceRange: '£13–15/人',
-    images: [ 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800' ],
-    mustTry: [ '桂林米粉', '糖水' ],
+    images: ['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800'],
+    mustTry: ['桂林米粉', '糖水'],
   },
   {
     id: 'lon-r2',
@@ -64,8 +64,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '新疆菜馆',
     description: '整体水准稳定，拌面尤其好；但饭点人很多，建议错峰前往。',
     priceRange: '~£20/人',
-    images: [ 'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=800' ],
-    mustTry: [ '拌面' ],
+    images: ['https://images.unsplash.com/photo-1585032226651-759b368d7246?w=800'],
+    mustTry: ['拌面'],
   },
   {
     id: 'lon-r3',
@@ -75,8 +75,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '宁波菜（宴请向，环境好）',
     description: '环境好、排位较容易、口味偏清淡；菜整体OK，但海/河鲜很贵。海鲜多从国内进口，建议和老板聊当批次哪些更好。',
     priceRange: '£40+/人',
-    images: [ 'https://images.unsplash.com/photo-1550388246-fc8b8ff4e22e?w=800' ],
-    mustTry: [ '宁波汤圆', '海鲜（时好时坏）' ],
+    images: ['https://images.unsplash.com/photo-1550388246-fc8b8ff4e22e?w=800'],
+    mustTry: ['宁波汤圆', '海鲜（时好时坏）'],
   },
   {
     id: 'lon-r4',
@@ -87,8 +87,8 @@ export const londonRestaurants: Restaurant[] = [
     description: '肉新鲜、上菜快不卡单；有胸口油、兰花蟹；油条现炸酥脆；饮料不卡。用餐限时90分钟。',
     address: '5-7 Tottenham St, London W1T 2AG',
     priceRange: '~£30/人',
-    images: [ 'https://images.unsplash.com/photo-1577859623788-c3671e45e1fe?w=800' ],
-    mustTry: [ '鲜切牛肉', '胸口油', '兰花蟹', '现炸油条' ],
+    images: ['https://images.unsplash.com/photo-1577859623788-c3671e45e1fe?w=800'],
+    mustTry: ['鲜切牛肉', '胸口油', '兰花蟹', '现炸油条'],
   },
   {
     id: 'lon-r7',
@@ -98,8 +98,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '现代改良缅甸菜',
     description: '保留缅甸特色、但做了改良；接受度看个人，但真的很有特色。',
     priceRange: '£40+/人',
-    images: [ 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800' ],
-    mustTry: [ 'Tea Leaf Salad', 'King Prawn Curry', 'Chicken Coconut Noodle Bowl', 'Pandan Coconut Creme Brulee' ],
+    images: ['/Lahpet.jpg'],
+    mustTry: ['Tea Leaf Salad', 'King Prawn Curry', 'Chicken Coconut Noodle Bowl', 'Pandan Coconut Creme Brulee'],
   },
   {
     id: 'lon-r8',
@@ -109,8 +109,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '泰餐（米其林餐盘）',
     description: '口味不错、价格适中；Tottenham Court Road 那家美食广场里整体最能打。',
     priceRange: '£25+/人',
-    images: [ 'https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800' ],
-    mustTry: [ '可加饮料的 Set Meal', '泰式饮料' ],
+    images: ['https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800'],
+    mustTry: ['可加饮料的 Set Meal', '泰式饮料'],
   },
   {
     id: 'lon-r9',
@@ -119,9 +119,42 @@ export const londonRestaurants: Restaurant[] = [
     cuisine: 'Thai',
     shortDescription: '正宗泰餐（唐人街经典）',
     description: '东南亚菜表现强，正宗泰餐路线。',
-    priceRange: '~£30/人',
-    images: [ 'https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800' ],
-    mustTry: [ 'Tom Yum Mama Noodle 海鲜锅' ],
+    priceRange: '£25+/人',
+    images: ['https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800'],
+    mustTry: ['Tom Yum Mama Noodle 海鲜锅'],
+  },
+  {
+    id: 'lon-r21',
+    slug: 'vasiniko',
+    name: 'Vasiniko',
+    cuisine: 'Italian',
+    shortDescription: '那不勒斯披萨',
+    description: '最正宗的 Neapolitan Pizza 之一，价格也不算贵，英国目前吃过最好吃的披萨。',
+    priceRange: '£20–40/人',
+    images: ['/Vasiniko.jpg'],
+    mustTry: ['Margherita', 'Diavola', 'Espresso', 'Tiramisu', 'Pistacchiella'],
+  },
+  {
+    id: 'lon-r22',
+    slug: 'gloria',
+    name: 'Gloria',
+    cuisine: 'Italian',
+    shortDescription: '中高端意大利菜',
+    description: '装修非常有韵味，极其受本地人欢迎，服务很好，菜式正宗且精致，价格也稍贵。有更好吃还更便宜的意大利菜，但整体体验没有 Gloria 好。菜的种类其实不算多。很多人推荐它的玛格利特鸡尾酒。',
+    priceRange: '~£40/人',
+    images: ['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800'],
+    mustTry: ['生牛肉沙拉 Carpaccio di Manzo', '浓郁的 Cacio e Pepe'],
+  },
+  {
+    id: 'lon-r23',
+    slug: 'zima',
+    name: 'ZIMA',
+    cuisine: 'Russian',
+    shortDescription: '现代俄罗斯菜',
+    description: '精致却不失传统，分量较少。俄罗斯菜在伦敦不算多，这家算是很不错的选择。Kiev Chicken 基辅鸡不是不好吃，只是 Waitrose 或 M&S 买回去烤也很好吃，性价比更高。',
+    priceRange: '£30+/人',
+    images: ['/ZIMA.jpg'],
+    mustTry: ['Borscht 俄罗斯红菜汤', 'Beef Stroganoff', 'Blini 俄式薄饼', 'Vodka Platter'],
   },
   {
     id: 'lon-r11',
@@ -131,8 +164,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '精致秘鲁菜',
     description: '可能有固定 Set Menu；海鲜类很稳。',
     priceRange: '£40+/人',
-    images: [ 'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=800' ],
-    mustTry: [ '海鲜类' ],
+    images: ['https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=800'],
+    mustTry: ['海鲜类'],
   },
   {
     id: 'lon-r12',
@@ -142,8 +175,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '秘鲁菜（精致路线）',
     description: '与 Crudo 同类型，海鲜值得点。',
     priceRange: '£30+/人',
-    images: [ 'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=800' ],
-    mustTry: [ '海鲜类' ],
+    images: ['https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=800'],
+    mustTry: ['海鲜类'],
   },
   {
     id: 'lon-r13',
@@ -152,9 +185,9 @@ export const londonRestaurants: Restaurant[] = [
     cuisine: 'Persian',
     shortDescription: '波斯菜',
     description: '正宗且水准高于英国平均波斯菜。',
-    priceRange: '~£30+/人',
-    images: [ 'https://images.unsplash.com/photo-1606491956689-2ea866880049?w=800' ],
-    mustTry: [ 'Koobideh 羊肉', '藏红花 Biryani', '波斯红茶', '藏红花 Saffron 相关甜品' ],
+    priceRange: '£30+/人',
+    images: ['https://images.unsplash.com/photo-1606491956689-2ea866880049?w=800'],
+    mustTry: ['Koobideh 羊肉', '藏红花 Biryani', '波斯红茶', '藏红花 Saffron 相关甜品'],
   },
   {
     id: 'lon-r14',
@@ -165,8 +198,8 @@ export const londonRestaurants: Restaurant[] = [
     description: '品质很高，虽稍贵但对得起；有不少伦敦常见日料吃不到的时令刺身。',
     priceRange: '£35+/人',
     website: 'https://maps.app.goo.gl/K83AodwDBZgoW4xZ7',
-    images: [ 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800' ],
-    mustTry: [ '寿司套餐' ],
+    images: ['https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800'],
+    mustTry: ['寿司套餐'],
   },
   {
     id: 'lon-r15',
@@ -176,8 +209,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '印尼菜（西伦敦）',
     description: '坐满印尼人，风味独特；性价比高。',
     priceRange: '£15+/人',
-    images: [ 'https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800' ],
-    mustTry: [ 'Rendang 牛肉', '烤鱼', '各类 Ayam 鸡肉料理', 'Cendol 甜品' ],
+    images: ['https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=800'],
+    mustTry: ['Rendang 牛肉', '烤鱼', '各类 Ayam 鸡肉料理', 'Cendol 甜品'],
   },
   {
     id: 'lon-r16',
@@ -187,8 +220,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '云南菜',
     description: '伦敦正宗云南菜不容易；这家口味/菜品/价格都不错。',
     priceRange: '£25+/人',
-    images: [ 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800' ],
-    mustTry: [ '各种米线', '国内运来的菌菇类' ],
+    images: ['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800'],
+    mustTry: ['各种米线', '国内运来的菌菇类'],
   },
   {
     id: 'lon-r18',
@@ -198,8 +231,8 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '越南餐厅（同 Kopitiam 老板开的）',
     description: '口味好、价格适中；但位置可能半地下不太好找。',
     priceRange: '£20+/人',
-    images: [ 'https://images.unsplash.com/photo-1576577445504-6af96477db52?w=800' ],
-    mustTry: [ '现场热汤烫熟牛肉的经典 Pho' ],
+    images: ['/Med Salleh Viet.jpg'],
+    mustTry: ['现场热汤烫熟牛肉的经典 Pho'],
   },
   {
     id: 'lon-r19',
@@ -210,8 +243,8 @@ export const londonRestaurants: Restaurant[] = [
     description: '偏辣的菜做得更稳、更下饭；不辣的菜（例如锅包肉）整体一般。',
     address: '10 School Rd, London NW10 6TD',
     priceRange: '£20–30/人',
-    images: [ 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800' ],
-    mustTry: [ '干煸肥肠', '擂椒炒牛杂', '东园小炒肉', '手撕包菜', '韭菜涨蛋' ],
+    images: ['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800'],
+    mustTry: ['干煸肥肠', '擂椒炒牛杂', '东园小炒肉', '手撕包菜', '韭菜涨蛋'],
   },
   {
     id: 'lon-r20',
@@ -223,12 +256,37 @@ export const londonRestaurants: Restaurant[] = [
     address: '56–58 New Kent Rd, Elephant Park, London SE1 6FU',
     priceRange: '£40+/人',
     website: 'https://www.cheli.co.uk/',
-    images: [ 'https://images.unsplash.com/photo-1550388246-fc8b8ff4e22e?w=800' ],
-    mustTry: [ '香干马兰头', '龙井虾仁', '咸肉菜饭', '梅干菜笋干烧肉' ],
+    images: ['https://images.unsplash.com/photo-1550388246-fc8b8ff4e22e?w=800'],
+    mustTry: ['香干马兰头', '龙井虾仁', '咸肉菜饭', '梅干菜笋干烧肉'],
+  },
+  {
+    id: 'lon-r24',
+    slug: 'chilli-point',
+    name: '椒点猛火自贡 Chilli Point',
+    cuisine: 'Chinese',
+    shortDescription: '川菜（自贡菜）',
+    description: '多人推荐非常正宗的自贡菜，辣、油、重，符合馋川菜口味的人。避雷：牛蛙类菜可能不太新鲜。',
+    priceRange: '£30/人',
+    images: ['/Chili Point.jpg'],
+    mustTry: ['哑巴兔'],
   },
 ];
 
-export function getLondonRestaurantBySlug( slug: string )
-{
-  return londonRestaurants.find( r => r.slug === slug );
+export const londonRestaurantAvoids: AvoidItem[] = [
+  {
+    name: 'Bella Italia',
+    reason: '非常平庸的英式意大利菜，在遍地好吃意大利菜的英国不需要去吃这个。',
+  },
+  {
+    name: 'Zizzi',
+    reason: '同 Bella Italia，Zizzi 比它稍微好一点，但仍属连锁平庸意大利菜。',
+  },
+  {
+    name: 'Flat Iron',
+    reason: '跌下物美价廉的地位，只剩下价廉了。目前仍有个专门的免费冰淇淋味道还不错。',
+  },
+];
+
+export function getLondonRestaurantBySlug(slug: string) {
+  return londonRestaurants.find(r => r.slug === slug);
 }
