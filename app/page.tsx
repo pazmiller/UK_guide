@@ -3,6 +3,7 @@ import { ArrowRight, MapPin, Building, Globe } from 'lucide-react';
 import Hero from '@/components/Hero';
 import BlindsTransition from '@/components/BlindsTransition';
 import ClickableRestaurantGrid from '@/components/ClickableRestaurantGrid';
+import CreditsSection from '@/components/CreditsSection';
 import { londonRestaurants } from '@/data/london/restaurants';
 
 export default function Home()
@@ -37,8 +38,8 @@ export default function Home()
           front="/bg1.jpg"
           back="/bg2.jpg"
           slats={12}
-          duration={1000}
-          pauseMs={2000}
+          duration={5000}
+          pauseMs={5000}
         />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-[#1D3557]/55 pointer-events-none" />
@@ -126,28 +127,7 @@ export default function Home()
         </section>
       </div>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-[#1D3557]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Explore?
-          </h2>
-          <p className="text-xl text-white/80 mb-8">
-            从伦敦到欧陆，发现更多美食与精彩景点。
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/london" className="btn-primary text-lg">
-              Explore London
-            </Link>
-            <Link
-              href="/othercities"
-              className="bg-white text-[#1D3557] px-7 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg"
-            >
-              Other Cities
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CreditsSection />
     </>
   );
 }
