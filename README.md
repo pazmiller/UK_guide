@@ -74,13 +74,5 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-致谢名单：
-赤夜
-鲁珀
-月桑
-葡萄柚
-裙大头
-雪麒
-小羽
-米勒勒勒
+
 
