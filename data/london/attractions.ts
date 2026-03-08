@@ -8,7 +8,7 @@ export const londonAttractions: Attraction[] = [
     category: 'Historical',
     shortDescription: '英国之魂，如同大不列颠的先贤祠',
     description: 'Westminster Abbey 是英国最重要的哥特式建筑之一，也是英国君主加冕和安葬之地。这里长眠着牛顿、达尔文、狄更斯等众多伟大人物，被誉为大不列颠的先贤祠。',
-    images: ['https://images.unsplash.com/photo-1582547399655-11ebac868e8f?w=800'],
+    images: ['/wesminster abbey.png'],
   },
   {
     id: 'lon-a2',
@@ -17,7 +17,7 @@ export const londonAttractions: Attraction[] = [
     category: 'Parks',
     shortDescription: '皇家植物园',
     description: '世界级皇家植物园，拥有超过 50,000 种植物。温室建筑本身就是一大看点。',
-    images: ['https://images.unsplash.com/photo-1585938389612-a552a28c6914?w=800'],
+    images: ['/kew garden.png'],
   },
   {
     id: 'lon-a3',
@@ -26,7 +26,7 @@ export const londonAttractions: Attraction[] = [
     category: 'Parks',
     shortDescription: '伦敦最大皇家公园',
     description: '伦敦最大的皇家公园，可以近距离观赏自由漫步的鹿群，是逃离城市喧嚣的绝佳去处。',
-    images: ['https://images.unsplash.com/photo-1580238053495-b9720401fd45?w=800'],
+    images: ['/richmond park.png'],
   },
   {
     id: 'lon-a4',
@@ -35,7 +35,7 @@ export const londonAttractions: Attraction[] = [
     category: 'Museums',
     shortDescription: '世界最大装饰艺术博物馆',
     description: '全球最大的装饰艺术与设计博物馆，收藏跨越 5,000 年的人类创造力。免费入场。',
-    images: ['https://images.unsplash.com/photo-1590068036568-2b77c4f1a445?w=800'],
+    images: ['/v&a.png'],
   },
   {
     id: 'lon-a5',
@@ -44,7 +44,7 @@ export const londonAttractions: Attraction[] = [
     category: 'Museums',
     shortDescription: '自然历史博物馆',
     description: '壮观的罗马式建筑内展示着超过 8,000 万件自然标本，从恐龙骨架到蓝鲸模型。免费入场。',
-    images: ['https://images.unsplash.com/photo-1572953109213-3be62398eb95?w=800'],
+    images: ['/natural history museum.png'],
   },
   {
     id: 'lon-a6',
@@ -53,7 +53,7 @@ export const londonAttractions: Attraction[] = [
     category: 'Museums',
     shortDescription: '帝国战争博物馆',
     description: '记录从一战至今的战争与冲突历史，展品震撼人心。免费入场。',
-    images: ['https://images.unsplash.com/photo-1580130379624-3a069adbffc5?w=800'],
+    images: ['/imperial war museum.png'],
   },
   {
     id: 'lon-a7',
@@ -62,7 +62,7 @@ export const londonAttractions: Attraction[] = [
     category: 'Museums',
     shortDescription: '伦敦交通博物馆',
     description: '展示伦敦公共交通 200 多年的发展史，从马车到地铁，互动展品丰富。',
-    images: ['https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=800'],
+    images: ['/london transport museum.png'],
   },
   {
     id: 'lon-a8',
@@ -71,7 +71,7 @@ export const londonAttractions: Attraction[] = [
     category: 'Museums',
     shortDescription: '现代艺术馆',
     description: '坐落于泰晤士河南岸的前发电站内，是全球最重要的现代艺术馆之一。免费入场。',
-    images: ['https://images.unsplash.com/photo-1574958269340-fa927503f3dd?w=800'],
+    images: ['/tate modern.png'],
   },
   {
     id: 'lon-a9',
@@ -80,7 +80,7 @@ export const londonAttractions: Attraction[] = [
     category: 'Museums',
     shortDescription: '英国艺术馆',
     description: '收藏从 1500 年至今的英国艺术，是了解英国艺术史的最佳去处。免费入场。',
-    images: ['https://images.unsplash.com/photo-1580130379624-3a069adbffc5?w=800'],
+    images: ['/tate britain.png'],
   },
   {
     id: 'lon-a10',
@@ -89,7 +89,7 @@ export const londonAttractions: Attraction[] = [
     category: 'Museums',
     shortDescription: '国家美术馆',
     description: '位于特拉法加广场，收藏 2,300 余幅 13 至 20 世纪的欧洲绘画杰作。免费入场。',
-    images: ['https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?w=800'],
+    images: ['/national gallery.png'],
   },
   {
     id: 'lon-a11',
