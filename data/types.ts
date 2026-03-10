@@ -33,6 +33,8 @@ export interface Attraction {
 export interface AvoidItem {
   name: string;
   reason: string;
+  category?: string;
+  city?: string;
 }
 
 export interface CityTip {
