@@ -1,0 +1,45 @@
+import { CityData } from '../types';
+
+export const stockholmData: CityData = {
+  name: '斯德哥尔摩（瑞典首都）',
+  nameEn: 'Stockholm',
+  slug: 'stockholm',
+  description: '瑞典首都，北欧的明珠。',
+  heroImage: 'https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1920&q=80',
+  country: 'europa',
+  restaurants: [
+    {
+      id: 'se-r1',
+      slug: 'kajsas-fisk',
+      name: 'Kajsas Fisk',
+      cuisine: 'Swedish',
+      shortDescription: '瑞典菜',
+      description: '市中心平价的餐吧，位于负一楼美食广场最里面的铺面，提供可续的鱼汤。而且使用银联卡还可以有88折优惠（当时）。',
+      priceRange: '150SEK/人',
+      images: [ '/Kajsas Fisk.jpeg' ],
+      mustTry: [ '招牌鱼汤', '北极虾沙拉' ],
+    },
+    {
+      id: 'se-r2',
+      slug: 'restaurant-pelikan',
+      name: 'Restaurant Pelikan',
+      cuisine: 'Swedish',
+      shortDescription: '瑞典菜',
+      description: '经典传统的瑞典餐厅，环境和氛围都很好还原了百年前的斯德哥尔摩。',
+      priceRange: '350SEK/人',
+      images: [ '/Restaurant Pelikan.jpg' ],
+      mustTry: [ '瑞典肉丸', '烟熏三文鱼' ],
+    },
+    {
+      id: 'se-r3',
+      slug: 'sjobaren-fisk',
+      name: 'Sjöbaren Fisk & Skaldjur',
+      cuisine: 'Seafood',
+      shortDescription: '瑞典菜和海鲜',
+      description: '市中心步行街的海鲜餐厅，提供本地的佳酿和海鲜',
+      priceRange: '300-400SEK/人',
+      images: [ '/Sjöbaren Fisk & Skaldjur.jpeg' ],
+      mustTry: [ '开口贝', '海鲜汤', '龙虾', '生蚝' ],
+    },
+  ],
+};

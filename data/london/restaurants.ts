@@ -124,6 +124,17 @@ export const londonRestaurants: Restaurant[] = [
     mustTry: ['Tom Yum Mama Noodle 海鲜锅'],
   },
   {
+    id: 'lon-r28',
+    slug: 'bao',
+    name: 'BAO',
+    cuisine: 'Taiwanese',
+    shortDescription: '连锁台式料理',
+    description: '价格适中，台式小店的氛围还不错。它的各种柳叶包BAO很多沿海人可能会感觉很熟悉，相对来说感觉没必要在伦敦吃。牛排盖饭意外地非常棒，调味也很好，至少博罗市场的那家很不错。',
+    priceRange: '£10+/人',
+    images: ['/BAO.jpg'],
+    mustTry: ['Beef Steak Rice', '冷泡乌龙'],
+  },
+  {
     id: 'lon-r21',
     slug: 'vasiniko',
     name: 'Vasiniko',

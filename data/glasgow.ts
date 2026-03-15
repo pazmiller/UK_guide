@@ -18,9 +18,10 @@ export const glasgowData: CityData = {
     {
       id: 'gl-r2', slug: 'celinos-partick', name: "Celino's Partick",
       cuisine: 'Italian', shortDescription: '意大利菜',
-      description: '特别好吃且价格便宜。',
-      images: ['https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800'],
-      mustTry: ['披萨', '意大利面'],
+      description: '特别好吃且价格相对味道来说便宜，性价比蛮高。而且服务比较及时，经常回来巡视。但是意式甜品比较一般，提拉米苏也不是很好吃。',
+      priceRange: '~£30/人',
+      images: ["/Celino's Partick.png"],
+      mustTry: ['披萨', '意大利面（比如Scoglio Bianco）'],
     },
     {
       id: 'gl-r3', slug: 'by-chance', name: 'by chance',

@@ -32,6 +32,13 @@ const cities = [
     image: 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=800&q=80',
     count: 7,
   },
+  {
+    name: '爱丁堡 Edinburgh',
+    slug: 'edinburgh',
+    description: '苏格兰首都，城堡之城',
+    image: 'https://images.unsplash.com/photo-1501699169021-3759ee435d66?w=800&q=80',
+    count: 1,
+  },
 ];
 
 export default function OtherCitiesPage() {

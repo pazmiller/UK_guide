@@ -14,7 +14,28 @@ const destinations = [
     slug: 'poland',
     description: '格但斯克，波罗的海沿岸的历史名城',
     image: 'https://images.unsplash.com/photo-1519197924294-4ba991a11128?w=800&q=80',
-    count: 1,
+    count: 3,
+  },
+  {
+    name: '斯德哥尔摩 Stockholm',
+    slug: 'stockholm',
+    description: '瑞典首都，北欧的明珠',
+    image: 'https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=800&q=80',
+    count: 3,
+  },
+  {
+    name: '哥本哈根 København',
+    slug: 'copenhagen',
+    description: '丹麦首都，童话王国的心脏',
+    image: 'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=800&q=80',
+    count: 2,
+  },
+  {
+    name: '巴黎 Paris',
+    slug: 'paris',
+    description: '法兰西的心脏，浪漫与美食之都',
+    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80',
+    count: 2,
   },
 ];
 
@@ -35,8 +56,8 @@ export default function EuropaPage() {
 
       {/* Destination Cards */}
       <section className="py-16 bg-[#F1FAEE]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {destinations.map((dest) => (
               <Link key={dest.slug} href={`/europa/${dest.slug}`} className="group">
                 <div className="relative overflow-hidden rounded-2xl shadow-xl h-64">

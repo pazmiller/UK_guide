@@ -26,6 +26,7 @@ export default function Navbar()
   const citiesSubLinks = [
     { href: '/othercities/york', label: 'York' },
     { href: '/othercities/glasgow', label: 'Glasgow' },
+    { href: '/othercities/edinburgh', label: 'Edinburgh' },
     { href: '/othercities/southampton', label: 'Southampton' },
     { href: '/othercities/swansea', label: 'Swansea' },
   ];
@@ -33,6 +34,9 @@ export default function Navbar()
   const europaSubLinks = [
     { href: '/europa/iceland', label: 'Iceland' },
     { href: '/europa/poland', label: 'Poland' },
+    { href: '/europa/stockholm', label: 'Stockholm' },
+    { href: '/europa/copenhagen', label: 'København' },
+    { href: '/europa/paris', label: 'Paris' },
   ];
 
   return (
