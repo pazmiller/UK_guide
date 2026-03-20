@@ -147,13 +147,13 @@ export default function AvoidPage()
           </div>
 
           <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight">
-            <span className="text-red-400">AVOID</span> ZONE
+            <span className="text-red-400">Chanmei</span> ZONE
           </h1>
           <p className="text-lg text-white/60 mb-2">
-            踩雷区 / Minefield
+            踩雷区
           </p>
           <p className="text-white/40 text-sm max-w-xl mx-auto mb-10">
-            前人踩雷，后人避坑。这里收录了各地群友们亲身体验后不推荐的餐厅和景点，帮你省下时间和钱包。
+            前人踩雷，后人避坑。这里收录了各地群友们亲身体验后不推荐的餐厅和景点，帮你省下时间和钱包
           </p>
 
           {/* Stats */}

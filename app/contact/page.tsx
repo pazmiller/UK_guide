@@ -23,8 +23,8 @@ export default function ContactPage()
               <MessageSquare className="w-10 h-10 text-[#2A9D8F] mx-auto mb-4" />
               <h2 className="text-xl font-bold text-[#1D3557] mb-2">反馈建议</h2>
               <p className="text-gray-600">
-                如果你有新的餐厅推荐、景点避雷或生活 tips，欢迎直接私我。
-                我们会持续更新内容。
+                如果你有新的餐厅推荐、景点避雷或生活 tips，欢迎直接私米勒！
+                我们会持续更新内容
               </p>
             </div>
           </div>

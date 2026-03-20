@@ -166,14 +166,14 @@ export default function Navbar()
               )}
             </div>
 
-            {/* Avoid Zone */}
+            {/* Chicken Zone */}
             <Link
               href="/avoid"
               className={`flex items-center gap-1 font-medium transition-colors relative group ${pathname === '/avoid' ? 'text-[#E63946]' : 'text-white/90 hover:text-[#E63946]'
                 }`}
             >
               <ShieldAlert className="w-4 h-4" />
-              Avoid
+              No Good
               <span className={`absolute bottom-0 left-0 h-0.5 bg-[#E63946] transition-all ${pathname === '/avoid' ? 'w-full' : 'w-0 group-hover:w-full'}`} />
             </Link>
 
@@ -219,8 +219,8 @@ export default function Navbar()
                   key={sub.href}
                   href={sub.href}
                   className={`flex items-center gap-2 px-4 h-full text-sm font-medium transition-colors border-b-2 ${pathname.startsWith( sub.href )
-                      ? 'text-[#F4A261] border-[#F4A261]'
-                      : 'text-white/70 border-transparent hover:text-white hover:border-white/40'
+                    ? 'text-[#F4A261] border-[#F4A261]'
+                    : 'text-white/70 border-transparent hover:text-white hover:border-white/40'
                     }`}
                 >
                   <sub.icon className="w-3.5 h-3.5" />
@@ -278,7 +278,7 @@ export default function Navbar()
               ) )}
             </div>
 
-            {/* Avoid Zone */}
+            {/* Chanmei Zone */}
             <Link href="/avoid" onClick={() => setIsOpen( false )} className={`flex items-center gap-1.5 font-medium py-2 transition-colors ${pathname === '/avoid' ? 'text-[#E63946]' : 'text-white/90 hover:text-[#E63946]'}`}>
               <ShieldAlert className="w-4 h-4" />
               Chanmei Zone
