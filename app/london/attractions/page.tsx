@@ -38,7 +38,7 @@ export default function LondonAttractionsPage() {
       {/* Attractions Grid */}
       <section className="py-16 bg-[#F1FAEE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ClickableAttractionGrid attractions={londonAttractions} />
+          <ClickableAttractionGrid attractions={londonAttractions} locationHint="London UK" />
         </div>
       </section>
 

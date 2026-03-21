@@ -12,7 +12,25 @@ interface CityPageProps {
   backLabel: string;
 }
 
+const COUNTRY_LABELS: Record<string, string> = {
+  Iceland: 'Iceland',
+  Poland: 'Poland',
+  Stockholm: 'Stockholm Sweden',
+  København: 'Copenhagen Denmark',
+  Paris: 'Paris France',
+  Köln: 'Köln Germany',
+};
+
+function getLocationHint(data: CityData): string {
+  if (data.country === 'europa') {
+    return COUNTRY_LABELS[data.nameEn] ?? `${data.nameEn}`;
+  }
+  // UK cities
+  return `${data.nameEn} UK`;
+}
+
 export default function CityPage({ data, backLink, backLabel }: CityPageProps) {
+  const locationHint = getLocationHint(data);
   return (
     <div className="pt-16">
       {/* Hero */}
@@ -50,7 +68,7 @@ export default function CityPage({ data, backLink, backLabel }: CityPageProps) {
             <h2 className="text-3xl font-bold text-[#1D3557] mb-8">
               推荐餐厅
             </h2>
-            <RestaurantFilteredGrid restaurants={data.restaurants} />
+            <RestaurantFilteredGrid restaurants={data.restaurants} locationHint={locationHint} />
           </div>
         </section>
       )}
@@ -62,7 +80,7 @@ export default function CityPage({ data, backLink, backLabel }: CityPageProps) {
             <h2 className="text-3xl font-bold text-[#1D3557] mb-8">
               甜品 / 咖啡 / 饮品
             </h2>
-            <RestaurantFilteredGrid restaurants={data.cafes} />
+            <RestaurantFilteredGrid restaurants={data.cafes} locationHint={locationHint} />
           </div>
         </section>
       )}
@@ -74,7 +92,7 @@ export default function CityPage({ data, backLink, backLabel }: CityPageProps) {
             <h2 className="text-3xl font-bold text-[#1D3557] mb-8">
               景点推荐
             </h2>
-            <ClickableAttractionGrid attractions={data.attractions} />
+            <ClickableAttractionGrid attractions={data.attractions} locationHint={locationHint} />
           </div>
         </section>
       )}

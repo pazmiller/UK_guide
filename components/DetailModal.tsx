@@ -2,7 +2,7 @@
 
 import { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
-import { X, MapPin, ExternalLink } from 'lucide-react';
+import { X, MapPin, ExternalLink, Navigation } from 'lucide-react';
 import { Restaurant, Attraction } from '@/data/types';
 
 type ModalData =
@@ -12,9 +12,10 @@ type ModalData =
 interface DetailModalProps {
   item: ModalData | null;
   onClose: () => void;
+  locationHint?: string;
 }
 
-export default function DetailModal({ item, onClose }: DetailModalProps) {
+export default function DetailModal({ item, onClose, locationHint = 'London UK' }: DetailModalProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -52,6 +53,10 @@ export default function DetailModal({ item, onClose }: DetailModalProps) {
   const isRestaurant = item.type === 'restaurant';
   const d = item.data;
   const hasImage = d.images.length > 0;
+
+  const googleMapsUrl = d.address
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.address)}`
+    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.name + ' ' + locationHint)}`;
 
   return (
     <div
@@ -158,18 +163,29 @@ export default function DetailModal({ item, onClose }: DetailModalProps) {
             </div>
           )}
 
-          {/* Website */}
-          {d.website && (
+          {/* Actions */}
+          <div className="flex items-center gap-3 mt-5 flex-wrap">
             <a
-              href={d.website}
+              href={googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm text-[#457B9D] hover:text-[#1D3557] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#E63946] hover:bg-[#c1121f] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors shadow-md hover:shadow-lg"
             >
-              <ExternalLink className="w-4 h-4" />
-              查看更多
+              <Navigation className="w-4 h-4" />
+              Take me there~
             </a>
-          )}
+            {d.website && (
+              <a
+                href={d.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-[#457B9D] hover:text-[#1D3557] transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                查看更多
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>

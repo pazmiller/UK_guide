@@ -7,9 +7,10 @@ import { Restaurant } from '@/data/types';
 
 interface Props {
   restaurants: Restaurant[];
+  locationHint?: string;
 }
 
-export default function ClickableRestaurantGrid({ restaurants }: Props) {
+export default function ClickableRestaurantGrid({ restaurants, locationHint }: Props) {
   const [selected, setSelected] = useState<Restaurant | null>(null);
 
   return (
@@ -22,6 +23,7 @@ export default function ClickableRestaurantGrid({ restaurants }: Props) {
       <DetailModal
         item={selected ? { type: 'restaurant', data: selected } : null}
         onClose={() => setSelected(null)}
+        locationHint={locationHint}
       />
     </>
   );

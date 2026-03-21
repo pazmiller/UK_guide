@@ -63,6 +63,7 @@ export default function CopenhagenPage() {
       <DetailModal
         item={selected ? { type: 'restaurant', data: selected } : null}
         onClose={() => setSelected(null)}
+        locationHint="Copenhagen Denmark"
       />
     </div>
   );

@@ -7,12 +7,12 @@ import DetailModal from './DetailModal';
 
 const credits = [
   '赤夜', '鲁珀', '月桑', '葡萄柚', '裙大头',
-  '雪麒', '啸羽', '米勒勒勒', '狮子',
+  '雪麒', '啸羽', '米勒勒勒', '狮子', '恺', '枫霜'
 ];
 
 export default function CreditsSection()
 {
-  const [selected, setSelected] = useState<Restaurant | null>( null );
+  const [ selected, setSelected ] = useState<Restaurant | null>( null );
 
   const handleRandomRestaurant = () =>
   {
@@ -28,7 +28,7 @@ export default function CreditsSection()
             Special Thanks
           </h2>
           <p className="text-white/60 mb-10 text-sm tracking-widest uppercase">
-            To Dear Friends
+            To the Gentlemen of Brtiannia
           </p>
 
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 mb-12">
@@ -62,6 +62,7 @@ export default function CreditsSection()
       <DetailModal
         item={selected ? { type: 'restaurant', data: selected } : null}
         onClose={() => setSelected( null )}
+        locationHint="London UK"
       />
     </>
   );

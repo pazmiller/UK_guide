@@ -87,7 +87,7 @@ export default function OtherCitiesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-[#1D3557] mb-2">UK 还不错的快餐</h2>
           <p className="text-gray-600 mb-8">连锁品控稳定，值得一试</p>
-          <ClickableRestaurantGrid restaurants={ukRecommendedChains} />
+          <ClickableRestaurantGrid restaurants={ukRecommendedChains} locationHint="UK" />
         </div>
       </section>
 
@@ -96,7 +96,7 @@ export default function OtherCitiesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-[#1D3557] mb-2">UK 性价比快餐</h2>
           <p className="text-gray-600 mb-8">维持生命用 — 全英连锁</p>
-          <ClickableRestaurantGrid restaurants={ukBudgetChains} />
+          <ClickableRestaurantGrid restaurants={ukBudgetChains} locationHint="UK" />
         </div>
       </section>
     </div>

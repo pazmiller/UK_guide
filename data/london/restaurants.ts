@@ -75,7 +75,7 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '宁波菜（宴请向，环境好）',
     description: '环境好、排位较容易、口味偏清淡；菜整体OK，但海/河鲜很贵。海鲜多从国内进口，建议和老板聊当批次哪些更好。',
     priceRange: '£40+/人',
-    images: ['https://images.unsplash.com/photo-1550388246-fc8b8ff4e22e?w=800'],
+    images: ['/da shuo.png'],
     mustTry: ['宁波汤圆', '海鲜（时好时坏）'],
   },
   {
@@ -87,7 +87,7 @@ export const londonRestaurants: Restaurant[] = [
     description: '肉新鲜、上菜快不卡单；有胸口油、兰花蟹；油条现炸酥脆；饮料不卡。用餐限时90分钟。',
     address: '5-7 Tottenham St, London W1T 2AG',
     priceRange: '~£30/人',
-    images: ['https://images.unsplash.com/photo-1577859623788-c3671e45e1fe?w=800'],
+    images: ["/Nine's fresh.png"],
     mustTry: ['鲜切牛肉', '胸口油', '兰花蟹', '现炸油条'],
   },
   {
@@ -197,7 +197,7 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '波斯菜',
     description: '正宗且水准高于英国平均波斯菜。',
     priceRange: '£30+/人',
-    images: ['https://images.unsplash.com/photo-1606491956689-2ea866880049?w=800'],
+    images: ['/Chef Javad Persian Cuisine & Bar.png'],
     mustTry: ['Koobideh 羊肉', '藏红花 Biryani', '波斯红茶', '藏红花 Saffron 相关甜品'],
   },
   {
@@ -231,7 +231,7 @@ export const londonRestaurants: Restaurant[] = [
     shortDescription: '云南菜',
     description: '伦敦正宗云南菜不容易；这家口味/菜品/价格都不错。',
     priceRange: '£25+/人',
-    images: ['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800'],
+    images: ['/cloud land.png'],
     mustTry: ['各种米线', '国内运来的菌菇类'],
   },
   {
@@ -254,7 +254,7 @@ export const londonRestaurants: Restaurant[] = [
     description: '偏辣的菜做得更稳、更下饭；不辣的菜（例如锅包肉）整体一般。',
     address: '10 School Rd, London NW10 6TD',
     priceRange: '£20–30/人',
-    images: ['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800'],
+    images: ['/Dong yuan.png'],
     mustTry: ['干煸肥肠', '擂椒炒牛杂', '东园小炒肉', '手撕包菜', '韭菜涨蛋'],
   },
   {
@@ -267,7 +267,7 @@ export const londonRestaurants: Restaurant[] = [
     address: '56–58 New Kent Rd, Elephant Park, London SE1 6FU',
     priceRange: '£40+/人',
     website: 'https://www.cheli.co.uk/',
-    images: ['https://images.unsplash.com/photo-1550388246-fc8b8ff4e22e?w=800'],
+    images: ['/cheli.png'],
     mustTry: ['香干马兰头', '龙井虾仁', '咸肉菜饭', '梅干菜笋干烧肉'],
   },
   {
@@ -302,6 +302,17 @@ export const londonRestaurants: Restaurant[] = [
     priceRange: '£10–20/人',
     images: ['https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800'],
     mustTry: ['经典汉堡', '洋葱圈'],
+  },
+  {
+    id: 'lon-r29',
+    slug: 'prix-fixe-soho',
+    name: 'Prix Fixe Soho',
+    cuisine: 'French',
+    shortDescription: '价格实惠的法餐',
+    description: '适合想试试看法餐但不准备直接钱包爆炸的人。Set 口味尚可，分量也 OK。注意：£21 Set 只有中午才有，晚上还是 £40+。',
+    priceRange: '£21/人起（截止 2026年3月）',
+    images: ['/Prix Fixe soho.png'],
+    mustTry: ['中午 £21 Set'],
   },
   {
     id: 'lon-r24',

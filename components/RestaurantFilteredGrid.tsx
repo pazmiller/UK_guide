@@ -7,9 +7,10 @@ import { Restaurant } from '@/data/types';
 
 interface Props {
   restaurants: Restaurant[];
+  locationHint?: string;
 }
 
-export default function RestaurantFilteredGrid({ restaurants }: Props) {
+export default function RestaurantFilteredGrid({ restaurants, locationHint }: Props) {
   const [active, setActive] = useState<string>('All');
   const [selected, setSelected] = useState<Restaurant | null>(null);
 
@@ -39,6 +40,7 @@ export default function RestaurantFilteredGrid({ restaurants }: Props) {
         <DetailModal
           item={selected ? { type: 'restaurant', data: selected } : null}
           onClose={() => setSelected(null)}
+          locationHint={locationHint}
         />
       </>
     );
@@ -87,6 +89,7 @@ export default function RestaurantFilteredGrid({ restaurants }: Props) {
       <DetailModal
         item={selected ? { type: 'restaurant', data: selected } : null}
         onClose={() => setSelected(null)}
+        locationHint={locationHint}
       />
     </div>
   );

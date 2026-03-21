@@ -7,9 +7,10 @@ import { Attraction } from '@/data/types';
 
 interface Props {
   attractions: Attraction[];
+  locationHint?: string;
 }
 
-export default function ClickableAttractionGrid({ attractions }: Props) {
+export default function ClickableAttractionGrid({ attractions, locationHint }: Props) {
   const [selected, setSelected] = useState<Attraction | null>(null);
 
   return (
@@ -26,6 +27,7 @@ export default function ClickableAttractionGrid({ attractions }: Props) {
       <DetailModal
         item={selected ? { type: 'attraction', data: selected } : null}
         onClose={() => setSelected(null)}
+        locationHint={locationHint}
       />
     </>
   );

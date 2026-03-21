@@ -37,7 +37,7 @@ export default function LondonCafesPage() {
       {/* Cafes Grid */}
       <section className="py-16 bg-[#F1FAEE]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <RestaurantFilteredGrid restaurants={londonCafes} />
+          <RestaurantFilteredGrid restaurants={londonCafes} locationHint="London UK" />
         </div>
       </section>
     </div>

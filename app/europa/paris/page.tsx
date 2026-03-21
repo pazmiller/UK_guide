@@ -63,6 +63,7 @@ export default function ParisPage() {
       <DetailModal
         item={selected ? { type: 'restaurant', data: selected } : null}
         onClose={() => setSelected(null)}
+        locationHint="Paris France"
       />
     </div>
   );

@@ -37,6 +37,13 @@ const destinations = [
     image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80',
     count: 2,
   },
+  {
+    name: '科隆 Köln',
+    slug: 'koln',
+    description: '科隆大教堂所在地，德国第四大城市',
+    image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80',
+    count: 1,
+  },
 ];
 
 export default function EuropaPage() {

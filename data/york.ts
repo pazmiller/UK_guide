@@ -12,7 +12,7 @@ export const yorkData: CityData = {
       id: 'yk-r1', slug: 'bettys-cafe-tea-rooms', name: "Bettys Café Tea Rooms",
       cuisine: 'British', shortDescription: '经典英式茶屋/下午茶',
       description: '大名鼎鼎的贝蒂茶屋，一大半人来约克似乎都是因为这家下午茶的名气（女王喜欢喝的）。日常需要 walk-in 排队，预定的话只接受最低消费 £45 的包间预定（据说有钢琴师演奏）。甚至工作日周一都有一堆老头老太太排队。核心感觉：英国人的甜品对于我们还是太太太甜了，小小的三层塔下午茶能有 1300-1700 千卡热量。',
-      priceRange: '£20–35/人', images: ['https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800'],
+      priceRange: '£20–35/人', images: ["/Betty's Tea.png"],
       mustTry: ['经典下午茶三层塔'],
     },
     {

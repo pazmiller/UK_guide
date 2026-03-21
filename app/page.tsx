@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, MapPin, Building, Globe } from 'lucide-react';
 import Hero from '@/components/Hero';
-import BlindsTransition from '@/components/BlindsTransition';
 import ClickableRestaurantGrid from '@/components/ClickableRestaurantGrid';
 import CreditsSection from '@/components/CreditsSection';
 import { londonRestaurants } from '@/data/london/restaurants';
@@ -33,14 +32,7 @@ export default function Home()
 
       {/* Explore + Featured Restaurants — shared animated background */}
       <div className="relative overflow-hidden">
-        <BlindsTransition
-          fill
-          front="/bg1.jpg"
-          back="/bg2.jpg"
-          slats={12}
-          duration={5000}
-          pauseMs={5000}
-        />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/bg2.jpg)' }} />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-[#1D3557]/55 pointer-events-none" />
 
