@@ -13,7 +13,7 @@ export const southamptonData: CityData = {
       cuisine: 'BBQ', shortDescription: '酒吧式烤肉/烟熏肉餐厅',
       description: '肉类爱好者天堂；烤肠不错（可问服务员哪些套餐含烤肠）；适合偶尔来。',
       address: 'SO15 1DE',
-      images: ['https://images.unsplash.com/photo-1544025162-d76694265947?w=800'],
+      images: ['/Red Dog Saloon.jpg'],
       mustTry: ['Platters: USS Texas', 'USS Kentucky', '烤肠'],
     },
     {
@@ -21,7 +21,7 @@ export const southamptonData: CityData = {
       cuisine: 'Chinese', shortDescription: '中餐',
       description: '同学非常喜欢他们家的辣子鸡。',
       address: 'SO15 2DB',
-      images: ['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800'],
+      images: ['/熊记.jpg'],
       mustTry: ['辣子鸡'],
     },
     {
@@ -29,7 +29,7 @@ export const southamptonData: CityData = {
       cuisine: 'Chinese', shortDescription: '兰州拉面/牛肉面',
       description: '南安网红拉面店；一般，但牛肉给得多、分量大。',
       address: 'SO16 3AY',
-      images: ['https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800'],
+      images: ['/Yipinju Lanzhou Noodle Bar.jpg'],
       mustTry: ['牛肉面'],
     },
   ],
