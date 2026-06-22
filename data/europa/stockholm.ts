@@ -4,7 +4,7 @@ export const stockholmData: CityData = {
   name: '斯德哥尔摩（瑞典首都）',
   nameEn: 'Stockholm',
   slug: 'stockholm',
-  description: '瑞典首都，北欧的明珠。',
+  description: '瑞典首都啦。',
   heroImage: 'https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1920&q=80',
   country: 'europa',
   restaurants: [

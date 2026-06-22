@@ -5,7 +5,7 @@ export const glasgowData: CityData = {
   nameEn: 'Glasgow',
   slug: 'glasgow',
   description: '苏格兰最大城市，充满活力的文化与音乐之都。',
-  heroImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1920&q=80',
+  heroImage: '/locations/glassgow.png',
   country: 'uk',
   restaurants: [
     {
@@ -20,7 +20,7 @@ export const glasgowData: CityData = {
       cuisine: 'Italian', shortDescription: '意大利菜',
       description: '特别好吃且价格相对味道来说便宜，性价比蛮高。而且服务比较及时，经常回来巡视。但是意式甜品比较一般，提拉米苏也不是很好吃。',
       priceRange: '~£30/人',
-      images: ["/Celino's Partick.png"],
+      images: ['/Celino‘s Partick.png'],
       mustTry: ['披萨', '意大利面（比如Scoglio Bianco）'],
     },
     {

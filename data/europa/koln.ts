@@ -4,7 +4,7 @@ export const kolnData: CityData = {
   name: '科隆（德国）',
   nameEn: 'Köln',
   slug: 'koln',
-  description: '德国第四大城市，科隆大教堂所在地。',
+  description: '科隆大教堂在这里，古龙水也在这里。',
   heroImage: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1920&q=80',
   country: 'europa',
   restaurants: [

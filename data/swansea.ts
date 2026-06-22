@@ -5,7 +5,7 @@ export const swanseaData: CityData = {
   nameEn: 'Swansea',
   slug: 'swansea',
   description: '威尔士海滨小镇，安静朴素，很适合休养生息。注意天气变化有时候比较快，海边风大。圣诞节有游行、临时美食街和临时游乐园。',
-  heroImage: 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=1920&q=80',
+  heroImage: '/locations/swansea.png',
   country: 'uk',
   restaurants: [
     {

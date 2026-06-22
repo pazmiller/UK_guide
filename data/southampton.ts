@@ -5,7 +5,7 @@ export const southamptonData: CityData = {
   nameEn: 'Southampton',
   slug: 'southampton',
   description: '英格兰南部港口城市，泰坦尼克号的出发地。',
-  heroImage: 'https://images.unsplash.com/photo-1588580261662-5f63ee7e7f42?w=1920&q=80',
+  heroImage: '/locations/southampton.png',
   country: 'uk',
   restaurants: [
     {

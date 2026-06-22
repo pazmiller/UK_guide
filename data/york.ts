@@ -5,7 +5,7 @@ export const yorkData: CityData = {
   nameEn: 'York',
   slug: 'york',
   description: '中世纪古城，巧克力之都，拥有约克大教堂和丰富的餐饮文化。',
-  heroImage: 'https://images.unsplash.com/photo-1582979512210-99b6a53386f9?w=1920&q=80',
+  heroImage: '/locations/york.png',
   country: 'uk',
   restaurants: [
     {
