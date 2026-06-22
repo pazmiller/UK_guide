@@ -41,6 +41,29 @@ export default function LondonPage()
         </div>
       </section>
 
+      {/* ── CTA ── */}
+      <section className="relative py-16 bg-[#E63946]">
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+            Ready to Explore?
+          </h2>
+          <p className="text-white/80 mb-8">
+            选择一个分类开始你的伦敦之旅
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link href="/london/restaurants" className="bg-white text-[#E63946] font-bold px-8 py-3 rounded-lg hover:bg-[#1D3557] hover:text-white transition-colors">
+              Restaurants
+            </Link>
+            <Link href="/london/cafes" className="bg-white text-[#E63946] font-bold px-8 py-3 rounded-lg hover:bg-[#1D3557] hover:text-white transition-colors">
+              Cafes
+            </Link>
+            <Link href="/london/attractions" className="bg-white text-[#E63946] font-bold px-8 py-3 rounded-lg hover:bg-[#1D3557] hover:text-white transition-colors">
+              Attractions
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── INTRODUCTION ── */}
       <section className="relative py-16 bg-[#FBF8F1]">
         <div className="relative z-10 max-w-4xl mx-auto px-6">
@@ -257,28 +280,6 @@ export default function LondonPage()
         </div>
       </section>
 
-      {/* ── CTA FOOTER ── */}
-      <section className="relative py-16 bg-[#E63946]">
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-            Ready to Explore?
-          </h2>
-          <p className="text-white/80 mb-8">
-            选择一个分类开始你的伦敦之旅
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/london/restaurants" className="bg-white text-[#E63946] font-bold px-8 py-3 rounded-lg hover:bg-[#1D3557] hover:text-white transition-colors">
-              Restaurants
-            </Link>
-            <Link href="/london/cafes" className="bg-white text-[#E63946] font-bold px-8 py-3 rounded-lg hover:bg-[#1D3557] hover:text-white transition-colors">
-              Cafes
-            </Link>
-            <Link href="/london/attractions" className="bg-white text-[#E63946] font-bold px-8 py-3 rounded-lg hover:bg-[#1D3557] hover:text-white transition-colors">
-              Attractions
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
