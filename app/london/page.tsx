@@ -121,14 +121,14 @@ export default function LondonPage()
                 Two Thousand Years of Stories
               </h2>
               <p className="text-white/70 leading-relaxed mb-4">
-                从罗马人建立 Londinium，到中世纪的伦敦塔，再到维多利亚时代的大英帝国全盛期——伦敦的每一条街道都在讲述着历史。
+                从罗马人建立 Londinium，到中世纪的伦敦塔，再到维多利亚时代的大英帝国全盛期。伦敦的每一条街道都在讲述着历史。
               </p>
               <p className="text-white/70 leading-relaxed mb-4">
                 如今的伦敦是全球最多元化的城市之一，超过 300 种语言在这里交汇，东西方的美食文化在此碰撞。
-                这也正是为什么伦敦的餐厅推荐如此丰富——从正宗川菜到秘鲁海鲜，从潮汕火锅到那不勒斯披萨。
+                这也正是为什么伦敦的餐厅推荐如此丰富：从正宗川菜到秘鲁海鲜，从潮汕火锅到那不勒斯披萨。
               </p>
               <p className="text-white/70 leading-relaxed">
-                免费的世界级博物馆、皇家公园、和隐藏在小巷中的咖啡馆——伦敦永远有新的角落等你探索。
+                免费的世界级博物馆、皇家公园、和隐藏在小巷中的咖啡馆。伦敦永远有新的角落等你探索。
               </p>
             </div>
 
@@ -204,7 +204,7 @@ export default function LondonPage()
                 </div>
                 <h3 className="text-2xl font-black text-[#1D3557] mb-3">Cafes &amp; Desserts</h3>
                 <p className="text-gray-500 mb-6 leading-relaxed">
-                  {londonCafes.length} 家甜品店、咖啡馆与饮品店——从法式 Bakery 到台式手摇奶茶
+                  {londonCafes.length} 家甜品店、咖啡馆与饮品店，从法式 Bakery 到台式手摇奶茶
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {[ 'Bakery', 'Gelato', 'Coffee', 'Bubble Tea' ].map( c => (
@@ -233,7 +233,7 @@ export default function LondonPage()
               See London
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto">
-              免费博物馆、皇家公园与城市观景台——伦敦最值得探索的景点
+              免费博物馆、皇家公园与城市观景台，各种各样值得探索的，不会踩雷的景点（大概）
             </p>
           </div>
 
