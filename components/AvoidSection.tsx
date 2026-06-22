@@ -10,17 +10,17 @@ export default function AvoidSection({ items, title = '避雷指南' }: AvoidSec
   if (items.length === 0) return null;
 
   return (
-    <section className="py-12 bg-red-50/50">
+    <section className="py-12 bg-[#FBF8F1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3 mb-8">
           <AlertTriangle className="w-6 h-6 text-[#E63946]" />
           <h2 className="text-2xl font-bold text-[#1D3557]">{title}</h2>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {items.map((item, i) => (
             <div
               key={i}
-              className="bg-white border border-red-200 rounded-xl p-5 hover:shadow-md transition-shadow"
+              className="bg-white border border-red-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow"
             >
               <h3 className="font-bold text-[#1D3557] mb-2 flex items-center gap-2">
                 <span className="w-2 h-2 bg-[#E63946] rounded-full flex-shrink-0" />

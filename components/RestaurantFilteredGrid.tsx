@@ -8,9 +8,10 @@ import { Restaurant } from '@/data/types';
 interface Props {
   restaurants: Restaurant[];
   locationHint?: string;
+  variant?: 'classic' | 'editorial';
 }
 
-export default function RestaurantFilteredGrid({ restaurants, locationHint }: Props) {
+export default function RestaurantFilteredGrid({ restaurants, locationHint, variant = 'editorial' }: Props) {
   const [active, setActive] = useState<string>('All');
   const [selected, setSelected] = useState<Restaurant | null>(null);
 
@@ -32,9 +33,9 @@ export default function RestaurantFilteredGrid({ restaurants, locationHint }: Pr
   if (cuisines.length <= 1) {
     return (
       <>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className={`grid md:grid-cols-2 lg:grid-cols-3 ${variant === 'editorial' ? 'gap-5' : 'gap-6'}`}>
           {restaurants.map((r) => (
-            <RestaurantCard key={r.id} restaurant={r} onClick={() => setSelected(r)} />
+            <RestaurantCard key={r.id} restaurant={r} onClick={() => setSelected(r)} variant={variant} />
           ))}
         </div>
         <DetailModal
@@ -54,7 +55,7 @@ export default function RestaurantFilteredGrid({ restaurants, locationHint }: Pr
           <button
             key={c}
             onClick={() => setActive(c)}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${
+            className={`px-4 py-1.5 ${variant === 'editorial' ? 'rounded-md' : 'rounded-full'} text-sm font-medium transition-colors whitespace-nowrap ${
               active === c
                 ? 'bg-[#E63946] text-white shadow-sm'
                 : 'bg-white text-[#1D3557] border border-[#1D3557]/20 hover:border-[#E63946] hover:text-[#E63946]'
@@ -76,9 +77,9 @@ export default function RestaurantFilteredGrid({ restaurants, locationHint }: Pr
       )}
 
       {/* Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className={`grid md:grid-cols-2 lg:grid-cols-3 ${variant === 'editorial' ? 'gap-5' : 'gap-6'}`}>
         {filtered.map((r) => (
-          <RestaurantCard key={r.id} restaurant={r} onClick={() => setSelected(r)} />
+          <RestaurantCard key={r.id} restaurant={r} onClick={() => setSelected(r)} variant={variant} />
         ))}
       </div>
 

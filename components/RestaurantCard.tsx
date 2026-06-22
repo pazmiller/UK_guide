@@ -5,14 +5,18 @@ import { Restaurant } from '@/data/types';
 interface RestaurantCardProps {
   restaurant: Restaurant;
   onClick?: () => void;
+  variant?: 'classic' | 'editorial';
 }
 
-export default function RestaurantCard({ restaurant, onClick }: RestaurantCardProps) {
+export default function RestaurantCard({ restaurant, onClick, variant = 'classic' }: RestaurantCardProps) {
   const hasImage = restaurant.images.length > 0;
+  const isEditorial = variant === 'editorial';
 
   return (
     <div
-      className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover h-full cursor-pointer"
+      className={isEditorial
+        ? 'bg-white rounded-lg overflow-hidden shadow-sm ring-1 ring-[#1D3557]/10 hover:shadow-md transition-all duration-300 hover:-translate-y-1 h-full cursor-pointer'
+        : 'bg-white rounded-2xl overflow-hidden shadow-lg card-hover h-full cursor-pointer'}
       onClick={onClick}
     >
       {hasImage && (
@@ -25,14 +29,14 @@ export default function RestaurantCard({ restaurant, onClick }: RestaurantCardPr
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute top-4 left-4">
-            <span className="badge bg-[#1D3557] text-white">{restaurant.cuisine}</span>
+            <span className={`badge bg-[#1D3557] text-white ${isEditorial ? 'rounded-md' : ''}`}>{restaurant.cuisine}</span>
           </div>
         </div>
       )}
 
       <div className="p-5">
         {!hasImage && (
-          <span className="badge bg-[#1D3557] text-white mb-3 inline-block">{restaurant.cuisine}</span>
+          <span className={`badge bg-[#1D3557] text-white mb-3 inline-block ${isEditorial ? 'rounded-md' : ''}`}>{restaurant.cuisine}</span>
         )}
 
         <div className="flex items-start justify-between mb-2">
@@ -53,7 +57,7 @@ export default function RestaurantCard({ restaurant, onClick }: RestaurantCardPr
         {restaurant.mustTry.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-3">
             {restaurant.mustTry.slice(0, 3).map((item, i) => (
-              <span key={i} className="text-xs bg-[#F1FAEE] text-[#1D3557] px-2 py-1 rounded-full">
+              <span key={i} className={`text-xs bg-[#F1FAEE] text-[#1D3557] px-2 py-1 ${isEditorial ? 'rounded-md' : 'rounded-full'}`}>
                 {item}
               </span>
             ))}

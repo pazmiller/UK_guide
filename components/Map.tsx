@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import Link from 'next/link';
 import 'leaflet/dist/leaflet.css';
 
-interface Location {
+interface Location
+{
   id: string;
   slug: string;
   name: string;
@@ -15,56 +16,45 @@ interface Location {
   cuisine?: string;
 }
 
-interface MapProps {
+interface MapProps
+{
   locations: Location[];
-  center?: [number, number];
+  center?: [ number, number ];
   zoom?: number;
   type: 'attraction' | 'restaurant';
 }
 
-export default function Map({ locations, center = [51.5074, -0.1278], zoom = 12, type }: MapProps) {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
+export default function Map( { locations, center = [ 51.5074, -0.1278 ], zoom = 12, type }: MapProps )
+{
   // Fix Leaflet default icon issue
-  useEffect(() => {
-    delete (L.Icon.Default.prototype as unknown as { _getIconUrl?: () => void })._getIconUrl;
-    L.Icon.Default.mergeOptions({
+  useEffect( () =>
+  {
+    delete ( L.Icon.Default.prototype as unknown as { _getIconUrl?: () => void } )._getIconUrl;
+    L.Icon.Default.mergeOptions( {
       iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
       iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
       shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-    });
-  }, []);
+    } );
+  }, [] );
 
   // Custom marker icons
-  const attractionIcon = new L.Icon({
+  const attractionIcon = new L.Icon( {
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  });
+    iconSize: [ 25, 41 ],
+    iconAnchor: [ 12, 41 ],
+    popupAnchor: [ 1, -34 ],
+    shadowSize: [ 41, 41 ]
+  } );
 
-  const restaurantIcon = new L.Icon({
+  const restaurantIcon = new L.Icon( {
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  });
-
-  if (!isClient) {
-    return (
-      <div className="w-full h-[400px] bg-gray-200 rounded-xl flex items-center justify-center">
-        <span className="text-gray-500">Loading map...</span>
-      </div>
-    );
-  }
+    iconSize: [ 25, 41 ],
+    iconAnchor: [ 12, 41 ],
+    popupAnchor: [ 1, -34 ],
+    shadowSize: [ 41, 41 ]
+  } );
 
   const icon = type === 'attraction' ? attractionIcon : restaurantIcon;
   const basePath = type === 'attraction' ? '/attractions' : '/restaurants';
@@ -80,10 +70,10 @@ export default function Map({ locations, center = [51.5074, -0.1278], zoom = 12,
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {locations.map((location) => (
+      {locations.map( ( location ) => (
         <Marker
           key={location.id}
-          position={[location.coordinates.lat, location.coordinates.lng]}
+          position={[ location.coordinates.lat, location.coordinates.lng ]}
           icon={icon}
         >
           <Popup>
@@ -104,7 +94,7 @@ export default function Map({ locations, center = [51.5074, -0.1278], zoom = 12,
             </div>
           </Popup>
         </Marker>
-      ))}
+      ) )}
     </MapContainer>
   );
 }

@@ -9,54 +9,66 @@ type ModalData =
   | { type: 'restaurant'; data: Restaurant }
   | { type: 'attraction'; data: Attraction };
 
-interface DetailModalProps {
+interface DetailModalProps
+{
   item: ModalData | null;
   onClose: () => void;
   locationHint?: string;
 }
 
-export default function DetailModal({ item, onClose, locationHint = 'London UK' }: DetailModalProps) {
-  const [visible, setVisible] = useState(false);
+export default function DetailModal( { item, onClose, locationHint = 'London UK' }: DetailModalProps )
+{
+  const [ visible, setVisible ] = useState( false );
 
-  useEffect(() => {
-    if (item) {
+  useEffect( () =>
+  {
+    let frame: number | null = null;
+    if ( item )
+    {
       // Prevent body scroll
       document.body.style.overflow = 'hidden';
       // Trigger enter animation on next frame
-      requestAnimationFrame(() => setVisible(true));
-    } else {
-      setVisible(false);
+      frame = requestAnimationFrame( () => setVisible( true ) );
+    } else
+    {
+
       document.body.style.overflow = '';
+      frame = requestAnimationFrame( () => setVisible( false ) );
     }
-    return () => {
+    return () =>
+    {
+      if ( frame !== null ) cancelAnimationFrame( frame );
       document.body.style.overflow = '';
     };
-  }, [item]);
+  }, [ item ] );
 
-  const handleClose = useCallback(() => {
-    setVisible(false);
-    setTimeout(onClose, 300);
-  }, [onClose]);
+  const handleClose = useCallback( () =>
+  {
+    setVisible( false );
+    setTimeout( onClose, 300 );
+  }, [ onClose ] );
 
   // Close on Escape
-  useEffect(() => {
-    if (!item) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') handleClose();
+  useEffect( () =>
+  {
+    if ( !item ) return;
+    const onKey = ( e: KeyboardEvent ) =>
+    {
+      if ( e.key === 'Escape' ) handleClose();
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [item, handleClose]);
+    window.addEventListener( 'keydown', onKey );
+    return () => window.removeEventListener( 'keydown', onKey );
+  }, [ item, handleClose ] );
 
-  if (!item) return null;
+  if ( !item ) return null;
 
   const isRestaurant = item.type === 'restaurant';
   const d = item.data;
   const hasImage = d.images.length > 0;
 
   const googleMapsUrl = d.address
-    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.address)}`
-    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.name + ' ' + locationHint)}`;
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent( d.address )}`
+    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent( d.name + ' ' + locationHint )}`;
 
   return (
     <div
@@ -76,7 +88,7 @@ export default function DetailModal({ item, onClose, locationHint = 'London UK' 
           opacity: visible ? 1 : 0,
           transform: visible ? 'scale(1) translateY(0)' : 'scale(0.92) translateY(24px)',
         }}
-        onClick={(e) => e.stopPropagation()}
+        onClick={( e ) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
@@ -90,7 +102,7 @@ export default function DetailModal({ item, onClose, locationHint = 'London UK' 
         {hasImage && (
           <div className="relative w-full aspect-[16/10] overflow-hidden">
             <Image
-              src={d.images[0]}
+              src={d.images[ 0 ]}
               alt={d.name}
               fill
               className="object-cover"
@@ -108,22 +120,21 @@ export default function DetailModal({ item, onClose, locationHint = 'London UK' 
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
                 <span
-                  className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                    isRestaurant
-                      ? 'bg-[#1D3557] text-white'
-                      : 'bg-[#2A9D8F] text-white'
-                  }`}
+                  className={`text-xs font-semibold px-2.5 py-1 rounded-full ${isRestaurant
+                    ? 'bg-[#1D3557] text-white'
+                    : 'bg-[#2A9D8F] text-white'
+                    }`}
                 >
-                  {isRestaurant ? (d as Restaurant).cuisine : (d as Attraction).category || '景点'}
+                  {isRestaurant ? ( d as Restaurant ).cuisine : ( d as Attraction ).category || '景点'}
                 </span>
-                {isRestaurant && (d as Restaurant).priceRange && (
+                {isRestaurant && ( d as Restaurant ).priceRange && (
                   <span className="text-sm text-[#E63946] font-semibold">
-                    {(d as Restaurant).priceRange}
+                    {( d as Restaurant ).priceRange}
                   </span>
                 )}
-                {!isRestaurant && (d as Attraction).price && (
+                {!isRestaurant && ( d as Attraction ).price && (
                   <span className="text-sm text-[#E63946] font-semibold">
-                    {(d as Attraction).price}
+                    {( d as Attraction ).price}
                   </span>
                 )}
               </div>
@@ -137,20 +148,20 @@ export default function DetailModal({ item, onClose, locationHint = 'London UK' 
           </p>
 
           {/* Must Try (restaurants only) */}
-          {isRestaurant && (d as Restaurant).mustTry.length > 0 && (
+          {isRestaurant && ( d as Restaurant ).mustTry.length > 0 && (
             <div className="mb-5">
               <h3 className="text-sm font-semibold text-[#1D3557] mb-2">
                 推荐菜
               </h3>
               <div className="flex flex-wrap gap-2">
-                {(d as Restaurant).mustTry.map((item, i) => (
+                {( d as Restaurant ).mustTry.map( ( item, i ) => (
                   <span
                     key={i}
                     className="text-sm bg-[#F1FAEE] text-[#1D3557] px-3 py-1.5 rounded-full border border-[#1D3557]/10"
                   >
                     {item}
                   </span>
-                ))}
+                ) )}
               </div>
             </div>
           )}

@@ -8,19 +8,21 @@ import { Attraction } from '@/data/types';
 interface Props {
   attractions: Attraction[];
   locationHint?: string;
+  variant?: 'classic' | 'editorial';
 }
 
-export default function ClickableAttractionGrid({ attractions, locationHint }: Props) {
+export default function ClickableAttractionGrid({ attractions, locationHint, variant = 'editorial' }: Props) {
   const [selected, setSelected] = useState<Attraction | null>(null);
 
   return (
     <>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className={`grid md:grid-cols-2 lg:grid-cols-3 ${variant === 'editorial' ? 'gap-5' : 'gap-6'}`}>
         {attractions.map((a) => (
           <AttractionCard
             key={a.id}
             attraction={a}
             onClick={() => setSelected(a)}
+            variant={variant}
           />
         ))}
       </div>

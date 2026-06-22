@@ -21,7 +21,7 @@ export default function Hero()
 
         <p className="text-xl md:text-2xl text-white/90 mb-8 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
           Explore iconic landmarks, world-class museums, and incredible restaurants
-          with our fluffy 兽人控
+          with our fluffy Furries
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn" style={{ animationDelay: '0.4s' }}>

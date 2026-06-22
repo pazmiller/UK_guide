@@ -4,14 +4,18 @@ import { Attraction } from '@/data/types';
 interface AttractionCardProps {
   attraction: Attraction;
   onClick?: () => void;
+  variant?: 'classic' | 'editorial';
 }
 
-export default function AttractionCard({ attraction, onClick }: AttractionCardProps) {
+export default function AttractionCard({ attraction, onClick, variant = 'classic' }: AttractionCardProps) {
   const hasImage = attraction.images.length > 0;
+  const isEditorial = variant === 'editorial';
 
   return (
     <div
-      className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover cursor-pointer h-full"
+      className={isEditorial
+        ? 'bg-white rounded-lg overflow-hidden shadow-sm ring-1 ring-[#1D3557]/10 hover:shadow-md transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full'
+        : 'bg-white rounded-2xl overflow-hidden shadow-lg card-hover cursor-pointer h-full'}
       onClick={onClick}
     >
       {hasImage && (
@@ -25,7 +29,7 @@ export default function AttractionCard({ attraction, onClick }: AttractionCardPr
           />
           {attraction.category && (
             <div className="absolute top-4 left-4">
-              <span className="badge bg-[#2A9D8F] text-white">{attraction.category}</span>
+              <span className={`badge bg-[#2A9D8F] text-white ${isEditorial ? 'rounded-md' : ''}`}>{attraction.category}</span>
             </div>
           )}
         </div>
@@ -33,7 +37,7 @@ export default function AttractionCard({ attraction, onClick }: AttractionCardPr
 
       <div className="p-5">
         {!hasImage && attraction.category && (
-          <span className="badge bg-[#2A9D8F] text-white mb-3 inline-block">{attraction.category}</span>
+          <span className={`badge bg-[#2A9D8F] text-white mb-3 inline-block ${isEditorial ? 'rounded-md' : ''}`}>{attraction.category}</span>
         )}
 
         <h3 className="text-xl font-bold text-[#1D3557] mb-2 line-clamp-1">

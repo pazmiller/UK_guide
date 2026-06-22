@@ -8,16 +8,17 @@ import { Restaurant } from '@/data/types';
 interface Props {
   restaurants: Restaurant[];
   locationHint?: string;
+  variant?: 'classic' | 'editorial';
 }
 
-export default function ClickableRestaurantGrid({ restaurants, locationHint }: Props) {
+export default function ClickableRestaurantGrid({ restaurants, locationHint, variant = 'classic' }: Props) {
   const [selected, setSelected] = useState<Restaurant | null>(null);
 
   return (
     <>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className={`grid md:grid-cols-2 lg:grid-cols-3 ${variant === 'editorial' ? 'gap-5' : 'gap-8'}`}>
         {restaurants.map((r) => (
-          <RestaurantCard key={r.id} restaurant={r} onClick={() => setSelected(r)} />
+          <RestaurantCard key={r.id} restaurant={r} onClick={() => setSelected(r)} variant={variant} />
         ))}
       </div>
       <DetailModal
