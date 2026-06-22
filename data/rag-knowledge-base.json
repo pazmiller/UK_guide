@@ -1,0 +1,1658 @@
+{
+  "version": 1,
+  "generatedAt": "2026-06-22T13:58:33.464Z",
+  "source": "info_datasource/DATA.md",
+  "chunkCount": 110,
+  "chunks": [
+    {
+      "id": "0001-london-restaurant-med-salleh-kopitiam",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Med Salleh Kopitiam",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Med Salleh Kopitiam\n简介： 马来西亚餐厅\n推荐原因： 开了很久的餐厅，整体稳定，可选种类丰富，能想到的新马菜大部分基本都有。还有更新的specialty，都蛮好吃的。\n推荐菜： Chicken Rice、Nasi Lemak、Roti Canai\n价位： £25+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Med Salleh Kopitiam"
+      ]
+    },
+    {
+      "id": "0002-london-restaurant-ceru",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "CERU",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：CERU\n简介： 地中海餐厅\n推荐原因： 黎凡特的装修风格非常美丽，氛围很有代入感。食物分量偏小，但口味非常好，目前暂无踩雷。像是把你熟知的那些中东菜都精致花了一些，还有不错的海鲜料理。\n推荐菜： Three in One Dip + Pita Bread、Bird’s Nest 甜品\n价位： ~£40/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "CERU"
+      ]
+    },
+    {
+      "id": "0003-london-restaurant-kiln",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Kiln",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Kiln\n简介： 现代泰式 tapas\n推荐原因： tapas有趣、菜单常换；部分菜会非常辣（不一定吃得饱但体验感强）\n推荐菜： 菜单常换（不固定）；牛排肉非常好，招牌粉丝煲，不是不好吃，只是性价比不高，取决于之前有没有吃过类似的砂锅粉丝煲\n价位： £40+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Kiln"
+      ]
+    },
+    {
+      "id": "0004-london-restaurant-yiqi",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "YiQi",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：YiQi\n简介： 马来西亚华人餐厅\n推荐原因： 平均水准极高。有很多街头和东南亚的食阁美食，不过毕竟这是英国，就不要想着在这里吃到街头价格的食物了。即便过了开店巅峰期，分量与服务仍保持高评分区间。\n推荐菜： 白咖喱面、烤鸡翅、炒米粉、火山骨、红豆冰\n价位： £30+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "YiQi"
+      ]
+    },
+    {
+      "id": "0005-london-restaurant-guilin-ramen-house",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Guilin Ramen House",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Guilin Ramen House\n简介： 桂林米粉/糖水小馆（口味清淡友好）\n推荐原因： 适合口味清淡；桂林米粉和糖水评价好\n推荐菜： 桂林米粉、糖水\n价位： £13+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Guilin Ramen House"
+      ]
+    },
+    {
+      "id": "0006-london-restaurant-dolan",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Dolan 新疆菜",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Dolan 新疆菜\n简介： 新疆菜馆\n推荐原因： 整体水准稳定，拌面尤其好；但饭点人很多\n推荐菜： 拌面\n价位： ~£20/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Dolan 新疆菜"
+      ]
+    },
+    {
+      "id": "0007-london-restaurant-dashuo",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Dashuo 大烁（浙江宁波菜）",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Dashuo 大烁（浙江宁波菜）\n简介： 宁波菜（宴请向，环境好）\n推荐原因： 环境好、排位较容易、口味偏清淡；菜整体OK，但海/河鲜很贵；海鲜多从国内进口，建议和老板聊当批次哪些更好\n推荐菜： 宁波汤圆；海鲜（时好时坏）\n价位： £40+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Dashuo 大烁（浙江宁波菜）"
+      ]
+    },
+    {
+      "id": "0008-london-restaurant-ning-s-fresh-beef-hotpot",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Ning’s Fresh Beef Hotpot 宁记潮汕牛肉火锅",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Ning’s Fresh Beef Hotpot 宁记潮汕牛肉火锅\n简介： 潮汕鲜切牛肉火锅\n推荐原因： 肉新鲜、上菜快不卡单；有胸口油、兰花蟹；油条现炸酥脆；饮料不卡\n推荐菜： 鲜切牛肉、胸口油、兰花蟹、现炸油条\n价位： ~£30/人（用餐90分钟）\n地址： 5-7 Tottenham St, London W1T 2AG",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Ning’s Fresh Beef Hotpot 宁记潮汕牛肉火锅"
+      ]
+    },
+    {
+      "id": "0009-london-restaurant-lahpet",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Lahpet",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Lahpet\n简介： 现代改良老挝菜）\n推荐原因： 保留老挝特色、但做了改良；接受度看个人，但真很特色\n推荐菜： Tea Leaf Salad、King Prawn Curry、Chicken Coconut Noodle Bowl、Pandan Coconut Creme Brulee\n价位： £40+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Lahpet"
+      ]
+    },
+    {
+      "id": "0010-london-restaurant-plaza-khao-gaeng",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Plaza Khao Gaeng",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Plaza Khao Gaeng\n简介： 泰餐（米其林餐盘）\n推荐原因： 口味不错、价格适中，米其林餐盘不负其名。Tottenham Court Road那家美食广场里很多坑货，2025年截止就它整体最能打。\n推荐菜： 可加饮料的 Set Meal、泰式饮料\n价位： £25+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Plaza Khao Gaeng"
+      ]
+    },
+    {
+      "id": "0011-london-restaurant-speedboat-bar",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Speedboat Bar",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Speedboat Bar\n简介： 正宗泰餐\n推荐原因： 东南亚菜表现强，正宗泰餐路线，菜单英文比泰文小。再次体现为什么Chinatown里最好吃的反而不是中餐。\n推荐菜： Tom Yum Mama Noodle 海鲜锅\n价位： £25+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Speedboat Bar"
+      ]
+    },
+    {
+      "id": "0012-london-restaurant-bao",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "BAO",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：BAO\n简介：连锁台式料理\n推荐原因：价格适中，台式小店的氛围还不错。它的各种柳叶包BAO很多沿海人可能会感觉很熟悉，相对来说感觉没必要在伦敦吃。牛排盖饭意外地非常棒，调味也很好，至少博罗市场的那家很不错。\n推荐菜：Beef Steak Rice、冷泡乌龙\n价位：£10+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "BAO"
+      ]
+    },
+    {
+      "id": "0013-london-restaurant-vasiniko",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Vasiniko🍕",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Vasiniko🍕\n简介：那不勒斯披萨\n推荐原因：最正宗的Neopolitan Pizza之一，价格也不算贵，英国目前吃过最好吃的披萨。\n推荐菜：Margherita不用多言、Diavola、Espresso、Tiramisu、Pistacchiella\n价位：£20-40/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Vasiniko🍕"
+      ]
+    },
+    {
+      "id": "0014-london-restaurant-gloria",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Gloria",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Gloria\n简介： 中高端意大利菜\n推荐原因：装修非常有韵味，极其受本地人欢迎，服务很好，菜式正宗且精致，价格也稍贵。有更好吃还更便宜的意大利菜，但整体体验没有Gloria好。菜的种类其实不算多。很多人推荐它的玛格利特鸡尾酒，不过暂无人试过。\n推荐菜： 生牛肉沙拉CARPACCIO DI MANZO、浓郁的Cacio e Pepe\n价位：~£40/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Gloria"
+      ]
+    },
+    {
+      "id": "0015-london-restaurant-amalfi-ristorante-argyll-stree",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Amalfi Ristorante - Argyll Stree",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Amalfi Ristorante - Argyll Stree\n简介： 意大利菜\n推荐原因：\n推荐菜：\n价位：~£30/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Amalfi Ristorante - Argyll Stree"
+      ]
+    },
+    {
+      "id": "0016-london-restaurant-zima",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "ZIMA",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：ZIMA\n简介：现代俄罗斯菜\n推荐原因：精致却不失传统，分量较少。俄罗斯菜在伦敦不算多，这家算是很不错的选择。\n推荐菜：Handstretched bread（很香，像是Garlic披萨）、Nduja spiced Arancini（意大利的Salami和芝士，米混合的一个外脆里软的丸子，味道很暖心）、千层面\n价位：£30+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "ZIMA"
+      ]
+    },
+    {
+      "id": "0017-london-restaurant-crudo",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Crudo",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Crudo\n简介： 精致秘鲁菜\n推荐原因： 异域、多彩、丰富，海鲜。国内少见的秘鲁菜，推荐来英国一定要试试。海鲜类很稳，分量比较小，精致型。（也有秘鲁的酸味鱼类刺身）\n推荐菜： 海鲜类。Ceviche（秘鲁果菜，新鲜鱼肉刺身切片，用新鲜的柠檬汁和各种香料腌制）\n价位： £40+/人 大多时候有固定Set Menu",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Crudo"
+      ]
+    },
+    {
+      "id": "0018-london-restaurant-senor-ceviche",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Señor Ceviche",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Señor Ceviche\n简介： 秘鲁菜（同类精致路线）\n推荐原因： 与 Crudo 同类型，但是便宜一些，也有套餐。\n推荐菜： 海鲜类\n价位： £30+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Señor Ceviche"
+      ]
+    },
+    {
+      "id": "0019-london-restaurant-chef-javad-persian-cuisine-bar",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Chef Javad Persian Cuisine & Bar",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Chef Javad Persian Cuisine & Bar\n简介： 波斯菜\n推荐原因： 正宗且水准高于英国平均波斯菜\n推荐菜： Koobideh 羊肉、藏红花Biryani、波斯红茶、藏红花Saffron相关甜品\n价位： £30+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Chef Javad Persian Cuisine & Bar"
+      ]
+    },
+    {
+      "id": "0020-london-restaurant-sushi-masa",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Sushi Masa",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Sushi Masa\n简介： 日本家庭日料（正宗）\n推荐原因： 品质很高，虽稍贵但对得起；有不少伦敦常见日料吃不到的时令刺身\n推荐菜： 寿司套餐\n价位： £35+/人\n链接： https://maps.app.goo.gl/K83AodwDBZgoW4xZ7",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Sushi Masa"
+      ]
+    },
+    {
+      "id": "0021-london-restaurant-prix-fixe-soho",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Prix Fixe soho",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Prix Fixe soho\n简介：法餐\n推荐原因： 价格实惠的法餐，一个Set只要21英镑。口味尚可，分量也OK，适合想试试看法餐但不准备直接钱包爆炸的人。\n推荐菜： 中午才有的 £21 Set，晚上去的花依旧是£40+\n价位： £21/人 （截止2026 March）",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Prix Fixe soho"
+      ]
+    },
+    {
+      "id": "0022-london-restaurant-stick-n-sushi",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Stick N Sushi",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Stick N Sushi\n简介：连锁现代日式料理\n推荐原因：听简介，丹麦现代日料，你可能会感觉是不是有点坑，毕竟欧洲一般越往北越难吃。但是StickNSushi的创新不是纯粹的瞎xx乱搞，而是有一定的日式料理基础的创新，口味不错，现代西化有些新颖但克制，保留住了日料的精髓。除了Don Bowl这些外比较难吃饱，单价不便宜，随便点的话轻松40，50往上。服务的话在英国也算是不错的。\n推荐菜：多种搭配好的套餐，性价比上推荐Robust（40以下），刺身套餐Come For A Swim。刺身单点推荐Hiramasa Kataifi，牛肉刺身也不错但是来英国了可以试试牛肉塔塔和意大利生牛肉。\n价位： £40+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Stick N Sushi"
+      ]
+    },
+    {
+      "id": "0023-london-restaurant-dishroom",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Dishroom",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Dishroom\n简介：现代印度料理\n推荐原因：多位印度人一致认可Dishroom好吃，只是不正宗。我们也吃过好几次，很适合没怎么吃过印度菜的人第一次尝试。价格因为从头到尾都比普通印度菜要精致很多，自然也会有溢价。\n推荐菜：Biryanai, Naan, 各种咖喱（甜点的话可以谨慎一点，把踩雷可以不点）\n价位： £30+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Dishroom"
+      ]
+    },
+    {
+      "id": "0024-london-restaurant-honest-burgers",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Honest Burgers",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Honest Burgers\n简介： 连锁英国汉堡\n推荐原因： 汉堡可选熟度，各方面都进入了Artisan Burger的入门水平，连锁品控还不错，价位也算合理。\n推荐菜： 经典汉堡，洋葱圈非常好吃，香得很。\n价位： £10-20/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Honest Burgers"
+      ]
+    },
+    {
+      "id": "0025-london-restaurant-madura-kitchen",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Madura Kitchen",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Madura Kitchen\n简介： 印尼菜在西伦敦\n推荐原因： 坐满印尼人，正宗无需多言。而且性价比极高，在伦敦这种档次的菜能以这个价格吃到很值了，就是位置也比较偏。\n推荐菜： Rendang 牛肉、烤鱼、各类 Ayam 鸡肉料理、Cendol 甜品\n价位： £15+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Madura Kitchen"
+      ]
+    },
+    {
+      "id": "0026-london-restaurant-cloud-land",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "遇见云南 Cloud Land",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：遇见云南 Cloud Land\n简介： 云南菜推荐原因： 伦敦正宗云南菜不容易；这家口味/菜品/价格都不错\n推荐菜： 各种米线、国内运来的菌菇类\n价位： £25+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "遇见云南 Cloud Land"
+      ]
+    },
+    {
+      "id": "0027-london-restaurant-med-salleh-viet",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Med Salleh Viet",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Med Salleh Viet\n简介： 越南餐厅（同Kopitiam的老板开的）\n推荐原因： 口味好、价格适中；但位置可能半地下不太好找\n推荐菜： 现场热汤烫熟牛肉的经典Pho\n价位： £20+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Med Salleh Viet"
+      ]
+    },
+    {
+      "id": "0028-london-restaurant-dong-yuan",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "东园 Dong Yuan",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：东园 Dong Yuan\n简介：湘菜 (Chinese)\n推荐原因：偏辣的菜做得更稳、更下饭；不辣的菜（例如锅包肉）整体一般\n推荐菜：干煸肥肠、擂椒炒牛杂、东园小炒肉、手撕包菜、韭菜涨蛋\n地址：10 School Rd, London NW10 6TD\n价位：£20–30/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "东园 Dong Yuan"
+      ]
+    },
+    {
+      "id": "0029-london-restaurant-cheli-https-www-cheli-co-uk",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "浙里 Cheli（官网：https://www.cheli.co.uk/）",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：浙里 Cheli（官网：https://www.cheli.co.uk/）\n简介：江浙菜\n推荐原因：经典江浙口味选择丰富，适合想吃“清鲜/本帮”路线的人\n推荐菜：香干马兰头、龙井虾仁、咸肉菜饭、梅干菜笋干烧肉\n地址：56–58 New Kent Rd, Elephant Park, London SE1 6FU\n价位：£40+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "浙里 Cheli（官网：https://www.cheli.co.uk/）"
+      ]
+    },
+    {
+      "id": "0030-london-restaurant-chilli-point",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "椒点猛火自贡 Chilli Point",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：椒点猛火自贡 Chilli Point\n简介：川菜\n推荐原因：多人推荐非常正宗的自贡菜，辣，油，重，符合馋川菜口味的人。\n推荐菜：哑巴兔，避雷：牛蛙类菜可能不太新鲜\n价位：￡30",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "椒点猛火自贡 Chilli Point"
+      ]
+    },
+    {
+      "id": "0031-london-restaurant-general-guidelines",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "综合提示 General Guidelines",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：综合提示 General Guidelines\n简介：英国菜 British\n推荐原因：伦敦有着约来自于190个不同国家和地区的餐饮，其口味之丰富，之璀璨，价位波动之大，除了纽约外全世界也难以找到敌手。因此，推荐来伦敦的朋友们勇于尝试不同的菜系，特别是不要局限于中餐，日料，和韩料这些我们本就接受度很广的菜系。英国由于印巴移民众多，这两家的菜可谓是和本国一样正宗，印度菜更是基本难以踩雷，任何评分比较高没有抱怨食品安全问题的印度菜都可以去尝试。然后紧随其后的是中东移民，所以各种中东菜系都可以试试，波斯/伊朗菜的大肉和藏红花米饭个人首先推荐。泰国在英国有官方的食品文化节，而泰餐在英国也是非常正宗的，作为经常吃泰餐和去过东南亚的人强烈推荐，但是要注意避开连锁泰餐，味道会非常Diluted。（英国不需要给小费，服务费约12.5%已经默认算进去了。但是对服务生态度也是要好点，基本上直接呼唤过来也是很不礼貌的。如果对方服务很差，你可以要求退这12.5%的服务费）\n推荐菜：印度菜、中东菜、希腊菜、泰餐、其余东南亚菜\n价位：未知",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "综合提示 General Guidelines"
+      ]
+    },
+    {
+      "id": "0032-london-cafe-arome-bakery",
+      "city": "London",
+      "category": "cafe",
+      "section": "London｜甜品/烘焙/咖啡/饮品",
+      "title": "Arôme Bakery",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Arôme Bakery\n简介： 法式 Bakery\n推荐原因： Honey Butter Toast 很强，无敌，哪怕拿回家放冷了，上面放一个Scoop的Gelato，放进烤箱里烤一会儿，太美了……咖啡也不错\n推荐菜： Honey Butter Toast、Cortado\n价位： Honey Butter Toast现在应该是£5+了",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "cafe",
+        "London｜甜品/烘焙/咖啡/饮品",
+        "Arôme Bakery"
+      ]
+    },
+    {
+      "id": "0033-london-cafe-gelupo",
+      "city": "London",
+      "category": "cafe",
+      "section": "London｜甜品/烘焙/咖啡/饮品",
+      "title": "Gelupo",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Gelupo\n简介： Gelato 冰淇淋店\n推荐原因： 价格正常、口味多样且更新快；整体水准高\n推荐菜： Coconut Sorbet，很多新口味\n价位： 正常gelato价格，可能稍微贵一点点",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "cafe",
+        "London｜甜品/烘焙/咖啡/饮品",
+        "Gelupo"
+      ]
+    },
+    {
+      "id": "0034-london-cafe-the-leaf",
+      "city": "London",
+      "category": "cafe",
+      "section": "London｜甜品/烘焙/咖啡/饮品",
+      "title": "The Leaf 小叶子",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：The Leaf 小叶子\n简介： 马来/娘惹点心\n推荐原因： 稍贵但基本没有平替，东南亚马来西亚口味的点心，或者更详细说是娘惹点心。娘惹是马来西亚华人文化的一个分支，华人和马来族剩下的女儿称为娘惹。\n推荐菜： 未注明\n价位： ~£10左右",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "cafe",
+        "London｜甜品/烘焙/咖啡/饮品",
+        "The Leaf 小叶子"
+      ]
+    },
+    {
+      "id": "0035-london-cafe-truedan",
+      "city": "London",
+      "category": "cafe",
+      "section": "London｜甜品/烘焙/咖啡/饮品",
+      "title": "Truedan",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Truedan\n简介： 台式手摇珍奶\n推荐原因： 出品极佳（你给了“真神”级别推荐）\n推荐菜： 四季春鲜奶茶、四季春奶茶\n价位： 通常 £4+",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "cafe",
+        "London｜甜品/烘焙/咖啡/饮品",
+        "Truedan"
+      ]
+    },
+    {
+      "id": "0036-london-cafe-tiraffe",
+      "city": "London",
+      "category": "cafe",
+      "section": "London｜甜品/烘焙/咖啡/饮品",
+      "title": "Tiraffe",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Tiraffe\n简介： 中式精品咖啡店\n推荐原因： 咖啡和甜品都不错；环境很棒\n推荐菜： Lychee Jasmine Latte\n价位： 通常 £4+",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "cafe",
+        "London｜甜品/烘焙/咖啡/饮品",
+        "Tiraffe"
+      ]
+    },
+    {
+      "id": "0037-london-cafe-nostos-coffee",
+      "city": "London",
+      "category": "cafe",
+      "section": "London｜甜品/烘焙/咖啡/饮品",
+      "title": "Nostos Coffee",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Nostos Coffee\n简介： 精品咖啡店\n推荐原因： 很用心；杯子和环境有趣，但座位偏少\n推荐菜： 都可以试试\n价位： 通常 £4+",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "cafe",
+        "London｜甜品/烘焙/咖啡/饮品",
+        "Nostos Coffee"
+      ]
+    },
+    {
+      "id": "0038-london-cafe-fairshot-cafe",
+      "city": "London",
+      "category": "cafe",
+      "section": "London｜甜品/烘焙/咖啡/饮品",
+      "title": "Fairshot Cafe",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Fairshot Cafe\n简介： 咖啡馆\n推荐原因：物美价廉好喝，基本上不会有错就是了。\n推荐菜： 未注明\n价位： 普通咖啡价格",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "cafe",
+        "London｜甜品/烘焙/咖啡/饮品",
+        "Fairshot Cafe"
+      ]
+    },
+    {
+      "id": "0039-london-cafe-mamason-s",
+      "city": "London",
+      "category": "cafe",
+      "section": "London｜甜品/烘焙/咖啡/饮品",
+      "title": "Mamason's",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Mamason's\n简介：菲律宾甜品店，很多特殊的菲律宾特色甜品。\n推荐原因： 非常独特，除了热量报表外找不到什么缺点，主要是卖奶昔和冰淇淋，也可以买一桶带回家吃。\n推荐菜： HALO HALO，当季新口味，Ube口味，MILO口味\n价位： £6+",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "cafe",
+        "London｜甜品/烘焙/咖啡/饮品",
+        "Mamason's"
+      ]
+    },
+    {
+      "id": "0040-london-cafe-hotel-chocolat",
+      "city": "London",
+      "category": "cafe",
+      "section": "London｜甜品/烘焙/咖啡/饮品",
+      "title": "Hotel Chocolat",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Hotel Chocolat\n简介： 连锁各式巧克力甜品店\n推荐原因：质量稳定，巧克力百分比的选择也很丰富，奶昔，冰淇淋，纯巧克力，热巧克力，礼品，应有尽有。\n推荐菜： 72% Dark Chocolate Milkshake\n价位：因人而异",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "cafe",
+        "London｜甜品/烘焙/咖啡/饮品",
+        "Hotel Chocolat"
+      ]
+    },
+    {
+      "id": "0041-london-attraction-westminster-abbey",
+      "city": "London",
+      "category": "attraction",
+      "section": "伦敦景点",
+      "title": "Westminster Abbey",
+      "content": "城市/地区：London\n分类：attraction\n来源章节：伦敦景点\n条目：Westminster Abbey\n价位：\n推荐原因：\n（英国之魂，如同大不列颠的先贤祠，）\nKew Garden\nRichmond Park\nVictoria and Albert Museum\nNatural History Museum\nImperial War Museum\nLondon Transport Museum\nTate Modern\nTate Britain\nNational Gallery",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "attraction",
+        "伦敦景点",
+        "Westminster Abbey"
+      ]
+    },
+    {
+      "id": "0042-london-attraction-horizon-22",
+      "city": "London",
+      "category": "attraction",
+      "section": "伦敦景点",
+      "title": "Horizon 22",
+      "content": "城市/地区：London\n分类：attraction\n来源章节：伦敦景点\n条目：Horizon 22\n价位：免费（需预约）\n推荐原因：",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "attraction",
+        "伦敦景点",
+        "Horizon 22"
+      ]
+    },
+    {
+      "id": "0043-london-attraction-sky-garden",
+      "city": "London",
+      "category": "attraction",
+      "section": "伦敦景点",
+      "title": "Sky Garden",
+      "content": "城市/地区：London\n分类：attraction\n来源章节：伦敦景点\n条目：Sky Garden\n价位：免费（需预约）\n推荐原因：",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "attraction",
+        "伦敦景点",
+        "Sky Garden"
+      ]
+    },
+    {
+      "id": "0044-london-avoid-chunk",
+      "city": "London",
+      "category": "avoid",
+      "section": "伦敦避雷景点",
+      "title": "伦敦避雷景点",
+      "content": "城市/地区：London\n分类：avoid\n来源章节：伦敦避雷景点\n条目：伦敦避雷景点\nLondon Eye （排队时间过长，价格过高，体验感不如免费的Horizon 22和Sky Garden）\n福尔摩斯博物馆 （少数要花较贵门票费的博物馆，而且很小）\n杜莎夫人蜡像馆 （太典了）\n巨石阵 （排了几个小时也只能远远看一下，如果能回到上世纪能走到面前甚至爬上去的时候，那还是蛮值得的）\n粉丝LED三轮车（会被宰客）",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "avoid",
+        "伦敦避雷景点",
+        "伦敦避雷景点"
+      ]
+    },
+    {
+      "id": "0045-london-avoid-bella-italia",
+      "city": "London",
+      "category": "avoid",
+      "section": "伦敦避雷餐厅",
+      "title": "Bella Italia",
+      "content": "城市/地区：London\n分类：avoid\n来源章节：伦敦避雷餐厅\n条目：Bella Italia\n简介：连锁意大利餐厅\n避雷原因：非常平庸的英式意大利菜，在遍地好吃意大利菜的英国不需要去吃这个。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "avoid",
+        "伦敦避雷餐厅",
+        "Bella Italia"
+      ]
+    },
+    {
+      "id": "0046-london-avoid-zizzi",
+      "city": "London",
+      "category": "avoid",
+      "section": "伦敦避雷餐厅",
+      "title": "Zizzi",
+      "content": "城市/地区：London\n分类：avoid\n来源章节：伦敦避雷餐厅\n条目：Zizzi\n简介：连锁意大利餐厅\n避雷原因：同Bella Italia，Zizzi比它稍微好一点吧。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "avoid",
+        "伦敦避雷餐厅",
+        "Zizzi"
+      ]
+    },
+    {
+      "id": "0047-london-avoid-flat-iron",
+      "city": "London",
+      "category": "avoid",
+      "section": "伦敦避雷餐厅",
+      "title": "Flat Iron",
+      "content": "城市/地区：London\n分类：avoid\n来源章节：伦敦避雷餐厅\n条目：Flat Iron\n简介：连锁切片牛排餐厅\n避雷原因：跌下物美价廉的地位，只剩下价廉了。目前仍有个专门的免费冰淇淋味道还不错。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "avoid",
+        "伦敦避雷餐厅",
+        "Flat Iron"
+      ]
+    },
+    {
+      "id": "0048-london-avoid-kung-fu-noodle",
+      "city": "London",
+      "category": "avoid",
+      "section": "伦敦避雷餐厅",
+      "title": "Kung Fu Noodle 熬兰州牛肉拉面 （唐人街）",
+      "content": "城市/地区：London\n分类：avoid\n来源章节：伦敦避雷餐厅\n条目：Kung Fu Noodle 熬兰州牛肉拉面 （唐人街）\n简介：兰州拉面\n避雷原因：味道中下，价格中上，在热门地段坑人。附近有家开了十几二十年的名叫“正宗兰州拉面”的那家店综合更好一些。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "avoid",
+        "伦敦避雷餐厅",
+        "Kung Fu Noodle 熬兰州牛肉拉面 （唐人街）"
+      ]
+    },
+    {
+      "id": "0049-london-avoid-chunk",
+      "city": "London",
+      "category": "avoid",
+      "section": "伦敦避雷餐厅",
+      "title": "鼎泰丰",
+      "content": "城市/地区：London\n分类：avoid\n来源章节：伦敦避雷餐厅\n条目：鼎泰丰\n简介：连锁世界小笼包中餐\n避雷原因：万年不更新的菜单，全世界连锁的鼎泰丰在伦敦价格可能是最贵的之一，口味也极其一般，分量还小。服务员也曾因我们提了一杯奶茶拒绝我们入座，即便我们愿意点饮料也不行，非常不友好。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "avoid",
+        "伦敦避雷餐厅",
+        "鼎泰丰"
+      ]
+    },
+    {
+      "id": "0050-london-avoid-preto-west-end",
+      "city": "London",
+      "category": "avoid",
+      "section": "伦敦避雷餐厅",
+      "title": "Preto(West End分店)",
+      "content": "城市/地区：London\n分类：avoid\n来源章节：伦敦避雷餐厅\n条目：Preto(West End分店)\n简介：巴西烤肉Brazilian Steakhouse BBQ\n避雷原因：肉质很差，非常咸，价格却不便宜，吃过一次就不想再吃了。甚至有两人吃完后拉肚。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "avoid",
+        "伦敦避雷餐厅",
+        "Preto(West End分店)"
+      ]
+    },
+    {
+      "id": "0051-london-avoid-busaba",
+      "city": "London",
+      "category": "avoid",
+      "section": "伦敦避雷餐厅",
+      "title": "Busaba",
+      "content": "城市/地区：London\n分类：avoid\n来源章节：伦敦避雷餐厅\n条目：Busaba\n简介：连锁泰国菜\n避雷原因：口味一般，价格中等。重点是英国有非常多正宗美味的泰餐，何必去吃一家白人连锁泰国菜？",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "avoid",
+        "伦敦避雷餐厅",
+        "Busaba"
+      ]
+    },
+    {
+      "id": "0052-uk-budget-greggs",
+      "city": "UK",
+      "category": "budget",
+      "section": "UK 性价比快餐（维持生命用）",
+      "title": "Greggs",
+      "content": "城市/地区：UK\n分类：budget\n来源章节：UK 性价比快餐（维持生命用）\n条目：Greggs\n简介： 英国连锁烘焙快餐\n推荐原因： 可能有 £1.99 晚间 meal deal（不确定现在是否还有）；不算好吃但管饱；Monzo 有时有优惠\n推荐菜： meal deal（披萨+饮品）\n价位：",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "UK",
+        "budget",
+        "UK 性价比快餐（维持生命用）",
+        "Greggs"
+      ]
+    },
+    {
+      "id": "0053-uk-budget-wasabi",
+      "city": "UK",
+      "category": "budget",
+      "section": "UK 性价比快餐（维持生命用）",
+      "title": "Wasabi",
+      "content": "城市/地区：UK\n分类：budget\n来源章节：UK 性价比快餐（维持生命用）\n条目：Wasabi\n简介： 日式快餐（可当中餐平替）\n推荐原因： 饭更符合国内胃口；Monzo/Unidays 有时有优惠\n推荐菜： 未注明\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "UK",
+        "budget",
+        "UK 性价比快餐（维持生命用）",
+        "Wasabi"
+      ]
+    },
+    {
+      "id": "0054-uk-budget-leon",
+      "city": "UK",
+      "category": "budget",
+      "section": "UK 性价比快餐（维持生命用）",
+      "title": "Leon",
+      "content": "城市/地区：UK\n分类：budget\n来源章节：UK 性价比快餐（维持生命用）\n条目：Leon\n简介： 轻食连锁\n推荐原因： 口味不算重；米饭颗粒感明显（部分人会介意）；Monzo 有时有优惠\n推荐菜： 未注明\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "UK",
+        "budget",
+        "UK 性价比快餐（维持生命用）",
+        "Leon"
+      ]
+    },
+    {
+      "id": "0055-southampton-restaurant-red-dog-saloon",
+      "city": "Southampton",
+      "category": "restaurant",
+      "section": "Southampton｜南安普顿",
+      "title": "Red Dog Saloon",
+      "content": "城市/地区：Southampton\n分类：restaurant\n来源章节：Southampton｜南安普顿\n条目：Red Dog Saloon\n简介： 酒吧式烤肉/烟熏肉餐厅\n推荐原因： 肉类爱好者天堂；烤肠不错（可问服务员哪些套餐含烤肠）；适合偶尔来\n推荐菜： Platters：USS Texas、USS Kentucky；烤肠\n价位： 未注明\n邮编： SO15 1DE",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Southampton",
+        "restaurant",
+        "Southampton｜南安普顿",
+        "Red Dog Saloon"
+      ]
+    },
+    {
+      "id": "0056-southampton-restaurant-new-panda",
+      "city": "Southampton",
+      "category": "restaurant",
+      "section": "Southampton｜南安普顿",
+      "title": "New Panda 熊记",
+      "content": "城市/地区：Southampton\n分类：restaurant\n来源章节：Southampton｜南安普顿\n条目：New Panda 熊记\n简介： 中餐\n推荐原因： 同学非常喜欢他们家的辣子鸡\n推荐菜： 辣子鸡\n价位： 未注明\n邮编： SO15 2DB",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Southampton",
+        "restaurant",
+        "Southampton｜南安普顿",
+        "New Panda 熊记"
+      ]
+    },
+    {
+      "id": "0057-southampton-restaurant-yipinju-lanzhou-noodle-bar",
+      "city": "Southampton",
+      "category": "restaurant",
+      "section": "Southampton｜南安普顿",
+      "title": "Yipinju Lanzhou Noodle Bar 一品居兰州拉面",
+      "content": "城市/地区：Southampton\n分类：restaurant\n来源章节：Southampton｜南安普顿\n条目：Yipinju Lanzhou Noodle Bar 一品居兰州拉面\n简介： 兰州拉面/牛肉面\n推荐原因： 南安网红拉面店；一般，但牛肉给得多、分量大\n推荐菜： 牛肉面\n价位： 未注明\n邮编： SO16 3AY",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Southampton",
+        "restaurant",
+        "Southampton｜南安普顿",
+        "Yipinju Lanzhou Noodle Bar 一品居兰州拉面"
+      ]
+    },
+    {
+      "id": "0058-edinburgh-restaurant-la-sal",
+      "city": "Edinburgh",
+      "category": "restaurant",
+      "section": "Edinburgh｜爱丁堡",
+      "title": "La Sal",
+      "content": "城市/地区：Edinburgh\n分类：restaurant\n来源章节：Edinburgh｜爱丁堡\n条目：La Sal\n简介： 西班牙菜\n推荐原因：价格相对实惠的西班牙菜，tapas 相对之前吃过的其他西班牙菜量都要稍大，海鲜饭很好吃，里面的鱼虾的很鲜甜，没有腥味。\n推荐菜： De Marisco Paella, Calamares, Padron Peppers\n价位： ~£30/人\n地址：[22 Union Pl, Edinburgh EH1 3NQ](https://maps.app.goo.gl/WpuzyF9gjGQZHTxk6?g_st=ic)",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Edinburgh",
+        "restaurant",
+        "Edinburgh｜爱丁堡",
+        "La Sal"
+      ]
+    },
+    {
+      "id": "0059-glasgow-restaurant-non-viet",
+      "city": "Glasgow",
+      "category": "restaurant",
+      "section": "Glasgow｜格拉斯哥",
+      "title": "Non Viet",
+      "content": "城市/地区：Glasgow\n分类：restaurant\n来源章节：Glasgow｜格拉斯哥\n条目：Non Viet\n简介： 越南菜（Pho/春卷）\n推荐原因： 越南河粉和夏卷很好吃，到国内都还挂念着的店\n推荐菜： Pho、夏卷\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Glasgow",
+        "restaurant",
+        "Glasgow｜格拉斯哥",
+        "Non Viet"
+      ]
+    },
+    {
+      "id": "0060-glasgow-restaurant-celino-s-partick",
+      "city": "Glasgow",
+      "category": "restaurant",
+      "section": "Glasgow｜格拉斯哥",
+      "title": "Celino’s Partick",
+      "content": "城市/地区：Glasgow\n分类：restaurant\n来源章节：Glasgow｜格拉斯哥\n条目：Celino’s Partick\n简介： 意大利菜\n推荐原因： 特别好吃且价格相对味道来说便宜，性价比蛮高。而且服务比较及时，经常回来巡视。但是意式甜品比较一般，提拉米苏也不是很好吃。\n推荐菜： 披萨、意大利面（比如Scoglio Bianco）避雷：甜品相对很一般。\n价位： ~£30/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Glasgow",
+        "restaurant",
+        "Glasgow｜格拉斯哥",
+        "Celino’s Partick"
+      ]
+    },
+    {
+      "id": "0061-glasgow-restaurant-by-chance",
+      "city": "Glasgow",
+      "category": "restaurant",
+      "section": "Glasgow｜格拉斯哥",
+      "title": "by chance",
+      "content": "城市/地区：Glasgow\n分类：restaurant\n来源章节：Glasgow｜格拉斯哥\n条目：by chance\n简介： 奶茶店（Partick）\n推荐原因： 不出名但比喜茶都好喝很多\n推荐菜： 奶茶\n价位： ~£4/杯",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Glasgow",
+        "restaurant",
+        "Glasgow｜格拉斯哥",
+        "by chance"
+      ]
+    },
+    {
+      "id": "0062-glasgow-restaurant-largus-fish-chips",
+      "city": "Glasgow",
+      "category": "restaurant",
+      "section": "Glasgow｜格拉斯哥",
+      "title": "Largus 海边 Fish & Chips",
+      "content": "城市/地区：Glasgow\n分类：restaurant\n来源章节：Glasgow｜格拉斯哥\n条目：Largus 海边 Fish & Chips\n简介： 海边炸鱼薯条\n推荐原因： 很好吃\n推荐菜： Fish & Chips\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Glasgow",
+        "restaurant",
+        "Glasgow｜格拉斯哥",
+        "Largus 海边 Fish & Chips"
+      ]
+    },
+    {
+      "id": "0063-swansea-restaurant-swansea",
+      "city": "Swansea",
+      "category": "restaurant",
+      "section": "Swansea｜斯旺西",
+      "title": "Swansea｜斯旺西",
+      "content": "城市/地区：Swansea\n分类：restaurant\n来源章节：Swansea｜斯旺西\n条目：Swansea｜斯旺西\n斯旺西区域比较小，基本1天来回也可以看完，是个比较安静朴素的小镇。很适合休养生息。\n不过注意天气变化有时候比较快，海边风大，担心小下雨，优先选择雨衣，免得你的伞会被风带走哦。\n如果要热闹的话，圣诞节可以来看看，有游行，临时美食街和临时的游乐园。你问复活节，我还没体验过。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Swansea",
+        "restaurant",
+        "Swansea｜斯旺西",
+        "Swansea｜斯旺西"
+      ]
+    },
+    {
+      "id": "0064-general-avoid-super-work",
+      "city": "General",
+      "category": "avoid",
+      "section": "避雷",
+      "title": "Super Work 乐鱼私烤（一家中国餐厅）",
+      "content": "城市/地区：General\n分类：avoid\n来源章节：避雷\n条目：Super Work 乐鱼私烤（一家中国餐厅）\n简介： 一家中国餐厅\n原因： 吃过一次，味道无比清淡而且没味儿，尽管朋友说觉得还可以，但我不会再吃第二次。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "avoid",
+        "避雷",
+        "Super Work 乐鱼私烤（一家中国餐厅）"
+      ]
+    },
+    {
+      "id": "0065-general-avoid-lotus",
+      "city": "General",
+      "category": "avoid",
+      "section": "避雷",
+      "title": "Lotus(泰餐)",
+      "content": "城市/地区：General\n分类：avoid\n来源章节：避雷\n条目：Lotus(泰餐)\n原因： 和别的泰式餐厅没差多少。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "avoid",
+        "避雷",
+        "Lotus(泰餐)"
+      ]
+    },
+    {
+      "id": "0066-general-avoid-chopsticks",
+      "city": "General",
+      "category": "avoid",
+      "section": "避雷",
+      "title": "Chopsticks(英式中餐)",
+      "content": "城市/地区：General\n分类：avoid\n来源章节：避雷\n条目：Chopsticks(英式中餐)\n原因： 有点像老外想象中的一般中餐，味道价格都一般。想体验老外的感觉可以去试试。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "avoid",
+        "避雷",
+        "Chopsticks(英式中餐)"
+      ]
+    },
+    {
+      "id": "0067-general-avoid-the-shed",
+      "city": "General",
+      "category": "avoid",
+      "section": "避雷",
+      "title": "THE SHED（法餐）",
+      "content": "城市/地区：General\n分类：avoid\n来源章节：避雷\n条目：THE SHED（法餐）\n原因： 老师推荐，但是朋友说吃了一般。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "avoid",
+        "避雷",
+        "THE SHED（法餐）"
+      ]
+    },
+    {
+      "id": "0068-general-avoid-rasoi-raj-s-kitchen",
+      "city": "General",
+      "category": "avoid",
+      "section": "避雷",
+      "title": "RASOI还有Raj’s Kitchen（印餐）",
+      "content": "城市/地区：General\n分类：avoid\n来源章节：避雷\n条目：RASOI还有Raj’s Kitchen（印餐）\n原因： 朋友说和别的印餐差不多。个人感觉肉有点柴，咖喱中规中矩。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "avoid",
+        "避雷",
+        "RASOI还有Raj’s Kitchen（印餐）"
+      ]
+    },
+    {
+      "id": "0069-general-avoid-ask-italian-pasta-pizza",
+      "city": "General",
+      "category": "avoid",
+      "section": "避雷",
+      "title": "ASK Italian Pasta & Pizza",
+      "content": "城市/地区：General\n分类：avoid\n来源章节：避雷\n条目：ASK Italian Pasta & Pizza\n原因： 中规中矩的披萨，不如达美乐。个人觉得大部分披萨都过于干。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "avoid",
+        "避雷",
+        "ASK Italian Pasta & Pizza"
+      ]
+    },
+    {
+      "id": "0070-general-avoid-chunk",
+      "city": "General",
+      "category": "avoid",
+      "section": "避雷",
+      "title": "港式茶餐厅（大概这个名字？）",
+      "content": "城市/地区：General\n分类：avoid\n来源章节：避雷\n条目：港式茶餐厅（大概这个名字？）\n原因： 靠近市中心的港式餐厅。 缺点在于比较贵，且点了水果沙拉结果只有土豆和苹果。不过作为中国人做饭还是更符合中国人胃口。\n价位： 比较贵\nSwansea Castle\n一个大一点的娱乐城\n个人觉得没什么特别的。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "avoid",
+        "避雷",
+        "港式茶餐厅（大概这个名字？）"
+      ]
+    },
+    {
+      "id": "0071-general-restaurant-treatz",
+      "city": "General",
+      "category": "restaurant",
+      "section": "推荐",
+      "title": "Treatz",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：推荐\n条目：Treatz\n简介：\n推荐原因： 甜点都很好吃，份量也很大，朋友和本人双重认证。\n推荐菜：\n价位：\n备注：",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "restaurant",
+        "推荐",
+        "Treatz"
+      ]
+    },
+    {
+      "id": "0072-general-restaurant-wingstop",
+      "city": "General",
+      "category": "restaurant",
+      "section": "推荐",
+      "title": "Wingstop",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：推荐\n条目：Wingstop\n简介：\n推荐原因： 鸡翅鸡腿的酱料很不错\n推荐菜： 鸡翅鸡腿\n价位：\n备注： 不过不推荐其他的薯条之类的。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "restaurant",
+        "推荐",
+        "Wingstop"
+      ]
+    },
+    {
+      "id": "0073-general-restaurant-chunk",
+      "city": "General",
+      "category": "restaurant",
+      "section": "推荐",
+      "title": "讲究（中餐厅）",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：推荐\n条目：讲究（中餐厅）\n简介： 中餐厅\n推荐原因： 价格偏贵，份量略少，但是味道中上，感觉厨师尽力在用本地材料还原中国炒菜了。\n推荐菜：\n价位： 价格偏贵\n备注： （别点饺子锅贴类，好像7磅就6个）",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "restaurant",
+        "推荐",
+        "讲究（中餐厅）"
+      ]
+    },
+    {
+      "id": "0074-general-restaurant-chunk",
+      "city": "General",
+      "category": "restaurant",
+      "section": "推荐",
+      "title": "美味园（地图上英文名叫啥忘了）",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：推荐\n条目：美味园（地图上英文名叫啥忘了）\n简介：\n推荐原因： 神中神，老板炒菜很有自己的见解，餐品口味基本齐全，价格是目前中餐厅里最便宜的，基本每周都去一次。\n推荐菜：\n价位： 价格是目前中餐厅里最便宜的\n备注： 不过不推荐里面的硬菜，比如红烧肉（感觉像预制菜，上次点了很快就上桌）",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "restaurant",
+        "推荐",
+        "美味园（地图上英文名叫啥忘了）"
+      ]
+    },
+    {
+      "id": "0075-general-restaurant-chacha-stall",
+      "city": "General",
+      "category": "restaurant",
+      "section": "推荐",
+      "title": "CHACHA STALL",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：推荐\n条目：CHACHA STALL\n简介： 唯一发现的中国奶茶店\n推荐原因： 所以推荐一下，鸡米花、红薯条，果茶奶茶都不错。\n推荐菜： 鸡米花、红薯条，果茶奶茶\n价位：\n备注：",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "restaurant",
+        "推荐",
+        "CHACHA STALL"
+      ]
+    },
+    {
+      "id": "0076-general-restaurant-chunk",
+      "city": "General",
+      "category": "restaurant",
+      "section": "推荐",
+      "title": "王记（中餐厅）",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：推荐\n条目：王记（中餐厅）\n简介： 中餐厅\n推荐原因： 朋友说肘子很好吃。本人觉得价格偏贵，去吃过一次，点的别的菜，但是分量很小，经典肉下面垫很多花菜。\n推荐菜： 肘子很好吃\n价位： 价格偏贵",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "restaurant",
+        "推荐",
+        "王记（中餐厅）"
+      ]
+    },
+    {
+      "id": "0077-general-restaurant-joe-s-ice-cream",
+      "city": "General",
+      "category": "restaurant",
+      "section": "推荐",
+      "title": "Joe's Ice Cream",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：推荐\n条目：Joe's Ice Cream\n推荐原因： 我没吃过，但是周围朋友都有推荐。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "restaurant",
+        "推荐",
+        "Joe's Ice Cream"
+      ]
+    },
+    {
+      "id": "0078-general-attraction-three-cliffs-bay",
+      "city": "General",
+      "category": "attraction",
+      "section": "推荐",
+      "title": "Three Cliffs Bay 三崖湾",
+      "content": "城市/地区：General\n分类：attraction\n来源章节：推荐\n条目：Three Cliffs Bay 三崖湾\n推荐原因： 老师推荐过，但是本人还没去过。准备夏天去看看。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "attraction",
+        "推荐",
+        "Three Cliffs Bay 三崖湾"
+      ]
+    },
+    {
+      "id": "0079-general-tip-chunk",
+      "city": "General",
+      "category": "tip",
+      "section": "其他",
+      "title": "其他",
+      "content": "城市/地区：General\n分类：tip\n来源章节：其他\n条目：其他\n不知道放哪。\n市中心可以稍微逛一下，需要一个发现美的眼睛（不是）\n教会文化可以去体验一下，但本人还没去过5555\n天气好可以去海滩和小山坡上走走，\n福瑞相关目前没有消息。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "tip",
+        "其他",
+        "其他"
+      ]
+    },
+    {
+      "id": "0080-general-tip-chunk",
+      "city": "General",
+      "category": "tip",
+      "section": "长期居住的小动物们",
+      "title": "长期居住的小动物们",
+      "content": "城市/地区：General\n分类：tip\n来源章节：长期居住的小动物们\n条目：长期居住的小动物们\n水质还是不错的，很多餐馆会直接水龙头接水给你喝，不过个人建议还是烧一下。\n平时买东西去Tesco 和 Sainsbury's，价格相对便宜。\n不要轻易买各种Sausage，很腻。便宜的饮品一般都比较齁。不要购买奇怪的饺子（Dumplings），味道会超乎你的想象，基本只有Meal Deal的饺子可以考虑。如果你去超市或者便利店购买Meal Deal比较晚，货架上留下比较多的速食都不要尝试，一般都很难吃（尤其是三明治）。不要购买英国超市里任何带有 Chinese Style的食物，除非你能很好处理，不然都一言难尽\nMeal Deal 各种 Roll（小包装那个）基本都不错，有Southern Fried Chicken 标识一般都不错。（Southern Fried Chicken 陪我渡过了几顿）\n可以推荐，各种饼干、奶昔、果汁。牛奶超便宜，你甚至可以当水喝。（另外，注意一旦表明成分有巧克力之类的甜食，就要注意你可能会觉得齁和腻）\n速食类，炒面，酸甜鸡炒饭，Cottage类别也不错（小贵），意面能吃得了酸的话，还是可以的。\n自己做饭最便宜，鸡肉便宜不腥，猪肉便宜需要处理，牛肉和海鲜比较贵，蔬菜随意挑。\n每天都有清仓减价物品可以去看看。\n电子产品可以在二手市场（黑哥朋友说的，忘了名hhh，相当便宜，似乎是十几英镑买了个IPAD）\n想来点中国的东西，可以去合荣行（周边也还有一些其他的中国卖铺）购买，理所当然比国内贵。不想做饭的话，饺子相对便宜。\n不知道市中心健身房怎么样，学校健身房比国内还要便宜，狠狠入。\n感觉可以写规则怪谈。",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "tip",
+        "长期居住的小动物们",
+        "长期居住的小动物们"
+      ]
+    },
+    {
+      "id": "0081-poland-restaurant-pierogarnia-mandu-gdansk-srodmiescie",
+      "city": "Poland",
+      "category": "restaurant",
+      "section": "Poland｜格但斯克",
+      "title": "Pierogarnia Mandu Gdańsk Śródmieście",
+      "content": "城市/地区：Poland\n分类：restaurant\n来源章节：Poland｜格但斯克\n条目：Pierogarnia Mandu Gdańsk Śródmieście\n简介： 波兰饺子馆（本地人都会排长队）\n推荐原因： 离市中心近但排大队；网上波兰前三排名的饺子馆\n推荐菜： 蓝莓饺子、巧克力炸香蕉饺子、传统饺子（像猪肉大葱）\n价位： ~50 PLN/人（约£15）",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Poland",
+        "restaurant",
+        "Poland｜格但斯克",
+        "Pierogarnia Mandu Gdańsk Śródmieście"
+      ]
+    },
+    {
+      "id": "0082-poland-restaurant-swojski-smak",
+      "city": "Poland",
+      "category": "restaurant",
+      "section": "Poland｜格但斯克",
+      "title": "Swojski Smak",
+      "content": "城市/地区：Poland\n分类：restaurant\n来源章节：Poland｜格但斯克\n条目：Swojski Smak\n简介：家常味道的波兰菜\n推荐原因：经典的波兰菜馆，老板和服务员都会说英文，比较热情。\n推荐菜： Golonka Wieprzowa（卤猪肘）、Rosół Z Koldunami（肉丸鸡汤）\n价位：50PLN /人）",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Poland",
+        "restaurant",
+        "Poland｜格但斯克",
+        "Swojski Smak"
+      ]
+    },
+    {
+      "id": "0083-poland-restaurant-sto-owka-gdanska",
+      "city": "Poland",
+      "category": "restaurant",
+      "section": "Poland｜格但斯克",
+      "title": "Stołówka Gdańska",
+      "content": "城市/地区：Poland\n分类：restaurant\n来源章节：Poland｜格但斯克\n条目：Stołówka Gdańska\n简介：波兰菜\n推荐原因：老城区平价的家庭餐厅，本地人常光顾\n推荐菜：每日菜单都不一样。炖肉（GULASZ）配上各种暖暖的家常汤非常合适。\n价位：25PLN / 人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Poland",
+        "restaurant",
+        "Poland｜格但斯克",
+        "Stołówka Gdańska"
+      ]
+    },
+    {
+      "id": "0084-koln-restaurant-punto-pasta",
+      "city": "Köln",
+      "category": "restaurant",
+      "section": "Köln | 科隆",
+      "title": "Punto Pasta",
+      "content": "城市/地区：Köln\n分类：restaurant\n来源章节：Köln | 科隆\n条目：Punto Pasta\n简介：\n推荐原因：就在科隆教堂附近，一份意面价格很实惠，老板自己手工做的面和酱，白酱用的猪脸肉味道很正宗，是科隆德意志银行员工的食堂。\n推荐菜：各种意面\n价位：~15€/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Köln",
+        "restaurant",
+        "Köln | 科隆",
+        "Punto Pasta"
+      ]
+    },
+    {
+      "id": "0085-stockholm-restaurant-kajsas-fisk",
+      "city": "Stockholm",
+      "category": "restaurant",
+      "section": "Stockholm | 斯德哥尔摩（瑞典首都）",
+      "title": "Kajsas Fisk",
+      "content": "城市/地区：Stockholm\n分类：restaurant\n来源章节：Stockholm | 斯德哥尔摩（瑞典首都）\n条目：Kajsas Fisk\n简介：瑞典菜\n推荐原因：市中心平价的餐吧，位于负一楼美食广场最里面的铺面，提供可续的鱼汤。而且使用银联卡还可以有88折优惠（当时）。\n推荐菜：招牌鱼汤、北极虾沙拉\n价位：150SEK/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Stockholm",
+        "restaurant",
+        "Stockholm | 斯德哥尔摩（瑞典首都）",
+        "Kajsas Fisk"
+      ]
+    },
+    {
+      "id": "0086-stockholm-restaurant-restaurant-pelikan",
+      "city": "Stockholm",
+      "category": "restaurant",
+      "section": "Stockholm | 斯德哥尔摩（瑞典首都）",
+      "title": "Restaurant Pelikan",
+      "content": "城市/地区：Stockholm\n分类：restaurant\n来源章节：Stockholm | 斯德哥尔摩（瑞典首都）\n条目：Restaurant Pelikan\n简介：瑞典菜\n推荐原因：经典传统的瑞典餐厅，环境和氛围都很好还原了百年前的斯德哥尔摩。\n推荐菜：瑞典肉丸、烟熏三文鱼\n价位：350SEK/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Stockholm",
+        "restaurant",
+        "Stockholm | 斯德哥尔摩（瑞典首都）",
+        "Restaurant Pelikan"
+      ]
+    },
+    {
+      "id": "0087-stockholm-restaurant-sjobaren-fisk-skaldjur",
+      "city": "Stockholm",
+      "category": "restaurant",
+      "section": "Stockholm | 斯德哥尔摩（瑞典首都）",
+      "title": "Sjöbaren Fisk & Skaldjur",
+      "content": "城市/地区：Stockholm\n分类：restaurant\n来源章节：Stockholm | 斯德哥尔摩（瑞典首都）\n条目：Sjöbaren Fisk & Skaldjur\n简介：瑞典菜和海鲜\n推荐原因：市中心步行街的海鲜餐厅，提供本地的佳酿和海鲜\n推荐菜：开口贝、海鲜汤、龙虾、生蚝\n价位：300-400SEK/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Stockholm",
+        "restaurant",
+        "Stockholm | 斯德哥尔摩（瑞典首都）",
+        "Sjöbaren Fisk & Skaldjur"
+      ]
+    },
+    {
+      "id": "0088-k-benhavn-restaurant-det-lille-apotek",
+      "city": "København",
+      "category": "restaurant",
+      "section": "København | 哥本哈根（丹麦首都）",
+      "title": "Det Lille Apotek",
+      "content": "城市/地区：København\n分类：restaurant\n来源章节：København | 哥本哈根（丹麦首都）\n条目：Det Lille Apotek\n简介：最传统丹麦菜\n推荐原因：哥本哈根现存最古老的餐厅，安徒生的最爱，位于市中心步行街之中，可以品尝丹麦的国菜。\n推荐菜：炸猪五花肉、烤猪颈肉、烤鸭\n价位：200-300DKK/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "København",
+        "restaurant",
+        "København | 哥本哈根（丹麦首都）",
+        "Det Lille Apotek"
+      ]
+    },
+    {
+      "id": "0089-k-benhavn-restaurant-restaurant-klubben",
+      "city": "København",
+      "category": "restaurant",
+      "section": "København | 哥本哈根（丹麦首都）",
+      "title": "Restaurant Klubben",
+      "content": "城市/地区：København\n分类：restaurant\n来源章节：København | 哥本哈根（丹麦首都）\n条目：Restaurant Klubben\n简介：传统丹麦菜\n推荐原因：丹麦式家庭餐厅，有着悠久的历史，本地居民常光顾",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "København",
+        "restaurant",
+        "København | 哥本哈根（丹麦首都）",
+        "Restaurant Klubben"
+      ]
+    },
+    {
+      "id": "0090-k-benhavn-restaurant-chunk",
+      "city": "København",
+      "category": "restaurant",
+      "section": "København | 哥本哈根（丹麦首都）",
+      "title": "夏天去的话可以选择坐在露天的庭院里。",
+      "content": "城市/地区：København\n分类：restaurant\n来源章节：København | 哥本哈根（丹麦首都）\n条目：夏天去的话可以选择坐在露天的庭院里。\n推荐菜：自助的炸五花肉、炸猪排、丹麦本地啤酒\n价格：150-200DKK/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "København",
+        "restaurant",
+        "København | 哥本哈根（丹麦首都）",
+        "夏天去的话可以选择坐在露天的庭院里。"
+      ]
+    },
+    {
+      "id": "0091-paris-restaurant-la-tour-montlhery",
+      "city": "Paris",
+      "category": "restaurant",
+      "section": "Paris｜巴黎",
+      "title": "La Tour Montlhéry",
+      "content": "城市/地区：Paris\n分类：restaurant\n来源章节：Paris｜巴黎\n条目：La Tour Montlhéry\n简介：法国菜，牛排\n推荐原因：经典地道的巴黎菜肴，餐厅历史悠久，服务员也是爷爷奶奶们（英语不太好但很热情），卢浮宫附近靠近Châtelet换乘站和LV总部",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Paris",
+        "restaurant",
+        "Paris｜巴黎",
+        "La Tour Montlhéry"
+      ]
+    },
+    {
+      "id": "0092-paris-restaurant-walk-in",
+      "city": "Paris",
+      "category": "restaurant",
+      "section": "Paris｜巴黎",
+      "title": "需要订位，不建议walk-in",
+      "content": "城市/地区：Paris\n分类：restaurant\n来源章节：Paris｜巴黎\n条目：需要订位，不建议walk-in\n推荐菜：牛排\n价位： ~40€+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Paris",
+        "restaurant",
+        "Paris｜巴黎",
+        "需要订位，不建议walk-in"
+      ]
+    },
+    {
+      "id": "0093-paris-restaurant-josephine-chez-dumonet",
+      "city": "Paris",
+      "category": "restaurant",
+      "section": "Paris｜巴黎",
+      "title": "Joséphine Chez Dumonet",
+      "content": "城市/地区：Paris\n分类：restaurant\n来源章节：Paris｜巴黎\n条目：Joséphine Chez Dumonet\n简介：传统法国菜\n推荐原因：就在荣军院外不远处，一家19世纪末开到现在，由同一家族经营的百年老法兰西小馆。慢雅，悠哉（上菜当然也慢啦），精炼的传统味道，除了价格较贵外没有什么缺点了。有的店员英文可能不大好？\n推荐菜：Souffle Grand Marnier（白兰地舒芙蕾）、Duck Confit、白葡萄Foie Gras、勃艮第牛肉（加上配套意面分量还蛮大的）\n价位： ~60€+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Paris",
+        "restaurant",
+        "Paris｜巴黎",
+        "Joséphine Chez Dumonet"
+      ]
+    },
+    {
+      "id": "0094-iceland-restaurant-skal",
+      "city": "Iceland",
+      "category": "restaurant",
+      "section": "Iceland｜冰岛",
+      "title": "Skál!",
+      "content": "城市/地区：Iceland\n分类：restaurant\n来源章节：Iceland｜冰岛\n条目：Skál!\n简介： 雷克雅未克餐厅（冲星潜力）\n推荐原因： 菜单常换；招牌羊肩肉外酥里嫩且不腥不膻，火候极强\n推荐菜： 羊肩肉；鲟鱼子酱配面包；传统鱼肉拌土豆泥\n价位： 8000–12000 冰岛克朗/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Iceland",
+        "restaurant",
+        "Iceland｜冰岛",
+        "Skál!"
+      ]
+    },
+    {
+      "id": "0095-iceland-restaurant-messinn-selfossi",
+      "city": "Iceland",
+      "category": "restaurant",
+      "section": "Iceland｜冰岛",
+      "title": "Messinn Selfossi",
+      "content": "城市/地区：Iceland\n分类：restaurant\n来源章节：Iceland｜冰岛\n条目：Messinn Selfossi\n简介： 鱼料理餐厅（量大）\n推荐原因： 鱼煎得特别香；份量大到一份基本够一个人\n推荐菜： 蜂蜜坚果碎三文鱼、白汁北极鲑\n价位： ~5500 冰岛克朗/人（约£20–30）",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Iceland",
+        "restaurant",
+        "Iceland｜冰岛",
+        "Messinn Selfossi"
+      ]
+    },
+    {
+      "id": "0096-iceland-restaurant-osinn-restaurant-at-hotel-hofn",
+      "city": "Iceland",
+      "category": "restaurant",
+      "section": "Iceland｜冰岛",
+      "title": "Ósinn Restaurant at Hotel Höfn",
+      "content": "城市/地区：Iceland\n分类：restaurant\n来源章节：Iceland｜冰岛\n条目：Ósinn Restaurant at Hotel Höfn\n简介： 赫本海鲜餐厅（适合吃北极鳌虾）\n推荐原因： 海鲜套餐很实诚；虾肉鲜甜\n推荐菜： 海鲜套餐、龙虾披萨、龙虾天妇罗\n价位： ~5000 冰岛克朗/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Iceland",
+        "restaurant",
+        "Iceland｜冰岛",
+        "Ósinn Restaurant at Hotel Höfn"
+      ]
+    },
+    {
+      "id": "0097-iceland-restaurant-apotek",
+      "city": "Iceland",
+      "category": "restaurant",
+      "section": "Iceland｜冰岛",
+      "title": "apotek",
+      "content": "城市/地区：Iceland\n分类：restaurant\n来源章节：Iceland｜冰岛\n条目：apotek\n简介： 雷克雅未克精致餐厅（漂亮饭）\n推荐原因： 可点7道菜 set，份量大但生肉较多（看接受度）；鸭胸和鹅肝特别出色\n推荐菜： 鸭胸肉、鹅肝、烤扇贝配鱼子、生金枪鱼+腌西瓜\n价位： 10000–18000 冰岛克朗/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "Iceland",
+        "restaurant",
+        "Iceland｜冰岛",
+        "apotek"
+      ]
+    },
+    {
+      "id": "0098-york-restaurant-bettys-cafe-tea-rooms",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "Bettys Café Tea Rooms",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Bettys Café Tea Rooms\n简介： 经典英式茶屋/下午茶\n推荐原因： 大名鼎鼎的贝蒂茶屋，一大半人来约克似乎都是因为这家下午茶的名气（女王喜欢喝的）。日常需要walk-in排队，预定的话，只接受某个最低消费45￡的包间预定（据说有钢琴师演奏），平时甚至工作日周一都有一堆老头老太太排队。虽然说是茶屋不过其实营业范围包含早午晚餐。人均20-35￡。尝过他们家的一些brunch的菜，也尝过不止一次他们家经典的英式下午茶三层塔（27镑一份）。核心感觉还是，英国人的甜品对于我们还是太太太甜了，以及小小的三层塔下午茶能有1300-1700千卡热量（英国人真的不得糖尿病吗？？？）。\n推荐菜： 经典下午茶三层塔\n价位： £20–35/人；",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "Bettys Café Tea Rooms"
+      ]
+    },
+    {
+      "id": "0099-york-restaurant-rise",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "Rise.",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Rise.\n简介： Brunch 店（偏网红）\n推荐原因： Eggs Benedict/Royale 表现好；奶昔出片\n推荐菜： Eggs Benedict、Eggs Royale、奶昔\n价位： £15–20/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "Rise."
+      ]
+    },
+    {
+      "id": "0100-york-restaurant-casa-brazilian-rodizio",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "Casa Brazilian Rodizio",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Casa Brazilian Rodizio\n简介： 巴西烤肉自助\n推荐原因： 店员会一直上肉直到你喊停；肉品质/味道不错\n推荐菜： 烤肉（不建议鸡肉和 Gammo）\n价位： ~£40/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "Casa Brazilian Rodizio"
+      ]
+    },
+    {
+      "id": "0101-york-restaurant-tabanco-by-ambiente",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "Tabanco By Ambiente",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Tabanco By Ambiente\n简介： 西班牙菜（英式微改）\n推荐原因： 去过很多次；有中文菜单；Sherry 很不错\n推荐菜： Paella Iberica、Sherry（白葡萄酒）\n价位： £20–30+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "Tabanco By Ambiente"
+      ]
+    },
+    {
+      "id": "0102-york-restaurant-corner-grill-house",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "Corner Grill House",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Corner Grill House\n简介： 河旁牛排馆\n推荐原因： 牛排好吃，适合两人分大份\n推荐菜： 20oz T骨牛排（£59/份，适合2人）\n价位： £30–40/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "Corner Grill House"
+      ]
+    },
+    {
+      "id": "0103-york-restaurant-wine-stories",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "Wine Stories",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Wine Stories\n简介： 希腊菜小店（拼盘超大）\n推荐原因： £39 大拼盘非常管饱，性价比高；建议预订走 Facebook/电话\n推荐菜： 烤肉拼盘（£39那份）\n价位： £20–25/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "Wine Stories"
+      ]
+    },
+    {
+      "id": "0104-york-restaurant-marzano-italian-grill",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "Marzano Italian Grill",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Marzano Italian Grill\n简介： 中高端意大利菜\n推荐原因：似乎本地英国人很爱吃，平时很火，周末位置要提早订。虽然以某狼狼口味总觉得有一种高价吃碳水的感觉。\n推荐菜： 未注明\n价位： £25–30/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "Marzano Italian Grill"
+      ]
+    },
+    {
+      "id": "0105-york-restaurant-il-paradiso-del-cibo",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "Il Paradiso Del Cibo",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Il Paradiso Del Cibo\n简介： 正宗全员西西里人开的意大利菜\n推荐原因： 整体不错；番茄偏酸\n推荐菜： 未注明\n价位： £20–30/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "Il Paradiso Del Cibo"
+      ]
+    },
+    {
+      "id": "0106-york-restaurant-ippuku-tea-house",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "Ippuku Tea House",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Ippuku Tea House\n简介： 日式家庭小馆\n推荐原因： 日本姐姐开的温馨家庭小馆，结日式家庭菜和Cafe一体。\n推荐菜： 玉露等日本茶、时令 special、手工咖喱\n价位： ~£20+/人",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "Ippuku Tea House"
+      ]
+    },
+    {
+      "id": "0107-york-restaurant-shi-shang-chinese-restaurant",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "Shi Shang Chinese Restaurant（食尚）",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Shi Shang Chinese Restaurant（食尚）\n简介： 中餐馆\n推荐原因： 约克中餐推荐名单之一\n推荐菜： 未注明\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "Shi Shang Chinese Restaurant（食尚）"
+      ]
+    },
+    {
+      "id": "0108-york-restaurant-red-chilli-restaurant",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "Red Chilli Restaurant",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Red Chilli Restaurant\n简介： 中餐馆\n推荐原因： 约克中餐推荐名单之一\n推荐菜： 未注明\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "Red Chilli Restaurant"
+      ]
+    },
+    {
+      "id": "0109-york-restaurant-chunk",
+      "city": "York",
+      "category": "restaurant",
+      "section": "York｜约克（餐厅）",
+      "title": "一品香",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：一品香\n简介： 中餐馆\n推荐原因：约克中餐推荐名单之一\n推荐菜： 未注明\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "York",
+        "restaurant",
+        "York｜约克（餐厅）",
+        "一品香"
+      ]
+    },
+    {
+      "id": "0110-general-restaurant-chunk",
+      "city": "General",
+      "category": "restaurant",
+      "section": "致谢名单",
+      "title": "致谢名单",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：致谢名单\n条目：致谢名单\n赤夜\n鲁珀\n月桑\n葡萄柚\n裙大头\n雪麒\n啸羽\n米勒勒勒\n狮子",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "General",
+        "restaurant",
+        "致谢名单",
+        "致谢名单"
+      ]
+    }
+  ]
+}
