@@ -4,6 +4,24 @@ import RestaurantFilteredGrid from '@/components/RestaurantFilteredGrid';
 import AvoidSection from '@/components/AvoidSection';
 import EditorialRibbon from '@/components/EditorialRibbon';
 import { londonRestaurants, londonRestaurantAvoids } from '@/data/london/restaurants';
+import { londonCafes } from '@/data/london/cafes';
+
+const CAFE_CUISINE = '喝的和小甜甜';
+const drinkCafeSlugs = new Set([
+  'truedan',
+  'tiraffe',
+  'nostos-coffee',
+  'fairshot-cafe',
+]);
+
+const londonFoodPlaces = [
+  ...londonRestaurants,
+  ...londonCafes.map( cafe => ( {
+    ...cafe,
+    cuisine: CAFE_CUISINE,
+    tags: [ drinkCafeSlugs.has( cafe.slug ) ? 'Drinks' : 'Desert' ],
+  } ) ),
+];
 
 export default function LondonRestaurantsPage() {
   return (
@@ -25,7 +43,7 @@ export default function LondonRestaurantsPage() {
                 London Restaurants
               </h1>
               <p className="text-xl text-[#1D3557]/70 max-w-2xl mx-auto lg:mx-0">
-                从潮汕火锅到波斯菜，伦敦最值得探索的餐厅推荐
+                从潮汕火锅到波斯菜，再到咖啡甜品，伦敦最值得探索的吃喝推荐
               </p>
             </div>
             <div className="relative h-[260px] md:h-[340px] overflow-hidden rounded-lg border border-[#1D3557]/10 bg-white shadow-sm">
@@ -43,7 +61,7 @@ export default function LondonRestaurantsPage() {
       {/* Restaurants Grid */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <RestaurantFilteredGrid restaurants={londonRestaurants} locationHint="London UK" />
+          <RestaurantFilteredGrid restaurants={londonFoodPlaces} locationHint="London UK" />
         </div>
       </section>
 

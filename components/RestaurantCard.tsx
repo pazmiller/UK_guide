@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { MapPin } from 'lucide-react';
+import { Coffee, MapPin } from 'lucide-react';
 import { Restaurant } from '@/data/types';
 
 interface RestaurantCardProps {
@@ -8,9 +8,19 @@ interface RestaurantCardProps {
   variant?: 'classic' | 'editorial';
 }
 
+const CAFE_CUISINE = '喝的和小甜甜';
+const CAFE_SUB_TAGS = [ 'Drinks', 'Desert' ];
+
 export default function RestaurantCard({ restaurant, onClick, variant = 'classic' }: RestaurantCardProps) {
   const hasImage = restaurant.images.length > 0;
   const isEditorial = variant === 'editorial';
+  const isCafe = restaurant.cuisine === CAFE_CUISINE;
+  const cuisineBadgeClass = isCafe
+    ? 'badge inline-flex items-center gap-1.5 bg-gradient-to-r from-[#2A9D8F] to-[#F4A261] text-white shadow-md ring-1 ring-white/60'
+    : `badge bg-[#1D3557] text-white ${isEditorial ? 'rounded-md' : ''}`;
+  const inlineCuisineBadgeClass = isCafe
+    ? `${cuisineBadgeClass} mb-3`
+    : `badge bg-[#1D3557] text-white mb-3 inline-block ${isEditorial ? 'rounded-md' : ''}`;
 
   return (
     <div
@@ -29,14 +39,20 @@ export default function RestaurantCard({ restaurant, onClick, variant = 'classic
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute top-4 left-4">
-            <span className={`badge bg-[#1D3557] text-white ${isEditorial ? 'rounded-md' : ''}`}>{restaurant.cuisine}</span>
+            <span className={cuisineBadgeClass}>
+              {isCafe && <Coffee className="w-3.5 h-3.5" />}
+              {restaurant.cuisine}
+            </span>
           </div>
         </div>
       )}
 
       <div className="p-5">
         {!hasImage && (
-          <span className={`badge bg-[#1D3557] text-white mb-3 inline-block ${isEditorial ? 'rounded-md' : ''}`}>{restaurant.cuisine}</span>
+          <span className={inlineCuisineBadgeClass}>
+            {isCafe && <Coffee className="w-3.5 h-3.5" />}
+            {restaurant.cuisine}
+          </span>
         )}
 
         <div className="flex items-start justify-between mb-2">
@@ -53,6 +69,23 @@ export default function RestaurantCard({ restaurant, onClick, variant = 'classic
         <p className="text-gray-600 text-sm mb-3 line-clamp-2">
           {restaurant.description}
         </p>
+
+        {restaurant.tags?.length ? (
+          <div className="flex flex-wrap gap-1.5 mb-3">
+            {restaurant.tags.map( tag => (
+              <span
+                key={tag}
+                className={`text-xs px-2 py-1 font-semibold ${isEditorial ? 'rounded-md' : 'rounded-full'} ${
+                  CAFE_SUB_TAGS.includes( tag )
+                    ? 'bg-[#F4A261]/20 text-[#1D3557] border border-[#F4A261]/40'
+                    : 'bg-[#F1FAEE] text-[#1D3557]'
+                }`}
+              >
+                {tag}
+              </span>
+            ) )}
+          </div>
+        ) : null}
 
         {restaurant.mustTry.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mb-3">

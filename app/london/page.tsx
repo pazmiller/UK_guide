@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Utensils, Coffee, Building } from 'lucide-react';
+import { ArrowRight, Utensils, Building } from 'lucide-react';
 import EditorialRibbon from '@/components/EditorialRibbon';
 import { londonAttractions } from '@/data/london/attractions';
 import { londonRestaurants } from '@/data/london/restaurants';
@@ -7,6 +7,8 @@ import { londonCafes } from '@/data/london/cafes';
 
 export default function LondonPage()
 {
+  const foodPlacesCount = londonRestaurants.length + londonCafes.length;
+
   return (
     <div className="relative pt-16 overflow-hidden bg-[#FBF8F1]">
       {/* ── HERO ── */}
@@ -54,9 +56,6 @@ export default function LondonPage()
             <Link href="/london/restaurants" className="bg-white text-[#E63946] font-bold px-8 py-3 rounded-lg hover:bg-[#1D3557] hover:text-white transition-colors">
               Restaurants
             </Link>
-            <Link href="/london/cafes" className="bg-white text-[#E63946] font-bold px-8 py-3 rounded-lg hover:bg-[#1D3557] hover:text-white transition-colors">
-              Cafes
-            </Link>
             <Link href="/london/attractions" className="bg-white text-[#E63946] font-bold px-8 py-3 rounded-lg hover:bg-[#1D3557] hover:text-white transition-colors">
               Attractions
             </Link>
@@ -73,7 +72,7 @@ export default function LondonPage()
               <div className="w-full rounded-lg bg-white flex items-center justify-center shadow-sm border border-[#1D3557]/10 py-12">
                 <div className="text-center text-white px-8">
                   <div className="text-5xl font-black mb-2 text-[#E63946]">
-                    {londonRestaurants.length + londonCafes.length + londonAttractions.length}
+                    {foodPlacesCount + londonAttractions.length}
                   </div>
                   <div className="text-sm font-semibold uppercase tracking-widest text-[#1D3557]/55">
                     Places to Discover
@@ -95,10 +94,7 @@ export default function LondonPage()
               </p>
               <div className="flex gap-3 flex-wrap">
                 <span className="inline-block px-4 py-2 bg-[#1D3557] text-white text-sm font-semibold rounded-md">
-                  {londonRestaurants.length} Restaurants
-                </span>
-                <span className="inline-block px-4 py-2 bg-[#2A9D8F] text-white text-sm font-semibold rounded-md">
-                  {londonCafes.length} Cafes
+                  {foodPlacesCount} Restaurants
                 </span>
                 <span className="inline-block px-4 py-2 bg-[#E63946] text-white text-sm font-semibold rounded-md">
                   {londonAttractions.length} Attractions
@@ -171,7 +167,7 @@ export default function LondonPage()
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid gap-8">
             {/* Restaurants card */}
             <Link href="/london/restaurants" className="group">
               <div className="bg-white rounded-xl p-8 shadow-sm ring-1 ring-[#1D3557]/10 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full">
@@ -180,7 +176,7 @@ export default function LondonPage()
                 </div>
                 <h3 className="text-2xl font-black text-[#1D3557] mb-3">Restaurants</h3>
                 <p className="text-gray-500 mb-6 leading-relaxed">
-                  {londonRestaurants.length} 家精选餐厅，涵盖中餐、东南亚、地中海、波斯菜等多种菜系
+                  {foodPlacesCount} 家精选吃喝推荐，涵盖中餐、东南亚、地中海、波斯菜、咖啡甜品等多种选择
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {[ 'Chinese', 'Thai', 'Malaysian', 'Italian', 'Persian' ].map( c => (
@@ -188,6 +184,15 @@ export default function LondonPage()
                       {c}
                     </span>
                   ) )}
+                  <span className="text-xs bg-gradient-to-r from-[#2A9D8F] to-[#F4A261] text-white px-3 py-1 rounded-full font-bold shadow-sm ring-1 ring-white/60">
+                    喝的和小甜甜
+                  </span>
+                  <span className="text-xs bg-[#F4A261]/20 text-[#1D3557] px-3 py-1 rounded-full font-semibold border border-[#F4A261]/40">
+                    Drinks
+                  </span>
+                  <span className="text-xs bg-[#F4A261]/20 text-[#1D3557] px-3 py-1 rounded-full font-semibold border border-[#F4A261]/40">
+                    Desert
+                  </span>
                   <span className="text-xs text-gray-400">+more</span>
                 </div>
                 <span className="inline-flex items-center gap-2 text-[#E63946] font-bold group-hover:gap-3 transition-all">
@@ -196,28 +201,6 @@ export default function LondonPage()
               </div>
             </Link>
 
-            {/* Cafes card */}
-            <Link href="/london/cafes" className="group">
-              <div className="bg-white rounded-xl p-8 shadow-sm ring-1 ring-[#1D3557]/10 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full">
-                <div className="w-16 h-16 rounded-lg bg-[#2A9D8F] flex items-center justify-center mb-6">
-                  <Coffee className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-black text-[#1D3557] mb-3">Cafes &amp; Desserts</h3>
-                <p className="text-gray-500 mb-6 leading-relaxed">
-                  {londonCafes.length} 家甜品店、咖啡馆与饮品店，从法式 Bakery 到台式手摇奶茶
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {[ 'Bakery', 'Gelato', 'Coffee', 'Bubble Tea' ].map( c => (
-                    <span key={c} className="text-xs bg-[#F1FAEE] text-[#1D3557] px-3 py-1 rounded-full font-medium">
-                      {c}
-                    </span>
-                  ) )}
-                </div>
-                <span className="inline-flex items-center gap-2 text-[#E63946] font-bold group-hover:gap-3 transition-all">
-                  Browse All <ArrowRight className="w-5 h-5" />
-                </span>
-              </div>
-            </Link>
           </div>
         </div>
       </section>

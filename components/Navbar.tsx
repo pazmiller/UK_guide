@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { Menu, X, MapPin, Building, Utensils, Coffee, ChevronDown, ShieldAlert } from 'lucide-react';
+import { Menu, X, MapPin, Building, Utensils, ChevronDown, ShieldAlert } from 'lucide-react';
 
 export default function Navbar()
 {
@@ -29,7 +29,6 @@ export default function Navbar()
   const londonSubLinks = [
     { href: '/london/attractions', label: 'Attractions', icon: Building },
     { href: '/london/restaurants', label: 'Restaurants', icon: Utensils },
-    { href: '/london/cafes', label: 'Cafes', icon: Coffee },
   ];
 
   const citiesSubLinks = [

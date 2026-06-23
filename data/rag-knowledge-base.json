@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-22T13:58:33.464Z",
+  "generatedAt": "2026-06-23T05:19:51.462Z",
   "source": "info_datasource/DATA.md",
   "chunkCount": 110,
   "chunks": [
@@ -130,7 +130,7 @@
       "category": "restaurant",
       "section": "London｜伦敦",
       "title": "Lahpet",
-      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Lahpet\n简介： 现代改良老挝菜）\n推荐原因： 保留老挝特色、但做了改良；接受度看个人，但真很特色\n推荐菜： Tea Leaf Salad、King Prawn Curry、Chicken Coconut Noodle Bowl、Pandan Coconut Creme Brulee\n价位： £40+/人",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Lahpet\n简介： 现代改良老挝菜\n推荐原因： 保留老挝特色、但做了改良；接受度看个人，但真很特色\n推荐菜： Tea Leaf Salad、King Prawn Curry、Chicken Coconut Noodle Bowl、Pandan Coconut Creme Brulee\n价位： £40+/人",
       "source": "info_datasource/DATA.md",
       "tags": [
         "London",
@@ -205,7 +205,7 @@
       "category": "restaurant",
       "section": "London｜伦敦",
       "title": "Gloria",
-      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Gloria\n简介： 中高端意大利菜\n推荐原因：装修非常有韵味，极其受本地人欢迎，服务很好，菜式正宗且精致，价格也稍贵。有更好吃还更便宜的意大利菜，但整体体验没有Gloria好。菜的种类其实不算多。很多人推荐它的玛格利特鸡尾酒，不过暂无人试过。\n推荐菜： 生牛肉沙拉CARPACCIO DI MANZO、浓郁的Cacio e Pepe\n价位：~£40/人",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Gloria\n简介： 中高端意大利菜\n推荐原因：装修非常有韵味，极其受本地人欢迎，服务很好，菜式正宗且精致，价格也稍贵。有更好吃还更便宜的意大利菜，但整体体验没有Gloria那么上档次也许。菜的种类其实不算多。很多人推荐它的玛格利特鸡尾酒，不过暂无人试过。\n推荐菜： 生牛肉沙拉CARPACCIO DI MANZO、浓郁的Cacio e Pepe\n价位：~£40/人",
       "source": "info_datasource/DATA.md",
       "tags": [
         "London",
@@ -215,18 +215,18 @@
       ]
     },
     {
-      "id": "0015-london-restaurant-amalfi-ristorante-argyll-stree",
+      "id": "0015-london-restaurant-amalfi-ristorante-argyll-street",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
-      "title": "Amalfi Ristorante - Argyll Stree",
-      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Amalfi Ristorante - Argyll Stree\n简介： 意大利菜\n推荐原因：\n推荐菜：\n价位：~£30/人",
+      "title": "Amalfi Ristorante - Argyll Street",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Amalfi Ristorante - Argyll Street\n简介： 意大利菜\n推荐原因：Google map上13000+评价，还4.8分，确实评分没注水！\n推荐菜： Handstretched bread（很香，像是Garlic披萨）、Nduja spiced Arancini（意大利的Salami和芝士，米混合的一个外脆里软的丸子，味道很暖心）、千层面\n价位：~£30/人",
       "source": "info_datasource/DATA.md",
       "tags": [
         "London",
         "restaurant",
         "London｜伦敦",
-        "Amalfi Ristorante - Argyll Stree"
+        "Amalfi Ristorante - Argyll Street"
       ]
     },
     {
@@ -235,7 +235,7 @@
       "category": "restaurant",
       "section": "London｜伦敦",
       "title": "ZIMA",
-      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：ZIMA\n简介：现代俄罗斯菜\n推荐原因：精致却不失传统，分量较少。俄罗斯菜在伦敦不算多，这家算是很不错的选择。\n推荐菜：Handstretched bread（很香，像是Garlic披萨）、Nduja spiced Arancini（意大利的Salami和芝士，米混合的一个外脆里软的丸子，味道很暖心）、千层面\n价位：£30+/人",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：ZIMA\n简介：现代俄罗斯菜\n推荐原因：精致却不失传统，分量较少。俄罗斯菜在伦敦不算多，这家算是很不错的选择。\n推荐菜：精致却不失传统，分量较少。俄罗斯菜在伦敦不算多，这家算是很不错的选择。Kiev Chicken 基辅鸡好吃是好吃，只是 Waitrose 或 M&S 买回去烤也很好吃，性价比更高，直接省60%。\n价位：£30+/人",
       "source": "info_datasource/DATA.md",
       "tags": [
         "London",
@@ -365,7 +365,52 @@
       ]
     },
     {
-      "id": "0025-london-restaurant-madura-kitchen",
+      "id": "0025-london-restaurant-greggs",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Greggs",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Greggs\n简介： 英国连锁烘焙快餐\n推荐原因： 可能有 £1.99 晚间 meal deal（不确定现在是否还有）；不算好吃但管饱；Monzo 有时有优惠\n推荐菜： meal deal（披萨+饮品）\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Greggs"
+      ]
+    },
+    {
+      "id": "0026-london-restaurant-wasabi",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Wasabi",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Wasabi\n简介： 日式快餐（可当中餐平替）\n推荐原因： 饭更符合国内胃口；Monzo/Unidays 有时有优惠\n推荐菜： 未注明\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Wasabi"
+      ]
+    },
+    {
+      "id": "0027-london-restaurant-leon",
+      "city": "London",
+      "category": "restaurant",
+      "section": "London｜伦敦",
+      "title": "Leon",
+      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Leon\n简介： 轻食连锁\n推荐原因： 口味不算重；米饭颗粒感明显（部分人会介意）；Monzo 有时有优惠\n推荐菜： 未注明\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "London",
+        "restaurant",
+        "London｜伦敦",
+        "Leon"
+      ]
+    },
+    {
+      "id": "0028-london-restaurant-madura-kitchen",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -380,7 +425,7 @@
       ]
     },
     {
-      "id": "0026-london-restaurant-cloud-land",
+      "id": "0029-london-restaurant-cloud-land",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -395,7 +440,7 @@
       ]
     },
     {
-      "id": "0027-london-restaurant-med-salleh-viet",
+      "id": "0030-london-restaurant-med-salleh-viet",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -410,7 +455,7 @@
       ]
     },
     {
-      "id": "0028-london-restaurant-dong-yuan",
+      "id": "0031-london-restaurant-dong-yuan",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -425,7 +470,7 @@
       ]
     },
     {
-      "id": "0029-london-restaurant-cheli-https-www-cheli-co-uk",
+      "id": "0032-london-restaurant-cheli-https-www-cheli-co-uk",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -440,7 +485,7 @@
       ]
     },
     {
-      "id": "0030-london-restaurant-chilli-point",
+      "id": "0033-london-restaurant-chilli-point",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -455,7 +500,7 @@
       ]
     },
     {
-      "id": "0031-london-restaurant-general-guidelines",
+      "id": "0034-london-restaurant-general-guidelines",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -470,7 +515,7 @@
       ]
     },
     {
-      "id": "0032-london-cafe-arome-bakery",
+      "id": "0035-london-cafe-arome-bakery",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -485,7 +530,7 @@
       ]
     },
     {
-      "id": "0033-london-cafe-gelupo",
+      "id": "0036-london-cafe-gelupo",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -500,7 +545,7 @@
       ]
     },
     {
-      "id": "0034-london-cafe-the-leaf",
+      "id": "0037-london-cafe-the-leaf",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -515,7 +560,7 @@
       ]
     },
     {
-      "id": "0035-london-cafe-truedan",
+      "id": "0038-london-cafe-truedan",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -530,7 +575,7 @@
       ]
     },
     {
-      "id": "0036-london-cafe-tiraffe",
+      "id": "0039-london-cafe-tiraffe",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -545,7 +590,7 @@
       ]
     },
     {
-      "id": "0037-london-cafe-nostos-coffee",
+      "id": "0040-london-cafe-nostos-coffee",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -560,7 +605,7 @@
       ]
     },
     {
-      "id": "0038-london-cafe-fairshot-cafe",
+      "id": "0041-london-cafe-fairshot-cafe",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -575,7 +620,7 @@
       ]
     },
     {
-      "id": "0039-london-cafe-mamason-s",
+      "id": "0042-london-cafe-mamason-s",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -590,7 +635,7 @@
       ]
     },
     {
-      "id": "0040-london-cafe-hotel-chocolat",
+      "id": "0043-london-cafe-hotel-chocolat",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -605,7 +650,7 @@
       ]
     },
     {
-      "id": "0041-london-attraction-westminster-abbey",
+      "id": "0044-london-attraction-westminster-abbey",
       "city": "London",
       "category": "attraction",
       "section": "伦敦景点",
@@ -620,7 +665,7 @@
       ]
     },
     {
-      "id": "0042-london-attraction-horizon-22",
+      "id": "0045-london-attraction-horizon-22",
       "city": "London",
       "category": "attraction",
       "section": "伦敦景点",
@@ -635,7 +680,7 @@
       ]
     },
     {
-      "id": "0043-london-attraction-sky-garden",
+      "id": "0046-london-attraction-sky-garden",
       "city": "London",
       "category": "attraction",
       "section": "伦敦景点",
@@ -650,7 +695,7 @@
       ]
     },
     {
-      "id": "0044-london-avoid-chunk",
+      "id": "0047-london-avoid-chunk",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷景点",
@@ -665,7 +710,7 @@
       ]
     },
     {
-      "id": "0045-london-avoid-bella-italia",
+      "id": "0048-london-avoid-bella-italia",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -680,7 +725,7 @@
       ]
     },
     {
-      "id": "0046-london-avoid-zizzi",
+      "id": "0049-london-avoid-zizzi",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -695,7 +740,7 @@
       ]
     },
     {
-      "id": "0047-london-avoid-flat-iron",
+      "id": "0050-london-avoid-flat-iron",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -710,7 +755,7 @@
       ]
     },
     {
-      "id": "0048-london-avoid-kung-fu-noodle",
+      "id": "0051-london-avoid-kung-fu-noodle",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -725,7 +770,7 @@
       ]
     },
     {
-      "id": "0049-london-avoid-chunk",
+      "id": "0052-london-avoid-chunk",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -740,7 +785,7 @@
       ]
     },
     {
-      "id": "0050-london-avoid-preto-west-end",
+      "id": "0053-london-avoid-preto-west-end",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -755,7 +800,7 @@
       ]
     },
     {
-      "id": "0051-london-avoid-busaba",
+      "id": "0054-london-avoid-busaba",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -767,51 +812,6 @@
         "avoid",
         "伦敦避雷餐厅",
         "Busaba"
-      ]
-    },
-    {
-      "id": "0052-uk-budget-greggs",
-      "city": "UK",
-      "category": "budget",
-      "section": "UK 性价比快餐（维持生命用）",
-      "title": "Greggs",
-      "content": "城市/地区：UK\n分类：budget\n来源章节：UK 性价比快餐（维持生命用）\n条目：Greggs\n简介： 英国连锁烘焙快餐\n推荐原因： 可能有 £1.99 晚间 meal deal（不确定现在是否还有）；不算好吃但管饱；Monzo 有时有优惠\n推荐菜： meal deal（披萨+饮品）\n价位：",
-      "source": "info_datasource/DATA.md",
-      "tags": [
-        "UK",
-        "budget",
-        "UK 性价比快餐（维持生命用）",
-        "Greggs"
-      ]
-    },
-    {
-      "id": "0053-uk-budget-wasabi",
-      "city": "UK",
-      "category": "budget",
-      "section": "UK 性价比快餐（维持生命用）",
-      "title": "Wasabi",
-      "content": "城市/地区：UK\n分类：budget\n来源章节：UK 性价比快餐（维持生命用）\n条目：Wasabi\n简介： 日式快餐（可当中餐平替）\n推荐原因： 饭更符合国内胃口；Monzo/Unidays 有时有优惠\n推荐菜： 未注明\n价位： 未注明",
-      "source": "info_datasource/DATA.md",
-      "tags": [
-        "UK",
-        "budget",
-        "UK 性价比快餐（维持生命用）",
-        "Wasabi"
-      ]
-    },
-    {
-      "id": "0054-uk-budget-leon",
-      "city": "UK",
-      "category": "budget",
-      "section": "UK 性价比快餐（维持生命用）",
-      "title": "Leon",
-      "content": "城市/地区：UK\n分类：budget\n来源章节：UK 性价比快餐（维持生命用）\n条目：Leon\n简介： 轻食连锁\n推荐原因： 口味不算重；米饭颗粒感明显（部分人会介意）；Monzo 有时有优惠\n推荐菜： 未注明\n价位： 未注明",
-      "source": "info_datasource/DATA.md",
-      "tags": [
-        "UK",
-        "budget",
-        "UK 性价比快餐（维持生命用）",
-        "Leon"
       ]
     },
     {
@@ -1645,7 +1645,7 @@
       "category": "restaurant",
       "section": "致谢名单",
       "title": "致谢名单",
-      "content": "城市/地区：General\n分类：restaurant\n来源章节：致谢名单\n条目：致谢名单\n赤夜\n鲁珀\n月桑\n葡萄柚\n裙大头\n雪麒\n啸羽\n米勒勒勒\n狮子",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：致谢名单\n条目：致谢名单\n赤夜\n鲁珀\n月桑\n葡萄柚\n裙大头\n雪麒\n啸羽\n米勒勒勒\n狮子\n恺\n枫霜",
       "source": "info_datasource/DATA.md",
       "tags": [
         "General",

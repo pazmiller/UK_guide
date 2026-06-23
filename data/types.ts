@@ -13,6 +13,7 @@ export interface Restaurant {
   images: string[];
   website?: string;
   mustTry: string[];
+  tags?: string[];
 }
 
 export interface Attraction {

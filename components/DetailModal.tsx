@@ -2,7 +2,7 @@
 
 import { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
-import { X, MapPin, ExternalLink, Navigation } from 'lucide-react';
+import { Coffee, X, MapPin, ExternalLink, Navigation } from 'lucide-react';
 import { Restaurant, Attraction } from '@/data/types';
 
 type ModalData =
@@ -15,6 +15,9 @@ interface DetailModalProps
   onClose: () => void;
   locationHint?: string;
 }
+
+const CAFE_CUISINE = '喝的和小甜甜';
+const CAFE_SUB_TAGS = [ 'Drinks', 'Desert' ];
 
 export default function DetailModal( { item, onClose, locationHint = 'London UK' }: DetailModalProps )
 {
@@ -65,6 +68,7 @@ export default function DetailModal( { item, onClose, locationHint = 'London UK'
   const isRestaurant = item.type === 'restaurant';
   const d = item.data;
   const hasImage = d.images.length > 0;
+  const isCafe = isRestaurant && ( d as Restaurant ).cuisine === CAFE_CUISINE;
 
   const googleMapsUrl = d.address
     ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent( d.address )}`
@@ -120,11 +124,14 @@ export default function DetailModal( { item, onClose, locationHint = 'London UK'
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
                 <span
-                  className={`text-xs font-semibold px-2.5 py-1 rounded-full ${isRestaurant
-                    ? 'bg-[#1D3557] text-white'
+                  className={`text-xs font-semibold px-2.5 py-1 rounded-full ${isCafe
+                    ? 'inline-flex items-center gap-1.5 bg-gradient-to-r from-[#2A9D8F] to-[#F4A261] text-white shadow-sm'
+                    : isRestaurant
+                      ? 'bg-[#1D3557] text-white'
                     : 'bg-[#2A9D8F] text-white'
                     }`}
                 >
+                  {isCafe && <Coffee className="w-3.5 h-3.5" />}
                   {isRestaurant ? ( d as Restaurant ).cuisine : ( d as Attraction ).category || '景点'}
                 </span>
                 {isRestaurant && ( d as Restaurant ).priceRange && (
@@ -146,6 +153,23 @@ export default function DetailModal( { item, onClose, locationHint = 'London UK'
           <p className="text-gray-600 leading-relaxed mb-5">
             {d.description}
           </p>
+
+          {isRestaurant && ( d as Restaurant ).tags?.length ? (
+            <div className="flex flex-wrap gap-2 mb-5">
+              {( d as Restaurant ).tags?.map( tag => (
+                <span
+                  key={tag}
+                  className={`text-sm px-3 py-1.5 rounded-full font-semibold ${
+                    CAFE_SUB_TAGS.includes( tag )
+                      ? 'bg-[#F4A261]/20 text-[#1D3557] border border-[#F4A261]/40'
+                      : 'bg-[#F1FAEE] text-[#1D3557] border border-[#1D3557]/10'
+                  }`}
+                >
+                  {tag}
+                </span>
+              ) )}
+            </div>
+          ) : null}
 
           {/* Must Try (restaurants only) */}
           {isRestaurant && ( d as Restaurant ).mustTry.length > 0 && (
