@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import ClickableRestaurantGrid from '@/components/ClickableRestaurantGrid';
 import RestaurantFilteredGrid from '@/components/RestaurantFilteredGrid';
 import AvoidSection from '@/components/AvoidSection';
 import EditorialRibbon from '@/components/EditorialRibbon';
 import { londonRestaurants, londonRestaurantAvoids } from '@/data/london/restaurants';
 import { londonCafes } from '@/data/london/cafes';
+import { ukBudgetChains } from '@/data/uk-budget';
 
 const CAFE_CUISINE = '喝的和小甜甜';
 const drinkCafeSlugs = new Set([
@@ -62,6 +64,15 @@ export default function LondonRestaurantsPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <RestaurantFilteredGrid restaurants={londonFoodPlaces} locationHint="London UK" />
+        </div>
+      </section>
+
+      {/* UK Budget Chains */}
+      <section className="py-16 bg-[#FBF8F1]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-[#1D3557] mb-2">UK 性价比快餐</h2>
+          <p className="text-gray-600 mb-8">维持生命用 — 全英连锁</p>
+          <ClickableRestaurantGrid restaurants={ukBudgetChains} locationHint="UK" variant="editorial" />
         </div>
       </section>
 

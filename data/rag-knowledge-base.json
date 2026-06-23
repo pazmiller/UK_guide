@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-23T05:19:51.462Z",
+  "generatedAt": "2026-06-23T06:06:59.931Z",
   "source": "info_datasource/DATA.md",
   "chunkCount": 110,
   "chunks": [
@@ -365,52 +365,7 @@
       ]
     },
     {
-      "id": "0025-london-restaurant-greggs",
-      "city": "London",
-      "category": "restaurant",
-      "section": "London｜伦敦",
-      "title": "Greggs",
-      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Greggs\n简介： 英国连锁烘焙快餐\n推荐原因： 可能有 £1.99 晚间 meal deal（不确定现在是否还有）；不算好吃但管饱；Monzo 有时有优惠\n推荐菜： meal deal（披萨+饮品）\n价位： 未注明",
-      "source": "info_datasource/DATA.md",
-      "tags": [
-        "London",
-        "restaurant",
-        "London｜伦敦",
-        "Greggs"
-      ]
-    },
-    {
-      "id": "0026-london-restaurant-wasabi",
-      "city": "London",
-      "category": "restaurant",
-      "section": "London｜伦敦",
-      "title": "Wasabi",
-      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Wasabi\n简介： 日式快餐（可当中餐平替）\n推荐原因： 饭更符合国内胃口；Monzo/Unidays 有时有优惠\n推荐菜： 未注明\n价位： 未注明",
-      "source": "info_datasource/DATA.md",
-      "tags": [
-        "London",
-        "restaurant",
-        "London｜伦敦",
-        "Wasabi"
-      ]
-    },
-    {
-      "id": "0027-london-restaurant-leon",
-      "city": "London",
-      "category": "restaurant",
-      "section": "London｜伦敦",
-      "title": "Leon",
-      "content": "城市/地区：London\n分类：restaurant\n来源章节：London｜伦敦\n条目：Leon\n简介： 轻食连锁\n推荐原因： 口味不算重；米饭颗粒感明显（部分人会介意）；Monzo 有时有优惠\n推荐菜： 未注明\n价位： 未注明",
-      "source": "info_datasource/DATA.md",
-      "tags": [
-        "London",
-        "restaurant",
-        "London｜伦敦",
-        "Leon"
-      ]
-    },
-    {
-      "id": "0028-london-restaurant-madura-kitchen",
+      "id": "0025-london-restaurant-madura-kitchen",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -425,7 +380,7 @@
       ]
     },
     {
-      "id": "0029-london-restaurant-cloud-land",
+      "id": "0026-london-restaurant-cloud-land",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -440,7 +395,7 @@
       ]
     },
     {
-      "id": "0030-london-restaurant-med-salleh-viet",
+      "id": "0027-london-restaurant-med-salleh-viet",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -455,7 +410,7 @@
       ]
     },
     {
-      "id": "0031-london-restaurant-dong-yuan",
+      "id": "0028-london-restaurant-dong-yuan",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -470,7 +425,7 @@
       ]
     },
     {
-      "id": "0032-london-restaurant-cheli-https-www-cheli-co-uk",
+      "id": "0029-london-restaurant-cheli-https-www-cheli-co-uk",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -485,7 +440,7 @@
       ]
     },
     {
-      "id": "0033-london-restaurant-chilli-point",
+      "id": "0030-london-restaurant-chilli-point",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -500,7 +455,7 @@
       ]
     },
     {
-      "id": "0034-london-restaurant-general-guidelines",
+      "id": "0031-london-restaurant-general-guidelines",
       "city": "London",
       "category": "restaurant",
       "section": "London｜伦敦",
@@ -515,7 +470,7 @@
       ]
     },
     {
-      "id": "0035-london-cafe-arome-bakery",
+      "id": "0032-london-cafe-arome-bakery",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -530,7 +485,7 @@
       ]
     },
     {
-      "id": "0036-london-cafe-gelupo",
+      "id": "0033-london-cafe-gelupo",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -545,7 +500,7 @@
       ]
     },
     {
-      "id": "0037-london-cafe-the-leaf",
+      "id": "0034-london-cafe-the-leaf",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -560,7 +515,7 @@
       ]
     },
     {
-      "id": "0038-london-cafe-truedan",
+      "id": "0035-london-cafe-truedan",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -575,7 +530,7 @@
       ]
     },
     {
-      "id": "0039-london-cafe-tiraffe",
+      "id": "0036-london-cafe-tiraffe",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -590,7 +545,7 @@
       ]
     },
     {
-      "id": "0040-london-cafe-nostos-coffee",
+      "id": "0037-london-cafe-nostos-coffee",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -605,7 +560,7 @@
       ]
     },
     {
-      "id": "0041-london-cafe-fairshot-cafe",
+      "id": "0038-london-cafe-fairshot-cafe",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -620,7 +575,7 @@
       ]
     },
     {
-      "id": "0042-london-cafe-mamason-s",
+      "id": "0039-london-cafe-mamason-s",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -635,7 +590,7 @@
       ]
     },
     {
-      "id": "0043-london-cafe-hotel-chocolat",
+      "id": "0040-london-cafe-hotel-chocolat",
       "city": "London",
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
@@ -650,7 +605,7 @@
       ]
     },
     {
-      "id": "0044-london-attraction-westminster-abbey",
+      "id": "0041-london-attraction-westminster-abbey",
       "city": "London",
       "category": "attraction",
       "section": "伦敦景点",
@@ -665,7 +620,7 @@
       ]
     },
     {
-      "id": "0045-london-attraction-horizon-22",
+      "id": "0042-london-attraction-horizon-22",
       "city": "London",
       "category": "attraction",
       "section": "伦敦景点",
@@ -680,7 +635,7 @@
       ]
     },
     {
-      "id": "0046-london-attraction-sky-garden",
+      "id": "0043-london-attraction-sky-garden",
       "city": "London",
       "category": "attraction",
       "section": "伦敦景点",
@@ -695,7 +650,7 @@
       ]
     },
     {
-      "id": "0047-london-avoid-chunk",
+      "id": "0044-london-avoid-chunk",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷景点",
@@ -707,6 +662,51 @@
         "avoid",
         "伦敦避雷景点",
         "伦敦避雷景点"
+      ]
+    },
+    {
+      "id": "0045-uk-budget-greggs",
+      "city": "UK",
+      "category": "budget",
+      "section": "UK 性价比快餐（维持生命用）",
+      "title": "Greggs",
+      "content": "城市/地区：UK\n分类：budget\n来源章节：UK 性价比快餐（维持生命用）\n条目：Greggs\n简介： 英国连锁烘焙快餐\n推荐原因： 可能有 £1.99 晚间 meal deal（不确定现在是否还有）；不算好吃但管饱；Monzo 有时有优惠\n推荐菜： meal deal（披萨+饮品）\n价位：",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "UK",
+        "budget",
+        "UK 性价比快餐（维持生命用）",
+        "Greggs"
+      ]
+    },
+    {
+      "id": "0046-uk-budget-wasabi",
+      "city": "UK",
+      "category": "budget",
+      "section": "UK 性价比快餐（维持生命用）",
+      "title": "Wasabi",
+      "content": "城市/地区：UK\n分类：budget\n来源章节：UK 性价比快餐（维持生命用）\n条目：Wasabi\n简介： 日式快餐（可当中餐平替）\n推荐原因： 饭更符合国内胃口；Monzo/Unidays 有时有优惠\n推荐菜： 未注明\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "UK",
+        "budget",
+        "UK 性价比快餐（维持生命用）",
+        "Wasabi"
+      ]
+    },
+    {
+      "id": "0047-uk-budget-leon",
+      "city": "UK",
+      "category": "budget",
+      "section": "UK 性价比快餐（维持生命用）",
+      "title": "Leon",
+      "content": "城市/地区：UK\n分类：budget\n来源章节：UK 性价比快餐（维持生命用）\n条目：Leon\n简介： 轻食连锁\n推荐原因： 口味不算重；米饭颗粒感明显（部分人会介意）；Monzo 有时有优惠\n推荐菜： 未注明\n价位： 未注明",
+      "source": "info_datasource/DATA.md",
+      "tags": [
+        "UK",
+        "budget",
+        "UK 性价比快餐（维持生命用）",
+        "Leon"
       ]
     },
     {
