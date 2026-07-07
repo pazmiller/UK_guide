@@ -27,6 +27,23 @@ export default function Home()
               Learn More <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
+
+          <div className="mt-12 rounded-lg border border-[#1D3557]/10 bg-[#F1FAEE] p-6 shadow-sm md:flex md:items-center md:justify-between md:gap-8 md:p-8">
+            <div className="max-w-2xl text-left">
+              <p className="mb-2 text-sm font-bold uppercase tracking-wide text-[#E63946]">
+                UK Arrival Guide
+              </p>
+              <h3 className="mb-3 text-2xl font-black text-[#1D3557]">
+                赴英前后必看提醒
+              </h3>
+              <p className="text-[#1D3557]/70">
+                手机卡、交通、超市、安全、eVisa、GP、银行卡和租房避坑，一页快速看完。
+              </p>
+            </div>
+            <Link href="/guide" className="btn-secondary mt-5 inline-flex items-center gap-2 md:mt-0">
+              查看赴英指南 <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
         </div>
       </section>
 

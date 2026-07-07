@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,6 +8,12 @@ import Chatbot from "@/components/Chatbot";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const notoSansSc = Noto_Sans_SC({
+  subsets: ["latin"],
+  weight: "variable",
+  variable: "--font-noto-sans-sc",
 });
 
 
@@ -24,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${notoSansSc.variable} antialiased`}>
         <Navbar />
         <main className="min-h-screen">
           {children}

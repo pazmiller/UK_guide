@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "devloop": "node scripts/devloop.mjs",
+    "devloop:test": "node --test scripts/devloop.test.mjs",
     "build:rag": "node scripts/build-rag-kb.mjs",
     "build": "next build",
     "start": "next start",
