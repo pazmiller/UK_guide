@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { useState, type ReactNode } from 'react';
-import {
+import
+{
   AlertTriangle,
   BookOpen,
   Bookmark,
@@ -230,7 +231,7 @@ const guideSections: GuideSection[] = [
   },
   {
     id: 'groceries',
-    title: '2. 超市：先认清不同价位',
+    title: '2. 超市：拼好饭Iceland，高贵的等玫瑰',
     body: (
       <div className="space-y-5">
         <BulletList items={supermarketGroups} />
@@ -244,6 +245,10 @@ const guideSections: GuideSection[] = [
               '不过现在不少同学会感觉这类传统中超网站正在被 Joybuy 这类更快的平台挤压。下单前还是按 postcode、配送费、最低起送、缺货替换和退货规则确认。',
             ]}
           />
+          <div className="mt-4 flex flex-wrap gap-4">
+            <ExternalGuideLink href="https://www.ocado.com/" label="Ocado" />
+            <ExternalGuideLink href="https://www.joybuy.co.uk/" label="Joybuy UK" />
+          </div>
         </div>
         <div className="border-l-4 border-[#0F766E] pl-4">
           <h4 className="mb-3 text-xl font-black text-[#1D3557]">省钱技巧</h4>
@@ -255,6 +260,9 @@ const guideSections: GuideSection[] = [
               '初到英国不要一次性买太多锅具和电器，先确认宿舍是否允许使用。',
             ]}
           />
+          <div className="mt-4 flex flex-wrap gap-4">
+            <ExternalGuideLink href="https://www.tesco.com/clubcard/" label="Tesco Clubcard" />
+          </div>
         </div>
       </div>
     ),
@@ -283,11 +291,15 @@ const guideSections: GuideSection[] = [
           <BulletList
             items={[
               '跨城市火车查 National Rail、Trainline 或各铁路公司官网。',
+              'Trip.com 也可以用来查询和购买机票、火车票，英国境外旅行也常用；下单前记得核对退改签、行李额和手续费。',
               '16-25 Railcard / 26-30 Railcard 可能适合学生。',
               '注意 Advance、Off-Peak、Anytime、Return、Open Return 的区别。',
               '晚上回家尽量提前查末班车，不要默认公交或地铁 24 小时运行。',
             ]}
           />
+          <div className="mt-4 flex flex-wrap gap-4">
+            <ExternalGuideLink href="https://uk.trip.com/" label="Trip.com" />
+          </div>
         </div>
       </div>
     ),
@@ -391,7 +403,7 @@ const guideSections: GuideSection[] = [
   },
   {
     id: 'banking',
-    title: '7. 银行卡与支付：先有备用方案',
+    title: '7. 银行卡与支付：自由流动',
     body: (
       <div className="space-y-5">
         <BulletList
@@ -413,7 +425,7 @@ const guideSections: GuideSection[] = [
   },
   {
     id: 'housing',
-    title: '8. 租房：不要急着交钱',
+    title: '8. 租房：入住记得拍照',
     body: (
       <BulletList
         items={[
@@ -430,8 +442,36 @@ const guideSections: GuideSection[] = [
     ),
   },
   {
+    id: 'scams',
+    title: '9. 小心诈骗：They are everywhere',
+    body: (
+      <div className="space-y-5">
+        <BulletList
+          items={[
+            '接到自称银行、警察、DPD、Amazon、RoyalMail、HMRC、NHS、快递、大使馆等等……的电话，不要在电话里直接转账、报验证码或交出账户信息。',
+            '任何要求你把钱转到“安全账户”、任何涉及到钱的说法，除了是群主叫你捐钱外，都先停下来核实。',
+            '短信里的各种链接，不确定就不要点，自己打开官网或 app 核对是否一致',
+            '不要以为骗局只会碰到蠢人，每年留学生被scam到的数不胜数',
+            '觉得不对劲时，先问群内、银行官方客服，或者学校。已经被骗时尽快联系银行冻结交易，并按情况报拨打999报警',
+          ]}
+        />
+        <Notice>
+          有朋友的警察诈骗案拟真到电话号码模拟，知道你的身份证等家人信息，还会假装像是从真的警察局打给你一样
+        </Notice>
+        <div className="border-l-4 border-[#D66F78] pl-4">
+          <h4 className="mb-3 text-xl font-black text-[#1D3557]">案例阅读</h4>
+          <div className="flex flex-wrap gap-4">
+            <ExternalGuideLink href="https://zhuanlan.zhihu.com/p/1986517925008527666" label="知乎案例" />
+            <ExternalGuideLink href="https://www.51offer.com/article/detail_108905.html" label="留学生被骗案例" />
+            <ExternalGuideLink href="https://jurify.co.uk/blog/uk-chinese-students-money-laundering-case" label="洗钱风险案例" />
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
     id: 'academic',
-    title: '9. 学术规则：不要踩 plagiarism 和 AI 使用红线',
+    title: '10. 学术规则：不要踩 plagiarism等红线',
     body: (
       <div className="space-y-5">
         <BulletList
@@ -450,7 +490,7 @@ const guideSections: GuideSection[] = [
   },
   {
     id: 'extras',
-    title: '10. 其他容易被忽略的事项',
+    title: '11. 其他容易被忽略的事项',
     body: <BulletList items={otherReminders} />,
   },
 ];
@@ -567,7 +607,7 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
             <BookOpen className="mb-6 h-9 w-9 text-[#D9B46F]" />
             <p className="mb-3 text-sm uppercase">UK Arrival</p>
             <div className="h-px w-24 bg-[#D9B46F]" />
-            <h2 className="mt-5 text-4xl font-black leading-tight">赴英提醒</h2>
+            <h2 className="mt-5 text-4xl font-black leading-tight">大英十一诫</h2>
             <p className="mt-4 max-w-[11rem] text-sm leading-6 text-[#FFF8E8]/78">
               手机卡、交通、安全、医疗和租房的第一周清单。
             </p>
@@ -728,23 +768,22 @@ export default function GuideBookPage()
           <div className="mb-8 border-l-4 border-[#D66F78] bg-[#FFF8E8]/78 px-5 py-5 shadow-[0_16px_38px_rgba(44,38,30,0.12)]">
             <p className="mb-2 text-sm font-black uppercase text-[#D66F78]">UK Arrival Guide</p>
             <h1 className="text-4xl font-black leading-tight text-[#1D3557] sm:text-5xl">
-              赴英提醒
+              大英十一诫
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-8 text-[#2C261E]/78">
-              右侧是 10 个章节标题。点开任意一章，就像翻开夹在书里的提醒信，快速查看完整内容。
+              Keep Calm
             </p>
           </div>
 
-          <div className="space-y-3" aria-label="赴英提醒章节">
+          <div className="space-y-3" aria-label="大英十一诫章节">
             {guideSections.map( ( section ) =>
             {
               const isOpen = section.id === openSectionId;
               return (
                 <article
                   key={section.id}
-                  className={`guide-liquid-section transition-[border-color,box-shadow,transform] duration-200 ${
-                    isOpen ? 'guide-liquid-section--open translate-x-0' : 'hover:-translate-y-0.5'
-                  }`}
+                  className={`guide-liquid-section transition-[border-color,box-shadow,transform] duration-200 ${isOpen ? 'guide-liquid-section--open translate-x-0' : 'hover:-translate-y-0.5'
+                    }`}
                 >
                   <button
                     type="button"
@@ -761,9 +800,8 @@ export default function GuideBookPage()
 
                   <div
                     id={`${section.id}-content`}
-                    className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
-                      isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-                    }`}
+                    className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                      }`}
                   >
                     <div className="overflow-hidden">
                       <div className="guide-liquid-body border-t border-white/38 px-4 pb-5 pt-4 sm:px-5">
