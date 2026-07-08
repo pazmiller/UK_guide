@@ -380,18 +380,36 @@ const guideSections: GuideSection[] = [
     title: '6. 医疗：尽快注册 GP',
     body: (
       <div className="space-y-5">
+        <div className="grid gap-3 rounded-[22px] border border-white/45 bg-white/30 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.68)] backdrop-blur-md md:grid-cols-[1fr_auto_1fr] md:items-stretch">
+          <div className="rounded-2xl border border-[#D66F78]/24 bg-[#FFF8E8]/62 p-4 shadow-[0_12px_28px_rgba(29,53,87,0.07)]">
+            <p className="text-xs font-black uppercase tracking-wide text-[#D66F78]">NHS GP</p>
+            <h4 className="mt-1 text-lg font-black text-[#1D3557]">General Practitioner</h4>
+            <p className="mt-2 text-[15px] leading-7 text-[#2C261E]/82">
+              NHS 的 GP 是 primary care doctor，也就是全科医生，接近国内的普通内科，是英国医疗系统的第一入口。
+            </p>
+          </div>
+          <div className="hidden items-center justify-center px-1 text-2xl font-black text-[#D66F78] md:flex">→</div>
+          <div className="flex items-center justify-center text-2xl font-black text-[#D66F78] md:hidden">↓</div>
+          <div className="rounded-2xl border border-[#0F766E]/24 bg-[#F6FFF9]/54 p-4 shadow-[0_12px_28px_rgba(29,53,87,0.07)]">
+            <p className="text-xs font-black uppercase tracking-wide text-[#0F766E]">Referral route</p>
+            <h4 className="mt-1 text-lg font-black text-[#1D3557]">GP → Specialist</h4>
+            <p className="mt-2 text-[15px] leading-7 text-[#2C261E]/82">
+              通常只有 GP 给你发 referral 后，才能看内分泌科、心脏科等 specialist；GP 这里主要做基础问诊、普通检查和转诊判断。
+            </p>
+          </div>
+        </div>
         <BulletList
           items={[
-            '到英国后尽快用住址注册 GP，不同地区和诊所流程可能不同。',
-            '对已支付 IHS 或符合资格的留学生，大多数 NHS 服务不是像私立医疗那样按次收费；英格兰处方药通常按每个 item 收固定费用，官方当前价格是 £9.90，部分人可豁免。',
-            '看专科医生或做转诊通常要等很久，几周到几个月都可能，1 到 3 个月并不稀奇。所以尽快注册 GP，有病尽早联系 GP 或 NHS 111 很重要。',
+            '到英国后尽快用住址注册 GP，不同地区和诊所流程可能不同',
+            '对已支付 IHS 或符合资格的留学生，大多数 NHS 服务不是像私立医疗那样按次收费；英格兰处方药通常按每个 item 收固定费用，£9.90',
+            '看专科医生或做转诊通常要等很久，几周到几个月都可能，1 到 3 个月并不稀奇。所以尽快注册 GP，有病尽早联系 GP 或 NHS 111 很重要',
             '紧急生命危险打 999；非紧急医疗建议可用 NHS 111。',
-            '不同于国内，“立刻就诊”基本只存在于 A&E 急诊；一般不是非常严重或急性的大病，到 A&E 也可能等上好几个小时，体验会很恐怖。',
+            '不同于国内，“立刻就诊”基本只存在于 A&E 急诊；一般不是非常严重或急性的大病，到 A&E 也可能等上好几个小时，体验会很恐怖',
             '牙医通常需要单独注册，NHS dentist 名额可能紧张。',
             '常用非处方药可以在 Boots、Superdrug、药房或超市购买。',
             '带药入境前确认是否需要英文处方或医生证明。',
             '眼镜、牙科、处方药可能产生额外费用，提前了解。',
-            '医疗相关问题可以多问问群友，尤其是本地 GP、药房、牙医和 A&E 体验，但最终判断还是以 NHS、GP、药师或学校 wellbeing / international support 的建议为准。',
+            '医疗相关问题可以多问问群友，尤其是本地 GP、药房、牙医和 A&E 体验',
           ]}
         />
         <div className="flex flex-wrap gap-4">
