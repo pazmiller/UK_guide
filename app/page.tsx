@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, MapPin, Building, Globe } from 'lucide-react';
+import { ArrowRight, BookOpen, Building, Globe, MapPin } from 'lucide-react';
 import Hero from '@/components/Hero';
 import ClickableRestaurantGrid from '@/components/ClickableRestaurantGrid';
 import CreditsSection from '@/components/CreditsSection';
@@ -28,22 +28,54 @@ export default function Home()
             </Link>
           </div>
 
-          <div className="mt-12 rounded-lg border border-[#1D3557]/10 bg-[#F1FAEE] p-6 shadow-sm md:flex md:items-center md:justify-between md:gap-8 md:p-8">
-            <div className="max-w-2xl text-left">
-              <p className="mb-2 text-sm font-bold uppercase tracking-wide text-[#E63946]">
-                UK Arrival Guide
-              </p>
-              <h3 className="mb-3 text-2xl font-black text-[#1D3557]">
-                赴英前后必看提醒
-              </h3>
-              <p className="text-[#1D3557]/70">
-                手机卡、交通、超市、安全、eVisa、GP、银行卡和租房避坑，一页快速看完。
-              </p>
+          <section className="relative mt-16 overflow-hidden border border-[#1D3557]/15 bg-[#FCFBF7] shadow-[0_18px_42px_rgba(29,53,87,0.12)]">
+            <div className="absolute inset-0 opacity-60" aria-hidden="true" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(29,53,87,0.045) 32px)' }} />
+            <div className="absolute inset-y-0 left-0 w-2 bg-[#E63946]" aria-hidden="true" />
+            <div className="relative grid lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)]">
+              <div className="px-7 py-8 sm:px-10 sm:py-10">
+                <div className="flex items-center gap-3 text-xs font-bold uppercase text-[#1D3557]/65">
+                  <BookOpen className="h-4 w-4 text-[#E63946]" />
+                  <span>UK Arrival Notes</span>
+                  <span className="h-px w-10 bg-[#1D3557]/20" />
+                  <span>Before & After Landing</span>
+                </div>
+
+                <h3 className="mt-6 max-w-xl text-3xl font-black leading-tight text-[#1D3557] sm:text-4xl">
+                  CFFA UK Onboarding
+                </h3>
+                <p className="mt-4 max-w-xl text-base leading-8 text-[#1D3557]/70 sm:text-lg">
+                  从落地后的第一张手机卡，到体验NHS医疗，各种指南与逼坑，尽在CFFA出版的带英十一诫里！第一次来英国也不用慌nia
+                </p>
+
+                <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-[#1D3557]/75">
+                  <span>手机卡与诈骗的关系</span>
+                  <span className="text-[#E63946]" aria-hidden="true">/</span>
+                  <span>日常出行</span>
+                  <span className="text-[#E63946]" aria-hidden="true">/</span>
+                  <span>NHS</span>
+                </div>
+              </div>
+
+              <div className="relative flex min-h-[230px] flex-col justify-between border-t border-dashed border-[#1D3557]/25 px-7 py-8 sm:px-10 lg:min-h-0 lg:border-l lg:border-t-0">
+                <span className="pointer-events-none absolute right-5 top-2 text-[9rem] font-black leading-none text-[#1D3557]/[0.055] sm:right-8 sm:text-[11rem]" aria-hidden="true">
+                  11
+                </span>
+                <div className="relative">
+                  <p className="text-sm font-bold uppercase text-[#E63946]">Eleven Amendments</p>
+                  <p className="mt-2 max-w-[16rem] text-xl font-black leading-snug text-[#1D3557]">
+                    一次读完，之后需要时随手翻开。
+                  </p>
+                </div>
+                <Link
+                  href="/guide"
+                  className="relative inline-flex w-fit items-center gap-3 border-b-2 border-[#1D3557] pb-2 text-base font-black text-[#1D3557] transition-colors hover:border-[#E63946] hover:text-[#E63946] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E63946]"
+                >
+                  打开赴英指南
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </div>
             </div>
-            <Link href="/guide" className="btn-secondary mt-5 inline-flex items-center gap-2 md:mt-0">
-              查看赴英指南 <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
+          </section>
         </div>
       </section>
 

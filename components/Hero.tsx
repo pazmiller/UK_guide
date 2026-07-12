@@ -13,7 +13,7 @@ export default function Hero()
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <h1 className="[font-family:var(--font-special-elite)] text-5xl font-normal leading-tight tracking-normal text-white mb-6 animate-fadeIn sm:text-6xl md:text-7xl">
-          Discover the Good Old Charm of{' '}
+          Discover the Good Old{' '}
           <span>
             <span className="text-[#E63946]">G</span><span className="text-[#0d15ff]">reat </span><span className="text-[#E63946]">B</span><span className="text-[#0d15ff]">ritain</span>
           </span>
