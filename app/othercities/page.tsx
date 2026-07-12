@@ -34,6 +34,13 @@ const cities = [
     count: 7,
   },
   {
+    name: '科尔切斯特 Colchester',
+    slug: 'colchester',
+    description: 'Essex 大学所在地，英国有记载最古老城镇之一',
+    image: '/locations/Colchester.png',
+    count: 2,
+  },
+  {
     name: '爱丁堡 Edinburgh',
     slug: 'edinburgh',
     description: '苏格兰首都，城堡之城',
@@ -84,7 +91,7 @@ export default function OtherCitiesPage() {
                     <h3 className="text-2xl font-bold text-[#1D3557] mb-1">{city.name}</h3>
                     <p className="text-[#1D3557]/60 text-sm mb-3">{city.description}</p>
                     <span className="inline-flex items-center gap-2 text-[#E63946] font-semibold text-sm group-hover:gap-3 transition-all">
-                      {city.count} 家推荐 <ArrowRight className="w-4 h-4" />
+                      {city.count} 个推荐 <ArrowRight className="w-4 h-4" />
                     </span>
                   </div>
                 </div>

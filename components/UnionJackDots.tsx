@@ -2,7 +2,14 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 
-const WORDS = [ 'uwu', '啾咪', 'To be or not to be', 'To St.George!', 'That is the question', 'The game is afoot!', '西八', 'Oi', '哎呀媽呀', '林北跟你讲', '天啦嚕', 'Come next day', 'Do you have appointment?', 'Chanmeimei', 'Pompipi', 'OwO', 'See it Say it Sorted', '保护好你的手机', 'bowowaer', "don't get mugged", "It's Chewsday", 'innit mate', 'what a plunker', 'A lovely cup of Tea', 'go get some Chippy' ] as const;
+const WORDS = [ 'uwu', '啾咪', '喵喵咪', 'To be or not to be', 'To St.George!', 'That is the question',
+  'The game is afoot!', 'Oi', '哎呀媽呀', '林北跟你讲', '天啦嚕', 'Come next day', 'Do you have appointment?',
+  'Chanmeimei', 'Pompipi', 'OwO', 'See it Say it Sorted', '保护好你的手机', 'bowowaer',
+  "don't get mugged", "It's Chewsday", 'innit mate', 'what a plunker', '黑夜无论怎样悠长，白昼总会到来。',
+  'A lovely cup of Tea', 'go get some Chippy', 'Mind the Gap', '该吃meal deal了大郎', '你醒了meal deal又涨价了',
+  'gimme ur phone', 'God save the king', 'uwu', 'Life is but a walking shadow',
+  'not all that glitters is gold', '青春是一个短暂的美梦', '不要怕！Afear not！让我再梦一次吧！', '爱所有人，信任少数人，不负任何人。'
+] as const;
 const WORD_COLORS = [ '#FFD700', '#FF6B9D', '#7BFF7B', '#87CEEB', '#FFB347', '#DA70D6' ];
 
 type PopLabel = { id: number; x: number; y: number; word: string; color: string };

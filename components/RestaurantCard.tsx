@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { Coffee, MapPin } from 'lucide-react';
+import ImageCarousel from './ImageCarousel';
 import { Restaurant } from '@/data/types';
 
 interface RestaurantCardProps {
@@ -30,21 +30,20 @@ export default function RestaurantCard({ restaurant, onClick, variant = 'classic
       onClick={onClick}
     >
       {hasImage && (
-        <div className="relative h-44 overflow-hidden">
-          <Image
-            src={restaurant.images[0]}
-            alt={restaurant.name}
-            fill
-            className="object-cover transition-transform duration-500 hover:scale-110"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-          <div className="absolute top-4 left-4">
+        <ImageCarousel
+          images={restaurant.images}
+          alt={restaurant.name}
+          className="h-44"
+          imageClassName="group-hover/image:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        >
+          <div className="absolute top-4 left-4 z-20">
             <span className={cuisineBadgeClass}>
               {isCafe && <Coffee className="w-3.5 h-3.5" />}
               {restaurant.cuisine}
             </span>
           </div>
-        </div>
+        </ImageCarousel>
       )}
 
       <div className="p-5">

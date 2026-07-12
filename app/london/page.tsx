@@ -8,6 +8,62 @@ import { londonCafes } from '@/data/london/cafes';
 export default function LondonPage()
 {
   const foodPlacesCount = londonRestaurants.length + londonCafes.length;
+  const londonFacts = [
+    {
+      stat: '£1.75',
+      label: 'Bus hopper',
+      title: '伦敦公交不收现金，而且一小时内可以无限换乘',
+      body: (
+        <>
+          伦敦公交车只能使用 Oyster、银行卡或手机感应支付，不能上车后拿现金买票。成人单程目前是 £1.75；首次刷卡后的一小时内，可以无限换乘其他公交车和有轨电车，仍只收一次费用。这使得大伦敦的巴士费用，意外地成了英国城市里非常便宜的一档。
+        </>
+      ),
+    },
+    {
+      stat: '5 min',
+      label: 'Walk or Tube',
+      title: '在伦敦，走路有时比坐车还快',
+      body: (
+        <>
+          伦敦因为城市设计过早，交通非常糟。有时候叫 Uber 真不如 Tube 快；在市中心，走路甚至可能比坐地铁更快。地铁线路图主要为了清晰展示换乘关系，并不是按真实地理距离绘制。很多站实际非常近，例如 Monument 到 London Bridge 约 5 分钟，可能比坐地铁快约 12 分钟。
+        </>
+      ),
+    },
+    {
+      stat: 'FREE',
+      label: 'Museums',
+      title: '伦敦很贵，但很多博物馆免费',
+      body: (
+        <>
+          伦敦是世界上生活成本最高的城市之一，但大英博物馆、国家美术馆、自然历史博物馆、科学博物馆、V&amp;A 等大型国家级博物馆，永久展览通常免费。想看具体推荐可以去{' '}
+          <Link href="/london/attractions" className="font-bold text-[#F4A261] underline-offset-4 hover:underline">
+            Attractions 页面
+          </Link>
+          。
+        </>
+      ),
+    },
+    {
+      stat: '300+',
+      label: 'Languages',
+      title: '伦敦居民日常使用超过 300 种语言',
+      body: (
+        <>
+          伦敦每天都有人使用的语言超过 300 种，属于世界上语言最丰富的城市之一。2021 Census 中，White 总体只有 50% 出头，White British 约 36.8%，所以它不是一个单一文化城市，而是一座把世界压缩到同一张地铁图上的城市。
+        </>
+      ),
+    },
+    {
+      stat: '195',
+      label: 'Food map',
+      title: '真的是美食荒漠吗？',
+      body: (
+        <>
+          伦敦拥有来自 195 个国家和地区菜系的餐厅。中餐这几年也发展得很快，从江浙菜、西安菜、潮汕火锅，到云南菜都有，奶茶连锁店也在扩张。“英国，伦敦没有好吃的”是一个长久的迷思。当然，在外面吃饭不便宜，毕竟人力有着最低 £12/h 左右的底线。
+        </>
+      ),
+    },
+  ];
 
   return (
     <div className="relative pt-16 overflow-hidden bg-[#FBF8F1]">
@@ -105,47 +161,41 @@ export default function LondonPage()
         </div>
       </section>
 
-      {/* ── HISTORY ── */}
+      {/* ── LONDON FACTS ── */}
       <section className="relative py-16 bg-[#1D3557]">
-        <div className="relative z-10 max-w-5xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="inline-block px-3 py-1 bg-[#E63946] text-white text-xs font-bold uppercase tracking-widest rounded-md mb-4">
-                History
-              </span>
-              <h2 className="text-4xl font-black text-white mb-6">
-                Two Thousand Years of Stories
-              </h2>
-              <p className="text-white/70 leading-relaxed mb-4">
-                从罗马人建立 Londinium，到中世纪的伦敦塔，再到维多利亚时代的大英帝国全盛期。伦敦的每一条街道都在讲述着历史。
-              </p>
-              <p className="text-white/70 leading-relaxed mb-4">
-                如今的伦敦是全球最多元化的城市之一，超过 300 种语言在这里交汇，东西方的美食文化在此碰撞。
-                这也正是为什么伦敦的餐厅推荐如此丰富：从正宗川菜到秘鲁海鲜，从潮汕火锅到那不勒斯披萨。
-              </p>
-              <p className="text-white/70 leading-relaxed">
-                免费的世界级博物馆、皇家公园、和隐藏在小巷中的咖啡馆。伦敦永远有新的角落等你探索。
-              </p>
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
+          <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr] lg:gap-8 lg:items-stretch">
+            <div className="relative min-h-[320px] overflow-hidden rounded-xl border border-white/10 bg-white/[0.05] shadow-[0_24px_60px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.12)] lg:min-h-[680px]">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: 'url(/others/london1.png)' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1D3557]/50 via-[#1D3557]/5 to-transparent" />
+              <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
             </div>
 
-            {/* Timeline */}
-            <div className="space-y-6">
-              {[
-                { year: '43 AD', title: 'Londinium', desc: '罗马人建城' },
-                { year: '1066', title: 'Tower of London', desc: '诺曼征服，伦敦塔建造' },
-                { year: '1666', title: 'Great Fire', desc: '伦敦大火，浴火重生' },
-                { year: '1863', title: 'The Tube', desc: '世界第一条地铁开通' },
-                { year: 'Now', title: 'Global City', desc: '300+种语言的多元之都' },
-              ].map( ( item ) => (
-                <div key={item.year} className="flex items-start gap-4">
-                  <div className="w-16 h-16 rounded-lg bg-[#F4A261] flex items-center justify-center shrink-0">
-                    <span className="text-[#1D3557] font-black text-xs">{item.year}</span>
+            <div className="grid gap-4">
+              {londonFacts.map( ( item, index ) => (
+                <article
+                  key={item.title}
+                  className="group rounded-xl border border-white/10 bg-white/[0.08] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-[background-color,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-[#F4A261]/55 hover:bg-white/[0.12]"
+                >
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                    <div className="flex items-center gap-3 sm:w-36 sm:shrink-0">
+                      <span className="grid h-11 w-11 place-items-center rounded-lg bg-[#E63946] text-sm font-black text-white">
+                        {String( index + 1 ).padStart( 2, '0' )}
+                      </span>
+                      <div>
+                        <div className="text-xl font-black text-[#F4A261] leading-none">{item.stat}</div>
+                        <div className="mt-1 text-[11px] font-bold uppercase tracking-widest text-white/45">{item.label}</div>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-black text-white mb-2">{item.title}</h3>
+                      <p className="text-sm leading-7 text-white/70">{item.body}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-white font-bold text-lg">{item.title}</h3>
-                    <p className="text-white/60 text-sm">{item.desc}</p>
-                  </div>
-                </div>
+                </article>
               ) )}
             </div>
           </div>

@@ -31,6 +31,19 @@ yarn-error.log*
 .pnpm-debug.log*
 .devloop/
 
+# local Codex / agent instructions
+AGENTS.md
+.codex/
+
+# local deployment/devloop experiments
+Dockerfile
+.dockerignore
+k8s/
+scripts/devloop-hook.mjs
+scripts/devloop.mjs
+scripts/devloop.test.mjs
+scripts/fixtures/
+
 # env files
 .env*
 !.env.example

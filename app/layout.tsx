@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_SC } from "next/font/google";
+import { Inter, Noto_Sans_SC, Special_Elite } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
+import MobileBackToTop from "@/components/MobileBackToTop";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,6 +15,12 @@ const notoSansSc = Noto_Sans_SC({
   subsets: ["latin"],
   weight: "variable",
   variable: "--font-noto-sans-sc",
+});
+
+const specialElite = Special_Elite({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-special-elite",
 });
 
 
@@ -30,12 +37,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${notoSansSc.variable} antialiased`}>
+      <body className={`${inter.variable} ${notoSansSc.variable} ${specialElite.variable} antialiased`}>
         <Navbar />
         <main className="min-h-screen">
           {children}
         </main>
         <Chatbot />
+        <MobileBackToTop />
         <Footer />
       </body>
     </html>

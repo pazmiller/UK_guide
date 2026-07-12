@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useCallback, useState } from 'react';
-import Image from 'next/image';
 import { Coffee, X, MapPin, ExternalLink, Navigation } from 'lucide-react';
+import ImageCarousel from './ImageCarousel';
 import { Restaurant, Attraction } from '@/data/types';
 
 type ModalData =
@@ -104,17 +104,15 @@ export default function DetailModal( { item, onClose, locationHint = 'London UK'
 
         {/* Image */}
         {hasImage && (
-          <div className="relative w-full aspect-[16/10] overflow-hidden">
-            <Image
-              src={d.images[ 0 ]}
-              alt={d.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 672px) 100vw, 672px"
-            />
+          <ImageCarousel
+            images={d.images}
+            alt={d.name}
+            className="w-full aspect-[16/10]"
+            sizes="(max-width: 672px) 100vw, 672px"
+          >
             {/* Gradient overlay at bottom */}
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" />
-          </div>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-black/40 to-transparent" />
+          </ImageCarousel>
         )}
 
         {/* Content */}

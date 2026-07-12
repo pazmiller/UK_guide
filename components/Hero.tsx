@@ -12,7 +12,7 @@ export default function Hero()
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fadeIn">
+        <h1 className="[font-family:var(--font-special-elite)] text-5xl font-normal leading-tight tracking-normal text-white mb-6 animate-fadeIn sm:text-6xl md:text-7xl">
           Discover the Good Old Charm of{' '}
           <span>
             <span className="text-[#E63946]">G</span><span className="text-[#0d15ff]">reat </span><span className="text-[#E63946]">B</span><span className="text-[#0d15ff]">ritain</span>
@@ -20,8 +20,14 @@ export default function Hero()
         </h1>
 
         <p className="text-xl md:text-2xl text-white/90 mb-8 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-          Explore iconic landmarks, world-class museums, and incredible restaurants
-          with our fluffy Furries
+          无论你是动物朋友还是人类朋友，来了就是一生英伦情了。
+        </p>
+        <p className="text-xl md:text-2xl text-white/90 mb-8 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+          英国有很多和国内不一样的风景和文化，意料不到的习俗惯例。
+          无论是迅速onboard，解答疑惑，还是准备好开始探索了，都过来吧！Get over here!
+        </p>
+        <p className="text-xl md:text-2xl text-white/90 mb-8 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+          欢迎！Let me get you a lovely cup of tea for a start. Sugar, and milk?
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn" style={{ animationDelay: '0.4s' }}>

@@ -16,7 +16,7 @@ export default function ContactPage()
           <div className="space-y-5">
             <div className="bg-white rounded-lg p-8 shadow-sm ring-1 ring-[#1D3557]/10">
               <Mail className="w-10 h-10 text-[#E63946] mx-auto mb-4" />
-              <h2 className="text-xl font-bold text-[#1D3557] mb-2">Email</h2>
+              <h2 className="text-xl font-bold text-[#1D3557] mb-2">309513511</h2>
               <p className="text-gray-600">林北先放这</p>
             </div>
             <div className="bg-white rounded-lg p-8 shadow-sm ring-1 ring-[#1D3557]/10">

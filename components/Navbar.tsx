@@ -38,6 +38,7 @@ export default function Navbar()
     { href: '/othercities/edinburgh', label: 'Edinburgh' },
     { href: '/othercities/southampton', label: 'Southampton' },
     { href: '/othercities/swansea', label: 'Swansea' },
+    { href: '/othercities/colchester', label: 'Colchester' },
   ];
 
   const europaSubLinks = [
