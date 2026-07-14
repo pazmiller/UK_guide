@@ -61,7 +61,7 @@ export default function Home()
                   11
                 </span>
                 <div className="relative">
-                  <p className="text-sm font-bold uppercase text-[#E63946]">Eleven Amendments</p>
+                  <p className="text-sm font-bold uppercase text-[#E63946]">Eleven Teachings</p>
                   <p className="mt-2 max-w-[16rem] text-xl font-black leading-snug text-[#1D3557]">
                     一次读完，之后需要时随手翻开。
                   </p>

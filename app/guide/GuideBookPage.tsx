@@ -22,6 +22,48 @@ type GuideSection = {
   body: ReactNode;
 };
 
+const linkTones = {
+  apple: 'text-[#1D1D1F]',
+  ee: 'text-[#007A33]',
+  o2: 'text-[#0050A4]',
+  vodafone: 'text-[#C8102E]',
+  three: 'text-[#3B1B6F]',
+  giffgaff: 'text-[#202020]',
+  aldi: 'text-[#0050AA]',
+  lidl: 'text-[#0050AA]',
+  tesco: 'text-[#00539F]',
+  sainsburys: 'text-[#B64B00]',
+  asda: 'text-[#4E7E16]',
+  morrisons: 'text-[#006B3C]',
+  waitrose: 'text-[#006B4F]',
+  marks: 'text-[#222222]',
+  railcard: 'text-[#B51F2D]',
+  nationalRail: 'text-[#243B7A]',
+  trainline: 'text-[#008A7A]',
+  trainPal: 'text-[#14875A]',
+  tfl: 'text-[#113B92]',
+  bee: 'text-[#6B4E00]',
+  swift: 'text-[#5A2D82]',
+  nationalExpress: 'text-[#B71624]',
+  westMidlandsMetro: 'text-[#007C91]',
+  lothian: 'text-[#007E70]',
+  edinburghTrams: 'text-[#006B3F]',
+  scotRail: 'text-[#005EB8]',
+  hsbc: 'text-[#DB0011]',
+  barclays: 'text-[#0065B3]',
+  lloyds: 'text-[#006A4D]',
+  natwest: 'text-[#4B286D]',
+  santander: 'text-[#C8102E]',
+  monzo: 'text-[#D64550]',
+  starling: 'text-[#5B3CC4]',
+  revolut: 'text-[#1D1D1F]',
+  royalMail: 'text-[#C8102E]',
+  evri: 'text-[#702C7A]',
+  dpd: 'text-[#C41230]',
+  amazon: 'text-[#A85B00]',
+  govUk: 'text-[#1D70B8]',
+} as const;
+
 const quickChecklist = [
   '确认正式手机号码',
   '检查 UKVI account',
@@ -36,7 +78,7 @@ const quickChecklist = [
 const simScenarios = [
   {
     title: '伦敦、曼城、伯明翰、利兹等大城市',
-    body: '优先比较价格、流量、是否支持 eSIM。常见选择包括 EE、O2、Vodafone、Three，以及 giffgaff、VOXI、SMARTY、Lebara 等虚拟运营商。',
+    body: <>优先比较价格、流量、是否支持 eSIM。常见选择包括 <InlineGuideLink href="https://ee.co.uk/" tone={linkTones.ee}>EE</InlineGuideLink>、<InlineGuideLink href="https://www.o2.co.uk/" tone={linkTones.o2}>O2</InlineGuideLink>、<InlineGuideLink href="https://www.vodafone.co.uk/" tone={linkTones.vodafone}>Vodafone</InlineGuideLink>、<InlineGuideLink href="https://www.three.co.uk/" tone={linkTones.three}>Three</InlineGuideLink>，以及 <InlineGuideLink href="https://www.giffgaff.com/" tone={linkTones.giffgaff}>giffgaff</InlineGuideLink>、VOXI、SMARTY、Lebara 等虚拟运营商。</>,
   },
   {
     title: '苏格兰、威尔士、英格兰北部小城、海边或乡村校区',
@@ -57,9 +99,9 @@ const simScenarios = [
 ];
 
 const supermarketGroups = [
-  '便宜型：Aldi、Lidl。',
-  '常见综合型：Tesco、Sainsbury’s、Asda、Morrisons。',
-  '偏贵 / 品质型：Waitrose、M&S Food。',
+  <>便宜型：<SupermarketMapLink query="Aldi" tone={linkTones.aldi}>Aldi</SupermarketMapLink>、<SupermarketMapLink query="Lidl" tone={linkTones.lidl}>Lidl</SupermarketMapLink>。</>,
+  <>常见综合型：<SupermarketMapLink query="Tesco" tone={linkTones.tesco}>Tesco</SupermarketMapLink>、<SupermarketMapLink query="Sainsbury's" tone={linkTones.sainsburys}>Sainsbury’s</SupermarketMapLink>、<SupermarketMapLink query="Asda" tone={linkTones.asda}>Asda</SupermarketMapLink>、<SupermarketMapLink query="Morrisons" tone={linkTones.morrisons}>Morrisons</SupermarketMapLink>。</>,
+  <>偏贵 / 品质型：<SupermarketMapLink query="Waitrose" tone={linkTones.waitrose}>Waitrose</SupermarketMapLink>、<SupermarketMapLink query="M&S Food" tone={linkTones.marks}>M&amp;S Food</SupermarketMapLink>。</>,
   '日用品 / 药妆：Boots、Superdrug、Savers。',
   '亚洲 / 中国超市：中超、韩国超市、亚洲食品店，适合买米、调料、火锅底料、速冻食品。',
 ];
@@ -68,16 +110,16 @@ const transportCities = [
   {
     city: 'London / 伦敦',
     items: [
-      '地铁、公交、Elizabeth line、Overground、DLR 等主要使用 contactless 银行卡、Apple Pay / Google Pay 或 Oyster。',
+      <>地铁、公交、Elizabeth line、Overground、DLR 等主要使用 contactless 银行卡、Apple Pay / Google Pay 或 <InlineGuideLink href="https://tfl.gov.uk/fares/contactless-and-oyster-account" tone={linkTones.tfl}>TfL / Oyster</InlineGuideLink>。</>,
       'Tube / rail 通常进出站都要 tap，公交一般只 tap in。',
       '不要多人共用同一张 contactless 卡进站。',
-      '学生可了解 18+ Student Oyster、Railcard 绑定 Oyster 等优惠。',
+      <>学生可了解 <InlineGuideLink href="https://tfl.gov.uk/fares/free-and-discounted-travel/18-plus-student-oyster-photocard" tone={linkTones.tfl}>18+ Student Oyster</InlineGuideLink>、Railcard 绑定 Oyster 等优惠。</>,
     ],
   },
   {
     city: 'Manchester / 曼彻斯特',
     items: [
-      '使用 Bee Network，公交和 tram 可用 contactless tap and go。',
+      <>使用 <InlineGuideLink href="https://bee.network/" tone={linkTones.bee}>Bee Network</InlineGuideLink>，公交和 tram 可用 contactless tap and go。</>,
       '搭 tram 注意 tap in / tap out。',
       '多次出行前查看 daily / weekly cap 是否更划算。',
     ],
@@ -86,14 +128,14 @@ const transportCities = [
     city: 'Birmingham / West Midlands',
     items: [
       '常见方式包括 bus、tram、train。',
-      '可查 Swift card、National Express West Midlands、West Midlands Metro。',
+      <>可查 <InlineGuideLink href="https://www.swiftcard.org.uk/" tone={linkTones.swift}>Swift card</InlineGuideLink>、<InlineGuideLink href="https://www.nationalexpress.com/en/west-midlands" tone={linkTones.nationalExpress}>National Express West Midlands</InlineGuideLink>、<InlineGuideLink href="https://westmidlandsmetro.com/" tone={linkTones.westMidlandsMetro}>West Midlands Metro</InlineGuideLink>。</>,
       '城市间通勤要注意 train ticket 类型、peak / off-peak 时间。',
     ],
   },
   {
     city: 'Edinburgh / 爱丁堡',
     items: [
-      '常见方式包括 Lothian Buses、Edinburgh Trams。',
+      <>常见方式包括 <InlineGuideLink href="https://www.lothianbuses.com/" tone={linkTones.lothian}>Lothian Buses</InlineGuideLink>、<InlineGuideLink href="https://edinburghtrams.com/" tone={linkTones.edinburghTrams}>Edinburgh Trams</InlineGuideLink>。</>,
       '可使用官方 Bus & Tram app 或 contactless。',
       'Tram 前往机场时票价规则可能不同，出行前确认。',
     ],
@@ -101,9 +143,9 @@ const transportCities = [
   {
     city: 'Glasgow / 格拉斯哥',
     items: [
-      '常见方式包括 Subway、bus、ScotRail。',
+      <>常见方式包括 Subway、bus、<InlineGuideLink href="https://www.scotrail.co.uk/" tone={linkTones.scotRail}>ScotRail</InlineGuideLink>。</>,
       'Subway / rail / bus 的票务系统不完全一样，频繁通勤可研究 Smartcard 或 season ticket。',
-      '在苏格兰城市之间通勤时优先查 ScotRail。',
+      <>在苏格兰城市之间通勤时优先查 <InlineGuideLink href="https://www.scotrail.co.uk/" tone={linkTones.scotRail}>ScotRail</InlineGuideLink>。</>,
     ],
   },
   {
@@ -120,15 +162,16 @@ const otherReminders = [
   '插头：英国是 Type G 三孔插头，提前准备转换头。',
   '天气：冬天阴冷潮湿，注意防水外套、保暖、除湿。',
   '保险：考虑手机险、财产险、旅行险。',
-  '快递：Royal Mail、Evri、DPD、Amazon locker 等取件方式不同。',
+  <>快递：<InlineGuideLink href="https://www.royalmail.com/" tone={linkTones.royalMail}>Royal Mail</InlineGuideLink>、<InlineGuideLink href="https://www.evri.com/" tone={linkTones.evri}>Evri</InlineGuideLink>、<InlineGuideLink href="https://www.dpd.co.uk/" tone={linkTones.dpd}>DPD</InlineGuideLink>、<InlineGuideLink href="https://www.amazon.co.uk/ulp" tone={linkTones.amazon}>Amazon Locker</InlineGuideLink> 等取件方式不同。</>,
   '垃圾分类：不同 council 规则不同，按住址查询 bin collection day。',
   '紧急联系人：保存学校 security、宿舍 reception、朋友、GP、保险电话。',
-  '兼职：确认 Student visa 工作时长限制，不要做 cash-in-hand 或可疑工作。',
+  <>兼职：确认 <InlineGuideLink href="https://www.gov.uk/student-visa" tone={linkTones.govUk}>Student visa 工作时长限制</InlineGuideLink>，不要做 cash-in-hand 或可疑工作。</>,
   '交通安全：英国靠左行驶，过马路先看右再看左。',
   '酒吧 pubbing：酒吧是英国本地人不得不尝的周常甚至是日常，每周五大家一起去聚一聚来一 pint，玩玩 pub game 或者干聊天也是蛮不错的。',
   '小心别人递的奇怪的烟，不确定就不要接，要确保不是“飞叶子”或其他你不了解的东西。',
   '心理健康：保存学校 wellbeing service / counselling service。',
   '中国大使馆 / 领馆：保存护照遗失、紧急旅行证件相关联系信息。',
+  <>Apple Care + 建议在英国大城市的群友买一项附加的<InlineGuideLink href="https://support.apple.com/en-gb/iphone/theft-loss-claims" tone={linkTones.apple}>Theft &amp; Loss</InlineGuideLink>，这样手机被偷了抢了可以直接换新机。（如果在伦敦感觉这个是刚需）</>
 ];
 
 const officialFooterLinks = [
@@ -137,12 +180,12 @@ const officialFooterLinks = [
   { href: 'https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/', label: 'NHS 111' },
 ];
 
-function BulletList( { items }: { items: string[] } )
+function BulletList( { items }: { items: ReactNode[] } )
 {
   return (
     <ul className="space-y-2.5 text-[15px] leading-7 text-[#2C261E]">
-      {items.map( ( item ) => (
-        <li key={item} className="flex gap-2.5">
+      {items.map( ( item, index ) => (
+        <li key={typeof item === 'string' ? item : index} className="flex gap-2.5">
           <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#0F766E]" />
           <span>{item}</span>
         </li>
@@ -194,7 +237,31 @@ function ExternalGuideLink( { href, label }: { href: string; label: string } )
   );
 }
 
-function TextRows( { rows }: { rows: Array<{ title: string; body: string }> } )
+function InlineGuideLink( { href, children, tone }: { href: string; children: ReactNode; tone: string } )
+{
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className={`mx-0.5 inline-flex items-center gap-1 font-bold underline decoration-current decoration-2 underline-offset-2 transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D3557] ${tone}`}
+    >
+      {children}
+      <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+    </a>
+  );
+}
+
+function SupermarketMapLink( { query, children, tone }: { query: string; children: ReactNode; tone: string } )
+{
+  return (
+    <InlineGuideLink href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent( query )}`} tone={tone}>
+      {children}
+    </InlineGuideLink>
+  );
+}
+
+function TextRows( { rows }: { rows: Array<{ title: string; body: ReactNode }> } )
 {
   return (
     <div className="divide-y divide-[#2C261E]/12 border-y border-[#2C261E]/12">
@@ -269,11 +336,12 @@ const guideSections: GuideSection[] = [
   },
   {
     id: 'transport',
-    title: '3. 公共交通：每个城市规则不一样',
+    title: '3. 公共交通：火车、地铁、Bus（最不靠谱但很多小城市只能以靠它）、Railcard',
     body: (
       <div className="space-y-6">
         <Notice>
-          如果你经常坐火车，建议尽早办一张 16-25 Railcard 或 26-30 Railcard，学生通常能享受火车票折扣。坐车时要确保 Railcard 能正常出示，工作人员会查票，也可能一起查 Railcard。
+          如果你经常坐火车，建议尽早办一张 <InlineGuideLink href="https://www.16-25railcard.co.uk/" tone={linkTones.railcard}>16-25 Railcard</InlineGuideLink> 或 <InlineGuideLink href="https://www.26-30railcard.co.uk/" tone={linkTones.railcard}>26-30 Railcard</InlineGuideLink>，学生通常能享受火车票折扣。坐车时要确保 Railcard 能正常出示，工作人员会查票，也可能一起查 Railcard。
+          （可以绑定在 <InlineGuideLink href="https://www.thetrainline.com/" tone={linkTones.trainline}>Trainline</InlineGuideLink> 相关的 app 里，在 app 里也可以办理）
         </Notice>
         <div className="divide-y divide-[#2C261E]/12 border-y border-[#2C261E]/12">
           {transportCities.map( ( city ) => (
@@ -287,14 +355,13 @@ const guideSections: GuideSection[] = [
           ) )}
         </div>
         <div className="border-l-4 border-[#D66F78] pl-4">
-          <h4 className="mb-3 text-xl font-black text-[#1D3557]">全英国通用提醒</h4>
+          <h4 className="mb-3 text-xl font-black text-[#1D3557]">火车机票和整体方面</h4>
           <BulletList
             items={[
-              '跨城市火车查 National Rail、Trainline 或各铁路公司官网。',
-              'Trip.com 也可以用来查询和购买机票、火车票，英国境外旅行也常用；下单前记得核对退改签、行李额和手续费。',
-              '16-25 Railcard / 26-30 Railcard 可能适合学生。',
+              <>Trip、<InlineGuideLink href="https://www.nationalrail.co.uk/" tone={linkTones.nationalRail}>National Rail</InlineGuideLink>、<InlineGuideLink href="https://www.thetrainline.com/" tone={linkTones.trainline}>Trainline</InlineGuideLink>、<InlineGuideLink href="https://www.mytrainpal.com/" tone={linkTones.trainPal}>TrainPal</InlineGuideLink>，或各铁路公司官网，均可购买火车票。</>,
               '注意 Advance、Off-Peak、Anytime、Return、Open Return 的区别。',
               '晚上回家尽量提前查末班车，不要默认公交或地铁 24 小时运行。',
+              '地铁偶尔会延迟维修罢工，但比伦敦地铁更不可靠的是全英国的散漫巴士司机'
             ]}
           />
           <div className="mt-4 flex flex-wrap gap-4">
@@ -427,7 +494,7 @@ const guideSections: GuideSection[] = [
         <BulletList
           items={[
             '初到英国可以先准备一张可用的国际银行卡，再开英国本地账户。',
-            '常见银行包括 HSBC、Barclays、Lloyds、NatWest、Santander、Monzo、Starling、Revolut 等。',
+            <>常见银行包括 <InlineGuideLink href="https://www.hsbc.co.uk/" tone={linkTones.hsbc}>HSBC</InlineGuideLink>、<InlineGuideLink href="https://www.barclays.co.uk/" tone={linkTones.barclays}>Barclays</InlineGuideLink>、<InlineGuideLink href="https://www.lloydsbank.com/" tone={linkTones.lloyds}>Lloyds</InlineGuideLink>、<InlineGuideLink href="https://www.natwest.com/" tone={linkTones.natwest}>NatWest</InlineGuideLink>、<InlineGuideLink href="https://www.santander.co.uk/" tone={linkTones.santander}>Santander</InlineGuideLink>、<InlineGuideLink href="https://monzo.com/" tone={linkTones.monzo}>Monzo</InlineGuideLink>、<InlineGuideLink href="https://www.starlingbank.com/" tone={linkTones.starling}>Starling</InlineGuideLink>、<InlineGuideLink href="https://www.revolut.com/en-GB/" tone={linkTones.revolut}>Revolut</InlineGuideLink> 等。</>,
             '开户可能需要地址证明、学生证明、护照、签证或 eVisa 状态。',
             '不要把验证码告诉任何人。',
             '银行、警察、HMRC、学校都不会要求你把钱转到“安全账户”。',
@@ -625,7 +692,7 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
             <BookOpen className="mb-6 h-9 w-9 text-[#D9B46F]" />
             <p className="mb-3 text-sm uppercase">UK Arrival</p>
             <div className="h-px w-24 bg-[#D9B46F]" />
-            <h2 className="mt-5 text-4xl font-black leading-tight">大英十一诫</h2>
+            <h2 className="mt-5 text-4xl font-black leading-tight">带英十一律</h2>
             <p className="mt-4 max-w-[11rem] text-sm leading-6 text-[#FFF8E8]/78">
               手机卡、交通、安全、医疗和租房的第一周清单。
             </p>
@@ -786,14 +853,14 @@ export default function GuideBookPage()
           <div className="mb-8 border-l-4 border-[#D66F78] bg-[#FFF8E8]/78 px-5 py-5 shadow-[0_16px_38px_rgba(44,38,30,0.12)]">
             <p className="mb-2 text-sm font-black uppercase text-[#D66F78]">UK Arrival Guide</p>
             <h1 className="text-4xl font-black leading-tight text-[#1D3557] sm:text-5xl">
-              大英十一诫
+              带英十一律
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-8 text-[#2C261E]/78">
               Keep Calm
             </p>
           </div>
 
-          <div className="space-y-3" aria-label="大英十一诫章节">
+          <div className="space-y-3" aria-label="带英十一律章节">
             {guideSections.map( ( section ) =>
             {
               const isOpen = section.id === openSectionId;
