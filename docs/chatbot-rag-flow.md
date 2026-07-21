@@ -100,6 +100,29 @@ The API returns:
 
 `local-fallback` means the app used RAG chunks without an LLM answer.
 
+## 5.1 LangSmith tracing
+
+The server-only orchestration file is:
+
+- `lib/server/ragChat.ts`
+
+When the following environment variables are configured, every valid chat request is traced as one RAG chain:
+
+```bash
+LANGSMITH_TRACING=true
+LANGSMITH_API_KEY=your_langsmith_api_key_here
+LANGSMITH_PROJECT=uk-website-rag-dev
+```
+
+The trace contains:
+
+- the top-level RAG chat chain;
+- the retrieved chunks as a retriever span;
+- the DeepSeek chat completion as an LLM span;
+- the returned answer mode and retrieved chunk IDs.
+
+Do not put LangSmith credentials in frontend files. Questions, retrieved content, prompts, and model responses can be included in traces, so do not add user identifiers, IP addresses, cookies, or other sensitive data to tracing inputs or metadata.
+
 ## 6. Frontend shows the answer
 
 `components/Chatbot.tsx` displays:
@@ -121,16 +144,50 @@ Chatbot UI
 
 ## How To Rebuild The Knowledge Base
 
-Edit:
+Edit the human-readable source:
 
-- `info_datasource/DATA.md`
+- `src/DATA.md`
 
 Then run:
 
 ```bash
+npm run build:data
 npm run build:rag
 ```
 
-This updates:
+This generates the machine-readable source and then updates the RAG index:
 
+- `src/DATA.json`
 - `data/rag-knowledge-base.json`
+
+## Retrieval regression checks
+
+Run the retrieval regression cases against the real knowledge base with:
+
+```bash
+npm run eval:rag
+```
+
+Add a case in `scripts/evaluate-rag.mts` whenever a retrieval bug is fixed, a new city is added, or an important alias is introduced.
+
+## LangSmith evaluation dataset
+
+The source of truth for the 20 real travel questions is:
+
+- `evals/ragDataset.ts`
+
+After configuring `LANGSMITH_API_KEY`, create or update the cloud dataset with:
+
+```bash
+npm run langsmith:sync-rag-dataset
+```
+
+The script creates the `uk-website-rag-v1` dataset if needed, then upserts all examples using their stable case IDs. Each example has a user question, a reference answer, expected source titles, a scenario label, and the `test` split.
+
+Run a LangSmith Experiment against the full dataset with:
+
+```bash
+npm run langsmith:eval-rag
+```
+
+This command requires both `LANGSMITH_API_KEY` and `DEEPSEEK_API_KEY`. It invokes DeepSeek once per example and creates a new experiment with three deterministic scores: expected-source recall, whether the answer names the expected source, and whether the LLM returned an answer instead of falling back locally. The final output includes the experiment URL.

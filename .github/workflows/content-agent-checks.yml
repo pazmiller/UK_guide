@@ -1,0 +1,32 @@
+name: Content agent checks
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - 'src/DATA.md'
+      - 'src/DATA.json'
+      - 'data/**'
+      - 'public/contributions/**'
+      - 'app/**'
+      - 'components/**'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-content:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run check:generated
+      - run: npm run eval:rag
+      - run: npm run lint
+      - run: npx tsc --noEmit --pretty false
+      - run: npm run build

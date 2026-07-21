@@ -1,11 +1,52 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const SOURCE_PATH = path.join( process.cwd(), 'info_datasource', 'DATA.md' );
+const MARKDOWN_PATH = path.join( process.cwd(), 'src', 'DATA.md' );
+const SOURCE_PATH = path.join( process.cwd(), 'src', 'DATA.json' );
 const OUTPUT_PATH = path.join( process.cwd(), 'data', 'rag-knowledge-base.json' );
+const MARKDOWN_SOURCE = 'src/DATA.md';
+const JSON_SOURCE = 'src/DATA.json';
 
 const FIELD_RE = /^(简介|推荐原因|推荐菜|价位|价格|地址|链接|邮编|避雷原因|原因|备注)：/;
 const SEPARATOR_RE = /^[-—_]{3,}$/;
+const RESTAURANT_CONTENT_FIELDS = {
+  '简介': 'summary',
+  '推荐原因': 'recommend_reason',
+  '推荐菜': 'recommend_signatures',
+  '价位': 'price',
+  '价格': 'price',
+};
+const RESTAURANT_DETAIL_FIELDS = {
+  '地址': 'address',
+  '链接': 'link',
+  '邮编': 'postcode',
+  '备注': 'notes',
+};
+const CUISINE_RULES = [
+  [ /\blahpet\b|缅甸/i, 'Burmese' ],
+  [ /越南|\bpho\b/i, 'Vietnamese' ],
+  [ /med salleh|\byiqi\b|马来西亚|马来菜/i, 'Malaysian' ],
+  [ /\bceru\b|地中海|黎凡特/i, 'Mediterranean' ],
+  [ /\bkiln\b|plaza khao gaeng|speedboat|泰餐|泰式/i, 'Thai' ],
+  [ /sushi|日料|日式|日本/i, 'Japanese' ],
+  [ /vasiniko|\bgloria\b|amalfi|celino|punto pasta|marzano|paradiso|那不勒斯|意大利|西西里|披萨/i, 'Italian' ],
+  [ /俄罗斯/i, 'Russian' ],
+  [ /秘鲁|ceviche/i, 'Peruvian' ],
+  [ /波斯|persian/i, 'Persian' ],
+  [ /法国|法餐|巴黎菜|\bparis\b/i, 'French' ],
+  [ /印度|dishroom/i, 'Indian' ],
+  [ /印尼|印度尼西亚/i, 'Indonesian' ],
+  [ /\bbao\b|台式|台湾|桂林|新疆|宁波|潮汕|云南|湘菜|江浙|川菜|中餐|中国|兰州拉面/i, 'Chinese' ],
+  [ /西班牙/i, 'Spanish' ],
+  [ /波兰/i, 'Polish' ],
+  [ /瑞典/i, 'Swedish' ],
+  [ /丹麦/i, 'Danish' ],
+  [ /冰岛|雷克雅未克|赫本海鲜/i, 'Icelandic' ],
+  [ /巴西/i, 'Brazilian' ],
+  [ /希腊/i, 'Greek' ],
+  [ /英国菜|英国汉堡|英式|fish\s*&\s*chips|炸鱼薯条|bettys/i, 'British' ],
+  [ /red dog saloon|wingstop|美式|烟熏肉/i, 'American' ],
+];
 
 const CITY_ALIASES = [
   [ /london|伦敦/i, 'London' ],
@@ -87,6 +128,136 @@ function splitInlineFields( line )
   return { title, rest };
 }
 
+function appendValue( target, key, value )
+{
+  if ( !value ) return;
+  target[ key ] = target[ key ] ? `${target[ key ]}\n${value}` : value;
+}
+
+function inferRestaurantCuisine( current )
+{
+  const summary = current.lines.find( line => line.startsWith( '简介：' ) ) ?? '';
+  const primaryText = `${current.title} ${summary}`;
+  const searchableText = [
+    current.title,
+    current.section,
+    current.city,
+    ...current.lines,
+  ].join( ' ' );
+
+  for ( const [ pattern, cuisine ] of CUISINE_RULES )
+  {
+    if ( pattern.test( primaryText ) ) return cuisine;
+  }
+  for ( const [ pattern, cuisine ] of CUISINE_RULES )
+  {
+    if ( pattern.test( searchableText ) ) return cuisine;
+  }
+  return 'Other';
+}
+
+function structureRestaurantContent( current )
+{
+  const content = {
+    summary: '',
+    type_cusine: inferRestaurantCuisine( current ),
+    recommend_reason: '',
+    recommend_signatures: '',
+    price: '',
+  };
+  const details = {};
+  const additionalInfo = [];
+
+  for ( const line of current.lines )
+  {
+    const match = line.match( /^([^：]+)：\s*(.*)$/ );
+    if ( !match )
+    {
+      additionalInfo.push( line );
+      continue;
+    }
+
+    const [ , label, value ] = match;
+    const contentKey = RESTAURANT_CONTENT_FIELDS[ label ];
+    if ( contentKey )
+    {
+      appendValue( content, contentKey, value );
+      continue;
+    }
+
+    const detailKey = RESTAURANT_DETAIL_FIELDS[ label ];
+    if ( detailKey )
+    {
+      appendValue( details, detailKey, value );
+      continue;
+    }
+
+    additionalInfo.push( line );
+  }
+
+  if ( additionalInfo.length ) details.additional_info = additionalInfo;
+  return {
+    content,
+    ...( Object.keys( details ).length ? { details } : {} ),
+  };
+}
+
+function serializeRestaurantContent( chunk )
+{
+  const labels = {
+    summary: '简介',
+    type_cusine: '菜系',
+    recommend_reason: '推荐原因',
+    recommend_signatures: '推荐菜',
+    price: '价位',
+  };
+  const detailLabels = {
+    address: '地址',
+    link: '链接',
+    postcode: '邮编',
+    notes: '备注',
+  };
+  const lines = [
+    `城市/地区：${chunk.city}`,
+    `分类：${chunk.category}`,
+    `来源章节：${chunk.section}`,
+    `条目：${chunk.title}`,
+  ];
+
+  for ( const [ key, label ] of Object.entries( labels ) )
+  {
+    if ( chunk.content[ key ] ) lines.push( `${label}：${chunk.content[ key ]}` );
+  }
+  for ( const [ key, label ] of Object.entries( detailLabels ) )
+  {
+    if ( chunk.details?.[ key ] ) lines.push( `${label}：${chunk.details[ key ]}` );
+  }
+  if ( chunk.details?.additional_info?.length ) lines.push( ...chunk.details.additional_info );
+
+  return lines.join( '\n' );
+}
+
+function validateRestaurantContent( chunk )
+{
+  const requiredKeys = [ 'summary', 'type_cusine', 'recommend_reason', 'recommend_signatures', 'price' ];
+  if ( !chunk.content || typeof chunk.content !== 'object' || Array.isArray( chunk.content ) )
+  {
+    throw new TypeError( `Restaurant ${chunk.id} must have structured content` );
+  }
+  const unexpectedKeys = Object.keys( chunk.content ).filter( key => !requiredKeys.includes( key ) );
+  if ( unexpectedKeys.length )
+  {
+    throw new TypeError( `Restaurant ${chunk.id} has unexpected content fields: ${unexpectedKeys.join( ', ' )}` );
+  }
+  for ( const key of requiredKeys )
+  {
+    if ( typeof chunk.content[ key ] !== 'string' )
+    {
+      throw new TypeError( `Restaurant ${chunk.id} content.${key} must be a string` );
+    }
+  }
+}
+
 function buildKnowledgeBase( markdown )
 {
   const lines = markdown.split( /\r?\n/ ).map( normalizeLine );
@@ -111,13 +282,17 @@ function buildKnowledgeBase( markdown )
       slugPart( current.title ),
     ].join( '-' );
 
-    const content = [
-      `城市/地区：${current.city}`,
-      `分类：${current.category}`,
-      `来源章节：${current.section}`,
-      `条目：${current.title}`,
-      body,
-    ].filter( Boolean ).join( '\n' );
+    const restaurantData = current.category === 'restaurant'
+      ? structureRestaurantContent( current )
+      : {
+          content: [
+            `城市/地区：${current.city}`,
+            `分类：${current.category}`,
+            `来源章节：${current.section}`,
+            `条目：${current.title}`,
+            body,
+          ].filter( Boolean ).join( '\n' ),
+        };
 
     chunks.push( {
       id,
@@ -125,8 +300,8 @@ function buildKnowledgeBase( markdown )
       category: current.category,
       section: current.section,
       title: current.title,
-      content,
-      source: 'info_datasource/DATA.md',
+      ...restaurantData,
+      source: MARKDOWN_SOURCE,
       tags: [
         current.city,
         current.category,
@@ -215,18 +390,51 @@ function buildKnowledgeBase( markdown )
   flush();
 
   return {
-    version: 1,
+    version: 2,
     generatedAt: new Date().toISOString(),
-    source: 'info_datasource/DATA.md',
+    source: MARKDOWN_SOURCE,
     chunkCount: chunks.length,
     chunks,
   };
 }
 
-const markdown = await readFile( SOURCE_PATH, 'utf8' );
-const knowledgeBase = buildKnowledgeBase( markdown );
+if ( process.argv.includes( '--build-data' ) )
+{
+  const markdown = await readFile( MARKDOWN_PATH, 'utf8' );
+  const contentData = buildKnowledgeBase( markdown );
 
-await mkdir( path.dirname( OUTPUT_PATH ), { recursive: true } );
-await writeFile( OUTPUT_PATH, `${JSON.stringify( knowledgeBase, null, 2 )}\n` );
+  await mkdir( path.dirname( SOURCE_PATH ), { recursive: true } );
+  await writeFile( SOURCE_PATH, `${JSON.stringify( contentData, null, 2 )}\n` );
 
-console.log( `Built ${knowledgeBase.chunkCount} RAG chunks from ${knowledgeBase.source}` );
+  console.log( `Built ${contentData.chunkCount} content entries in ${JSON_SOURCE}` );
+} else
+{
+  const contentData = JSON.parse( await readFile( SOURCE_PATH, 'utf8' ) );
+  if ( !Array.isArray( contentData.chunks ) )
+  {
+    throw new TypeError( `${JSON_SOURCE} must contain a chunks array` );
+  }
+  for ( const chunk of contentData.chunks )
+  {
+    if ( chunk.category === 'restaurant' ) validateRestaurantContent( chunk );
+  }
+
+  const knowledgeBase = {
+    ...contentData,
+    generatedAt: new Date().toISOString(),
+    source: JSON_SOURCE,
+    chunkCount: contentData.chunks.length,
+    chunks: contentData.chunks.map( chunk => ( {
+      ...chunk,
+      content: chunk.category === 'restaurant'
+        ? serializeRestaurantContent( chunk )
+        : chunk.content,
+      source: JSON_SOURCE,
+    } ) ),
+  };
+
+  await mkdir( path.dirname( OUTPUT_PATH ), { recursive: true } );
+  await writeFile( OUTPUT_PATH, `${JSON.stringify( knowledgeBase, null, 2 )}\n` );
+
+  console.log( `Built ${knowledgeBase.chunkCount} RAG chunks from ${knowledgeBase.source}` );
+}

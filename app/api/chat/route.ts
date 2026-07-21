@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  buildRagContext,
-  RetrievedChunk,
-} from '@/lib/ragKnowledge';
-import { generateRagAnswer } from '@/lib/server/deepseekChat';
+import { RetrievedChunk } from '@/lib/ragKnowledge';
+import { answerRagQuestion } from '@/lib/server/ragChat';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -163,27 +160,16 @@ export async function POST( request: NextRequest )
     );
   }
 
-  const { chunks, context } = buildRagContext( question, { limit: 8 } );
-  const sources = toSources( chunks );
+  const result = await answerRagQuestion( question );
+  const sources = toSources( result.chunks );
 
-  try
+  if ( result.llmError )
   {
-    const llmAnswer = await generateRagAnswer( question, context );
-    const answer = llmAnswer ?? buildFallbackAnswer( question, chunks );
-
-    return NextResponse.json( {
-      answer,
-      sources,
-      mode: llmAnswer ? 'llm' : 'local-fallback',
-    } );
-  } catch ( error )
-  {
-    const message = error instanceof Error ? error.message : 'Unknown chat error';
-    console.error( '[api/chat] LLM request failed, using local fallback:', message );
+    console.error( '[api/chat] LLM request failed, using local fallback:', result.llmError );
 
     return NextResponse.json(
       {
-        answer: buildFallbackAnswer( question, chunks ),
+        answer: buildFallbackAnswer( question, result.chunks ),
         sources,
         mode: 'local-fallback',
         warning: 'LLM request failed. Used local RAG fallback.',
@@ -191,4 +177,12 @@ export async function POST( request: NextRequest )
       { status: 200 },
     );
   }
+
+  const answer = result.llmAnswer ?? buildFallbackAnswer( question, result.chunks );
+
+  return NextResponse.json( {
+    answer,
+    sources,
+    mode: result.llmAnswer ? 'llm' : 'local-fallback',
+  } );
 }

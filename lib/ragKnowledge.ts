@@ -139,23 +139,23 @@ export function buildRagContext( query: string, options: RetrieveOptions = {} )
 {
   const chunks = retrieveKnowledge( query, options );
 
+  return {
+    chunks,
+    context: buildRagContextFromChunks( chunks ),
+  };
+}
+
+export function buildRagContextFromChunks( chunks: RetrievedChunk[] )
+{
   if ( chunks.length === 0 )
   {
-    return {
-      chunks,
-      context: '知识库没有检索到相关内容。',
-    };
+    return '知识库没有检索到相关内容。';
   }
 
-  const context = chunks
+  return chunks
     .map( ( chunk, index ) => [
       `[${index + 1}] ${chunk.city} / ${chunk.category} / ${chunk.title}`,
       chunk.content,
     ].join( '\n' ) )
     .join( '\n\n---\n\n' );
-
-  return {
-    chunks,
-    context,
-  };
 }
