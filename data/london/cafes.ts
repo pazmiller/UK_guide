@@ -100,6 +100,17 @@ export const londonCafes: Restaurant[] = [
     images: ['/Hotel Chocolat.png'],
     mustTry: ['72% Dark Chocolate Milkshake'],
   },
+  {
+    id: 'lon-c10',
+    slug: 'leto',
+    name: "L'ETO",
+    cuisine: 'Cafe',
+    shortDescription: '伦敦本土连锁甜品Cafe',
+    description: '多家分店位于市中心和富人区。甜品展示在橱窗，提供精品咖啡、特色茶饮和Brunch。外观出片，味道中上，环境好。',
+    priceRange: '£10-20/人',
+    images: ['/contributions/1/1.webp'],
+    mustTry: ['甜品', '精品咖啡', '特色茶饮'],
+  },
 ];
 
 export function getLondonCafeBySlug(slug: string) {

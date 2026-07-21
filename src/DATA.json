@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-21T12:55:13.323Z",
+  "generatedAt": "2026-07-21T16:01:31.096Z",
   "source": "src/DATA.md",
-  "chunkCount": 110,
+  "chunkCount": 111,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -803,7 +803,22 @@
       ]
     },
     {
-      "id": "0041-london-attraction-westminster-abbey",
+      "id": "0041-london-cafe-l-eto",
+      "city": "London",
+      "category": "cafe",
+      "section": "London｜甜品/烘焙/咖啡/饮品",
+      "title": "L'ETO",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：L'ETO\n简介： 伦敦本土连锁甜品Cafe\n推荐原因： 多家分店位于市中心和富人区。甜品展示在橱窗，提供精品咖啡、特色茶饮和Brunch。外观出片，味道中上，环境好。\n推荐菜： 甜品、精品咖啡、特色茶饮\n价位： £10-20/人",
+      "source": "src/DATA.md",
+      "tags": [
+        "London",
+        "cafe",
+        "London｜甜品/烘焙/咖啡/饮品",
+        "L'ETO"
+      ]
+    },
+    {
+      "id": "0042-london-attraction-westminster-abbey",
       "city": "London",
       "category": "attraction",
       "section": "伦敦景点",
@@ -818,7 +833,7 @@
       ]
     },
     {
-      "id": "0042-london-attraction-horizon-22",
+      "id": "0043-london-attraction-horizon-22",
       "city": "London",
       "category": "attraction",
       "section": "伦敦景点",
@@ -833,7 +848,7 @@
       ]
     },
     {
-      "id": "0043-london-attraction-sky-garden",
+      "id": "0044-london-attraction-sky-garden",
       "city": "London",
       "category": "attraction",
       "section": "伦敦景点",
@@ -848,7 +863,7 @@
       ]
     },
     {
-      "id": "0044-london-avoid-chunk",
+      "id": "0045-london-avoid-chunk",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷景点",
@@ -863,7 +878,7 @@
       ]
     },
     {
-      "id": "0045-uk-budget-greggs",
+      "id": "0046-uk-budget-greggs",
       "city": "UK",
       "category": "budget",
       "section": "UK 性价比快餐（维持生命用）",
@@ -878,7 +893,7 @@
       ]
     },
     {
-      "id": "0046-uk-budget-wasabi",
+      "id": "0047-uk-budget-wasabi",
       "city": "UK",
       "category": "budget",
       "section": "UK 性价比快餐（维持生命用）",
@@ -893,7 +908,7 @@
       ]
     },
     {
-      "id": "0047-uk-budget-leon",
+      "id": "0048-uk-budget-leon",
       "city": "UK",
       "category": "budget",
       "section": "UK 性价比快餐（维持生命用）",
@@ -908,7 +923,7 @@
       ]
     },
     {
-      "id": "0048-london-avoid-bella-italia",
+      "id": "0049-london-avoid-bella-italia",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -923,7 +938,7 @@
       ]
     },
     {
-      "id": "0049-london-avoid-zizzi",
+      "id": "0050-london-avoid-zizzi",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -938,7 +953,7 @@
       ]
     },
     {
-      "id": "0050-london-avoid-flat-iron",
+      "id": "0051-london-avoid-flat-iron",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -953,7 +968,7 @@
       ]
     },
     {
-      "id": "0051-london-avoid-kung-fu-noodle",
+      "id": "0052-london-avoid-kung-fu-noodle",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -968,7 +983,7 @@
       ]
     },
     {
-      "id": "0052-london-avoid-chunk",
+      "id": "0053-london-avoid-chunk",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -983,7 +998,7 @@
       ]
     },
     {
-      "id": "0053-london-avoid-preto-west-end",
+      "id": "0054-london-avoid-preto-west-end",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -998,7 +1013,7 @@
       ]
     },
     {
-      "id": "0054-london-avoid-busaba",
+      "id": "0055-london-avoid-busaba",
       "city": "London",
       "category": "avoid",
       "section": "伦敦避雷餐厅",
@@ -1013,7 +1028,7 @@
       ]
     },
     {
-      "id": "0055-southampton-restaurant-red-dog-saloon",
+      "id": "0056-southampton-restaurant-red-dog-saloon",
       "city": "Southampton",
       "category": "restaurant",
       "section": "Southampton｜南安普顿",
@@ -1037,7 +1052,7 @@
       ]
     },
     {
-      "id": "0056-southampton-restaurant-new-panda",
+      "id": "0057-southampton-restaurant-new-panda",
       "city": "Southampton",
       "category": "restaurant",
       "section": "Southampton｜南安普顿",
@@ -1061,7 +1076,7 @@
       ]
     },
     {
-      "id": "0057-southampton-restaurant-yipinju-lanzhou-noodle-bar",
+      "id": "0058-southampton-restaurant-yipinju-lanzhou-noodle-bar",
       "city": "Southampton",
       "category": "restaurant",
       "section": "Southampton｜南安普顿",
@@ -1085,7 +1100,7 @@
       ]
     },
     {
-      "id": "0058-edinburgh-restaurant-la-sal",
+      "id": "0059-edinburgh-restaurant-la-sal",
       "city": "Edinburgh",
       "category": "restaurant",
       "section": "Edinburgh｜爱丁堡",
@@ -1109,7 +1124,7 @@
       ]
     },
     {
-      "id": "0059-glasgow-restaurant-non-viet",
+      "id": "0060-glasgow-restaurant-non-viet",
       "city": "Glasgow",
       "category": "restaurant",
       "section": "Glasgow｜格拉斯哥",
@@ -1130,7 +1145,7 @@
       ]
     },
     {
-      "id": "0060-glasgow-restaurant-celino-s-partick",
+      "id": "0061-glasgow-restaurant-celino-s-partick",
       "city": "Glasgow",
       "category": "restaurant",
       "section": "Glasgow｜格拉斯哥",
@@ -1151,7 +1166,7 @@
       ]
     },
     {
-      "id": "0061-glasgow-restaurant-by-chance",
+      "id": "0062-glasgow-restaurant-by-chance",
       "city": "Glasgow",
       "category": "restaurant",
       "section": "Glasgow｜格拉斯哥",
@@ -1172,7 +1187,7 @@
       ]
     },
     {
-      "id": "0062-glasgow-restaurant-largus-fish-chips",
+      "id": "0063-glasgow-restaurant-largus-fish-chips",
       "city": "Glasgow",
       "category": "restaurant",
       "section": "Glasgow｜格拉斯哥",
@@ -1193,7 +1208,7 @@
       ]
     },
     {
-      "id": "0063-swansea-restaurant-swansea",
+      "id": "0064-swansea-restaurant-swansea",
       "city": "Swansea",
       "category": "restaurant",
       "section": "Swansea｜斯旺西",
@@ -1221,7 +1236,7 @@
       ]
     },
     {
-      "id": "0064-general-avoid-super-work",
+      "id": "0065-general-avoid-super-work",
       "city": "General",
       "category": "avoid",
       "section": "避雷",
@@ -1236,7 +1251,7 @@
       ]
     },
     {
-      "id": "0065-general-avoid-lotus",
+      "id": "0066-general-avoid-lotus",
       "city": "General",
       "category": "avoid",
       "section": "避雷",
@@ -1251,7 +1266,7 @@
       ]
     },
     {
-      "id": "0066-general-avoid-chopsticks",
+      "id": "0067-general-avoid-chopsticks",
       "city": "General",
       "category": "avoid",
       "section": "避雷",
@@ -1266,7 +1281,7 @@
       ]
     },
     {
-      "id": "0067-general-avoid-the-shed",
+      "id": "0068-general-avoid-the-shed",
       "city": "General",
       "category": "avoid",
       "section": "避雷",
@@ -1281,7 +1296,7 @@
       ]
     },
     {
-      "id": "0068-general-avoid-rasoi-raj-s-kitchen",
+      "id": "0069-general-avoid-rasoi-raj-s-kitchen",
       "city": "General",
       "category": "avoid",
       "section": "避雷",
@@ -1296,7 +1311,7 @@
       ]
     },
     {
-      "id": "0069-general-avoid-ask-italian-pasta-pizza",
+      "id": "0070-general-avoid-ask-italian-pasta-pizza",
       "city": "General",
       "category": "avoid",
       "section": "避雷",
@@ -1311,7 +1326,7 @@
       ]
     },
     {
-      "id": "0070-general-avoid-chunk",
+      "id": "0071-general-avoid-chunk",
       "city": "General",
       "category": "avoid",
       "section": "避雷",
@@ -1326,7 +1341,7 @@
       ]
     },
     {
-      "id": "0071-general-restaurant-treatz",
+      "id": "0072-general-restaurant-treatz",
       "city": "General",
       "category": "restaurant",
       "section": "推荐",
@@ -1347,7 +1362,7 @@
       ]
     },
     {
-      "id": "0072-general-restaurant-wingstop",
+      "id": "0073-general-restaurant-wingstop",
       "city": "General",
       "category": "restaurant",
       "section": "推荐",
@@ -1371,7 +1386,7 @@
       ]
     },
     {
-      "id": "0073-general-restaurant-chunk",
+      "id": "0074-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "推荐",
@@ -1395,7 +1410,7 @@
       ]
     },
     {
-      "id": "0074-general-restaurant-chunk",
+      "id": "0075-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "推荐",
@@ -1419,7 +1434,7 @@
       ]
     },
     {
-      "id": "0075-general-restaurant-chacha-stall",
+      "id": "0076-general-restaurant-chacha-stall",
       "city": "General",
       "category": "restaurant",
       "section": "推荐",
@@ -1440,7 +1455,7 @@
       ]
     },
     {
-      "id": "0076-general-restaurant-chunk",
+      "id": "0077-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "推荐",
@@ -1461,7 +1476,7 @@
       ]
     },
     {
-      "id": "0077-general-restaurant-joe-s-ice-cream",
+      "id": "0078-general-restaurant-joe-s-ice-cream",
       "city": "General",
       "category": "restaurant",
       "section": "推荐",
@@ -1482,7 +1497,7 @@
       ]
     },
     {
-      "id": "0078-general-attraction-three-cliffs-bay",
+      "id": "0079-general-attraction-three-cliffs-bay",
       "city": "General",
       "category": "attraction",
       "section": "推荐",
@@ -1497,7 +1512,7 @@
       ]
     },
     {
-      "id": "0079-general-tip-chunk",
+      "id": "0080-general-tip-chunk",
       "city": "General",
       "category": "tip",
       "section": "其他",
@@ -1512,7 +1527,7 @@
       ]
     },
     {
-      "id": "0080-general-tip-chunk",
+      "id": "0081-general-tip-chunk",
       "city": "General",
       "category": "tip",
       "section": "长期居住的小动物们",
@@ -1527,7 +1542,7 @@
       ]
     },
     {
-      "id": "0081-poland-restaurant-pierogarnia-mandu-gdansk-srodmiescie",
+      "id": "0082-poland-restaurant-pierogarnia-mandu-gdansk-srodmiescie",
       "city": "Poland",
       "category": "restaurant",
       "section": "Poland｜格但斯克",
@@ -1548,7 +1563,7 @@
       ]
     },
     {
-      "id": "0082-poland-restaurant-swojski-smak",
+      "id": "0083-poland-restaurant-swojski-smak",
       "city": "Poland",
       "category": "restaurant",
       "section": "Poland｜格但斯克",
@@ -1569,7 +1584,7 @@
       ]
     },
     {
-      "id": "0083-poland-restaurant-sto-owka-gdanska",
+      "id": "0084-poland-restaurant-sto-owka-gdanska",
       "city": "Poland",
       "category": "restaurant",
       "section": "Poland｜格但斯克",
@@ -1590,7 +1605,7 @@
       ]
     },
     {
-      "id": "0084-koln-restaurant-punto-pasta",
+      "id": "0085-koln-restaurant-punto-pasta",
       "city": "Köln",
       "category": "restaurant",
       "section": "Köln | 科隆",
@@ -1611,7 +1626,7 @@
       ]
     },
     {
-      "id": "0085-stockholm-restaurant-kajsas-fisk",
+      "id": "0086-stockholm-restaurant-kajsas-fisk",
       "city": "Stockholm",
       "category": "restaurant",
       "section": "Stockholm | 斯德哥尔摩（瑞典首都）",
@@ -1632,7 +1647,7 @@
       ]
     },
     {
-      "id": "0086-stockholm-restaurant-restaurant-pelikan",
+      "id": "0087-stockholm-restaurant-restaurant-pelikan",
       "city": "Stockholm",
       "category": "restaurant",
       "section": "Stockholm | 斯德哥尔摩（瑞典首都）",
@@ -1653,7 +1668,7 @@
       ]
     },
     {
-      "id": "0087-stockholm-restaurant-sjobaren-fisk-skaldjur",
+      "id": "0088-stockholm-restaurant-sjobaren-fisk-skaldjur",
       "city": "Stockholm",
       "category": "restaurant",
       "section": "Stockholm | 斯德哥尔摩（瑞典首都）",
@@ -1674,7 +1689,7 @@
       ]
     },
     {
-      "id": "0088-k-benhavn-restaurant-det-lille-apotek",
+      "id": "0089-k-benhavn-restaurant-det-lille-apotek",
       "city": "København",
       "category": "restaurant",
       "section": "København | 哥本哈根（丹麦首都）",
@@ -1695,7 +1710,7 @@
       ]
     },
     {
-      "id": "0089-k-benhavn-restaurant-restaurant-klubben",
+      "id": "0090-k-benhavn-restaurant-restaurant-klubben",
       "city": "København",
       "category": "restaurant",
       "section": "København | 哥本哈根（丹麦首都）",
@@ -1716,7 +1731,7 @@
       ]
     },
     {
-      "id": "0090-k-benhavn-restaurant-chunk",
+      "id": "0091-k-benhavn-restaurant-chunk",
       "city": "København",
       "category": "restaurant",
       "section": "København | 哥本哈根（丹麦首都）",
@@ -1737,7 +1752,7 @@
       ]
     },
     {
-      "id": "0091-paris-restaurant-la-tour-montlhery",
+      "id": "0092-paris-restaurant-la-tour-montlhery",
       "city": "Paris",
       "category": "restaurant",
       "section": "Paris｜巴黎",
@@ -1758,7 +1773,7 @@
       ]
     },
     {
-      "id": "0092-paris-restaurant-walk-in",
+      "id": "0093-paris-restaurant-walk-in",
       "city": "Paris",
       "category": "restaurant",
       "section": "Paris｜巴黎",
@@ -1779,7 +1794,7 @@
       ]
     },
     {
-      "id": "0093-paris-restaurant-josephine-chez-dumonet",
+      "id": "0094-paris-restaurant-josephine-chez-dumonet",
       "city": "Paris",
       "category": "restaurant",
       "section": "Paris｜巴黎",
@@ -1800,7 +1815,7 @@
       ]
     },
     {
-      "id": "0094-iceland-restaurant-skal",
+      "id": "0095-iceland-restaurant-skal",
       "city": "Iceland",
       "category": "restaurant",
       "section": "Iceland｜冰岛",
@@ -1821,7 +1836,7 @@
       ]
     },
     {
-      "id": "0095-iceland-restaurant-messinn-selfossi",
+      "id": "0096-iceland-restaurant-messinn-selfossi",
       "city": "Iceland",
       "category": "restaurant",
       "section": "Iceland｜冰岛",
@@ -1842,7 +1857,7 @@
       ]
     },
     {
-      "id": "0096-iceland-restaurant-osinn-restaurant-at-hotel-hofn",
+      "id": "0097-iceland-restaurant-osinn-restaurant-at-hotel-hofn",
       "city": "Iceland",
       "category": "restaurant",
       "section": "Iceland｜冰岛",
@@ -1863,7 +1878,7 @@
       ]
     },
     {
-      "id": "0097-iceland-restaurant-apotek",
+      "id": "0098-iceland-restaurant-apotek",
       "city": "Iceland",
       "category": "restaurant",
       "section": "Iceland｜冰岛",
@@ -1884,7 +1899,7 @@
       ]
     },
     {
-      "id": "0098-york-restaurant-bettys-cafe-tea-rooms",
+      "id": "0099-york-restaurant-bettys-cafe-tea-rooms",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -1905,7 +1920,7 @@
       ]
     },
     {
-      "id": "0099-york-restaurant-rise",
+      "id": "0100-york-restaurant-rise",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -1926,7 +1941,7 @@
       ]
     },
     {
-      "id": "0100-york-restaurant-casa-brazilian-rodizio",
+      "id": "0101-york-restaurant-casa-brazilian-rodizio",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -1947,7 +1962,7 @@
       ]
     },
     {
-      "id": "0101-york-restaurant-tabanco-by-ambiente",
+      "id": "0102-york-restaurant-tabanco-by-ambiente",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -1968,7 +1983,7 @@
       ]
     },
     {
-      "id": "0102-york-restaurant-corner-grill-house",
+      "id": "0103-york-restaurant-corner-grill-house",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -1989,7 +2004,7 @@
       ]
     },
     {
-      "id": "0103-york-restaurant-wine-stories",
+      "id": "0104-york-restaurant-wine-stories",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -2010,7 +2025,7 @@
       ]
     },
     {
-      "id": "0104-york-restaurant-marzano-italian-grill",
+      "id": "0105-york-restaurant-marzano-italian-grill",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -2031,7 +2046,7 @@
       ]
     },
     {
-      "id": "0105-york-restaurant-il-paradiso-del-cibo",
+      "id": "0106-york-restaurant-il-paradiso-del-cibo",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -2052,7 +2067,7 @@
       ]
     },
     {
-      "id": "0106-york-restaurant-ippuku-tea-house",
+      "id": "0107-york-restaurant-ippuku-tea-house",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -2073,7 +2088,7 @@
       ]
     },
     {
-      "id": "0107-york-restaurant-shi-shang-chinese-restaurant",
+      "id": "0108-york-restaurant-shi-shang-chinese-restaurant",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -2094,7 +2109,7 @@
       ]
     },
     {
-      "id": "0108-york-restaurant-red-chilli-restaurant",
+      "id": "0109-york-restaurant-red-chilli-restaurant",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -2115,7 +2130,7 @@
       ]
     },
     {
-      "id": "0109-york-restaurant-chunk",
+      "id": "0110-york-restaurant-chunk",
       "city": "York",
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
@@ -2136,7 +2151,7 @@
       ]
     },
     {
-      "id": "0110-general-restaurant-chunk",
+      "id": "0111-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "致谢名单",
