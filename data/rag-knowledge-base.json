@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-21T16:01:31.244Z",
+  "generatedAt": "2026-07-22T07:27:09.621Z",
   "source": "src/DATA.json",
   "chunkCount": 111,
   "chunks": [
@@ -487,7 +487,7 @@
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
       "title": "Arôme Bakery",
-      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Arôme Bakery\n简介： 法式 Bakery\n推荐原因： Honey Butter Toast 很强，无敌，哪怕拿回家放冷了，上面放一个Scoop的Gelato，放进烤箱里烤一会儿，太美了……咖啡也不错\n推荐菜： Honey Butter Toast、Cortado\n价位： Honey Butter Toast现在应该是£5+了",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Arôme Bakery\n简介：法式 Bakery\n菜系：Dessert\n推荐原因：Honey Butter Toast 很强，无敌，哪怕拿回家放冷了，上面放一个Scoop的Gelato，放进烤箱里烤一会儿，太美了……咖啡也不错\n推荐菜：Honey Butter Toast、Cortado\n价位：Honey Butter Toast现在应该是£5+了",
       "source": "src/DATA.json",
       "tags": [
         "London",
@@ -502,7 +502,7 @@
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
       "title": "Gelupo",
-      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Gelupo\n简介： Gelato 冰淇淋店\n推荐原因： 价格正常、口味多样且更新快；整体水准高\n推荐菜： Coconut Sorbet，很多新口味\n价位： 正常gelato价格，可能稍微贵一点点",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Gelupo\n简介：Gelato 冰淇淋店\n菜系：Dessert\n推荐原因：价格正常、口味多样且更新快；整体水准高\n推荐菜：Coconut Sorbet，很多新口味\n价位：正常gelato价格，可能稍微贵一点点",
       "source": "src/DATA.json",
       "tags": [
         "London",
@@ -517,7 +517,7 @@
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
       "title": "The Leaf 小叶子",
-      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：The Leaf 小叶子\n简介： 马来/娘惹点心\n推荐原因： 稍贵但基本没有平替，东南亚马来西亚口味的点心，或者更详细说是娘惹点心。娘惹是马来西亚华人文化的一个分支，华人和马来族剩下的女儿称为娘惹。\n推荐菜： 未注明\n价位： ~£10左右",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：The Leaf 小叶子\n简介：马来/娘惹点心\n菜系：Dessert\n推荐原因：稍贵但基本没有平替，东南亚马来西亚口味的点心，或者更详细说是娘惹点心。娘惹是马来西亚华人文化的一个分支，华人和马来族剩下的女儿称为娘惹。\n推荐菜：未注明\n价位：~£10左右",
       "source": "src/DATA.json",
       "tags": [
         "London",
@@ -532,7 +532,7 @@
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
       "title": "Truedan",
-      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Truedan\n简介： 台式手摇珍奶\n推荐原因： 出品极佳（你给了“真神”级别推荐）\n推荐菜： 四季春鲜奶茶、四季春奶茶\n价位： 通常 £4+",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Truedan\n简介：台式手摇珍奶\n菜系：Drinks\n推荐原因：出品极佳（你给了“真神”级别推荐）\n推荐菜：四季春鲜奶茶、四季春奶茶\n价位：通常 £4+",
       "source": "src/DATA.json",
       "tags": [
         "London",
@@ -547,7 +547,7 @@
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
       "title": "Tiraffe",
-      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Tiraffe\n简介： 中式精品咖啡店\n推荐原因： 咖啡和甜品都不错；环境很棒\n推荐菜： Lychee Jasmine Latte\n价位： 通常 £4+",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Tiraffe\n简介：中式精品咖啡店\n菜系：Drinks\n推荐原因：咖啡和甜品都不错；环境很棒\n推荐菜：Lychee Jasmine Latte\n价位：通常 £4+",
       "source": "src/DATA.json",
       "tags": [
         "London",
@@ -562,7 +562,7 @@
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
       "title": "Nostos Coffee",
-      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Nostos Coffee\n简介： 精品咖啡店\n推荐原因： 很用心；杯子和环境有趣，但座位偏少\n推荐菜： 都可以试试\n价位： 通常 £4+",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Nostos Coffee\n简介：精品咖啡店\n菜系：Drinks\n推荐原因：很用心；杯子和环境有趣，但座位偏少\n推荐菜：都可以试试\n价位：通常 £4+",
       "source": "src/DATA.json",
       "tags": [
         "London",
@@ -577,7 +577,7 @@
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
       "title": "Fairshot Cafe",
-      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Fairshot Cafe\n简介： 咖啡馆\n推荐原因：物美价廉好喝，基本上不会有错就是了。\n推荐菜： 未注明\n价位： 普通咖啡价格",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Fairshot Cafe\n简介：咖啡馆\n菜系：Drinks\n推荐原因：物美价廉好喝，基本上不会有错就是了。\n推荐菜：未注明\n价位：普通咖啡价格",
       "source": "src/DATA.json",
       "tags": [
         "London",
@@ -592,7 +592,7 @@
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
       "title": "Mamason's",
-      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Mamason's\n简介：菲律宾甜品店，很多特殊的菲律宾特色甜品。\n推荐原因： 非常独特，除了热量报表外找不到什么缺点，主要是卖奶昔和冰淇淋，也可以买一桶带回家吃。\n推荐菜： HALO HALO，当季新口味，Ube口味，MILO口味\n价位： £6+",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Mamason's\n简介：菲律宾甜品店，很多特殊的菲律宾特色甜品。\n菜系：Dessert\n推荐原因：非常独特，除了热量报表外找不到什么缺点，主要是卖奶昔和冰淇淋，也可以买一桶带回家吃。\n推荐菜：HALO HALO，当季新口味，Ube口味，MILO口味\n价位：£6+",
       "source": "src/DATA.json",
       "tags": [
         "London",
@@ -607,7 +607,7 @@
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
       "title": "Hotel Chocolat",
-      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Hotel Chocolat\n简介： 连锁各式巧克力甜品店\n推荐原因：质量稳定，巧克力百分比的选择也很丰富，奶昔，冰淇淋，纯巧克力，热巧克力，礼品，应有尽有。\n推荐菜： 72% Dark Chocolate Milkshake\n价位：因人而异",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：Hotel Chocolat\n简介：连锁各式巧克力甜品店\n菜系：Dessert\n推荐原因：质量稳定，巧克力百分比的选择也很丰富，奶昔，冰淇淋，纯巧克力，热巧克力，礼品，应有尽有。\n推荐菜：72% Dark Chocolate Milkshake\n价位：因人而异",
       "source": "src/DATA.json",
       "tags": [
         "London",
@@ -622,7 +622,7 @@
       "category": "cafe",
       "section": "London｜甜品/烘焙/咖啡/饮品",
       "title": "L'ETO",
-      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：L'ETO\n简介： 伦敦本土连锁甜品Cafe\n推荐原因： 多家分店位于市中心和富人区。甜品展示在橱窗，提供精品咖啡、特色茶饮和Brunch。外观出片，味道中上，环境好。\n推荐菜： 甜品、精品咖啡、特色茶饮\n价位： £10-20/人",
+      "content": "城市/地区：London\n分类：cafe\n来源章节：London｜甜品/烘焙/咖啡/饮品\n条目：L'ETO\n简介：伦敦本土连锁甜品Cafe\n菜系：Dessert\n推荐原因：多家分店位于市中心和富人区。甜品展示在橱窗，提供精品咖啡、特色茶饮和Brunch。外观出片，味道中上，环境好。\n价位：未注明",
       "source": "src/DATA.json",
       "tags": [
         "London",
