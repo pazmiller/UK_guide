@@ -227,6 +227,12 @@ Hotel Chocolat
 推荐菜： 72% Dark Chocolate Milkshake
 价位：因人而异
 
+L'ETO
+简介： 伦敦本土连锁甜品Cafe
+推荐原因： 多家分店位于市中心和富人区。甜品展示在橱窗，提供精品咖啡、特色茶饮和Brunch。外观出片，味道中上，环境好。
+推荐菜：
+价位： 未注明
+
 伦敦景点
 Westminster Abbey
 价位：

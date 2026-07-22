@@ -22,6 +22,8 @@ const RESTAURANT_DETAIL_FIELDS = {
   '邮编': 'postcode',
   '备注': 'notes',
 };
+const CAFE_CUISINES = [ 'Drinks', 'Dessert' ];
+const DESSERT_CAFE_RE = /甜品|点心|烘焙|冰淇淋|巧克力|\bbakery\b|\bgelato\b|\bdessert\b|\bchocolat/i;
 const CUISINE_RULES = [
   [ /\blahpet\b|缅甸/i, 'Burmese' ],
   [ /越南|\bpho\b/i, 'Vietnamese' ],
@@ -94,6 +96,11 @@ function categoryFromText( text )
   return 'restaurant';
 }
 
+function hasStructuredFoodContent( category )
+{
+  return category === 'restaurant' || category === 'cafe';
+}
+
 function isSectionHeading( line )
 {
   if ( !line || isFieldLine( line ) || line.includes( 'http' ) ) return false;
@@ -144,6 +151,11 @@ function inferRestaurantCuisine( current )
     current.city,
     ...current.lines,
   ].join( ' ' );
+
+  if ( current.category === 'cafe' )
+  {
+    return DESSERT_CAFE_RE.test( primaryText ) ? 'Dessert' : 'Drinks';
+  }
 
   for ( const [ pattern, cuisine ] of CUISINE_RULES )
   {
@@ -256,6 +268,10 @@ function validateRestaurantContent( chunk )
       throw new TypeError( `Restaurant ${chunk.id} content.${key} must be a string` );
     }
   }
+  if ( chunk.category === 'cafe' && !CAFE_CUISINES.includes( chunk.content.type_cusine ) )
+  {
+    throw new TypeError( `Cafe ${chunk.id} must use a Drinks or Dessert cuisine` );
+  }
 }
 
 function buildKnowledgeBase( markdown )
@@ -282,7 +298,7 @@ function buildKnowledgeBase( markdown )
       slugPart( current.title ),
     ].join( '-' );
 
-    const restaurantData = current.category === 'restaurant'
+    const restaurantData = hasStructuredFoodContent( current.category )
       ? structureRestaurantContent( current )
       : {
           content: [
@@ -416,7 +432,7 @@ if ( process.argv.includes( '--build-data' ) )
   }
   for ( const chunk of contentData.chunks )
   {
-    if ( chunk.category === 'restaurant' ) validateRestaurantContent( chunk );
+    if ( hasStructuredFoodContent( chunk.category ) ) validateRestaurantContent( chunk );
   }
 
   const knowledgeBase = {
@@ -426,7 +442,7 @@ if ( process.argv.includes( '--build-data' ) )
     chunkCount: contentData.chunks.length,
     chunks: contentData.chunks.map( chunk => ( {
       ...chunk,
-      content: chunk.category === 'restaurant'
+      content: hasStructuredFoodContent( chunk.category )
         ? serializeRestaurantContent( chunk )
         : chunk.content,
       source: JSON_SOURCE,
