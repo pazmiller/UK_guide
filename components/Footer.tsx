@@ -42,8 +42,8 @@ export default function Footer()
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-white/70 hover:text-white transition-colors">
-                  About
+                <Link href="/contribute" className="text-white/70 hover:text-white transition-colors">
+                  出一份力！
                 </Link>
               </li>
             </ul>

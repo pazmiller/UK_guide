@@ -26,6 +26,7 @@ export default function Navbar()
   const isOnCities = pathname.startsWith( '/othercities' );
   const isOnEuropa = pathname.startsWith( '/europa' );
   const isOnGuide = pathname.startsWith( '/guide' );
+  const isOnContribute = pathname.startsWith( '/contribute' );
 
   const londonSubLinks = [
     { href: '/london/attractions', label: 'Attractions', icon: Building },
@@ -321,9 +322,8 @@ export default function Navbar()
                 Contact
               </Link>
 
-              {/* About */}
-              <Link href="/about" className={`font-medium text-sm ${pathname === '/about' ? activePill : hoverPill}`}>
-                About
+              <Link href="/contribute" className={`font-medium text-sm ${isOnContribute ? activePill : hoverPill}`}>
+                出一份力！
               </Link>
             </div>
 
@@ -441,8 +441,8 @@ export default function Navbar()
                 </Link>
               </div>
 
-              {/* Contact & About */}
-              {[ { href: '/contact', label: 'Contact', delay: 680 }, { href: '/about', label: 'About', delay: 720 } ].map( ( item ) => (
+              {/* Contact & Contribute */}
+              {[ { href: '/contact', label: 'Contact', delay: 680 }, { href: '/contribute', label: '出一份力！', delay: 720 } ].map( ( item ) => (
                 <div key={item.href} style={{ animation: 'slideInLeft 0.2s ease forwards', animationDelay: `${item.delay}ms`, opacity: 0 }}>
                   <Link href={item.href} onClick={() => setIsOpen( false )} className={`block font-medium py-2 px-3 rounded-xl transition-colors ${pathname === item.href ? 'text-black bg-white/58 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)]' : 'text-black/82 hover:text-black hover:bg-white/42'}`}>
                     {item.label}

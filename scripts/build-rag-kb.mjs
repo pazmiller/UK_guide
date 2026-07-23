@@ -7,10 +7,11 @@ const OUTPUT_PATH = path.join( process.cwd(), 'data', 'rag-knowledge-base.json' 
 const MARKDOWN_SOURCE = 'src/DATA.md';
 const JSON_SOURCE = 'src/DATA.json';
 
-const FIELD_RE = /^(简介|推荐原因|推荐菜|价位|价格|地址|链接|邮编|避雷原因|原因|备注)：/;
+const FIELD_RE = /^(简介|菜系|推荐原因|推荐菜|价位|价格|地址|链接|邮编|避雷原因|原因|备注)：/;
 const SEPARATOR_RE = /^[-—_]{3,}$/;
 const RESTAURANT_CONTENT_FIELDS = {
   '简介': 'summary',
+  '菜系': 'type_cusine',
   '推荐原因': 'recommend_reason',
   '推荐菜': 'recommend_signatures',
   '价位': 'price',
@@ -127,7 +128,7 @@ function slugPart( value )
 
 function splitInlineFields( line )
 {
-  const match = line.match( /(简介|推荐原因|推荐菜|价位|价格|地址|链接|邮编|避雷原因|原因|备注)：/ );
+  const match = line.match( /(简介|菜系|推荐原因|推荐菜|价位|价格|地址|链接|邮编|避雷原因|原因|备注)：/ );
   if ( !match || match.index === 0 ) return null;
 
   const title = line.slice( 0, match.index ).trim();
@@ -172,7 +173,7 @@ function structureRestaurantContent( current )
 {
   const content = {
     summary: '',
-    type_cusine: inferRestaurantCuisine( current ),
+    type_cusine: '',
     recommend_reason: '',
     recommend_signatures: '',
     price: '',
@@ -207,6 +208,7 @@ function structureRestaurantContent( current )
     additionalInfo.push( line );
   }
 
+  if ( !content.type_cusine ) content.type_cusine = inferRestaurantCuisine( current );
   if ( additionalInfo.length ) details.additional_info = additionalInfo;
   return {
     content,

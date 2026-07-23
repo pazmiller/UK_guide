@@ -77,3 +77,31 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## Contribution Inbox
+
+The `/contribute` form sends structured submissions to a private GitHub Issue repository. Images upload directly to a private Cloudflare R2 bucket through short-lived presigned URLs. `/contribute/admin` uses GitHub OAuth and a username allowlist for review.
+
+Restaurant submissions add `cuisine`, optional `customCuisine` for `Other`, `price`, `recommendReason`, and `recommendSignatures`. The private Agent maps the selected or custom cuisine to `type_cusine`, followed by `price`, `recommend_reason`, and `recommend_signatures`.
+
+After an administrator accepts an Issue, a separate private LangGraph repository runs a five-node workflow: prepare the submission, propose an allowlisted change, materialize generated data and images, open a Draft PR, then evaluate it. Passing evaluation only marks the PR Ready; a human must still approve and merge it.
+
+Configure these Vercel environment variables:
+
+```bash
+CONTRIBUTION_GITHUB_REPOSITORY=owner/repository
+GITHUB_APP_ID=github_app_id
+GITHUB_APP_PRIVATE_KEY=github_app_private_key
+GITHUB_APP_INSTALLATION_ID=github_app_installation_id
+AUTH_SECRET=random_secret
+AUTH_GITHUB_ID=github_oauth_client_id
+AUTH_GITHUB_SECRET=github_oauth_client_secret
+ADMIN_GITHUB_LOGINS=allowed_github_username
+R2_ACCOUNT_ID=cloudflare_account_id
+R2_ACCESS_KEY_ID=r2_access_key_id
+R2_SECRET_ACCESS_KEY=r2_secret_access_key
+R2_PRIVATE_BUCKET=private_bucket_name
+PUBLIC_GITHUB_REPOSITORY=owner/public_website_repository
+GITHUB_WEBHOOK_SECRET=shared_webhook_secret
+```
+
+The GitHub App issues short-lived installation tokens and must be installed on both repositories. Keep every credential server-side; none should use a `NEXT_PUBLIC_` prefix. Configure the R2 bucket with a 30-day lifecycle rule for `incoming/` and CORS that permits production-origin `PUT` requests with `Content-Type`.

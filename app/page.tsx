@@ -23,8 +23,8 @@ export default function Home()
             <p className="text-lg text-gray-600 mb-8">
               无论你是刚来英国上学的新人，还是已经就读工作多年，UKCFFA会一直与你分享英国与欧陆。
             </p>
-            <Link href="/about" className="btn-primary inline-flex items-center gap-2">
-              Learn More <ArrowRight className="w-5 h-5" />
+            <Link href="/contribute" className="btn-primary inline-flex items-center gap-2">
+              出一份力！ <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
 
