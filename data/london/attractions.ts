@@ -109,6 +109,15 @@ export const londonAttractions: Attraction[] = [
     description: '位于对讲机大楼顶层的免费空中花园，拥有壮观的伦敦全景和热带植物。需要提前预约。',
     images: ['https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800'],
   },
+  {
+    id: 'lon-a13',
+    slug: 'borough-market',
+    name: '博罗市场（Borough Market）',
+    category: 'Market',
+    shortDescription: '伦敦最大最古老的开放式食品市场',
+    description: '博罗市场是伦敦规模最大、历史最久的开放式食品市场，拥有众多菜系摊位，包括新鲜生蚝、酒吧和咖啡馆。氛围极佳，价格不算贵。由于摊位更新很快，建议参考Google Maps和小红书上的最新评价。特色推荐：一家泰国食材店和一家新鲜生牛奶店（注意：未杀菌的生牛奶建议煮沸后饮用）。吃完后可以逛逛伦敦桥，离碎片大厦也很近。',
+    images: ['public/contributions/2/1.webp'],
+  },
 ];
 
 export const londonAvoids: AvoidItem[] = [
