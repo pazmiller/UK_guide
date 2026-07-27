@@ -55,6 +55,18 @@ export const nottinghamData: CityData = {
       mustTry: [],
     },
     {
+      id: 'no-r5',
+      slug: 'coco-tang-cocktail-bar',
+      name: 'Coco Tang -Cocktail Bar',
+      cuisine: 'Cocktail Bar',
+      shortDescription: '地下鸡尾酒吧',
+      description: '晚上酒吧需要在后门进入。',
+      address: '45 Bridlesmith Gate, Nottingham NG1 2GN',
+      website: 'https://www.cocotang.co.uk/cocktail-bar/',
+      images: [],
+      mustTry: [],
+    },
+    {
       id: 'no-r1',
       slug: 'canalhouse',
       name: 'Canalhouse',

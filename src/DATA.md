@@ -656,6 +656,14 @@ The Tap House Notts
 地址： 10 Byard Ln, Nottingham NG1 2GJ
 网站： https://thetaphousenotts.co.uk/
 
+Coco Tang -Cocktail Bar
+简介： 地下鸡尾酒吧
+推荐原因： 晚上酒吧需要在后门进入。
+推荐菜： 未注明
+价位： 未注明
+地址： 45 Bridlesmith Gate, Nottingham NG1 2GN
+网站： https://www.cocotang.co.uk/cocktail-bar/
+
 Canalhouse
 简介： 主打精酿，也不定时会有限定鸡尾酒。从中午开到晚上11点，周末会开到凌晨。平常室外座位很多，周末会很满。点餐主要是在吧台点完然后告诉他们桌号。
 推荐菜： 未注明
