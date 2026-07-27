@@ -631,6 +631,13 @@ Red Chilli Restaurant
 推荐菜： 未注明
 价位： 未注明
 
+Nottingham｜诺丁汉
+Canalhouse
+简介： 主打精酿，也不定时会有限定鸡尾酒。从中午开到晚上11点，周末会开到凌晨。平常室外座位很多，周末会很满。点餐主要是在吧台点完然后告诉他们桌号。
+推荐菜： 未注明
+价位： 未注明
+地址： 48-52 Canal Street, Nottingham, NG1 7EH
+
 致谢名单：
 赤夜
 鲁珀
