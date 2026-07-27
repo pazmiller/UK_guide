@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-27T03:27:17.072Z",
+  "generatedAt": "2026-07-27T06:31:49.758Z",
   "source": "src/DATA.json",
-  "chunkCount": 113,
+  "chunkCount": 114,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -1710,7 +1710,28 @@
       ]
     },
     {
-      "id": "0112-general-restaurant-canalhouse",
+      "id": "0112-general-restaurant-the-tap-house-notts",
+      "city": "General",
+      "category": "restaurant",
+      "section": "Nottingham｜诺丁汉",
+      "title": "The Tap House Notts",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：The Tap House Notts\n简介：自助啤酒、葡萄酒与披萨\n菜系：Italian\n推荐原因：进店时领取一张卡，刷卡后自行打酒，离店时凭卡结账。同时提供披萨和小食，有几个位于小巷里的户外座位。\n推荐菜：未注明\n价位：未注明\n地址：10 Byard Ln, Nottingham NG1 2GJ\n网站： https://thetaphousenotts.co.uk/",
+      "details": {
+        "address": "10 Byard Ln, Nottingham NG1 2GJ",
+        "additional_info": [
+          "网站： https://thetaphousenotts.co.uk/"
+        ]
+      },
+      "source": "src/DATA.json",
+      "tags": [
+        "General",
+        "restaurant",
+        "Nottingham｜诺丁汉",
+        "The Tap House Notts"
+      ]
+    },
+    {
+      "id": "0113-general-restaurant-canalhouse",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1728,7 +1749,7 @@
       ]
     },
     {
-      "id": "0113-general-restaurant-chunk",
+      "id": "0114-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "致谢名单",
