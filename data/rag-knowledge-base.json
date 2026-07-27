@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-27T09:05:26.247Z",
+  "generatedAt": "2026-07-27T09:36:57.678Z",
   "source": "src/DATA.json",
-  "chunkCount": 116,
+  "chunkCount": 117,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -1773,7 +1773,28 @@
       ]
     },
     {
-      "id": "0115-general-restaurant-canalhouse",
+      "id": "0115-general-restaurant-coco-tang-cocktail-bar",
+      "city": "General",
+      "category": "restaurant",
+      "section": "Nottingham｜诺丁汉",
+      "title": "Coco Tang -Cocktail Bar",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Coco Tang -Cocktail Bar\n简介：地下鸡尾酒吧\n菜系：Other\n推荐原因：晚上酒吧需要在后门进入。\n推荐菜：未注明\n价位：未注明\n地址：45 Bridlesmith Gate, Nottingham NG1 2GN\n网站： https://www.cocotang.co.uk/cocktail-bar/",
+      "details": {
+        "address": "45 Bridlesmith Gate, Nottingham NG1 2GN",
+        "additional_info": [
+          "网站： https://www.cocotang.co.uk/cocktail-bar/"
+        ]
+      },
+      "source": "src/DATA.json",
+      "tags": [
+        "General",
+        "restaurant",
+        "Nottingham｜诺丁汉",
+        "Coco Tang -Cocktail Bar"
+      ]
+    },
+    {
+      "id": "0116-general-restaurant-canalhouse",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1791,7 +1812,7 @@
       ]
     },
     {
-      "id": "0116-general-restaurant-chunk",
+      "id": "0117-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "致谢名单",
