@@ -40,6 +40,7 @@ export default function Navbar()
     { href: '/othercities/southampton', label: 'Southampton' },
     { href: '/othercities/swansea', label: 'Swansea' },
     { href: '/othercities/colchester', label: 'Colchester' },
+    { href: '/othercities/nottingham', label: 'Nottingham' },
   ];
 
   const europaSubLinks = [
