@@ -67,6 +67,24 @@ export const nottinghamData: CityData = {
       mustTry: [],
     },
     {
+      id: 'no-r6',
+      slug: '400-rabbits',
+      name: '400 Rabbits',
+      cuisine: 'Cocktail Bar',
+      shortDescription: 'Mezcal & Tequila 鸡尾酒吧',
+      description: '主打鸡尾酒和大量口味的龙舌兰，一shot龙舌兰一shot Chaser（Verdita）喝起来很爽喝的很快，鸡尾酒也很独特，有室外座位。',
+      address: '15-16 Hurts Yard, Nottingham, NG1 6JD',
+      website: 'https://www.fourhundredrabbits.co.uk/',
+      images: [
+        '/contributions/8/1.webp',
+        '/contributions/8/2.webp',
+        '/contributions/8/3.webp',
+        '/contributions/8/4.webp',
+        '/contributions/8/5.webp'
+      ],
+      mustTry: [],
+    },
+    {
       id: 'no-r1',
       slug: 'canalhouse',
       name: 'Canalhouse',

@@ -664,6 +664,14 @@ Coco Tang -Cocktail Bar
 地址： 45 Bridlesmith Gate, Nottingham NG1 2GN
 网站： https://www.cocotang.co.uk/cocktail-bar/
 
+400 Rabbits
+简介： Mezcal & Tequila 鸡尾酒吧
+推荐原因： 主打鸡尾酒和大量口味的龙舌兰，一shot龙舌兰一shot Chaser（Verdita）喝起来很爽喝的很快，鸡尾酒也很独特，有室外座位。
+推荐菜： 未注明
+价位： 未注明
+地址： 15-16 Hurts Yard, Nottingham, NG1 6JD
+网站： https://www.fourhundredrabbits.co.uk/
+
 Canalhouse
 简介： 主打精酿，也不定时会有限定鸡尾酒。从中午开到晚上11点，周末会开到凌晨。平常室外座位很多，周末会很满。点餐主要是在吧台点完然后告诉他们桌号。
 推荐菜： 未注明
