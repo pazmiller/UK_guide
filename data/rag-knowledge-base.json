@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-27T07:56:09.115Z",
+  "generatedAt": "2026-07-27T09:05:26.247Z",
   "source": "src/DATA.json",
-  "chunkCount": 115,
+  "chunkCount": 116,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -1731,7 +1731,28 @@
       ]
     },
     {
-      "id": "0113-general-restaurant-the-tap-house-notts",
+      "id": "0113-general-restaurant-pepper-rocks",
+      "city": "General",
+      "category": "restaurant",
+      "section": "Nottingham｜诺丁汉",
+      "title": "Pepper Rocks",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Pepper Rocks\n简介：酒吧，周末提供热狗\n菜系：Other\n推荐原因：室内会有些窄，周末会爆满，外面提供热狗餐食。\n推荐菜：未注明\n价位：未注明\n地址：12 Pepper Street, Nottingham, NG1 2GH\n营业时间： 周一至周五 17:00-00:00，周六 15:00-01:00",
+      "details": {
+        "address": "12 Pepper Street, Nottingham, NG1 2GH",
+        "additional_info": [
+          "营业时间： 周一至周五 17:00-00:00，周六 15:00-01:00"
+        ]
+      },
+      "source": "src/DATA.json",
+      "tags": [
+        "General",
+        "restaurant",
+        "Nottingham｜诺丁汉",
+        "Pepper Rocks"
+      ]
+    },
+    {
+      "id": "0114-general-restaurant-the-tap-house-notts",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1752,7 +1773,7 @@
       ]
     },
     {
-      "id": "0114-general-restaurant-canalhouse",
+      "id": "0115-general-restaurant-canalhouse",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1770,7 +1791,7 @@
       ]
     },
     {
-      "id": "0115-general-restaurant-chunk",
+      "id": "0116-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "致谢名单",

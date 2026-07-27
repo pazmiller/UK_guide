@@ -39,6 +39,22 @@ export const nottinghamData: CityData = {
       mustTry: [],
     },
     {
+      id: 'no-r4',
+      slug: 'pepper-rocks',
+      name: 'Pepper Rocks',
+      cuisine: 'Bar',
+      shortDescription: '酒吧，周末提供热狗',
+      description: '室内会有些窄，周末会爆满，外面提供热狗餐食。',
+      address: '12 Pepper Street, Nottingham, NG1 2GH',
+      openingHours: '周一至周五 17:00-00:00，周六 15:00-01:00',
+      images: [
+        '/contributions/6/1.webp',
+        '/contributions/6/2.webp',
+        '/contributions/6/3.webp'
+      ],
+      mustTry: [],
+    },
+    {
       id: 'no-r1',
       slug: 'canalhouse',
       name: 'Canalhouse',
