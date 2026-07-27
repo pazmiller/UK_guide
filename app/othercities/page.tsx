@@ -41,6 +41,13 @@ const cities = [
     count: 2,
   },
   {
+    name: '诺丁汉 Nottingham',
+    slug: 'nottingham',
+    description: '罗宾汉传说、运河与活跃的酒吧文化',
+    image: '/contributions/3/1.webp',
+    count: 1,
+  },
+  {
     name: '爱丁堡 Edinburgh',
     slug: 'edinburgh',
     description: '苏格兰首都，城堡之城',
