@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-27T09:36:57.678Z",
+  "generatedAt": "2026-07-27T09:52:39.672Z",
   "source": "src/DATA.json",
-  "chunkCount": 117,
+  "chunkCount": 118,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -1794,7 +1794,28 @@
       ]
     },
     {
-      "id": "0116-general-restaurant-canalhouse",
+      "id": "0116-general-restaurant-400-rabbits",
+      "city": "General",
+      "category": "restaurant",
+      "section": "Nottingham｜诺丁汉",
+      "title": "400 Rabbits",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：400 Rabbits\n简介：Mezcal & Tequila 鸡尾酒吧\n菜系：Other\n推荐原因：主打鸡尾酒和大量口味的龙舌兰，一shot龙舌兰一shot Chaser（Verdita）喝起来很爽喝的很快，鸡尾酒也很独特，有室外座位。\n推荐菜：未注明\n价位：未注明\n地址：15-16 Hurts Yard, Nottingham, NG1 6JD\n网站： https://www.fourhundredrabbits.co.uk/",
+      "details": {
+        "address": "15-16 Hurts Yard, Nottingham, NG1 6JD",
+        "additional_info": [
+          "网站： https://www.fourhundredrabbits.co.uk/"
+        ]
+      },
+      "source": "src/DATA.json",
+      "tags": [
+        "General",
+        "restaurant",
+        "Nottingham｜诺丁汉",
+        "400 Rabbits"
+      ]
+    },
+    {
+      "id": "0117-general-restaurant-canalhouse",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1812,7 +1833,7 @@
       ]
     },
     {
-      "id": "0117-general-restaurant-chunk",
+      "id": "0118-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "致谢名单",
