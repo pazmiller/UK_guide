@@ -85,6 +85,26 @@ export const nottinghamData: CityData = {
       mustTry: [],
     },
     {
+      id: 'no-r7',
+      slug: 'mesa',
+      name: 'Mesa',
+      cuisine: 'Small Plates',
+      shortDescription: '轻松氛围的小盘菜餐厅',
+      description: '菜单菜很少（只有一页纸），整体氛围很轻松。',
+      address: '24-26 Goosegate, Nottingham, NG1 1FF',
+      openingHours: '周二至周五 17:00-22:00；周六 13:00-22:00；周日及银行假日休息',
+      priceRange: '未注明',
+      website: 'https://www.mesahockley.co.uk/',
+      images: [
+        '/contributions/9/1.webp',
+        '/contributions/9/2.webp',
+        '/contributions/9/3.webp',
+        '/contributions/9/4.webp',
+        '/contributions/9/5.webp'
+      ],
+      mustTry: [],
+    },
+    {
       id: 'no-r1',
       slug: 'canalhouse',
       name: 'Canalhouse',

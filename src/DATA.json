@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-27T09:52:39.514Z",
+  "generatedAt": "2026-07-27T10:48:41.124Z",
   "source": "src/DATA.md",
-  "chunkCount": 118,
+  "chunkCount": 119,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -2226,7 +2226,35 @@
       ]
     },
     {
-      "id": "0112-general-restaurant-tilt",
+      "id": "0112-general-restaurant-mesa",
+      "city": "General",
+      "category": "restaurant",
+      "section": "Nottingham｜诺丁汉",
+      "title": "Mesa",
+      "content": {
+        "summary": "轻松氛围的小盘菜餐厅",
+        "type_cusine": "Other",
+        "recommend_reason": "菜单菜很少（只有一页纸），整体氛围很轻松。",
+        "recommend_signatures": "未注明",
+        "price": "未注明"
+      },
+      "details": {
+        "address": "24-26 Goosegate, Nottingham, NG1 1FF",
+        "additional_info": [
+          "营业时间： 周二至周五 17:00-22:00；周六 13:00-22:00；周日及银行假日休息",
+          "网站： https://www.mesahockley.co.uk/"
+        ]
+      },
+      "source": "src/DATA.md",
+      "tags": [
+        "General",
+        "restaurant",
+        "Nottingham｜诺丁汉",
+        "Mesa"
+      ]
+    },
+    {
+      "id": "0113-general-restaurant-tilt",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -2253,7 +2281,7 @@
       ]
     },
     {
-      "id": "0113-general-restaurant-pepper-rocks",
+      "id": "0114-general-restaurant-pepper-rocks",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -2280,7 +2308,7 @@
       ]
     },
     {
-      "id": "0114-general-restaurant-the-tap-house-notts",
+      "id": "0115-general-restaurant-the-tap-house-notts",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -2307,7 +2335,7 @@
       ]
     },
     {
-      "id": "0115-general-restaurant-coco-tang-cocktail-bar",
+      "id": "0116-general-restaurant-coco-tang-cocktail-bar",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -2334,7 +2362,7 @@
       ]
     },
     {
-      "id": "0116-general-restaurant-400-rabbits",
+      "id": "0117-general-restaurant-400-rabbits",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -2361,7 +2389,7 @@
       ]
     },
     {
-      "id": "0117-general-restaurant-canalhouse",
+      "id": "0118-general-restaurant-canalhouse",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -2385,7 +2413,7 @@
       ]
     },
     {
-      "id": "0118-general-restaurant-chunk",
+      "id": "0119-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "致谢名单",
