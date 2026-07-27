@@ -9,6 +9,20 @@ export const nottinghamData: CityData = {
   country: 'uk',
   restaurants: [
     {
+      id: 'no-r2',
+      slug: 'the-tap-house-notts',
+      name: 'The Tap House Notts',
+      cuisine: 'Pub',
+      shortDescription: '自助啤酒、葡萄酒与披萨',
+      description: '进店时领取一张卡，刷卡后自行打酒，离店时凭卡结账。同时提供披萨和小食，有几个位于小巷里的户外座位。',
+      address: '10 Byard Ln, Nottingham NG1 2GJ',
+      website: 'https://thetaphousenotts.co.uk/',
+      images: [
+        '/contributions/4/1.webp'
+      ],
+      mustTry: [],
+    },
+    {
       id: 'no-r1',
       slug: 'canalhouse',
       name: 'Canalhouse',
