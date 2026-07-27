@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-27T06:31:49.758Z",
+  "generatedAt": "2026-07-27T07:56:09.115Z",
   "source": "src/DATA.json",
-  "chunkCount": 114,
+  "chunkCount": 115,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -1710,7 +1710,28 @@
       ]
     },
     {
-      "id": "0112-general-restaurant-the-tap-house-notts",
+      "id": "0112-general-restaurant-tilt",
+      "city": "General",
+      "category": "restaurant",
+      "section": "Nottingham｜诺丁汉",
+      "title": "Tilt",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Tilt\n简介：鸡尾酒吧，有现场乐队\n菜系：Other\n推荐原因：门头很小，需要仔细找下，有现场乐队表演，提供小食，有服务费。\n推荐菜：未注明\n价位：未注明\n地址：9 Pelham St, Nottingham, NG1 2EH\n营业时间： 周一休息；周二至周四 17:00–01:00；周五至周六 14:00–01:30；周日 17:00–01:00",
+      "details": {
+        "address": "9 Pelham St, Nottingham, NG1 2EH",
+        "additional_info": [
+          "营业时间： 周一休息；周二至周四 17:00–01:00；周五至周六 14:00–01:30；周日 17:00–01:00"
+        ]
+      },
+      "source": "src/DATA.json",
+      "tags": [
+        "General",
+        "restaurant",
+        "Nottingham｜诺丁汉",
+        "Tilt"
+      ]
+    },
+    {
+      "id": "0113-general-restaurant-the-tap-house-notts",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1731,7 +1752,7 @@
       ]
     },
     {
-      "id": "0113-general-restaurant-canalhouse",
+      "id": "0114-general-restaurant-canalhouse",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1749,7 +1770,7 @@
       ]
     },
     {
-      "id": "0114-general-restaurant-chunk",
+      "id": "0115-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "致谢名单",

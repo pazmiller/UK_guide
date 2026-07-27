@@ -23,6 +23,22 @@ export const nottinghamData: CityData = {
       mustTry: [],
     },
     {
+      id: 'no-r3',
+      slug: 'tilt',
+      name: 'Tilt',
+      cuisine: 'Cocktail Bar',
+      shortDescription: '鸡尾酒吧，有现场乐队',
+      description: '门头很小，需要仔细找下，有现场乐队表演，提供小食，有服务费。',
+      address: '9 Pelham St, Nottingham, NG1 2EH',
+      openingHours: '周一休息；周二至周四 17:00–01:00；周五至周六 14:00–01:30；周日 17:00–01:00',
+      images: [
+        '/contributions/5/1.webp',
+        '/contributions/5/2.webp',
+        '/contributions/5/3.webp'
+      ],
+      mustTry: [],
+    },
+    {
       id: 'no-r1',
       slug: 'canalhouse',
       name: 'Canalhouse',
