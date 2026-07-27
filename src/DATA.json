@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-27T07:56:25.500Z",
+  "generatedAt": "2026-07-27T09:05:25.977Z",
   "source": "src/DATA.md",
-  "chunkCount": 115,
+  "chunkCount": 116,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -2226,7 +2226,34 @@
       ]
     },
     {
-      "id": "0112-general-restaurant-pepper-rocks",
+      "id": "0112-general-restaurant-tilt",
+      "city": "General",
+      "category": "restaurant",
+      "section": "Nottingham｜诺丁汉",
+      "title": "Tilt",
+      "content": {
+        "summary": "鸡尾酒吧，有现场乐队",
+        "type_cusine": "Other",
+        "recommend_reason": "门头很小，需要仔细找下，有现场乐队表演，提供小食，有服务费。",
+        "recommend_signatures": "未注明",
+        "price": "未注明"
+      },
+      "details": {
+        "address": "9 Pelham St, Nottingham, NG1 2EH",
+        "additional_info": [
+          "营业时间： 周一休息；周二至周四 17:00–01:00；周五至周六 14:00–01:30；周日 17:00–01:00"
+        ]
+      },
+      "source": "src/DATA.md",
+      "tags": [
+        "General",
+        "restaurant",
+        "Nottingham｜诺丁汉",
+        "Tilt"
+      ]
+    },
+    {
+      "id": "0113-general-restaurant-pepper-rocks",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -2253,7 +2280,7 @@
       ]
     },
     {
-      "id": "0113-general-restaurant-the-tap-house-notts",
+      "id": "0114-general-restaurant-the-tap-house-notts",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -2280,7 +2307,7 @@
       ]
     },
     {
-      "id": "0114-general-restaurant-canalhouse",
+      "id": "0115-general-restaurant-canalhouse",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -2304,7 +2331,7 @@
       ]
     },
     {
-      "id": "0115-general-restaurant-chunk",
+      "id": "0116-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "致谢名单",
