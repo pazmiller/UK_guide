@@ -632,6 +632,16 @@ Red Chilli Restaurant
 价位： 未注明
 
 Nottingham｜诺丁汉
+Red Dog Saloon Nottingham
+简介： 美式烤肉与汉堡
+菜系： American
+推荐原因： 主打美式烤肉，各种酒很多。不过汉堡很大一个，一个人一个就饱了。
+推荐菜： 未注明
+价位： £20-40
+备注： 最近量变小了些，饭量大的话想要纯吃烤肉吃饱的话两人人均大概40到50左右，会收服务费，但是尝鲜还是可以的。
+地址： 20-22 Victoria Street, Nottingham NG1 2EX
+网站： https://www.reddogsaloon.co.uk/
+
 Mesa
 简介： 轻松氛围的小盘菜餐厅
 菜系： Fusion
