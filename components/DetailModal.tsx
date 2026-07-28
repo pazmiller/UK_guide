@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useCallback, useState } from 'react';
-import { Coffee, X, MapPin, ExternalLink, Navigation } from 'lucide-react';
+import { Coffee, X, MapPin, ExternalLink, Heart, Navigation } from 'lucide-react';
 import ImageCarousel from './ImageCarousel';
 import { Restaurant, Attraction } from '@/data/types';
 
@@ -151,6 +151,18 @@ export default function DetailModal( { item, onClose, locationHint = 'London UK'
           <p className="text-gray-600 leading-relaxed mb-5">
             {d.description}
           </p>
+
+          {isRestaurant && ( d as Restaurant ).recommendReason && (
+            <div className="mb-5 border-l-2 border-[#E63946]/45 pl-4">
+              <div className="mb-1.5 flex items-center gap-2 text-sm font-semibold text-[#1D3557]">
+                <Heart className="h-4 w-4 text-[#E63946]" aria-hidden="true" />
+                推荐理由
+              </div>
+              <p className="leading-relaxed text-gray-700">
+                {( d as Restaurant ).recommendReason}
+              </p>
+            </div>
+          )}
 
           {isRestaurant && ( d as Restaurant ).tags?.length ? (
             <div className="flex flex-wrap gap-2 mb-5">

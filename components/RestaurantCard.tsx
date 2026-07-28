@@ -66,7 +66,7 @@ export default function RestaurantCard({ restaurant, onClick, variant = 'classic
         </div>
 
         <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-          {restaurant.description}
+          {restaurant.recommendReason ?? restaurant.description}
         </p>
 
         {restaurant.tags?.length ? (

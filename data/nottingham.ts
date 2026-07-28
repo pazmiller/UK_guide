@@ -15,7 +15,9 @@ export const nottinghamData: CityData = {
       cuisine: 'Pub',
       shortDescription: '自助啤酒、葡萄酒与披萨',
       description: '进店时领取一张卡，刷卡后自行打酒，离店时凭卡结账。同时提供披萨和小食，有几个位于小巷里的户外座位。',
+      recommendReason: '各种自打的轮换精酿和 cider，一次只打一点酒，可以用很低的价格尝到各种酒。',
       address: '10 Byard Ln, Nottingham NG1 2GJ',
+      priceRange: '£10-20',
       website: 'https://thetaphousenotts.co.uk/',
       images: [
         '/contributions/4/1.webp'
@@ -29,8 +31,10 @@ export const nottinghamData: CityData = {
       cuisine: 'Cocktail Bar',
       shortDescription: '鸡尾酒吧，有现场乐队',
       description: '门头很小，需要仔细找下，有现场乐队表演，提供小食，有服务费。',
+      recommendReason: '价格稍贵，环境好的清吧，主打各种独特的新老式鸡尾酒、spritz 和各种威士忌（£5-100 一杯都有）。',
       address: '9 Pelham St, Nottingham, NG1 2EH',
       openingHours: '周一休息；周二至周四 17:00–01:00；周五至周六 14:00–01:30；周日 17:00–01:00',
+      priceRange: '£20-30',
       images: [
         '/contributions/5/1.webp',
         '/contributions/5/2.webp',
@@ -45,8 +49,10 @@ export const nottinghamData: CityData = {
       cuisine: 'Bar',
       shortDescription: '酒吧，周末提供热狗',
       description: '室内会有些窄，周末会爆满，外面提供热狗餐食。',
+      recommendReason: '氛围、装修和味道都很好的鸡尾酒吧，一共有小三层和室外座位，有时会有 DJ 现场表演。',
       address: '12 Pepper Street, Nottingham, NG1 2GH',
       openingHours: '周一至周五 17:00-00:00，周六 15:00-01:00',
+      priceRange: '£10-20',
       images: [
         '/contributions/6/1.webp',
         '/contributions/6/2.webp',
@@ -61,7 +67,9 @@ export const nottinghamData: CityData = {
       cuisine: 'Cocktail Bar',
       shortDescription: '地下鸡尾酒吧',
       description: '晚上酒吧需要在后门进入。',
+      recommendReason: '白天是越南餐馆，饭不好吃，但晚上是酒吧，有很多独特的鸡尾酒。',
       address: '45 Bridlesmith Gate, Nottingham NG1 2GN',
+      priceRange: '£10-20',
       website: 'https://www.cocotang.co.uk/cocktail-bar/',
       images: [],
       mustTry: [],
@@ -73,7 +81,9 @@ export const nottinghamData: CityData = {
       cuisine: 'Cocktail Bar',
       shortDescription: 'Mezcal & Tequila 鸡尾酒吧',
       description: '主打鸡尾酒和大量口味的龙舌兰，一shot龙舌兰一shot Chaser（Verdita）喝起来很爽喝的很快，鸡尾酒也很独特，有室外座位。',
+      recommendReason: '诺丁汉最推荐的、藏在小巷子里且氛围很好的墨西哥风格酒吧。',
       address: '15-16 Hurts Yard, Nottingham, NG1 6JD',
+      priceRange: '£10-20',
       website: 'https://www.fourhundredrabbits.co.uk/',
       images: [
         '/contributions/8/1.webp',
@@ -91,9 +101,10 @@ export const nottinghamData: CityData = {
       cuisine: 'Small Plates',
       shortDescription: '轻松氛围的小盘菜餐厅',
       description: '菜单菜很少（只有一页纸），整体氛围很轻松。',
+      recommendReason: '现代融合菜餐馆，牛排和 pork ribeye 分量很大、味道不错，整体菜品和餐酒也都很好。',
       address: '24-26 Goosegate, Nottingham, NG1 1FF',
       openingHours: '周二至周五 17:00-22:00；周六 13:00-22:00；周日及银行假日休息',
-      priceRange: '未注明',
+      priceRange: '£30-60',
       website: 'https://www.mesahockley.co.uk/',
       images: [
         '/contributions/9/1.webp',
@@ -102,7 +113,7 @@ export const nottinghamData: CityData = {
         '/contributions/9/4.webp',
         '/contributions/9/5.webp'
       ],
-      mustTry: [],
+      mustTry: [ '10oz sirloin', 'Sugar-brined 12oz pork chop' ],
     },
     {
       id: 'no-r1',
@@ -111,7 +122,9 @@ export const nottinghamData: CityData = {
       cuisine: 'Pub',
       shortDescription: '运河边的精酿啤酒酒吧',
       description: '主打精酿，也不定时会有限定鸡尾酒。从中午营业到晚上 11 点，周末会开到凌晨。平常室外座位很多，周末会很满；点餐主要是在吧台完成，再告诉工作人员桌号。',
+      recommendReason: '很多精酿，各种 cider、啤酒和鸡尾酒都有，餐食也都不错。有很大一片河边室外座位；夏天学生酒水餐食九折，但要注册 App，不定时还会有酒水七折起。',
       address: '48-52 Canal Street, Nottingham, NG1 7EH',
+      priceRange: '£10-20',
       website: 'https://www.castlerockbrewery.co.uk/pubs/canalhouse/',
       images: [
         '/contributions/3/1.webp',

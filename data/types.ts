@@ -5,6 +5,7 @@ export interface Restaurant {
   cuisine: string;
   shortDescription: string;
   description: string;
+  recommendReason?: string;
   address?: string;
   coordinates?: { lat: number; lng: number };
   openingHours?: string;
