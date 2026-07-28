@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-27T11:13:36.482Z",
+  "generatedAt": "2026-07-28T07:04:40.707Z",
   "source": "src/DATA.json",
-  "chunkCount": 119,
+  "chunkCount": 120,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -1710,7 +1710,29 @@
       ]
     },
     {
-      "id": "0112-general-restaurant-mesa",
+      "id": "0112-general-restaurant-red-dog-saloon-nottingham",
+      "city": "General",
+      "category": "restaurant",
+      "section": "Nottingham｜诺丁汉",
+      "title": "Red Dog Saloon Nottingham",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Red Dog Saloon Nottingham\n简介：美式烤肉与汉堡\n菜系：American\n推荐原因：主打美式烤肉，各种酒很多。不过汉堡很大一个，一个人一个就饱了。\n推荐菜：未注明\n价位：£20-40\n地址：20-22 Victoria Street, Nottingham NG1 2EX\n备注：最近量变小了些，饭量大的话想要纯吃烤肉吃饱的话两人人均大概40到50左右，会收服务费，但是尝鲜还是可以的。\n网站： https://www.reddogsaloon.co.uk/",
+      "details": {
+        "notes": "最近量变小了些，饭量大的话想要纯吃烤肉吃饱的话两人人均大概40到50左右，会收服务费，但是尝鲜还是可以的。",
+        "address": "20-22 Victoria Street, Nottingham NG1 2EX",
+        "additional_info": [
+          "网站： https://www.reddogsaloon.co.uk/"
+        ]
+      },
+      "source": "src/DATA.json",
+      "tags": [
+        "General",
+        "restaurant",
+        "Nottingham｜诺丁汉",
+        "Red Dog Saloon Nottingham"
+      ]
+    },
+    {
+      "id": "0113-general-restaurant-mesa",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1733,7 +1755,7 @@
       ]
     },
     {
-      "id": "0113-general-restaurant-tilt",
+      "id": "0114-general-restaurant-tilt",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1755,7 +1777,7 @@
       ]
     },
     {
-      "id": "0114-general-restaurant-pepper-rocks",
+      "id": "0115-general-restaurant-pepper-rocks",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1777,7 +1799,7 @@
       ]
     },
     {
-      "id": "0115-general-restaurant-the-tap-house-notts",
+      "id": "0116-general-restaurant-the-tap-house-notts",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1799,7 +1821,7 @@
       ]
     },
     {
-      "id": "0116-general-restaurant-coco-tang-cocktail-bar",
+      "id": "0117-general-restaurant-coco-tang-cocktail-bar",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1821,7 +1843,7 @@
       ]
     },
     {
-      "id": "0117-general-restaurant-400-rabbits",
+      "id": "0118-general-restaurant-400-rabbits",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1843,7 +1865,7 @@
       ]
     },
     {
-      "id": "0118-general-restaurant-canalhouse",
+      "id": "0119-general-restaurant-canalhouse",
       "city": "General",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
@@ -1861,7 +1883,7 @@
       ]
     },
     {
-      "id": "0119-general-restaurant-chunk",
+      "id": "0120-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "致谢名单",
