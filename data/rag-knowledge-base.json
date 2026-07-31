@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-28T07:04:40.707Z",
+  "generatedAt": "2026-07-31T03:17:16.791Z",
   "source": "src/DATA.json",
-  "chunkCount": 120,
+  "chunkCount": 121,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -1883,7 +1883,22 @@
       ]
     },
     {
-      "id": "0120-general-restaurant-chunk",
+      "id": "0120-general-restaurant-bourton-on-the-water",
+      "city": "General",
+      "category": "restaurant",
+      "section": "Cotswold｜科茨沃尔德",
+      "title": "水上伯顿 Bourton-on-the-Water",
+      "content": "城市/地区：General\n分类：restaurant\n来源章节：Cotswold｜科茨沃尔德\n条目：水上伯顿 Bourton-on-the-Water\n简介：英国乡村版的小桥流水人家，除了河流清澈，很多古老的小石桥外，还有按9比1比例建造的村庄缩小版模型村。特别是在天气炎热时的极佳去处。本地人特别喜欢的景点。\n菜系：Other",
+      "source": "src/DATA.json",
+      "tags": [
+        "General",
+        "restaurant",
+        "Cotswold｜科茨沃尔德",
+        "水上伯顿 Bourton-on-the-Water"
+      ]
+    },
+    {
+      "id": "0121-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "致谢名单",
