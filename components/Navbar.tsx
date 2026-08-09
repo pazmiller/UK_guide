@@ -5,7 +5,19 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { Menu, X, MapPin, Building, Utensils, ChevronDown, ShieldAlert } from 'lucide-react';
 
-export default function Navbar()
+interface NavbarProps
+{
+  citiesSubLinks: NavLink[];
+  europaSubLinks: NavLink[];
+}
+
+interface NavLink
+{
+    href: string;
+    label: string;
+}
+
+export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps )
 {
   const [ isOpen, setIsOpen ] = useState( false );
   const [ londonOpen, setLondonOpen ] = useState( false );
@@ -31,25 +43,6 @@ export default function Navbar()
   const londonSubLinks = [
     { href: '/london/attractions', label: 'Attractions', icon: Building },
     { href: '/london/restaurants', label: 'Restaurants', icon: Utensils },
-  ];
-
-  const citiesSubLinks = [
-    { href: '/othercities/york', label: 'York' },
-    { href: '/othercities/glasgow', label: 'Glasgow' },
-    { href: '/othercities/edinburgh', label: 'Edinburgh' },
-    { href: '/othercities/southampton', label: 'Southampton' },
-    { href: '/othercities/swansea', label: 'Swansea' },
-    { href: '/othercities/colchester', label: 'Colchester' },
-    { href: '/othercities/nottingham', label: 'Nottingham' },
-  ];
-
-  const europaSubLinks = [
-    { href: '/europa/iceland', label: 'Iceland' },
-    { href: '/europa/poland', label: 'Poland' },
-    { href: '/europa/stockholm', label: 'Stockholm' },
-    { href: '/europa/copenhagen', label: 'København' },
-    { href: '/europa/paris', label: 'Paris' },
-    { href: '/europa/koln', label: 'Köln' },
   ];
 
   /* shared pill classes */

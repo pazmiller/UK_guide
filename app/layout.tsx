@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
 import { Analytics } from "@vercel/analytics/next"
 import MobileBackToTop from "@/components/MobileBackToTop";
+import { getEuropaNavItems, getUkCityNavItems } from "@/lib/server/cities";
 
 const inter = Inter( {
   subsets: [ "latin" ],
@@ -37,10 +38,13 @@ export default function RootLayout( {
   children: React.ReactNode;
 }> )
 {
+  const cityNavItems = getUkCityNavItems();
+  const europaNavItems = getEuropaNavItems();
+
   return (
     <html lang="en">
       <body className={`${inter.variable} ${notoSansSc.variable} ${specialElite.variable} antialiased`}>
-        <Navbar />
+        <Navbar citiesSubLinks={cityNavItems} europaSubLinks={europaNavItems} />
         <main className="min-h-screen">
           {children}
         </main>

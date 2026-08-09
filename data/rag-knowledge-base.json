@@ -1,7 +1,208 @@
 {
-  "version": 2,
-  "generatedAt": "2026-07-31T03:17:16.791Z",
+  "version": 3,
+  "generatedAt": "2026-08-09T11:47:45.743Z",
   "source": "src/DATA.json",
+  "cities": [
+    {
+      "slug": "york",
+      "name": "约克",
+      "nameEn": "York",
+      "description": "中世纪古城，巧克力之都，拥有约克大教堂和丰富的餐饮文化。",
+      "heroImage": "/locations/york.png",
+      "country": "uk",
+      "order": 10,
+      "restaurants": [
+        {
+          "id": "york-restaurant-bettys-cafe-tea-rooms",
+          "slug": "bettys-cafe-tea-rooms",
+          "name": "Bettys Café Tea Rooms",
+          "cuisine": "British",
+          "shortDescription": "经典英式茶屋/下午茶",
+          "description": "经典英式茶屋/下午茶",
+          "recommendReason": "大名鼎鼎的贝蒂茶屋，一大半人来约克似乎都是因为这家下午茶的名气（女王喜欢喝的）。日常需要walk-in排队，预定的话，只接受某个最低消费45￡的包间预定（据说有钢琴师演奏），平时甚至工作日周一都有一堆老头老太太排队。虽然说是茶屋不过其实营业范围包含早午晚餐。人均20-35￡。尝过他们家的一些brunch的菜，也尝过不止一次他们家经典的英式下午茶三层塔（27镑一份）。核心感觉还是，英国人的甜品对于我们还是太太太甜了，以及小小的三层塔下午茶能有1300-1700千卡热量（英国人真的不得糖尿病吗？？？）。",
+          "priceRange": "£20–35/人",
+          "images": [
+            "/Betty's Tea.png"
+          ],
+          "mustTry": [
+            "经典下午茶三层塔"
+          ]
+        },
+        {
+          "id": "york-restaurant-rise",
+          "slug": "rise",
+          "name": "Rise.",
+          "cuisine": "Brunch",
+          "shortDescription": "Brunch 店（偏网红）",
+          "description": "Brunch 店（偏网红）",
+          "recommendReason": "Eggs Benedict/Royale 表现好；奶昔出片",
+          "priceRange": "£15–20/人",
+          "images": [
+            "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=800"
+          ],
+          "mustTry": [
+            "Eggs Benedict",
+            "Eggs Royale",
+            "奶昔"
+          ]
+        },
+        {
+          "id": "york-restaurant-casa-brazilian-rodizio",
+          "slug": "casa-brazilian-rodizio",
+          "name": "Casa Brazilian Rodizio",
+          "cuisine": "Brazilian",
+          "shortDescription": "巴西烤肉自助",
+          "description": "巴西烤肉自助",
+          "recommendReason": "店员会一直上肉直到你喊停；肉品质/味道不错",
+          "priceRange": "~£40/人",
+          "images": [
+            "https://images.unsplash.com/photo-1558030006-450675393462?w=800"
+          ],
+          "mustTry": [
+            "烤肉（不建议鸡肉和 Gammo）"
+          ]
+        },
+        {
+          "id": "york-restaurant-tabanco-by-ambiente",
+          "slug": "tabanco-by-ambiente",
+          "name": "Tabanco By Ambiente",
+          "cuisine": "Spanish",
+          "shortDescription": "西班牙菜（英式微改）",
+          "description": "西班牙菜（英式微改）",
+          "recommendReason": "去过很多次；有中文菜单；Sherry 很不错",
+          "priceRange": "£20–30+/人",
+          "images": [
+            "https://images.unsplash.com/photo-1515443961218-a51367888e4b?w=800"
+          ],
+          "mustTry": [
+            "Paella Iberica",
+            "Sherry（白葡萄酒）"
+          ]
+        },
+        {
+          "id": "york-restaurant-corner-grill-house",
+          "slug": "corner-grill-house",
+          "name": "Corner Grill House",
+          "cuisine": "Steakhouse",
+          "shortDescription": "河旁牛排馆",
+          "description": "河旁牛排馆",
+          "recommendReason": "牛排好吃，适合两人分大份",
+          "priceRange": "£30–40/人",
+          "images": [
+            "https://images.unsplash.com/photo-1544025162-d76694265947?w=800"
+          ],
+          "mustTry": [
+            "20oz T骨牛排（£59/份，适合2人）"
+          ]
+        },
+        {
+          "id": "york-restaurant-wine-stories",
+          "slug": "wine-stories",
+          "name": "Wine Stories",
+          "cuisine": "Greek",
+          "shortDescription": "希腊菜小店（拼盘超大）",
+          "description": "希腊菜小店（拼盘超大）",
+          "recommendReason": "£39 大拼盘非常管饱，性价比高；建议预订走 Facebook/电话",
+          "priceRange": "£20–25/人",
+          "images": [
+            "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800"
+          ],
+          "mustTry": [
+            "烤肉拼盘（£39那份）"
+          ]
+        },
+        {
+          "id": "york-restaurant-marzano-italian-grill",
+          "slug": "marzano-italian-grill",
+          "name": "Marzano Italian Grill",
+          "cuisine": "Italian",
+          "shortDescription": "中高端意大利菜",
+          "description": "中高端意大利菜",
+          "recommendReason": "似乎本地英国人很爱吃，平时很火，周末位置要提早订。虽然以某狼狼口味总觉得有一种高价吃碳水的感觉。",
+          "priceRange": "£25–30/人",
+          "images": [
+            "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800"
+          ],
+          "mustTry": []
+        },
+        {
+          "id": "york-restaurant-il-paradiso-del-cibo",
+          "slug": "il-paradiso-del-cibo",
+          "name": "Il Paradiso Del Cibo",
+          "cuisine": "Italian",
+          "shortDescription": "正宗全员西西里人开的意大利菜",
+          "description": "正宗全员西西里人开的意大利菜",
+          "recommendReason": "整体不错；番茄偏酸",
+          "priceRange": "£20–30/人",
+          "images": [
+            "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800"
+          ],
+          "mustTry": []
+        },
+        {
+          "id": "york-restaurant-ippuku-tea-house",
+          "slug": "ippuku-tea-house",
+          "name": "Ippuku Tea House",
+          "cuisine": "Japanese",
+          "shortDescription": "日式家庭小馆",
+          "description": "日式家庭小馆",
+          "recommendReason": "日本姐姐开的温馨家庭小馆，结日式家庭菜和Cafe一体。",
+          "priceRange": "~£20+/人",
+          "images": [
+            "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800"
+          ],
+          "mustTry": [
+            "玉露等日本茶",
+            "时令 special",
+            "手工咖喱"
+          ]
+        },
+        {
+          "id": "york-restaurant-shi-shang-chinese-restaurant",
+          "slug": "shi-shang-chinese-restaurant",
+          "name": "Shi Shang Chinese Restaurant（食尚）",
+          "cuisine": "Chinese",
+          "shortDescription": "中餐馆",
+          "description": "中餐馆",
+          "recommendReason": "约克中餐推荐名单之一",
+          "images": [
+            "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800"
+          ],
+          "mustTry": []
+        },
+        {
+          "id": "york-restaurant-red-chilli-restaurant",
+          "slug": "red-chilli-restaurant",
+          "name": "Red Chilli Restaurant",
+          "cuisine": "Chinese",
+          "shortDescription": "中餐馆",
+          "description": "中餐馆",
+          "recommendReason": "约克中餐推荐名单之一",
+          "images": [
+            "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800"
+          ],
+          "mustTry": []
+        },
+        {
+          "id": "york-restaurant-yi-pin-xiang",
+          "slug": "yi-pin-xiang",
+          "name": "一品香",
+          "cuisine": "Chinese",
+          "shortDescription": "中餐馆",
+          "description": "中餐馆",
+          "recommendReason": "约克中餐推荐名单之一",
+          "images": [
+            "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800"
+          ],
+          "mustTry": []
+        }
+      ],
+      "cafes": [],
+      "attractions": [],
+      "avoids": [],
+      "tips": []
+    }
+  ],
   "chunkCount": 121,
   "chunks": [
     {
@@ -1535,7 +1736,10 @@
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
       "title": "Bettys Café Tea Rooms",
-      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Bettys Café Tea Rooms\n简介：经典英式茶屋/下午茶\n菜系：British\n推荐原因：大名鼎鼎的贝蒂茶屋，一大半人来约克似乎都是因为这家下午茶的名气（女王喜欢喝的）。日常需要walk-in排队，预定的话，只接受某个最低消费45￡的包间预定（据说有钢琴师演奏），平时甚至工作日周一都有一堆老头老太太排队。虽然说是茶屋不过其实营业范围包含早午晚餐。人均20-35￡。尝过他们家的一些brunch的菜，也尝过不止一次他们家经典的英式下午茶三层塔（27镑一份）。核心感觉还是，英国人的甜品对于我们还是太太太甜了，以及小小的三层塔下午茶能有1300-1700千卡热量（英国人真的不得糖尿病吗？？？）。\n推荐菜：经典下午茶三层塔\n价位：£20–35/人；",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Bettys Café Tea Rooms\n简介：经典英式茶屋/下午茶\n菜系：British\n推荐原因：大名鼎鼎的贝蒂茶屋，一大半人来约克似乎都是因为这家下午茶的名气（女王喜欢喝的）。日常需要walk-in排队，预定的话，只接受某个最低消费45￡的包间预定（据说有钢琴师演奏），平时甚至工作日周一都有一堆老头老太太排队。虽然说是茶屋不过其实营业范围包含早午晚餐。人均20-35￡。尝过他们家的一些brunch的菜，也尝过不止一次他们家经典的英式下午茶三层塔（27镑一份）。核心感觉还是，英国人的甜品对于我们还是太太太甜了，以及小小的三层塔下午茶能有1300-1700千卡热量（英国人真的不得糖尿病吗？？？）。\n推荐菜：经典下午茶三层塔\n价位：£20–35/人",
+      "details": {
+        "images": "/Betty's Tea.png"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
@@ -1550,7 +1754,10 @@
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
       "title": "Rise.",
-      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Rise.\n简介：Brunch 店（偏网红）\n菜系：Other\n推荐原因：Eggs Benedict/Royale 表现好；奶昔出片\n推荐菜：Eggs Benedict、Eggs Royale、奶昔\n价位：£15–20/人",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Rise.\n简介：Brunch 店（偏网红）\n菜系：Brunch\n推荐原因：Eggs Benedict/Royale 表现好；奶昔出片\n推荐菜：Eggs Benedict、Eggs Royale、奶昔\n价位：£15–20/人",
+      "details": {
+        "images": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=800"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
@@ -1566,6 +1773,9 @@
       "section": "York｜约克（餐厅）",
       "title": "Casa Brazilian Rodizio",
       "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Casa Brazilian Rodizio\n简介：巴西烤肉自助\n菜系：Brazilian\n推荐原因：店员会一直上肉直到你喊停；肉品质/味道不错\n推荐菜：烤肉（不建议鸡肉和 Gammo）\n价位：~£40/人",
+      "details": {
+        "images": "https://images.unsplash.com/photo-1558030006-450675393462?w=800"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
@@ -1581,6 +1791,9 @@
       "section": "York｜约克（餐厅）",
       "title": "Tabanco By Ambiente",
       "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Tabanco By Ambiente\n简介：西班牙菜（英式微改）\n菜系：Spanish\n推荐原因：去过很多次；有中文菜单；Sherry 很不错\n推荐菜：Paella Iberica、Sherry（白葡萄酒）\n价位：£20–30+/人",
+      "details": {
+        "images": "https://images.unsplash.com/photo-1515443961218-a51367888e4b?w=800"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
@@ -1595,7 +1808,10 @@
       "category": "restaurant",
       "section": "York｜约克（餐厅）",
       "title": "Corner Grill House",
-      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Corner Grill House\n简介：河旁牛排馆\n菜系：Other\n推荐原因：牛排好吃，适合两人分大份\n推荐菜：20oz T骨牛排（£59/份，适合2人）\n价位：£30–40/人",
+      "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Corner Grill House\n简介：河旁牛排馆\n菜系：Steakhouse\n推荐原因：牛排好吃，适合两人分大份\n推荐菜：20oz T骨牛排（£59/份，适合2人）\n价位：£30–40/人",
+      "details": {
+        "images": "https://images.unsplash.com/photo-1544025162-d76694265947?w=800"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
@@ -1611,6 +1827,9 @@
       "section": "York｜约克（餐厅）",
       "title": "Wine Stories",
       "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Wine Stories\n简介：希腊菜小店（拼盘超大）\n菜系：Greek\n推荐原因：£39 大拼盘非常管饱，性价比高；建议预订走 Facebook/电话\n推荐菜：烤肉拼盘（£39那份）\n价位：£20–25/人",
+      "details": {
+        "images": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
@@ -1626,6 +1845,9 @@
       "section": "York｜约克（餐厅）",
       "title": "Marzano Italian Grill",
       "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Marzano Italian Grill\n简介：中高端意大利菜\n菜系：Italian\n推荐原因：似乎本地英国人很爱吃，平时很火，周末位置要提早订。虽然以某狼狼口味总觉得有一种高价吃碳水的感觉。\n推荐菜：未注明\n价位：£25–30/人",
+      "details": {
+        "images": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
@@ -1641,6 +1863,9 @@
       "section": "York｜约克（餐厅）",
       "title": "Il Paradiso Del Cibo",
       "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Il Paradiso Del Cibo\n简介：正宗全员西西里人开的意大利菜\n菜系：Italian\n推荐原因：整体不错；番茄偏酸\n推荐菜：未注明\n价位：£20–30/人",
+      "details": {
+        "images": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
@@ -1656,6 +1881,9 @@
       "section": "York｜约克（餐厅）",
       "title": "Ippuku Tea House",
       "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Ippuku Tea House\n简介：日式家庭小馆\n菜系：Japanese\n推荐原因：日本姐姐开的温馨家庭小馆，结日式家庭菜和Cafe一体。\n推荐菜：玉露等日本茶、时令 special、手工咖喱\n价位：~£20+/人",
+      "details": {
+        "images": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
@@ -1671,6 +1899,9 @@
       "section": "York｜约克（餐厅）",
       "title": "Shi Shang Chinese Restaurant（食尚）",
       "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Shi Shang Chinese Restaurant（食尚）\n简介：中餐馆\n菜系：Chinese\n推荐原因：约克中餐推荐名单之一\n推荐菜：未注明\n价位：未注明",
+      "details": {
+        "images": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
@@ -1686,6 +1917,9 @@
       "section": "York｜约克（餐厅）",
       "title": "Red Chilli Restaurant",
       "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：Red Chilli Restaurant\n简介：中餐馆\n菜系：Chinese\n推荐原因：约克中餐推荐名单之一\n推荐菜：未注明\n价位：未注明",
+      "details": {
+        "images": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
@@ -1701,6 +1935,10 @@
       "section": "York｜约克（餐厅）",
       "title": "一品香",
       "content": "城市/地区：York\n分类：restaurant\n来源章节：York｜约克（餐厅）\n条目：一品香\n简介：中餐馆\n菜系：Chinese\n推荐原因：约克中餐推荐名单之一\n推荐菜：未注明\n价位：未注明",
+      "details": {
+        "slug": "yi-pin-xiang",
+        "images": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800"
+      },
       "source": "src/DATA.json",
       "tags": [
         "York",
