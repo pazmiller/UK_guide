@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 export const contributionTypes = [ 'restaurant', 'attraction', 'avoid', 'tip' ] as const;
 export const contributionIntents = [ 'add', 'update', 'closure', 'image', 'other' ] as const;
+export const contributionRegions = [ 'uk', 'europa' ] as const;
 export const contributionImageTypes = [ 'image/jpeg', 'image/png', 'image/webp' ] as const;
 export const restaurantCuisineOptions = [
   'American',
@@ -60,6 +61,7 @@ export const contributionSubmissionSchema = z.object( {
   version: z.literal( 1 ).default( 1 ),
   type: z.enum( contributionTypes ),
   intent: z.enum( contributionIntents ),
+  region: z.enum( contributionRegions ).default( 'uk' ),
   name: z.string().trim().min( 1 ).max( 120 ),
   city: z.string().trim().min( 1 ).max( 100 ),
   details: z.string().trim().min( 1 ).max( 4000 ),
@@ -126,6 +128,7 @@ export const contributionUploadRequestSchema = z.object( {
 export type ContributionSubmission = z.infer<typeof contributionSubmissionSchema>;
 export type ContributionType = typeof contributionTypes[ number ];
 export type ContributionIntent = typeof contributionIntents[ number ];
+export type ContributionRegion = typeof contributionRegions[ number ];
 export type RestaurantCuisine = typeof restaurantCuisineOptions[ number ];
 
 export const contributionTypeLabels: Record<ContributionType, string> = {
@@ -141,4 +144,9 @@ export const contributionIntentLabels: Record<ContributionIntent, string> = {
   closure: '报告停业或错误',
   image: '新增图片',
   other: '其他补充',
+};
+
+export const contributionRegionLabels: Record<ContributionRegion, string> = {
+  uk: '英国 / UK',
+  europa: '欧洲大陆 / Europa',
 };

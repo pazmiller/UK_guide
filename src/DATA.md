@@ -577,66 +577,96 @@ apotek
 价位： 10000–18000 冰岛克朗/人
 
 York｜约克（餐厅）
+城市标识： york
+城市描述： 中世纪古城，巧克力之都，拥有约克大教堂和丰富的餐饮文化。
+城市封面： /locations/york.png
+国家： uk
+导航顺序： 10
 Bettys Café Tea Rooms
 简介： 经典英式茶屋/下午茶
+菜系： British
 推荐原因： 大名鼎鼎的贝蒂茶屋，一大半人来约克似乎都是因为这家下午茶的名气（女王喜欢喝的）。日常需要walk-in排队，预定的话，只接受某个最低消费45￡的包间预定（据说有钢琴师演奏），平时甚至工作日周一都有一堆老头老太太排队。虽然说是茶屋不过其实营业范围包含早午晚餐。人均20-35￡。尝过他们家的一些brunch的菜，也尝过不止一次他们家经典的英式下午茶三层塔（27镑一份）。核心感觉还是，英国人的甜品对于我们还是太太太甜了，以及小小的三层塔下午茶能有1300-1700千卡热量（英国人真的不得糖尿病吗？？？）。
 推荐菜： 经典下午茶三层塔
-价位： £20–35/人；
+价位： £20–35/人
+图片： /Betty's Tea.png
 Rise.
 简介： Brunch 店（偏网红）
+菜系： Brunch
 推荐原因： Eggs Benedict/Royale 表现好；奶昔出片
 推荐菜： Eggs Benedict、Eggs Royale、奶昔
 价位： £15–20/人
+图片： https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=800
 Casa Brazilian Rodizio
 简介： 巴西烤肉自助
+菜系： Brazilian
 推荐原因： 店员会一直上肉直到你喊停；肉品质/味道不错
 推荐菜： 烤肉（不建议鸡肉和 Gammo）
 价位： ~£40/人
+图片： https://images.unsplash.com/photo-1558030006-450675393462?w=800
 Tabanco By Ambiente
 简介： 西班牙菜（英式微改）
+菜系： Spanish
 推荐原因： 去过很多次；有中文菜单；Sherry 很不错
 推荐菜： Paella Iberica、Sherry（白葡萄酒）
 价位： £20–30+/人
+图片： https://images.unsplash.com/photo-1515443961218-a51367888e4b?w=800
 Corner Grill House
 简介： 河旁牛排馆
+菜系： Steakhouse
 推荐原因： 牛排好吃，适合两人分大份
 推荐菜： 20oz T骨牛排（£59/份，适合2人）
 价位： £30–40/人
+图片： https://images.unsplash.com/photo-1544025162-d76694265947?w=800
 Wine Stories
 简介： 希腊菜小店（拼盘超大）
+菜系： Greek
 推荐原因： £39 大拼盘非常管饱，性价比高；建议预订走 Facebook/电话
 推荐菜： 烤肉拼盘（£39那份）
 价位： £20–25/人
+图片： https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800
 Marzano Italian Grill
 简介： 中高端意大利菜
+菜系： Italian
 推荐原因：似乎本地英国人很爱吃，平时很火，周末位置要提早订。虽然以某狼狼口味总觉得有一种高价吃碳水的感觉。
 推荐菜： 未注明
 价位： £25–30/人
+图片： https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800
 Il Paradiso Del Cibo
 简介： 正宗全员西西里人开的意大利菜
+菜系： Italian
 推荐原因： 整体不错；番茄偏酸
 推荐菜： 未注明
 价位： £20–30/人
+图片： https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800
 Ippuku Tea House
 简介： 日式家庭小馆
+菜系： Japanese
 推荐原因： 日本姐姐开的温馨家庭小馆，结日式家庭菜和Cafe一体。
 推荐菜： 玉露等日本茶、时令 special、手工咖喱
 价位： ~£20+/人
+图片： https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800
 Shi Shang Chinese Restaurant（食尚）
 简介： 中餐馆
+菜系： Chinese
 推荐原因： 约克中餐推荐名单之一
 推荐菜： 未注明
 价位： 未注明
+图片： https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800
 Red Chilli Restaurant
 简介： 中餐馆
+菜系： Chinese
 推荐原因： 约克中餐推荐名单之一
 推荐菜： 未注明
 价位： 未注明
+图片： https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800
 一品香
+条目标识： yi-pin-xiang
 简介： 中餐馆
+菜系： Chinese
 推荐原因：约克中餐推荐名单之一
 推荐菜： 未注明
 价位： 未注明
+图片： https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800
 
 Nottingham｜诺丁汉
 Red Dog Saloon Nottingham

@@ -1,9 +1,11 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, BookOpen, Building, Globe, MapPin } from 'lucide-react';
 import Hero from '@/components/Hero';
 import ClickableRestaurantGrid from '@/components/ClickableRestaurantGrid';
 import CreditsSection from '@/components/CreditsSection';
 import { londonRestaurants } from '@/data/london/restaurants';
+import millerIcon from '@/src/img/miller_icon.png';
 
 export default function Home()
 {
@@ -16,16 +18,42 @@ export default function Home()
       {/* About Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold text-[#1D3557] mb-6">
-              欢迎！ <span className="text-[#E63946]">by UK CFFA群主与群成员们</span>
-            </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              无论你是刚来英国上学的新人，还是已经就读工作多年，UKCFFA会一直与你分享英国与欧陆。
-            </p>
-            <Link href="/contribute" className="btn-primary inline-flex items-center gap-2">
-              出一份力！ <ArrowRight className="w-5 h-5" />
-            </Link>
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(220px,0.65fr)_minmax(0,2fr)] xl:grid-cols-[280px_minmax(0,768px)_1fr]">
+            <aside className="furcon-in mx-auto flex max-w-[280px] flex-col items-center" aria-label="兽聚日期与兽展资讯">
+              <div className="relative rounded-2xl border-2 border-[#1D3557] bg-[#FFF9EC] px-5 py-4 text-left shadow-[5px_6px_0_#1D3557]">
+                <span className="absolute -bottom-[9px] left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-[#1D3557] bg-[#FFF9EC]" aria-hidden="true" />
+                <p className="text-[15px] font-bold leading-6 text-[#1D3557]">
+                  想要了解最近英国的兽聚是几号，周边国家有什么兽展吗？
+                </p>
+                <a
+                  href="https://ukeu.vercel.app/furcon"
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[#E63946] px-4 py-2 text-sm font-black text-white transition-[transform,background-color] hover:-translate-y-0.5 hover:bg-[#C62A36] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#E63946]"
+                >
+                  想！
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </div>
+
+              <div className="mt-5 overflow-hidden rounded-full border-4 border-white bg-white shadow-[0_0_0_3px_#F4A261,0_10px_25px_rgba(29,53,87,0.22)]">
+                <Image
+                  src={millerIcon}
+                  alt="米勒头像"
+                  className="h-28 w-28 object-cover [image-rendering:pixelated]"
+                />
+              </div>
+            </aside>
+
+            <div className="max-w-3xl text-center">
+              <h2 className="text-4xl font-bold text-[#1D3557] mb-6">
+                欢迎！ <span className="text-[#E63946]">by UK CFFA群主与群成员们</span>
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                无论你是刚来英国上学的新人，还是已经就读工作多年，UKCFFA会一直与你分享英国与欧陆。
+              </p>
+              <Link href="/contribute" className="btn-primary inline-flex items-center gap-2">
+                出一份力！ <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
           </div>
 
           <section className="relative mt-16 overflow-hidden border border-[#1D3557]/15 bg-[#FCFBF7] shadow-[0_18px_42px_rgba(29,53,87,0.12)]">

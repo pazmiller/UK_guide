@@ -2,59 +2,17 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import ClickableRestaurantGrid from '@/components/ClickableRestaurantGrid';
 import EditorialRibbon from '@/components/EditorialRibbon';
+import { countCityRecommendations } from '@/data/cityRegistry';
 import { ukRecommendedChains } from '@/data/uk-budget';
+import { getUkCities } from '@/lib/server/cities';
 
-const cities = [
-  {
-    name: '约克 York',
-    slug: 'york',
-    description: '中世纪古城，贝蒂茶屋与丰富美食',
-    image: '/locations/york.png',
-    count: 12,
-  },
-  {
-    name: '格拉斯哥 Glasgow',
-    slug: 'glasgow',
-    description: '苏格兰最大城市，充满活力的文化之都',
-    image: '/locations/glassgow.png',
-    count: 4,
-  },
-  {
-    name: '南安普顿 Southampton',
-    slug: 'southampton',
-    description: '英格兰南部港口城市',
-    image: '/locations/southampton.png',
-    count: 3,
-  },
-  {
-    name: '斯旺西 Swansea',
-    slug: 'swansea',
-    description: '威尔士海滨小镇，安静朴素',
-    image: '/locations/swansea.png',
-    count: 7,
-  },
-  {
-    name: '科尔切斯特 Colchester',
-    slug: 'colchester',
-    description: 'Essex 大学所在地，英国有记载最古老城镇之一',
-    image: '/locations/Colchester.png',
-    count: 2,
-  },
-  {
-    name: '诺丁汉 Nottingham',
-    slug: 'nottingham',
-    description: '罗宾汉传说、运河与活跃的酒吧文化',
-    image: '/contributions/3/1.webp',
-    count: 1,
-  },
-  {
-    name: '爱丁堡 Edinburgh',
-    slug: 'edinburgh',
-    description: '苏格兰首都，城堡之城',
-    image: 'https://images.unsplash.com/photo-1501699169021-3759ee435d66?w=800&q=80',
-    count: 1,
-  },
-];
+const cities = getUkCities().map( city => ( {
+  name: `${city.name} ${city.nameEn}`,
+  slug: city.slug,
+  description: city.description,
+  image: city.heroImage,
+  count: countCityRecommendations( city ),
+} ) );
 
 export default function OtherCitiesPage() {
   return (

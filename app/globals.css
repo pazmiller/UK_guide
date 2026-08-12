@@ -99,6 +99,31 @@ html {
   animation: slideIn 0.6s ease-out forwards;
 }
 
+@keyframes furcon-in {
+  0% {
+    opacity: 0;
+    transform: translate(-36px, 28px) scale(0.72) rotate(-7deg);
+  }
+  65% {
+    opacity: 1;
+    transform: translate(5px, -4px) scale(1.04) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0) scale(1) rotate(0);
+  }
+}
+
+.furcon-in {
+  animation: furcon-in 0.75s cubic-bezier(0.2, 0.85, 0.25, 1.15) 0.2s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .furcon-in {
+    animation: none;
+  }
+}
+
 /* Hero gradient overlay */
 .hero-gradient {
   background: linear-gradient(

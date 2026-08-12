@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const MARKDOWN_PATH = path.join( process.cwd(), 'src', 'DATA.md' );
 const SOURCE_PATH = path.join( process.cwd(), 'src', 'DATA.json' );
@@ -7,7 +8,8 @@ const OUTPUT_PATH = path.join( process.cwd(), 'data', 'rag-knowledge-base.json' 
 const MARKDOWN_SOURCE = 'src/DATA.md';
 const JSON_SOURCE = 'src/DATA.json';
 
-const FIELD_RE = /^(简介|菜系|推荐原因|推荐菜|价位|价格|地址|链接|邮编|避雷原因|原因|备注)：/;
+const FIELD_RE = /^(条目标识|简介|菜系|推荐原因|推荐菜|价位|价格|地址|链接|网站|邮编|营业时间|图片|避雷原因|原因|备注)：/;
+const CITY_METADATA_RE = /^(城市标识|城市描述|城市封面|国家|导航顺序)：\s*(.*)$/;
 const SEPARATOR_RE = /^[-—_]{3,}$/;
 const RESTAURANT_CONTENT_FIELDS = {
   '简介': 'summary',
@@ -18,10 +20,21 @@ const RESTAURANT_CONTENT_FIELDS = {
   '价格': 'price',
 };
 const RESTAURANT_DETAIL_FIELDS = {
+  '条目标识': 'slug',
   '地址': 'address',
   '链接': 'link',
+  '网站': 'website',
   '邮编': 'postcode',
+  '营业时间': 'opening_hours',
+  '图片': 'images',
   '备注': 'notes',
+};
+const CITY_METADATA_FIELDS = {
+  '城市标识': 'slug',
+  '城市描述': 'description',
+  '城市封面': 'heroImage',
+  '国家': 'country',
+  '导航顺序': 'order',
 };
 const CAFE_CUISINES = [ 'Drinks', 'Dessert' ];
 const DESSERT_CAFE_RE = /甜品|点心|烘焙|冰淇淋|巧克力|\bbakery\b|\bgelato\b|\bdessert\b|\bchocolat/i;
@@ -79,6 +92,10 @@ function isFieldLine( line )
 
 function cityFromText( text )
 {
+  const [ headingName ] = cleanTitle( text ).split( /\s*(?:｜|\|)\s*/, 1 );
+  const explicitName = headingName?.replace( /\s*[（(].*$/, '' ).trim();
+  if ( explicitName && ( text.includes( '｜' ) || /\s\|\s/.test( text ) ) ) return explicitName;
+
   for ( const [ pattern, city ] of CITY_ALIASES )
   {
     if ( pattern.test( text ) ) return city;
@@ -128,12 +145,239 @@ function slugPart( value )
 
 function splitInlineFields( line )
 {
-  const match = line.match( /(简介|菜系|推荐原因|推荐菜|价位|价格|地址|链接|邮编|避雷原因|原因|备注)：/ );
+  const match = line.match( /(条目标识|简介|菜系|推荐原因|推荐菜|价位|价格|地址|链接|网站|邮编|营业时间|图片|避雷原因|原因|备注)：/ );
   if ( !match || match.index === 0 ) return null;
 
   const title = line.slice( 0, match.index ).trim();
   const rest = line.slice( match.index ).trim();
   return { title, rest };
+}
+
+function cityNamesFromHeading( heading )
+{
+  const [ english = '', chinese = '' ] = cleanTitle( heading ).split( /\s*(?:｜|\|)\s*/, 2 );
+  return {
+    nameEn: english.replace( /\s*[（(].*$/, '' ).trim(),
+    name: chinese.replace( /\s*[（(].*$/, '' ).trim(),
+  };
+}
+
+function splitList( value )
+{
+  if ( !value || /^(?:未注明|未知|unknown|n\/a)$/i.test( value.trim() ) ) return [];
+  const values = [];
+  let current = '';
+  let depth = 0;
+
+  for ( const character of value )
+  {
+    if ( character === '(' || character === '（' || character === '[' || character === '【' ) depth++;
+    if ( character === ')' || character === '）' || character === ']' || character === '】' ) depth--;
+    if ( depth === 0 && ( character === '、' || character === '，' || character === ',' ) )
+    {
+      if ( current.trim() ) values.push( current.trim() );
+      current = '';
+      continue;
+    }
+    current += character;
+  }
+  if ( current.trim() ) values.push( current.trim() );
+  return values;
+}
+
+function optionalValue( value )
+{
+  if ( !value || /^(?:未注明|未知|unknown|n\/a)$/i.test( value.trim() ) ) return undefined;
+  return value.trim();
+}
+
+function chunkFields( chunk )
+{
+  const fields = {};
+  const body = [];
+  const lines = typeof chunk.content === 'string' ? chunk.content.split( '\n' ) : [];
+
+  for ( const line of lines )
+  {
+    const match = line.match( /^([^：]+)：\s*(.*)$/ );
+    if ( !match )
+    {
+      if ( line.trim() ) body.push( line.trim() );
+      continue;
+    }
+
+    const [ , label, value ] = match;
+    if ( [ '城市/地区', '分类', '来源章节', '条目' ].includes( label ) ) continue;
+    appendValue( fields, label, value );
+  }
+
+  return { fields, body: body.join( '\n' ).trim() };
+}
+
+function validatedImages( title, value )
+{
+  const images = splitList( value );
+  for ( const image of images )
+  {
+    if ( image.startsWith( 'public/' ) ) throw new TypeError( `${title} uses a public/ image URL.` );
+    if ( !image.startsWith( '/' ) && !/^https:\/\//.test( image ) )
+    {
+      throw new TypeError( `${title} has an invalid image URL: ${image}` );
+    }
+  }
+  return images;
+}
+
+function validatedEntrySlug( title, explicitSlug )
+{
+  const entrySlug = optionalValue( explicitSlug ) ?? slugPart( title );
+  if ( !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test( entrySlug ) || entrySlug === 'chunk' )
+  {
+    throw new TypeError( `${title} needs an explicit valid 条目标识.` );
+  }
+  return entrySlug;
+}
+
+function buildCities( chunks, cityMetadata )
+{
+  const slugs = new Set();
+  const cities = [];
+
+  for ( const [ cityNameEn, metadata ] of cityMetadata )
+  {
+    const required = [ 'slug', 'name', 'nameEn', 'description', 'heroImage', 'country' ];
+    for ( const field of required )
+    {
+      if ( !metadata[ field ] ) throw new TypeError( `${cityNameEn} is missing city metadata: ${field}` );
+    }
+    if ( !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test( metadata.slug ) )
+    {
+      throw new TypeError( `${cityNameEn} has an invalid city slug: ${metadata.slug}` );
+    }
+    if ( slugs.has( metadata.slug ) ) throw new TypeError( `Duplicate city slug: ${metadata.slug}` );
+    if ( metadata.country !== 'uk' && metadata.country !== 'europa' )
+    {
+      throw new TypeError( `${cityNameEn} has an invalid country: ${metadata.country}` );
+    }
+    slugs.add( metadata.slug );
+
+    const foodEntries = chunks
+      .filter( chunk => chunk.city === cityNameEn && hasStructuredFoodContent( chunk.category ) )
+      .map( chunk =>
+      {
+        const details = chunk.details ?? {};
+        const images = validatedImages( chunk.title, details.images );
+        const entrySlug = validatedEntrySlug( chunk.title, details.slug );
+
+        return {
+          category: chunk.category,
+          data: {
+            id: `${metadata.slug}-${chunk.category}-${entrySlug}`,
+            slug: entrySlug,
+            name: chunk.title,
+            cuisine: chunk.content.type_cusine,
+            shortDescription: chunk.content.summary,
+            description: details.notes || chunk.content.summary || chunk.content.recommend_reason,
+            ...( optionalValue( chunk.content.recommend_reason )
+              ? { recommendReason: optionalValue( chunk.content.recommend_reason ) }
+              : {} ),
+            ...( optionalValue( details.address ) ? { address: optionalValue( details.address ) } : {} ),
+            ...( optionalValue( details.opening_hours ) ? { openingHours: optionalValue( details.opening_hours ) } : {} ),
+            ...( optionalValue( chunk.content.price ) ? { priceRange: optionalValue( chunk.content.price ) } : {} ),
+            images,
+            ...( optionalValue( details.website ?? details.link )
+              ? { website: optionalValue( details.website ?? details.link ) }
+              : {} ),
+            mustTry: splitList( chunk.content.recommend_signatures ),
+          },
+        };
+      } );
+
+    const attractions = chunks
+      .filter( chunk => chunk.city === cityNameEn && chunk.category === 'attraction' )
+      .map( chunk =>
+      {
+        const { fields, body } = chunkFields( chunk );
+        const entrySlug = validatedEntrySlug( chunk.title, fields[ '条目标识' ] );
+        const summary = optionalValue( fields[ '简介' ] )
+          ?? optionalValue( fields[ '推荐原因' ] )
+          ?? optionalValue( body )
+          ?? chunk.title;
+        const description = optionalValue( fields[ '备注' ] )
+          ?? optionalValue( fields[ '推荐原因' ] )
+          ?? optionalValue( fields[ '简介' ] )
+          ?? optionalValue( body )
+          ?? summary;
+
+        return {
+          id: `${metadata.slug}-attraction-${entrySlug}`,
+          slug: entrySlug,
+          name: chunk.title,
+          shortDescription: summary,
+          description,
+          ...( optionalValue( fields[ '地址' ] ) ? { address: optionalValue( fields[ '地址' ] ) } : {} ),
+          ...( optionalValue( fields[ '营业时间' ] ) ? { openingHours: optionalValue( fields[ '营业时间' ] ) } : {} ),
+          ...( optionalValue( fields[ '价位' ] ?? fields[ '价格' ] )
+            ? { price: optionalValue( fields[ '价位' ] ?? fields[ '价格' ] ) }
+            : {} ),
+          images: validatedImages( chunk.title, fields[ '图片' ] ),
+          ...( optionalValue( fields[ '网站' ] ?? fields[ '链接' ] )
+            ? { website: optionalValue( fields[ '网站' ] ?? fields[ '链接' ] ) }
+            : {} ),
+        };
+      } );
+
+    const avoids = chunks
+      .filter( chunk => chunk.city === cityNameEn && chunk.category === 'avoid' )
+      .map( chunk =>
+      {
+        const { fields, body } = chunkFields( chunk );
+        const reason = optionalValue( fields[ '避雷原因' ] )
+          ?? optionalValue( fields[ '原因' ] )
+          ?? optionalValue( fields[ '推荐原因' ] )
+          ?? optionalValue( fields[ '备注' ] )
+          ?? optionalValue( fields[ '简介' ] )
+          ?? optionalValue( body );
+        if ( !reason ) throw new TypeError( `${chunk.title} needs a reason.` );
+
+        return {
+          name: chunk.title,
+          reason,
+          category: chunk.section,
+          city: metadata.nameEn,
+        };
+      } );
+
+    const tips = chunks
+      .filter( chunk => chunk.city === cityNameEn && chunk.category === 'tip' )
+      .map( chunk =>
+      {
+        const { fields, body } = chunkFields( chunk );
+        const content = optionalValue( fields[ '备注' ] )
+          ?? optionalValue( fields[ '推荐原因' ] )
+          ?? optionalValue( fields[ '简介' ] )
+          ?? optionalValue( body );
+        if ( !content ) throw new TypeError( `${chunk.title} needs tip content.` );
+        return { content };
+      } );
+
+    cities.push( {
+      slug: metadata.slug,
+      name: metadata.name,
+      nameEn: metadata.nameEn,
+      description: metadata.description,
+      heroImage: metadata.heroImage,
+      country: metadata.country,
+      order: Number.isFinite( Number( metadata.order ) ) ? Number( metadata.order ) : 999,
+      restaurants: foodEntries.filter( entry => entry.category === 'restaurant' ).map( entry => entry.data ),
+      cafes: foodEntries.filter( entry => entry.category === 'cafe' ).map( entry => entry.data ),
+      attractions,
+      avoids,
+      tips,
+    } );
+  }
+
+  return cities.sort( ( a, b ) => a.order - b.order || a.nameEn.localeCompare( b.nameEn ) );
 }
 
 function appendValue( target, key, value )
@@ -228,7 +472,9 @@ function serializeRestaurantContent( chunk )
   const detailLabels = {
     address: '地址',
     link: '链接',
+    website: '网站',
     postcode: '邮编',
+    opening_hours: '营业时间',
     notes: '备注',
   };
   const lines = [
@@ -276,10 +522,11 @@ function validateRestaurantContent( chunk )
   }
 }
 
-function buildKnowledgeBase( markdown )
+export function buildKnowledgeBase( markdown )
 {
   const lines = markdown.split( /\r?\n/ ).map( normalizeLine );
   const chunks = [];
+  const cityMetadata = new Map();
   let section = {
     raw: 'General',
     city: 'General',
@@ -346,6 +593,20 @@ function buildKnowledgeBase( markdown )
       continue;
     }
 
+    const cityMetadataMatch = line.match( CITY_METADATA_RE );
+    if ( cityMetadataMatch && section.city !== 'General' )
+    {
+      flush();
+      const names = cityNamesFromHeading( section.raw );
+      const metadata = cityMetadata.get( section.city ) ?? {
+        nameEn: names.nameEn || section.city,
+        name: names.name,
+      };
+      metadata[ CITY_METADATA_FIELDS[ cityMetadataMatch[ 1 ] ] ] = cityMetadataMatch[ 2 ].trim();
+      cityMetadata.set( section.city, metadata );
+      continue;
+    }
+
     const inline = splitInlineFields( line );
     if ( inline )
     {
@@ -408,15 +669,19 @@ function buildKnowledgeBase( markdown )
   flush();
 
   return {
-    version: 2,
+    version: 3,
     generatedAt: new Date().toISOString(),
     source: MARKDOWN_SOURCE,
+    cities: buildCities( chunks, cityMetadata ),
     chunkCount: chunks.length,
     chunks,
   };
 }
 
-if ( process.argv.includes( '--build-data' ) )
+const isMainModule = process.argv[ 1 ]
+  && path.resolve( process.argv[ 1 ] ) === path.resolve( fileURLToPath( import.meta.url ) );
+
+if ( isMainModule && process.argv.includes( '--build-data' ) )
 {
   const markdown = await readFile( MARKDOWN_PATH, 'utf8' );
   const contentData = buildKnowledgeBase( markdown );
@@ -425,7 +690,7 @@ if ( process.argv.includes( '--build-data' ) )
   await writeFile( SOURCE_PATH, `${JSON.stringify( contentData, null, 2 )}\n` );
 
   console.log( `Built ${contentData.chunkCount} content entries in ${JSON_SOURCE}` );
-} else
+} else if ( isMainModule )
 {
   const contentData = JSON.parse( await readFile( SOURCE_PATH, 'utf8' ) );
   if ( !Array.isArray( contentData.chunks ) )

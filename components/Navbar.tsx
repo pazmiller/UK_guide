@@ -5,7 +5,19 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { Menu, X, MapPin, Building, Utensils, ChevronDown, ShieldAlert } from 'lucide-react';
 
-export default function Navbar()
+interface NavbarProps
+{
+  citiesSubLinks: NavLink[];
+  europaSubLinks: NavLink[];
+}
+
+interface NavLink
+{
+    href: string;
+    label: string;
+}
+
+export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps )
 {
   const [ isOpen, setIsOpen ] = useState( false );
   const [ londonOpen, setLondonOpen ] = useState( false );
@@ -31,25 +43,6 @@ export default function Navbar()
   const londonSubLinks = [
     { href: '/london/attractions', label: 'Attractions', icon: Building },
     { href: '/london/restaurants', label: 'Restaurants', icon: Utensils },
-  ];
-
-  const citiesSubLinks = [
-    { href: '/othercities/york', label: 'York' },
-    { href: '/othercities/glasgow', label: 'Glasgow' },
-    { href: '/othercities/edinburgh', label: 'Edinburgh' },
-    { href: '/othercities/southampton', label: 'Southampton' },
-    { href: '/othercities/swansea', label: 'Swansea' },
-    { href: '/othercities/colchester', label: 'Colchester' },
-    { href: '/othercities/nottingham', label: 'Nottingham' },
-  ];
-
-  const europaSubLinks = [
-    { href: '/europa/iceland', label: 'Iceland' },
-    { href: '/europa/poland', label: 'Poland' },
-    { href: '/europa/stockholm', label: 'Stockholm' },
-    { href: '/europa/copenhagen', label: 'København' },
-    { href: '/europa/paris', label: 'Paris' },
-    { href: '/europa/koln', label: 'Köln' },
   ];
 
   /* shared pill classes */
@@ -183,11 +176,10 @@ export default function Navbar()
 
       <nav className="fixed top-3 left-0 right-0 z-50 px-3 transition-[opacity,transform] duration-300 sm:px-4">
         {/* Main Nav Row */}
-        <div className={`liquid-glass nav-liquid-shell relative z-30 mx-auto max-w-7xl rounded-[28px] border px-4 transition-[background-color,border-color,box-shadow] duration-300 sm:px-6 lg:px-8 ${
-          scrolled
-            ? 'liquid-glass--scrolled'
-            : ''
-        }`}>
+        <div className={`liquid-glass nav-liquid-shell relative z-30 mx-auto max-w-7xl rounded-[28px] border px-4 transition-[background-color,border-color,box-shadow] duration-300 sm:px-6 lg:px-8 ${scrolled
+          ? 'liquid-glass--scrolled'
+          : ''
+          }`}>
           <div className="flex h-[64px] items-center justify-between">
 
             {/* Logo */}
@@ -196,7 +188,7 @@ export default function Navbar()
                 <MapPin className="w-6 h-6 text-[#E63946]" />
               </div>
               <span className="text-black font-black text-xl tracking-tighter drop-shadow-[0_1px_0_rgba(255,255,255,0.58)]">
-                Discover<span className="text-[#F4A261]">GB</span>
+                CFFA<span className="text-[#F4A261]">UK</span>
               </span>
             </Link>
 
@@ -318,6 +310,10 @@ export default function Navbar()
                 No Good
               </Link>
 
+              {/* 兽聚Furcon讯息 */}
+              <Link href="/furcon" className={`font-medium text-sm ${pathname === '/furcon' ? activePill : hoverPill}`}>
+                兽聚Furcon
+              </Link>
               {/* Contact */}
               <Link href="/contact" className={`font-medium text-sm ${pathname === '/contact' ? activePill : hoverPill}`}>
                 Contact
@@ -348,11 +344,10 @@ export default function Navbar()
                   <Link
                     key={sub.href}
                     href={sub.href}
-                    className={`flex items-center gap-2 px-4 h-full text-sm font-medium transition-colors border-b-2 ${
-                      pathname.startsWith( sub.href )
-                        ? 'text-[#E63946] border-[#E63946]'
-                        : 'text-black/72 border-transparent hover:text-black hover:border-black/30'
-                    }`}
+                    className={`flex items-center gap-2 px-4 h-full text-sm font-medium transition-colors border-b-2 ${pathname.startsWith( sub.href )
+                      ? 'text-[#E63946] border-[#E63946]'
+                      : 'text-black/72 border-transparent hover:text-black hover:border-black/30'
+                      }`}
                   >
                     <sub.icon className="w-3.5 h-3.5" />
                     {sub.label}
