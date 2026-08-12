@@ -1,5 +1,5 @@
 import { writeFile } from 'node:fs/promises';
-import { RAG_EVALUATION_CASES } from '../evals/ragDataset';
+import { runtimeRagEvaluationCases } from '../evals/runtimeRagDataset';
 import { buildRagContextFromChunks } from '../lib/ragKnowledge';
 import { answerRagQuestion } from '../lib/server/ragChat';
 import { judgeRagAnswer } from '../lib/server/deepseekChat';
@@ -26,8 +26,9 @@ async function judgeWithRetry( input: Parameters<typeof judgeRagAnswer>[ 0 ] )
 }
 
 const results = [];
+const evaluationCases = runtimeRagEvaluationCases();
 
-for ( const testCase of RAG_EVALUATION_CASES )
+for ( const testCase of evaluationCases )
 {
   const ragResult = await answerRagQuestion( testCase.question );
   if ( !ragResult.llmAnswer )

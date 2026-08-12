@@ -21,6 +21,7 @@ import
   MAX_CONTRIBUTION_IMAGE_BYTES,
   restaurantCuisineOptions,
   type ContributionIntent,
+  type ContributionRegion,
   type ContributionType,
   type RestaurantCuisine,
 } from '@/lib/contributions/schema';
@@ -28,6 +29,7 @@ import
 type ContributionFormState = {
   type: ContributionType;
   intent: ContributionIntent;
+  region: ContributionRegion;
   name: string;
   city: string;
   cuisine: RestaurantCuisine | '';
@@ -45,6 +47,7 @@ type ContributionFormState = {
 const initialForm: ContributionFormState = {
   type: 'restaurant',
   intent: 'add',
+  region: 'uk',
   name: '',
   city: '',
   cuisine: '',
@@ -72,6 +75,11 @@ const intentOptions = [
   { value: 'closure', label: '停业 / 错误' },
   { value: 'image', label: '补充图片' },
   { value: 'other', label: '其他补充' },
+] as const;
+
+const regionOptions = [
+  { value: 'uk', label: '英国 / UK' },
+  { value: 'europa', label: '欧洲大陆 / Europa' },
 ] as const;
 
 const allowedImageTypes = new Set( [ 'image/jpeg', 'image/png', 'image/webp' ] );
@@ -236,14 +244,31 @@ export default function ContributionForm()
           </div>
         </fieldset>
 
+        <fieldset>
+          <legend className="text-sm font-bold text-[#1D3557]">地点属于哪里？</legend>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            {regionOptions.map( option => (
+              <button
+                key={option.value}
+                type="button"
+                aria-pressed={form.region === option.value}
+                onClick={() => updateField( 'region', option.value )}
+                className={`min-h-11 border px-4 text-sm font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E63946] ${form.region === option.value ? 'border-[#0F766E] bg-[#0F766E] text-white' : 'border-[#1D3557]/18 text-[#1D3557] hover:border-[#0F766E]'}`}
+              >
+                {option.label}
+              </button>
+            ) )}
+          </div>
+        </fieldset>
+
         <div className="grid gap-6 sm:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-[#1D3557]">
             地点 / 主题名称 <span className="text-[#E63946]">*</span>
             <input required value={form.name} onChange={event => updateField( 'name', event.target.value )} maxLength={120} className="min-h-12 border-b-2 border-[#1D3557]/22 bg-transparent px-1 text-base font-medium text-[#1D3557] outline-none transition-colors placeholder:text-[#1D3557]/35 focus:border-[#0F766E]" placeholder="例如：某家餐厅、某条步行路线" />
           </label>
           <label className="grid gap-2 text-sm font-bold text-[#1D3557]">
-            城市 / 区域 <span className="text-[#E63946]">*</span>
-            <input required value={form.city} onChange={event => updateField( 'city', event.target.value )} maxLength={100} className="min-h-12 border-b-2 border-[#1D3557]/22 bg-transparent px-1 text-base font-medium text-[#1D3557] outline-none transition-colors placeholder:text-[#1D3557]/35 focus:border-[#0F766E]" placeholder="例如：London / Soho" />
+            城市（街区请写在补充里）<span className="text-[#E63946]">*</span>
+            <input required value={form.city} onChange={event => updateField( 'city', event.target.value )} maxLength={100} className="min-h-12 border-b-2 border-[#1D3557]/22 bg-transparent px-1 text-base font-medium text-[#1D3557] outline-none transition-colors placeholder:text-[#1D3557]/35 focus:border-[#0F766E]" placeholder="例如：London、Nottingham、Paris" />
           </label>
         </div>
 

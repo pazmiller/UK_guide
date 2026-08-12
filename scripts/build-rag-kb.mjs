@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const MARKDOWN_PATH = path.join( process.cwd(), 'src', 'DATA.md' );
 const SOURCE_PATH = path.join( process.cwd(), 'src', 'DATA.json' );
@@ -91,6 +92,10 @@ function isFieldLine( line )
 
 function cityFromText( text )
 {
+  const [ headingName ] = cleanTitle( text ).split( /\s*(?:｜|\|)\s*/, 1 );
+  const explicitName = headingName?.replace( /\s*[（(].*$/, '' ).trim();
+  if ( explicitName && ( text.includes( '｜' ) || /\s\|\s/.test( text ) ) ) return explicitName;
+
   for ( const [ pattern, city ] of CITY_ALIASES )
   {
     if ( pattern.test( text ) ) return city;
@@ -150,7 +155,7 @@ function splitInlineFields( line )
 
 function cityNamesFromHeading( heading )
 {
-  const [ english = '', chinese = '' ] = cleanTitle( heading ).split( '｜' );
+  const [ english = '', chinese = '' ] = cleanTitle( heading ).split( /\s*(?:｜|\|)\s*/, 2 );
   return {
     nameEn: english.replace( /\s*[（(].*$/, '' ).trim(),
     name: chinese.replace( /\s*[（(].*$/, '' ).trim(),
@@ -186,6 +191,53 @@ function optionalValue( value )
   return value.trim();
 }
 
+function chunkFields( chunk )
+{
+  const fields = {};
+  const body = [];
+  const lines = typeof chunk.content === 'string' ? chunk.content.split( '\n' ) : [];
+
+  for ( const line of lines )
+  {
+    const match = line.match( /^([^：]+)：\s*(.*)$/ );
+    if ( !match )
+    {
+      if ( line.trim() ) body.push( line.trim() );
+      continue;
+    }
+
+    const [ , label, value ] = match;
+    if ( [ '城市/地区', '分类', '来源章节', '条目' ].includes( label ) ) continue;
+    appendValue( fields, label, value );
+  }
+
+  return { fields, body: body.join( '\n' ).trim() };
+}
+
+function validatedImages( title, value )
+{
+  const images = splitList( value );
+  for ( const image of images )
+  {
+    if ( image.startsWith( 'public/' ) ) throw new TypeError( `${title} uses a public/ image URL.` );
+    if ( !image.startsWith( '/' ) && !/^https:\/\//.test( image ) )
+    {
+      throw new TypeError( `${title} has an invalid image URL: ${image}` );
+    }
+  }
+  return images;
+}
+
+function validatedEntrySlug( title, explicitSlug )
+{
+  const entrySlug = optionalValue( explicitSlug ) ?? slugPart( title );
+  if ( !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test( entrySlug ) || entrySlug === 'chunk' )
+  {
+    throw new TypeError( `${title} needs an explicit valid 条目标识.` );
+  }
+  return entrySlug;
+}
+
 function buildCities( chunks, cityMetadata )
 {
   const slugs = new Set();
@@ -214,20 +266,8 @@ function buildCities( chunks, cityMetadata )
       .map( chunk =>
       {
         const details = chunk.details ?? {};
-        const images = splitList( details.images );
-        const entrySlug = optionalValue( details.slug ) ?? slugPart( chunk.title );
-        if ( !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test( entrySlug ) || entrySlug === 'chunk' )
-        {
-          throw new TypeError( `${chunk.title} needs an explicit valid 条目标识.` );
-        }
-        for ( const image of images )
-        {
-          if ( image.startsWith( 'public/' ) ) throw new TypeError( `${chunk.title} uses a public/ image URL.` );
-          if ( !image.startsWith( '/' ) && !/^https:\/\//.test( image ) )
-          {
-            throw new TypeError( `${chunk.title} has an invalid image URL: ${image}` );
-          }
-        }
+        const images = validatedImages( chunk.title, details.images );
+        const entrySlug = validatedEntrySlug( chunk.title, details.slug );
 
         return {
           category: chunk.category,
@@ -253,6 +293,74 @@ function buildCities( chunks, cityMetadata )
         };
       } );
 
+    const attractions = chunks
+      .filter( chunk => chunk.city === cityNameEn && chunk.category === 'attraction' )
+      .map( chunk =>
+      {
+        const { fields, body } = chunkFields( chunk );
+        const entrySlug = validatedEntrySlug( chunk.title, fields[ '条目标识' ] );
+        const summary = optionalValue( fields[ '简介' ] )
+          ?? optionalValue( fields[ '推荐原因' ] )
+          ?? optionalValue( body )
+          ?? chunk.title;
+        const description = optionalValue( fields[ '备注' ] )
+          ?? optionalValue( fields[ '推荐原因' ] )
+          ?? optionalValue( fields[ '简介' ] )
+          ?? optionalValue( body )
+          ?? summary;
+
+        return {
+          id: `${metadata.slug}-attraction-${entrySlug}`,
+          slug: entrySlug,
+          name: chunk.title,
+          shortDescription: summary,
+          description,
+          ...( optionalValue( fields[ '地址' ] ) ? { address: optionalValue( fields[ '地址' ] ) } : {} ),
+          ...( optionalValue( fields[ '营业时间' ] ) ? { openingHours: optionalValue( fields[ '营业时间' ] ) } : {} ),
+          ...( optionalValue( fields[ '价位' ] ?? fields[ '价格' ] )
+            ? { price: optionalValue( fields[ '价位' ] ?? fields[ '价格' ] ) }
+            : {} ),
+          images: validatedImages( chunk.title, fields[ '图片' ] ),
+          ...( optionalValue( fields[ '网站' ] ?? fields[ '链接' ] )
+            ? { website: optionalValue( fields[ '网站' ] ?? fields[ '链接' ] ) }
+            : {} ),
+        };
+      } );
+
+    const avoids = chunks
+      .filter( chunk => chunk.city === cityNameEn && chunk.category === 'avoid' )
+      .map( chunk =>
+      {
+        const { fields, body } = chunkFields( chunk );
+        const reason = optionalValue( fields[ '避雷原因' ] )
+          ?? optionalValue( fields[ '原因' ] )
+          ?? optionalValue( fields[ '推荐原因' ] )
+          ?? optionalValue( fields[ '备注' ] )
+          ?? optionalValue( fields[ '简介' ] )
+          ?? optionalValue( body );
+        if ( !reason ) throw new TypeError( `${chunk.title} needs a reason.` );
+
+        return {
+          name: chunk.title,
+          reason,
+          category: chunk.section,
+          city: metadata.nameEn,
+        };
+      } );
+
+    const tips = chunks
+      .filter( chunk => chunk.city === cityNameEn && chunk.category === 'tip' )
+      .map( chunk =>
+      {
+        const { fields, body } = chunkFields( chunk );
+        const content = optionalValue( fields[ '备注' ] )
+          ?? optionalValue( fields[ '推荐原因' ] )
+          ?? optionalValue( fields[ '简介' ] )
+          ?? optionalValue( body );
+        if ( !content ) throw new TypeError( `${chunk.title} needs tip content.` );
+        return { content };
+      } );
+
     cities.push( {
       slug: metadata.slug,
       name: metadata.name,
@@ -263,9 +371,9 @@ function buildCities( chunks, cityMetadata )
       order: Number.isFinite( Number( metadata.order ) ) ? Number( metadata.order ) : 999,
       restaurants: foodEntries.filter( entry => entry.category === 'restaurant' ).map( entry => entry.data ),
       cafes: foodEntries.filter( entry => entry.category === 'cafe' ).map( entry => entry.data ),
-      attractions: [],
-      avoids: [],
-      tips: [],
+      attractions,
+      avoids,
+      tips,
     } );
   }
 
@@ -414,7 +522,7 @@ function validateRestaurantContent( chunk )
   }
 }
 
-function buildKnowledgeBase( markdown )
+export function buildKnowledgeBase( markdown )
 {
   const lines = markdown.split( /\r?\n/ ).map( normalizeLine );
   const chunks = [];
@@ -570,7 +678,10 @@ function buildKnowledgeBase( markdown )
   };
 }
 
-if ( process.argv.includes( '--build-data' ) )
+const isMainModule = process.argv[ 1 ]
+  && path.resolve( process.argv[ 1 ] ) === path.resolve( fileURLToPath( import.meta.url ) );
+
+if ( isMainModule && process.argv.includes( '--build-data' ) )
 {
   const markdown = await readFile( MARKDOWN_PATH, 'utf8' );
   const contentData = buildKnowledgeBase( markdown );
@@ -579,7 +690,7 @@ if ( process.argv.includes( '--build-data' ) )
   await writeFile( SOURCE_PATH, `${JSON.stringify( contentData, null, 2 )}\n` );
 
   console.log( `Built ${contentData.chunkCount} content entries in ${JSON_SOURCE}` );
-} else
+} else if ( isMainModule )
 {
   const contentData = JSON.parse( await readFile( SOURCE_PATH, 'utf8' ) );
   if ( !Array.isArray( contentData.chunks ) )

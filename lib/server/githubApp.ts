@@ -132,6 +132,7 @@ function buildIssueBody( submission: ContributionSubmission )
     '',
     `- **Type:** ${escapeHtml( submission.type )}`,
     `- **Intent:** ${escapeHtml( submission.intent )}`,
+    `- **Region:** ${escapeHtml( submission.region )}`,
     `- **Place / topic:** ${escapeHtml( submission.name )}`,
     `- **City / area:** ${escapeHtml( submission.city )}`,
     `- **Submitted by:** ${escapeHtml( submission.submitterName || 'Anonymous' )}`,

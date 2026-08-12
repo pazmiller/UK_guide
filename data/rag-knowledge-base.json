@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-08-09T11:47:45.743Z",
+  "generatedAt": "2026-08-12T03:16:14.692Z",
   "source": "src/DATA.json",
   "cities": [
     {
@@ -1948,188 +1948,174 @@
       ]
     },
     {
-      "id": "0112-general-restaurant-red-dog-saloon-nottingham",
-      "city": "General",
+      "id": "0112-nottingham-restaurant-red-dog-saloon-nottingham",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Red Dog Saloon Nottingham",
-      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Red Dog Saloon Nottingham\n简介：美式烤肉与汉堡\n菜系：American\n推荐原因：主打美式烤肉，各种酒很多。不过汉堡很大一个，一个人一个就饱了。\n推荐菜：未注明\n价位：£20-40\n地址：20-22 Victoria Street, Nottingham NG1 2EX\n备注：最近量变小了些，饭量大的话想要纯吃烤肉吃饱的话两人人均大概40到50左右，会收服务费，但是尝鲜还是可以的。\n网站： https://www.reddogsaloon.co.uk/",
+      "content": "城市/地区：Nottingham\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Red Dog Saloon Nottingham\n简介：美式烤肉与汉堡\n菜系：American\n推荐原因：主打美式烤肉，各种酒很多。不过汉堡很大一个，一个人一个就饱了。\n推荐菜：未注明\n价位：£20-40\n地址：20-22 Victoria Street, Nottingham NG1 2EX\n网站：https://www.reddogsaloon.co.uk/\n备注：最近量变小了些，饭量大的话想要纯吃烤肉吃饱的话两人人均大概40到50左右，会收服务费，但是尝鲜还是可以的。",
       "details": {
         "notes": "最近量变小了些，饭量大的话想要纯吃烤肉吃饱的话两人人均大概40到50左右，会收服务费，但是尝鲜还是可以的。",
         "address": "20-22 Victoria Street, Nottingham NG1 2EX",
-        "additional_info": [
-          "网站： https://www.reddogsaloon.co.uk/"
-        ]
+        "website": "https://www.reddogsaloon.co.uk/"
       },
       "source": "src/DATA.json",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Red Dog Saloon Nottingham"
       ]
     },
     {
-      "id": "0113-general-restaurant-mesa",
-      "city": "General",
+      "id": "0113-nottingham-restaurant-mesa",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Mesa",
-      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Mesa\n简介：轻松氛围的小盘菜餐厅\n菜系：Fusion\n推荐原因：现代融合菜餐馆，牛排和 pork ribeye 分量很大、味道不错，整体菜品和餐酒也都很好。\n推荐菜：10oz sirloin、Sugar-brined 12oz pork chop\n价位：£30-60\n地址：24-26 Goosegate, Nottingham, NG1 1FF\n备注：菜单菜很少（只有一页纸），整体氛围很轻松。\n营业时间： 周二至周五 17:00-22:00；周六 13:00-22:00；周日及银行假日休息\n网站： https://www.mesahockley.co.uk/",
+      "content": "城市/地区：Nottingham\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Mesa\n简介：轻松氛围的小盘菜餐厅\n菜系：Fusion\n推荐原因：现代融合菜餐馆，牛排和 pork ribeye 分量很大、味道不错，整体菜品和餐酒也都很好。\n推荐菜：10oz sirloin、Sugar-brined 12oz pork chop\n价位：£30-60\n地址：24-26 Goosegate, Nottingham, NG1 1FF\n网站：https://www.mesahockley.co.uk/\n营业时间：周二至周五 17:00-22:00；周六 13:00-22:00；周日及银行假日休息\n备注：菜单菜很少（只有一页纸），整体氛围很轻松。",
       "details": {
         "notes": "菜单菜很少（只有一页纸），整体氛围很轻松。",
         "address": "24-26 Goosegate, Nottingham, NG1 1FF",
-        "additional_info": [
-          "营业时间： 周二至周五 17:00-22:00；周六 13:00-22:00；周日及银行假日休息",
-          "网站： https://www.mesahockley.co.uk/"
-        ]
+        "opening_hours": "周二至周五 17:00-22:00；周六 13:00-22:00；周日及银行假日休息",
+        "website": "https://www.mesahockley.co.uk/"
       },
       "source": "src/DATA.json",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Mesa"
       ]
     },
     {
-      "id": "0114-general-restaurant-tilt",
-      "city": "General",
+      "id": "0114-nottingham-restaurant-tilt",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Tilt",
-      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Tilt\n简介：鸡尾酒吧，有现场乐队\n菜系：Drinks\n推荐原因：价格稍贵，环境好的清吧，主打各种独特的新老式鸡尾酒、spritz 和各种威士忌（£5-100 一杯都有）。\n推荐菜：未注明\n价位：£20-30\n地址：9 Pelham St, Nottingham, NG1 2EH\n备注：门头很小，需要仔细找下，有现场乐队表演，提供小食，有服务费。\n营业时间： 周一休息；周二至周四 17:00–01:00；周五至周六 14:00–01:30；周日 17:00–01:00",
+      "content": "城市/地区：Nottingham\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Tilt\n简介：鸡尾酒吧，有现场乐队\n菜系：Drinks\n推荐原因：价格稍贵，环境好的清吧，主打各种独特的新老式鸡尾酒、spritz 和各种威士忌（£5-100 一杯都有）。\n推荐菜：未注明\n价位：£20-30\n地址：9 Pelham St, Nottingham, NG1 2EH\n营业时间：周一休息；周二至周四 17:00–01:00；周五至周六 14:00–01:30；周日 17:00–01:00\n备注：门头很小，需要仔细找下，有现场乐队表演，提供小食，有服务费。",
       "details": {
         "notes": "门头很小，需要仔细找下，有现场乐队表演，提供小食，有服务费。",
         "address": "9 Pelham St, Nottingham, NG1 2EH",
-        "additional_info": [
-          "营业时间： 周一休息；周二至周四 17:00–01:00；周五至周六 14:00–01:30；周日 17:00–01:00"
-        ]
+        "opening_hours": "周一休息；周二至周四 17:00–01:00；周五至周六 14:00–01:30；周日 17:00–01:00"
       },
       "source": "src/DATA.json",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Tilt"
       ]
     },
     {
-      "id": "0115-general-restaurant-pepper-rocks",
-      "city": "General",
+      "id": "0115-nottingham-restaurant-pepper-rocks",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Pepper Rocks",
-      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Pepper Rocks\n简介：酒吧，周末提供热狗\n菜系：Drinks\n推荐原因：氛围、装修和味道都很好的鸡尾酒吧，一共有小三层和室外座位，有时会有 DJ 现场表演。\n推荐菜：未注明\n价位：£10-20\n地址：12 Pepper Street, Nottingham, NG1 2GH\n备注：室内会有些窄，周末会爆满，外面提供热狗餐食。\n营业时间： 周一至周五 17:00-00:00，周六 15:00-01:00",
+      "content": "城市/地区：Nottingham\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Pepper Rocks\n简介：酒吧，周末提供热狗\n菜系：Drinks\n推荐原因：氛围、装修和味道都很好的鸡尾酒吧，一共有小三层和室外座位，有时会有 DJ 现场表演。\n推荐菜：未注明\n价位：£10-20\n地址：12 Pepper Street, Nottingham, NG1 2GH\n营业时间：周一至周五 17:00-00:00，周六 15:00-01:00\n备注：室内会有些窄，周末会爆满，外面提供热狗餐食。",
       "details": {
         "notes": "室内会有些窄，周末会爆满，外面提供热狗餐食。",
         "address": "12 Pepper Street, Nottingham, NG1 2GH",
-        "additional_info": [
-          "营业时间： 周一至周五 17:00-00:00，周六 15:00-01:00"
-        ]
+        "opening_hours": "周一至周五 17:00-00:00，周六 15:00-01:00"
       },
       "source": "src/DATA.json",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Pepper Rocks"
       ]
     },
     {
-      "id": "0116-general-restaurant-the-tap-house-notts",
-      "city": "General",
+      "id": "0116-nottingham-restaurant-the-tap-house-notts",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "The Tap House Notts",
-      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：The Tap House Notts\n简介：自助啤酒、葡萄酒与披萨\n菜系：Drinks\n推荐原因：各种自打的轮换精酿和 cider，一次只打一点酒，可以用很低的价格尝到各种酒。\n推荐菜：未注明\n价位：£10-20\n地址：10 Byard Ln, Nottingham NG1 2GJ\n备注：进店时领取一张卡，刷卡后自行打酒，离店时凭卡结账。同时提供披萨和小食，有几个位于小巷里的户外座位。\n网站： https://thetaphousenotts.co.uk/",
+      "content": "城市/地区：Nottingham\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：The Tap House Notts\n简介：自助啤酒、葡萄酒与披萨\n菜系：Drinks\n推荐原因：各种自打的轮换精酿和 cider，一次只打一点酒，可以用很低的价格尝到各种酒。\n推荐菜：未注明\n价位：£10-20\n地址：10 Byard Ln, Nottingham NG1 2GJ\n网站：https://thetaphousenotts.co.uk/\n备注：进店时领取一张卡，刷卡后自行打酒，离店时凭卡结账。同时提供披萨和小食，有几个位于小巷里的户外座位。",
       "details": {
         "notes": "进店时领取一张卡，刷卡后自行打酒，离店时凭卡结账。同时提供披萨和小食，有几个位于小巷里的户外座位。",
         "address": "10 Byard Ln, Nottingham NG1 2GJ",
-        "additional_info": [
-          "网站： https://thetaphousenotts.co.uk/"
-        ]
+        "website": "https://thetaphousenotts.co.uk/"
       },
       "source": "src/DATA.json",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "The Tap House Notts"
       ]
     },
     {
-      "id": "0117-general-restaurant-coco-tang-cocktail-bar",
-      "city": "General",
+      "id": "0117-nottingham-restaurant-coco-tang-cocktail-bar",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Coco Tang -Cocktail Bar",
-      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Coco Tang -Cocktail Bar\n简介：地下鸡尾酒吧\n菜系：Drinks\n推荐原因：白天是越南餐馆，饭不好吃，但晚上是酒吧，有很多独特的鸡尾酒。\n推荐菜：未注明\n价位：£10-20\n地址：45 Bridlesmith Gate, Nottingham NG1 2GN\n备注：晚上酒吧需要在后门进入。\n网站： https://www.cocotang.co.uk/cocktail-bar/",
+      "content": "城市/地区：Nottingham\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Coco Tang -Cocktail Bar\n简介：地下鸡尾酒吧\n菜系：Drinks\n推荐原因：白天是越南餐馆，饭不好吃，但晚上是酒吧，有很多独特的鸡尾酒。\n推荐菜：未注明\n价位：£10-20\n地址：45 Bridlesmith Gate, Nottingham NG1 2GN\n网站：https://www.cocotang.co.uk/cocktail-bar/\n备注：晚上酒吧需要在后门进入。",
       "details": {
         "notes": "晚上酒吧需要在后门进入。",
         "address": "45 Bridlesmith Gate, Nottingham NG1 2GN",
-        "additional_info": [
-          "网站： https://www.cocotang.co.uk/cocktail-bar/"
-        ]
+        "website": "https://www.cocotang.co.uk/cocktail-bar/"
       },
       "source": "src/DATA.json",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Coco Tang -Cocktail Bar"
       ]
     },
     {
-      "id": "0118-general-restaurant-400-rabbits",
-      "city": "General",
+      "id": "0118-nottingham-restaurant-400-rabbits",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "400 Rabbits",
-      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：400 Rabbits\n简介：Mezcal & Tequila 鸡尾酒吧\n菜系：Drinks\n推荐原因：诺丁汉最推荐的、藏在小巷子里且氛围很好的墨西哥风格酒吧。\n推荐菜：未注明\n价位：£10-20\n地址：15-16 Hurts Yard, Nottingham, NG1 6JD\n备注：主打鸡尾酒和大量口味的龙舌兰，一shot 龙舌兰配一shot Chaser（Verdita），喝起来很爽也很快；鸡尾酒很独特，还有室外座位。\n网站： https://www.fourhundredrabbits.co.uk/",
+      "content": "城市/地区：Nottingham\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：400 Rabbits\n简介：Mezcal & Tequila 鸡尾酒吧\n菜系：Drinks\n推荐原因：诺丁汉最推荐的、藏在小巷子里且氛围很好的墨西哥风格酒吧。\n推荐菜：未注明\n价位：£10-20\n地址：15-16 Hurts Yard, Nottingham, NG1 6JD\n网站：https://www.fourhundredrabbits.co.uk/\n备注：主打鸡尾酒和大量口味的龙舌兰，一shot 龙舌兰配一shot Chaser（Verdita），喝起来很爽也很快；鸡尾酒很独特，还有室外座位。",
       "details": {
         "notes": "主打鸡尾酒和大量口味的龙舌兰，一shot 龙舌兰配一shot Chaser（Verdita），喝起来很爽也很快；鸡尾酒很独特，还有室外座位。",
         "address": "15-16 Hurts Yard, Nottingham, NG1 6JD",
-        "additional_info": [
-          "网站： https://www.fourhundredrabbits.co.uk/"
-        ]
+        "website": "https://www.fourhundredrabbits.co.uk/"
       },
       "source": "src/DATA.json",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "400 Rabbits"
       ]
     },
     {
-      "id": "0119-general-restaurant-canalhouse",
-      "city": "General",
+      "id": "0119-nottingham-restaurant-canalhouse",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Canalhouse",
-      "content": "城市/地区：General\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Canalhouse\n简介：主打精酿，也不定时会有限定鸡尾酒。从中午开到晚上11点，周末会开到凌晨。平常室外座位很多，周末会很满。点餐主要是在吧台点完然后告诉他们桌号。\n菜系：British\n推荐原因：很多精酿，各种 cider、啤酒和鸡尾酒都有，餐食也都不错。有很大一片河边室外座位；夏天学生酒水餐食九折，但要注册 App，不定时还会有酒水七折起。\n推荐菜：未注明\n价位：£10-20\n地址：48-52 Canal Street, Nottingham, NG1 7EH",
+      "content": "城市/地区：Nottingham\n分类：restaurant\n来源章节：Nottingham｜诺丁汉\n条目：Canalhouse\n简介：主打精酿，也不定时会有限定鸡尾酒。从中午开到晚上11点，周末会开到凌晨。平常室外座位很多，周末会很满。点餐主要是在吧台点完然后告诉他们桌号。\n菜系：British\n推荐原因：很多精酿，各种 cider、啤酒和鸡尾酒都有，餐食也都不错。有很大一片河边室外座位；夏天学生酒水餐食九折，但要注册 App，不定时还会有酒水七折起。\n推荐菜：未注明\n价位：£10-20\n地址：48-52 Canal Street, Nottingham, NG1 7EH",
       "details": {
         "address": "48-52 Canal Street, Nottingham, NG1 7EH"
       },
       "source": "src/DATA.json",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Canalhouse"
       ]
     },
     {
-      "id": "0120-general-restaurant-bourton-on-the-water",
-      "city": "General",
+      "id": "0120-cotswold-restaurant-bourton-on-the-water",
+      "city": "Cotswold",
       "category": "restaurant",
       "section": "Cotswold｜科茨沃尔德",
       "title": "水上伯顿 Bourton-on-the-Water",
-      "content": "城市/地区：General\n分类：restaurant\n来源章节：Cotswold｜科茨沃尔德\n条目：水上伯顿 Bourton-on-the-Water\n简介：英国乡村版的小桥流水人家，除了河流清澈，很多古老的小石桥外，还有按9比1比例建造的村庄缩小版模型村。特别是在天气炎热时的极佳去处。本地人特别喜欢的景点。\n菜系：Other",
+      "content": "城市/地区：Cotswold\n分类：restaurant\n来源章节：Cotswold｜科茨沃尔德\n条目：水上伯顿 Bourton-on-the-Water\n简介：英国乡村版的小桥流水人家，除了河流清澈，很多古老的小石桥外，还有按9比1比例建造的村庄缩小版模型村。特别是在天气炎热时的极佳去处。本地人特别喜欢的景点。\n菜系：Other",
       "source": "src/DATA.json",
       "tags": [
-        "General",
+        "Cotswold",
         "restaurant",
         "Cotswold｜科茨沃尔德",
         "水上伯顿 Bourton-on-the-Water"

@@ -19,7 +19,7 @@
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:report": "playwright show-report",
-    "test:city-data": "node --import tsx --test scripts/city-data.test.mts"
+    "test:city-data": "node --import tsx --test scripts/city-data.test.mts scripts/destination-generation.test.mjs evals/runtimeRagDataset.test.mts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1088.0",

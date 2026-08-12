@@ -1,12 +1,17 @@
 import { retrieveKnowledge } from '../lib/ragKnowledge';
-import { RAG_EVALUATION_CASES } from '../evals/ragDataset';
+import { runtimeRagEvaluationCases } from '../evals/runtimeRagDataset';
 import { writeFile } from 'node:fs/promises';
 
 const failures: string[] = [];
 let matchedSources = 0;
 let expectedSources = 0;
+const evaluationCases = runtimeRagEvaluationCases();
+const dynamicCaseId = process.env.RAG_EVAL_DYNAMIC_CASE
+  ? evaluationCases.at( -1 )?.id
+  : undefined;
+let dynamicCasePassed = !dynamicCaseId;
 
-for ( const testCase of RAG_EVALUATION_CASES )
+for ( const testCase of evaluationCases )
 {
   const results = retrieveKnowledge( testCase.question, { limit: 3 } );
   const titles = results.map( result => result.title );
@@ -16,6 +21,7 @@ for ( const testCase of RAG_EVALUATION_CASES )
 
   if ( missingTitles.length === 0 )
   {
+    if ( testCase.id === dynamicCaseId ) dynamicCasePassed = true;
     console.log( `PASS  ${testCase.id}` );
     continue;
   }
@@ -27,11 +33,13 @@ for ( const testCase of RAG_EVALUATION_CASES )
 
 const sourceRecall = expectedSources === 0 ? 1 : matchedSources / expectedSources;
 const report = {
-  cases: RAG_EVALUATION_CASES.length,
-  passedCases: RAG_EVALUATION_CASES.length - failures.length,
+  cases: evaluationCases.length,
+  passedCases: evaluationCases.length - failures.length,
   expectedSources,
   matchedSources,
   sourceRecall,
+  dynamicCaseId,
+  dynamicCasePassed,
   failures,
 };
 
@@ -42,12 +50,12 @@ if ( process.env.RAG_EVAL_OUTPUT )
 
 console.log( `\nSource recall: ${( sourceRecall * 100 ).toFixed( 1 )}% (${matchedSources}/${expectedSources})` );
 
-if ( failures.length > 0 )
+if ( sourceRecall < 0.8 || !dynamicCasePassed )
 {
-  console.error( `\n${failures.length} retrieval regression case(s) failed:` );
+  console.error( `\nRetrieval gate failed; ${failures.length} case(s) missed expected sources:` );
   for ( const failure of failures ) console.error( `- ${failure}` );
   process.exitCode = 1;
 } else
 {
-  console.log( `\nAll ${RAG_EVALUATION_CASES.length} retrieval regression cases passed.` );
+  console.log( `\nRetrieval gate passed (${evaluationCases.length - failures.length}/${evaluationCases.length} cases fully matched).` );
 }

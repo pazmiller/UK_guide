@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { londonRestaurants } from '@/data/london/restaurants';
 import { Restaurant } from '@/data/types';
 import DetailModal from './DetailModal';
@@ -50,12 +51,12 @@ export default function CreditsSection()
             >
               Say no more!
             </button>
-            <a
+            <Link
               href="/othercities"
               className="bg-white text-[#1D3557] px-7 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg"
             >
               Other Cities
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-08-09T11:47:45.571Z",
+  "generatedAt": "2026-08-12T03:16:11.156Z",
   "source": "src/DATA.md",
   "cities": [
     {
@@ -2464,8 +2464,8 @@
       ]
     },
     {
-      "id": "0112-general-restaurant-red-dog-saloon-nottingham",
-      "city": "General",
+      "id": "0112-nottingham-restaurant-red-dog-saloon-nottingham",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Red Dog Saloon Nottingham",
@@ -2479,21 +2479,19 @@
       "details": {
         "notes": "最近量变小了些，饭量大的话想要纯吃烤肉吃饱的话两人人均大概40到50左右，会收服务费，但是尝鲜还是可以的。",
         "address": "20-22 Victoria Street, Nottingham NG1 2EX",
-        "additional_info": [
-          "网站： https://www.reddogsaloon.co.uk/"
-        ]
+        "website": "https://www.reddogsaloon.co.uk/"
       },
       "source": "src/DATA.md",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Red Dog Saloon Nottingham"
       ]
     },
     {
-      "id": "0113-general-restaurant-mesa",
-      "city": "General",
+      "id": "0113-nottingham-restaurant-mesa",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Mesa",
@@ -2507,22 +2505,20 @@
       "details": {
         "notes": "菜单菜很少（只有一页纸），整体氛围很轻松。",
         "address": "24-26 Goosegate, Nottingham, NG1 1FF",
-        "additional_info": [
-          "营业时间： 周二至周五 17:00-22:00；周六 13:00-22:00；周日及银行假日休息",
-          "网站： https://www.mesahockley.co.uk/"
-        ]
+        "opening_hours": "周二至周五 17:00-22:00；周六 13:00-22:00；周日及银行假日休息",
+        "website": "https://www.mesahockley.co.uk/"
       },
       "source": "src/DATA.md",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Mesa"
       ]
     },
     {
-      "id": "0114-general-restaurant-tilt",
-      "city": "General",
+      "id": "0114-nottingham-restaurant-tilt",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Tilt",
@@ -2536,21 +2532,19 @@
       "details": {
         "notes": "门头很小，需要仔细找下，有现场乐队表演，提供小食，有服务费。",
         "address": "9 Pelham St, Nottingham, NG1 2EH",
-        "additional_info": [
-          "营业时间： 周一休息；周二至周四 17:00–01:00；周五至周六 14:00–01:30；周日 17:00–01:00"
-        ]
+        "opening_hours": "周一休息；周二至周四 17:00–01:00；周五至周六 14:00–01:30；周日 17:00–01:00"
       },
       "source": "src/DATA.md",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Tilt"
       ]
     },
     {
-      "id": "0115-general-restaurant-pepper-rocks",
-      "city": "General",
+      "id": "0115-nottingham-restaurant-pepper-rocks",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Pepper Rocks",
@@ -2564,21 +2558,19 @@
       "details": {
         "notes": "室内会有些窄，周末会爆满，外面提供热狗餐食。",
         "address": "12 Pepper Street, Nottingham, NG1 2GH",
-        "additional_info": [
-          "营业时间： 周一至周五 17:00-00:00，周六 15:00-01:00"
-        ]
+        "opening_hours": "周一至周五 17:00-00:00，周六 15:00-01:00"
       },
       "source": "src/DATA.md",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Pepper Rocks"
       ]
     },
     {
-      "id": "0116-general-restaurant-the-tap-house-notts",
-      "city": "General",
+      "id": "0116-nottingham-restaurant-the-tap-house-notts",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "The Tap House Notts",
@@ -2592,21 +2584,19 @@
       "details": {
         "notes": "进店时领取一张卡，刷卡后自行打酒，离店时凭卡结账。同时提供披萨和小食，有几个位于小巷里的户外座位。",
         "address": "10 Byard Ln, Nottingham NG1 2GJ",
-        "additional_info": [
-          "网站： https://thetaphousenotts.co.uk/"
-        ]
+        "website": "https://thetaphousenotts.co.uk/"
       },
       "source": "src/DATA.md",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "The Tap House Notts"
       ]
     },
     {
-      "id": "0117-general-restaurant-coco-tang-cocktail-bar",
-      "city": "General",
+      "id": "0117-nottingham-restaurant-coco-tang-cocktail-bar",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Coco Tang -Cocktail Bar",
@@ -2620,21 +2610,19 @@
       "details": {
         "notes": "晚上酒吧需要在后门进入。",
         "address": "45 Bridlesmith Gate, Nottingham NG1 2GN",
-        "additional_info": [
-          "网站： https://www.cocotang.co.uk/cocktail-bar/"
-        ]
+        "website": "https://www.cocotang.co.uk/cocktail-bar/"
       },
       "source": "src/DATA.md",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Coco Tang -Cocktail Bar"
       ]
     },
     {
-      "id": "0118-general-restaurant-400-rabbits",
-      "city": "General",
+      "id": "0118-nottingham-restaurant-400-rabbits",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "400 Rabbits",
@@ -2648,21 +2636,19 @@
       "details": {
         "notes": "主打鸡尾酒和大量口味的龙舌兰，一shot 龙舌兰配一shot Chaser（Verdita），喝起来很爽也很快；鸡尾酒很独特，还有室外座位。",
         "address": "15-16 Hurts Yard, Nottingham, NG1 6JD",
-        "additional_info": [
-          "网站： https://www.fourhundredrabbits.co.uk/"
-        ]
+        "website": "https://www.fourhundredrabbits.co.uk/"
       },
       "source": "src/DATA.md",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "400 Rabbits"
       ]
     },
     {
-      "id": "0119-general-restaurant-canalhouse",
-      "city": "General",
+      "id": "0119-nottingham-restaurant-canalhouse",
+      "city": "Nottingham",
       "category": "restaurant",
       "section": "Nottingham｜诺丁汉",
       "title": "Canalhouse",
@@ -2678,15 +2664,15 @@
       },
       "source": "src/DATA.md",
       "tags": [
-        "General",
+        "Nottingham",
         "restaurant",
         "Nottingham｜诺丁汉",
         "Canalhouse"
       ]
     },
     {
-      "id": "0120-general-restaurant-bourton-on-the-water",
-      "city": "General",
+      "id": "0120-cotswold-restaurant-bourton-on-the-water",
+      "city": "Cotswold",
       "category": "restaurant",
       "section": "Cotswold｜科茨沃尔德",
       "title": "水上伯顿 Bourton-on-the-Water",
@@ -2699,7 +2685,7 @@
       },
       "source": "src/DATA.md",
       "tags": [
-        "General",
+        "Cotswold",
         "restaurant",
         "Cotswold｜科茨沃尔德",
         "水上伯顿 Bourton-on-the-Water"
