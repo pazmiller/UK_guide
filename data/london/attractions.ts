@@ -118,6 +118,16 @@ export const londonAttractions: Attraction[] = [
     description: '博罗市场是伦敦规模最大、历史最久的开放式食品市场，拥有众多菜系摊位，包括新鲜生蚝、酒吧和咖啡馆。氛围极佳，价格不算贵。由于摊位更新很快，建议参考Google Maps和小红书上的最新评价。特色推荐：一家泰国食材店和一家新鲜生牛奶店（注意：未杀菌的生牛奶建议煮沸后饮用）。吃完后可以逛逛伦敦桥，离碎片大厦也很近。',
     images: ['/contributions/2/1.webp'],
   },
+  {
+    id: 'lon-a14',
+    slug: 'tower-of-london',
+    name: '伦敦塔 Tower of London',
+    category: 'Historical',
+    shortDescription: '接近千年历史的皇室堡垒，藏有皇室皇冠等珍藏',
+    description: '接近千年历史的皇室堡垒，还藏有皇室皇冠等珍藏。离伦敦兽聚的地点也很近。',
+    address: 'London, EC3N 4AB',
+    images: [],
+  },
 ];
 
 export const londonAvoids: AvoidItem[] = [
