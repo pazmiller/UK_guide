@@ -298,7 +298,7 @@ const guideSections: GuideSection[] = [
   },
   {
     id: 'groceries',
-    title: '2. 超市：拼好饭Iceland，高贵的等玫瑰',
+    title: '2. 线下超市：拼好饭Iceland，高贵的等玫瑰 & 网购：即日达Amazon和京东入欧Joybuy',
     body: (
       <div className="space-y-5">
         <BulletList items={supermarketGroups} />
@@ -715,7 +715,7 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
       <div className="mx-auto mt-8 max-w-[390px] border border-[#2C261E]/12 bg-[#FFF8E8] p-5 shadow-[0_16px_36px_rgba(44,38,30,0.13)]">
         <div className="mb-4 flex items-center gap-2">
           <Bookmark className="h-5 w-5 text-[#D66F78]" />
-          <h2 className="text-2xl font-black text-[#1D3557]">第一周先确认</h2>
+          <h2 className="text-2xl font-black text-[#1D3557]">第一周先确认一下~</h2>
         </div>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
           {quickChecklist.map( ( item ) => (

@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from 'react';
 
-type Region = 'north-america' | 'europe' | 'asia-pacific' | 'latin-america';
-type RegionFilter = Region | 'all' | 'uk';
+export type Region = 'north-america' | 'europe' | 'asia-pacific' | 'latin-america';
+export type RegionFilter = Region | 'all' | 'uk';
 
 type Furcon = {
   name: string;
@@ -18,7 +18,7 @@ type Furcon = {
   cancelled: boolean;
 };
 
-type VerifiedFurcon = Furcon & {
+export type VerifiedFurcon = Furcon & {
   officialUrl: string;
   lastVerified: string;
 };
@@ -109,23 +109,23 @@ const OFFICIAL_URLS: Record<string, string> = {
 };
 
 const LAST_VERIFIED = '2026-08-02';
-const VERIFIED_DATA: VerifiedFurcon[] = DATA.map( ( event ) => ( {
+export const VERIFIED_DATA: VerifiedFurcon[] = DATA.map( ( event ) => ( {
   ...event,
   cancelled: event.name === 'Futerkon 2026' ? true : event.cancelled,
   officialUrl: OFFICIAL_URLS[ event.name ],
   lastVerified: LAST_VERIFIED,
 } ) );
 
-const REGION_LABELS: Record<Region, string> = {
+export const REGION_LABELS: Record<Region, string> = {
   'north-america': '北美',
   europe: '欧洲',
   'asia-pacific': '亚太',
   'latin-america': '拉美',
 };
 
-const MONTHS = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+export const MONTHS = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
 const MONTHS_CN = [ '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月' ];
-const REGION_FILTERS: Array<{ value: RegionFilter; label: string }> = [
+export const REGION_FILTERS: Array<{ value: RegionFilter; label: string }> = [
   { value: 'all', label: '全部' },
   { value: 'uk', label: '英国' },
   { value: 'north-america', label: '北美' },
@@ -134,7 +134,7 @@ const REGION_FILTERS: Array<{ value: RegionFilter; label: string }> = [
   { value: 'latin-america', label: '拉美' },
 ];
 
-const LONDON_FURS_DATES = [
+export const LONDON_FURS_DATES = [
   { iso: '2026-08-08', day: '08', month: 'AUG' },
   { iso: '2026-08-29', day: '29', month: 'AUG' },
   { iso: '2026-09-19', day: '19', month: 'SEP' },
