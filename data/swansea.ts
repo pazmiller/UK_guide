@@ -60,6 +60,16 @@ export const swanseaData: CityData = {
       images: ['https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=800'],
       mustTry: [],
     },
+    {
+      id: 'sw-r8', slug: 'good-mornign-vietnam', name: 'Good Mornign,Vietnam',
+      cuisine: 'Vietnamese', shortDescription: '越南餐厅',
+      description: '总体给8分吧，还有不少菜没有品鉴。这家的价位小贵（一般餐厅的价格2倍左右，但分量差别不大）。作为到英国长久生活以来，偶尔换换口味还是不错的。环境图三，图四(图三谷歌扒的，咳咳)。周二不营业；周五、周六、周日从十二点营业，其余时间下午四点营业（中午去有些菜没有准备，目前估摸下午去比较好）。',
+      recommendReason: "总体给8分吧，还有不少菜没有品鉴。 这家的价位小贵（一般餐厅的价格2倍左右，但分量差别不大）。 作为到英国长久生活以来，偶尔换换口味还是不错的。 环境图三，图四(图三谷歌扒的，咳咳)",
+      priceRange: '15~25£',
+      images: ['/contributions/14/1.webp', '/contributions/14/2.webp', '/contributions/14/3.webp', '/contributions/14/4.webp'],
+      mustTry: ['la la chicken', '卤肉饭（vietnamese brainsed beef）', '炒面 yakisoba Noodles with vegetables'],
+      address: '36 Uplands Crescent, Uplands, Swansea, Wales, SA2 0PG',
+    },
   ],
   attractions: [
     {
