@@ -66,6 +66,12 @@ export async function POST( request: NextRequest )
 
   const submission = contributionSubmissionSchema.parse( {
     ...parsed.data,
+    submitterName: parsed.data.type === 'university' && !parsed.data.discloseSubmitterName
+      ? ''
+      : parsed.data.submitterName,
+    studyYear: parsed.data.type === 'university'
+      ? `${parsed.data.studyStartYear}–${parsed.data.studyEndYear}`
+      : '',
     customCuisine: parsed.data.type === 'restaurant' && parsed.data.cuisine === 'Other'
       ? parsed.data.customCuisine
       : '',
@@ -74,6 +80,15 @@ export async function POST( request: NextRequest )
       price: '',
       recommendReason: '',
       recommendSignatures: '',
+    } ),
+    ...( parsed.data.type === 'university' ? {} : {
+      studyYear: '',
+      studyStartYear: '',
+      studyEndYear: '',
+      studyStage: '',
+      studyProgram: '',
+      rating: null,
+      discloseSubmitterName: false,
     } ),
   } );
   try

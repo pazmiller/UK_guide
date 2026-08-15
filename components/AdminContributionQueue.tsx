@@ -88,7 +88,12 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
                   <h2 className="mt-3 text-2xl font-black text-[#1D3557]">{submission?.name ?? issue.title}</h2>
                   {submission ? (
                     <>
-                      <p className="mt-1 text-sm font-bold text-[#1D3557]/55">{submission.city} · {contributionRegionLabels[ submission.region ] ?? '英国 / UK'} · {new Date( issue.createdAt ).toLocaleString( 'zh-CN' )}</p>
+                      <p className="mt-1 text-sm font-bold text-[#1D3557]/55">
+                        {submission.type === 'university'
+                          ? `${submission.studyYear} · ${submission.studyStage} · ${submission.studyProgram} · ${submission.rating?.toFixed( 1 ) ?? '—'} / 5`
+                          : `${submission.city} · ${contributionRegionLabels[ submission.region ] ?? '英国 / UK'}`}
+                        {' · '}{new Date( issue.createdAt ).toLocaleString( 'zh-CN' )}
+                      </p>
                       {submission.type === 'restaurant' && (
                         <dl className="mt-4 grid border-y border-[#1D3557]/12 bg-[#F6F8FC] sm:grid-cols-2">
                           {[
@@ -96,6 +101,22 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
                             [ '价位', submission.price ],
                             [ '推荐理由', submission.recommendReason ],
                             [ '推荐招牌菜', submission.recommendSignatures ],
+                          ].map( ( [ label, value ] ) => (
+                            <div key={label} className="border-b border-[#1D3557]/10 px-4 py-3 last:border-b-0 sm:odd:border-r">
+                              <dt className="text-xs font-black uppercase tracking-wide text-[#1D3557]/48">{label}</dt>
+                              <dd className="mt-1 whitespace-pre-wrap text-sm font-bold leading-6 text-[#1D3557]">{value || '未填写'}</dd>
+                            </div>
+                          ) )}
+                        </dl>
+                      )}
+                      {submission.type === 'university' && (
+                        <dl className="mt-4 grid border-y border-[#1D3557]/12 bg-[#F6F8FC] sm:grid-cols-2">
+                          {[
+                            [ '就读年份', submission.studyYear ],
+                            [ '身份 / 阶段', submission.studyStage ],
+                            [ '专业', submission.studyProgram ],
+                            [ '评分', `${submission.rating?.toFixed( 1 ) ?? '—'} / 5` ],
+                            [ '署名', submission.discloseSubmitterName ? submission.submitterName : '匿名' ],
                           ].map( ( [ label, value ] ) => (
                             <div key={label} className="border-b border-[#1D3557]/10 px-4 py-3 last:border-b-0 sm:odd:border-r">
                               <dt className="text-xs font-black uppercase tracking-wide text-[#1D3557]/48">{label}</dt>

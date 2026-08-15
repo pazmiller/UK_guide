@@ -1,9 +1,10 @@
 import { z } from 'zod';
 
-export const contributionTypes = [ 'restaurant', 'attraction', 'avoid', 'tip' ] as const;
+export const contributionTypes = [ 'restaurant', 'attraction', 'avoid', 'tip', 'university' ] as const;
 export const contributionIntents = [ 'add', 'update', 'closure', 'image', 'other' ] as const;
 export const contributionRegions = [ 'uk', 'europa' ] as const;
 export const contributionImageTypes = [ 'image/jpeg', 'image/png', 'image/webp' ] as const;
+export const universityStudyStages = [ '本科', '硕士', '博士', '博士后', '教职' ] as const;
 export const restaurantCuisineOptions = [
   'American',
   'Brazilian',
@@ -63,13 +64,20 @@ export const contributionSubmissionSchema = z.object( {
   intent: z.enum( contributionIntents ),
   region: z.enum( contributionRegions ).default( 'uk' ),
   name: z.string().trim().min( 1 ).max( 120 ),
-  city: z.string().trim().min( 1 ).max( 100 ),
+  city: z.string().trim().max( 100 ).default( '' ),
   details: z.string().trim().min( 1 ).max( 4000 ),
   cuisine: z.union( [ z.enum( restaurantCuisineOptions ), z.literal( '' ) ] ).default( '' ),
   customCuisine: customCuisineName.default( '' ),
   price: z.string().trim().max( 100 ).default( '' ),
   recommendReason: z.string().trim().max( 2000 ).default( '' ),
   recommendSignatures: z.string().trim().max( 1000 ).default( '' ),
+  studyYear: z.string().trim().max( 40 ).default( '' ),
+  studyStartYear: z.string().trim().max( 4 ).default( '' ),
+  studyEndYear: z.string().trim().max( 4 ).or( z.literal( '至今' ) ).default( '' ),
+  studyStage: z.union( [ z.enum( universityStudyStages ), z.literal( '' ) ] ).default( '' ),
+  studyProgram: z.string().trim().max( 160 ).default( '' ),
+  rating: z.number().min( 1 ).max( 5 ).multipleOf( .5 ).nullable().default( null ),
+  discloseSubmitterName: z.boolean().default( false ),
   sourceUrl: optionalHttpUrl.default( '' ),
   submitterName: z.string().trim().max( 80 ).default( '' ),
   imageKeys: z.array( z.string().regex( /^incoming\/[a-z0-9/_-]+\.(?:jpe?g|png|webp)$/ ) )
@@ -77,6 +85,15 @@ export const contributionSubmissionSchema = z.object( {
     .default( [] ),
   imageRightsConfirmed: z.boolean().default( false ),
 } ).superRefine( ( submission, context ) => {
+  if ( submission.type !== 'university' && !submission.city )
+  {
+    context.addIssue( {
+      code: 'custom',
+      path: [ 'city' ],
+      message: '请填写城市或地区。',
+    } );
+  }
+
   if ( submission.type === 'restaurant' && submission.intent === 'add' )
   {
     if ( !submission.cuisine )
@@ -105,6 +122,58 @@ export const contributionSubmissionSchema = z.object( {
     } );
   }
 
+  if ( submission.type === 'university' )
+  {
+    if ( !submission.studyStartYear || !submission.studyEndYear )
+    {
+      context.addIssue( {
+        code: 'custom',
+        path: [ 'studyYear' ],
+        message: '请选择开始与结束年份。',
+      } );
+    }
+    if ( submission.studyEndYear !== '至今' && Number( submission.studyEndYear ) < Number( submission.studyStartYear ) )
+    {
+      context.addIssue( {
+        code: 'custom',
+        path: [ 'studyEndYear' ],
+        message: '结束年份不能早于开始年份。',
+      } );
+    }
+    if ( !submission.studyStage )
+    {
+      context.addIssue( {
+        code: 'custom',
+        path: [ 'studyStage' ],
+        message: '请选择本科、硕士、博士、博士后或教职。',
+      } );
+    }
+    if ( !submission.studyProgram )
+    {
+      context.addIssue( {
+        code: 'custom',
+        path: [ 'studyProgram' ],
+        message: '请填写专业。',
+      } );
+    }
+    if ( submission.rating === null )
+    {
+      context.addIssue( {
+        code: 'custom',
+        path: [ 'rating' ],
+        message: '请选择 1–5 星评分。',
+      } );
+    }
+    if ( submission.discloseSubmitterName && !submission.submitterName )
+    {
+      context.addIssue( {
+        code: 'custom',
+        path: [ 'submitterName' ],
+        message: '选择署名投稿后，请填写名字。',
+      } );
+    }
+  }
+
   if ( submission.imageKeys.length > 0 && !submission.imageRightsConfirmed )
   {
     context.addIssue( {
@@ -130,12 +199,14 @@ export type ContributionType = typeof contributionTypes[ number ];
 export type ContributionIntent = typeof contributionIntents[ number ];
 export type ContributionRegion = typeof contributionRegions[ number ];
 export type RestaurantCuisine = typeof restaurantCuisineOptions[ number ];
+export type UniversityStudyStage = typeof universityStudyStages[ number ];
 
 export const contributionTypeLabels: Record<ContributionType, string> = {
   restaurant: '餐厅 / Restaurant',
   attraction: '景点 / Attraction',
   avoid: '避雷 / Avoid',
   tip: '其他实用线索 / Helpful tip',
+  university: '大学评价 / University review',
 };
 
 export const contributionIntentLabels: Record<ContributionIntent, string> = {

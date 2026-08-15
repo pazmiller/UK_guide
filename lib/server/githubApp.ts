@@ -127,6 +127,14 @@ function buildIssueBody( submission: ContributionSubmission )
     `- **Signature dishes:** ${escapeHtml( submission.recommendSignatures || 'Not supplied' )}`,
   ] : [];
 
+  const universityDetails = submission.type === 'university' ? [
+    `- **Study years:** ${escapeHtml( submission.studyYear )}`,
+    `- **Stage:** ${escapeHtml( submission.studyStage )}`,
+    `- **Programme:** ${escapeHtml( submission.studyProgram )}`,
+    `- **Rating:** ${submission.rating?.toFixed( 1 ) ?? 'Not supplied'} / 5`,
+    `- **Name visibility:** ${submission.discloseSubmitterName ? 'Public' : 'Anonymous'}`,
+  ] : [];
+
   return [
     '## Submission details',
     '',
@@ -134,11 +142,12 @@ function buildIssueBody( submission: ContributionSubmission )
     `- **Intent:** ${escapeHtml( submission.intent )}`,
     `- **Region:** ${escapeHtml( submission.region )}`,
     `- **Place / topic:** ${escapeHtml( submission.name )}`,
-    `- **City / area:** ${escapeHtml( submission.city )}`,
+    ...( submission.city ? [ `- **City / area:** ${escapeHtml( submission.city )}` ] : [] ),
     `- **Submitted by:** ${escapeHtml( submission.submitterName || 'Anonymous' )}`,
     `- **Source:** ${source}`,
     `- **Private image objects:** ${submission.imageKeys.length}`,
     ...restaurantDetails,
+    ...universityDetails,
     '',
     '## Contributor notes',
     '',
@@ -189,11 +198,14 @@ export async function createContributionIssue( submission: ContributionSubmissio
     `intent:${submission.intent}`,
   ];
   await Promise.all( labels.map( ensureLabel ) );
+  const issueContext = submission.type === 'university'
+    ? `${submission.studyYear} · ${submission.studyProgram}`
+    : submission.city;
 
   return githubRequest<GitHubIssue>( `/repos/${repository.owner}/${repository.repo}/issues`, {
     method: 'POST',
     body: JSON.stringify( {
-      title: `[投稿] ${submission.name} · ${submission.city}`,
+      title: `[投稿] ${submission.name} · ${issueContext}`,
       body: buildIssueBody( submission ),
       labels,
     } ),

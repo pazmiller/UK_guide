@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
-import { ClipboardPenLine, MapPinned, ShieldAlert, UtensilsCrossed } from 'lucide-react';
+import { ClipboardPenLine, GraduationCap, MapPinned, ShieldAlert, UtensilsCrossed } from 'lucide-react';
 import ContributionForm from '@/components/ContributionForm';
 
 export const metadata: Metadata = {
   title: '出一份力！｜提交英国生活信息',
-  description: '提交餐厅、景点、避雷信息或其他实用线索，供 UK CFFA 审核后收录。',
+  description: '提交餐厅、景点、避雷信息、大学评价或其他实用线索，供 UK CFFA 审核后收录。',
 };
 
 const contributionTypes = [
   { title: '餐厅 / Restaurant', detail: '帮大家推荐你心目中最爱的宝藏餐厅，打破带英美食荒漠的stereotype！', icon: UtensilsCrossed },
   { title: '景点 / Attraction', detail: '帮大家避雷那些名不副实的chanmei景点', icon: MapPinned },
-  { title: '避雷 / Avoid', detail: '踩坑、避雷，帮大家不要被宰……包括一切吃的喝的景点', icon: ShieldAlert },
+  { title: '避雷 / Avoid', detail: '踩坑、避雷，帮大家别被宰。', icon: ShieldAlert },
+  { title: '大学评价 / University', detail: '留下真实体验，帮助后来的学弟学妹，或者帮避雷……', icon: GraduationCap },
 ];
 
 export default function ContributePage()
