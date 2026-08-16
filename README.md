@@ -83,7 +83,7 @@ The `/contribute` form sends structured submissions to a private GitHub Issue re
 
 Restaurant submissions add `cuisine`, optional `customCuisine` for `Other`, `price`, `recommendReason`, and `recommendSignatures`. The private Agent maps the selected or custom cuisine to `type_cusine`, followed by `price`, `recommend_reason`, and `recommend_signatures`.
 
-After an administrator accepts an Issue, a separate private LangGraph repository runs a five-node workflow: prepare the submission, propose an allowlisted change, materialize generated data and images, open a Draft PR, then evaluate it. Passing evaluation only marks the PR Ready; a human must still approve and merge it.
+After an administrator accepts an Issue, a separate private LangGraph repository runs a five-node workflow: prepare the submission, propose an allowlisted change, materialize generated data and images, open a Draft PR, then evaluate it. Helpful-tip submissions add an admin routing step before acceptance: `Guide` writes an exact, deterministic record to `data/guide-contributions.json`, while `Other` applies `routing:agent` and lets the content Agent choose the most relevant non-Guide location inside its normal allowlist. Passing evaluation only marks the PR Ready; a human must still approve and merge it.
 
 Configure these Vercel environment variables:
 

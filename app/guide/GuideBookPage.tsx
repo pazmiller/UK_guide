@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState, type ReactNode } from 'react';
 import
@@ -15,6 +16,7 @@ import
   PhoneCall,
   ShieldAlert,
 } from 'lucide-react';
+import type { GuideContribution } from '@/lib/guideContributions';
 
 type GuideSection = {
   id: string;
@@ -580,6 +582,29 @@ const guideSections: GuideSection[] = [
   },
 ];
 
+function CommunityGuideBody( { guide }: { guide: GuideContribution } )
+{
+  return (
+    <div className="space-y-5">
+      <div className="flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-wide">
+        <span className="bg-[#D9B46F] px-2 py-1 text-[#1D3557]">社区补充</span>
+        <span className="text-[#1D3557]/55">{guide.city} · {guide.region === 'uk' ? 'UK' : 'EUROPA'}</span>
+      </div>
+      <p className="whitespace-pre-wrap text-[15px] leading-8 text-[#2C261E]/84">{guide.body}</p>
+      {guide.images.length > 0 && (
+        <div className="grid gap-3 sm:grid-cols-2">
+          {guide.images.map( ( image, index ) => (
+            <figure key={image} className="overflow-hidden rounded-2xl border border-white/50 bg-white/35 p-2 shadow-[0_10px_24px_rgba(44,38,30,0.10)]">
+              <Image src={image} alt={`${guide.title} 投稿图片 ${index + 1}`} width={900} height={675} className="aspect-[4/3] w-full rounded-xl object-cover" />
+            </figure>
+          ) )}
+        </div>
+      )}
+      {guide.sourceUrl && <ExternalGuideLink href={guide.sourceUrl} label="查看投稿参考链接" />}
+    </div>
+  );
+}
+
 function BookIllustration( { activeTitle }: { activeTitle: string } )
 {
   const [ isBookOpen, setIsBookOpen ] = useState( false );
@@ -730,10 +755,16 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
   );
 }
 
-export default function GuideBookPage()
+export default function GuideBookPage( { contributions }: { contributions: GuideContribution[] } )
 {
   const [ openSectionId, setOpenSectionId ] = useState( '' );
-  const activeSection = guideSections.find( ( section ) => section.id === openSectionId );
+  const contributionSections: GuideSection[] = contributions.map( ( guide, index ) => ( {
+    id: guide.id,
+    title: `${guideSections.length + index + 1}. ${guide.title}`,
+    body: <CommunityGuideBody guide={guide} />,
+  } ) );
+  const allGuideSections = [ ...guideSections, ...contributionSections ];
+  const activeSection = allGuideSections.find( ( section ) => section.id === openSectionId );
 
   return (
     <div
@@ -861,7 +892,7 @@ export default function GuideBookPage()
           </div>
 
           <div className="space-y-3" aria-label="带英十一律章节">
-            {guideSections.map( ( section ) =>
+            {allGuideSections.map( ( section ) =>
             {
               const isOpen = section.id === openSectionId;
               return (

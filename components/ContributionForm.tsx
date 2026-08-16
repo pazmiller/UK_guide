@@ -1,11 +1,10 @@
 'use client';
 
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import
 {
   CalendarRange,
   CheckCircle2,
-  FileImage,
   GraduationCap,
   Landmark,
   Lightbulb,
@@ -31,6 +30,7 @@ import
   type RestaurantCuisine,
   type UniversityStudyStage,
 } from '@/lib/contributions/schema';
+import { getUniversityBySlug, UNIVERSITY_FORM_OPTIONS } from '@/lib/universities/catalog';
 
 type ContributionFormState = {
   type: ContributionType;
@@ -44,6 +44,7 @@ type ContributionFormState = {
   recommendReason: string;
   recommendSignatures: string;
   studyYear: string;
+  universitySlug: string;
   studyStartYear: string;
   studyEndYear: string;
   studyStage: UniversityStudyStage | '';
@@ -69,6 +70,7 @@ const initialForm: ContributionFormState = {
   recommendReason: '',
   recommendSignatures: '',
   studyYear: '',
+  universitySlug: '',
   studyStartYear: '',
   studyEndYear: '',
   studyStage: '',
@@ -108,84 +110,6 @@ const CURRENT_STUDY_YEAR = 2026;
 const FIRST_STUDY_YEAR = 1995;
 const studyYears = Array.from( { length: CURRENT_STUDY_YEAR - FIRST_STUDY_YEAR + 1 }, ( _, index ) => String( FIRST_STUDY_YEAR + index ) );
 
-const universityOptions = [
-  'Aston University',
-  'Bangor University',
-  'Birkbeck, University of London',
-  'Brunel University London',
-  'Camberwell College of Arts',
-  'Cardiff University',
-  'Central Saint Martins',
-  'Chelsea College of Arts',
-  'City St George’s, University of London',
-  'Courtauld Institute of Art',
-  'Coventry University',
-  'Durham University',
-  'Glasgow School of Art',
-  'Guildhall School of Music & Drama',
-  'Heriot-Watt University',
-  'Imperial College London',
-  'Kingston University',
-  'King’s College London',
-  'Lancaster University',
-  'London College of Communication',
-  'London College of Fashion',
-  'London School of Economics and Political Science',
-  'Loughborough University',
-  'Manchester Metropolitan University',
-  'Newcastle University',
-  'Northumbria University',
-  'Nottingham Trent University',
-  'Oxford Brookes University',
-  'Queen Mary University of London',
-  'Queen’s University Belfast',
-  'Royal Academy of Music',
-  'Royal Central School of Speech and Drama',
-  'Royal College of Art',
-  'Royal College of Music',
-  'Royal Conservatoire of Scotland',
-  'Royal Holloway, University of London',
-  'Royal Northern College of Music',
-  'SOAS University of London',
-  'Swansea University',
-  'Ulster University',
-  'University College London',
-  'University of Aberdeen',
-  'University of Bath',
-  'University of Birmingham',
-  'University of Bradford',
-  'University of Bristol',
-  'University of Cambridge',
-  'University of Dundee',
-  'University of East Anglia',
-  'University of Edinburgh',
-  'University of Essex',
-  'University of Exeter',
-  'University of Glasgow',
-  'University of Huddersfield',
-  'University of Hull',
-  'University of Kent',
-  'University of Leeds',
-  'University of Leicester',
-  'University of Liverpool',
-  'University of Manchester',
-  'University of Nottingham',
-  'University of Oxford',
-  'University of Plymouth',
-  'University of Portsmouth',
-  'University of Reading',
-  'University of Sheffield',
-  'University of Southampton',
-  'University of St Andrews',
-  'University of Stirling',
-  'University of Strathclyde',
-  'University of Surrey',
-  'University of Sussex',
-  'University of Warwick',
-  'University of York',
-  'Wimbledon College of Arts',
-] as const;
-
 const allowedImageTypes = new Set( [ 'image/jpeg', 'image/png', 'image/webp' ] );
 
 async function uploadImage( file: File )
@@ -212,6 +136,17 @@ async function uploadImage( file: File )
   } );
   if ( !uploadResponse.ok ) throw new Error( `${file.name} 上传失败，请重试。` );
   return result.key;
+}
+
+function LocalImagePreview( { file }: { file: File } )
+{
+  const [ source ] = useState( () => URL.createObjectURL( file ) );
+
+  useEffect( () => () => URL.revokeObjectURL( source ), [ source ] );
+
+  // Blob previews are local browser URLs and cannot use Next Image optimization.
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={source} alt="" className="h-full w-full object-cover" />;
 }
 
 function YearRangePicker( { startYear, endYear, onChange }: { startYear: string; endYear: string; onChange: ( startYear: string, endYear: string ) => void } )
@@ -350,6 +285,7 @@ export default function ContributionForm()
 {
   const [ form, setForm ] = useState<ContributionFormState>( initialForm );
   const [ images, setImages ] = useState<File[]>( [] );
+  const [ imageCaptions, setImageCaptions ] = useState<string[]>( [] );
   const [ fileInputKey, setFileInputKey ] = useState( 0 );
   const [ universityChoice, setUniversityChoice ] = useState( '' );
   const [ status, setStatus ] = useState<'idle' | 'uploading' | 'submitting' | 'success' | 'error'>( 'idle' );
@@ -370,6 +306,7 @@ export default function ContributionForm()
         region: 'uk' as const,
         name: '',
         city: '',
+        universitySlug: '',
         sourceUrl: '',
         submitterName: '',
         discloseSubmitterName: false,
@@ -380,6 +317,7 @@ export default function ContributionForm()
     {
       setUniversityChoice( '' );
       setImages( [] );
+      setImageCaptions( [] );
       setFileInputKey( current => current + 1 );
     }
     setStatus( 'idle' );
@@ -389,7 +327,12 @@ export default function ContributionForm()
   function selectUniversity( choice: string )
   {
     setUniversityChoice( choice );
-    updateField( 'name', choice === OTHER_UNIVERSITY_OPTION ? '' : choice );
+    const university = choice === OTHER_UNIVERSITY_OPTION ? undefined : getUniversityBySlug( choice );
+    setForm( current => ( {
+      ...current,
+      universitySlug: choice === OTHER_UNIVERSITY_OPTION ? 'other' : university?.slug ?? '',
+      name: university?.name ?? '',
+    } ) );
   }
 
   function updateStudyRange( studyStartYear: string, studyEndYear: string )
@@ -422,6 +365,7 @@ export default function ContributionForm()
     }
 
     setImages( next );
+    setImageCaptions( current => [ ...current, ...selected.map( () => '' ) ] );
     setStatus( 'idle' );
     setMessage( '' );
   }
@@ -429,7 +373,13 @@ export default function ContributionForm()
   function removeImage( index: number )
   {
     setImages( current => current.filter( ( _, imageIndex ) => imageIndex !== index ) );
+    setImageCaptions( current => current.filter( ( _, imageIndex ) => imageIndex !== index ) );
     setFileInputKey( current => current + 1 );
+  }
+
+  function updateImageCaption( index: number, value: string )
+  {
+    setImageCaptions( current => current.map( ( caption, imageIndex ) => imageIndex === index ? value : caption ) );
   }
 
   async function handleSubmit( event: FormEvent<HTMLFormElement> )
@@ -474,13 +424,19 @@ export default function ContributionForm()
       const response = await fetch( '/api/contributions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( { ...form, version: 1, imageKeys } ),
+        body: JSON.stringify( {
+          ...form,
+          version: 1,
+          imageKeys,
+          imageCaptions: form.type === 'university' ? imageCaptions.map( caption => caption.trim() ) : [],
+        } ),
       } );
       const result = await response.json() as { error?: string; message?: string };
       if ( !response.ok ) throw new Error( result.error ?? '投稿暂时没有送达，请稍后再试。' );
 
       setForm( initialForm );
       setImages( [] );
+      setImageCaptions( [] );
       setFileInputKey( current => current + 1 );
       setStatus( 'success' );
       setMessage( result.message ?? '已进入待审核队列，谢谢你出的一份力！' );
@@ -589,7 +545,7 @@ export default function ContributionForm()
                 学校全名 <span className="text-[#E63946]">*</span>
                 <select required value={universityChoice} onChange={event => selectUniversity( event.target.value )} className="min-h-12 border-b-2 border-[#1D3557]/22 bg-white px-2 text-base font-medium text-[#1D3557] outline-none transition-colors focus:border-[#0F766E]">
                   <option value="">请选择学校</option>
-                  {universityOptions.map( university => <option key={university} value={university}>{university}</option> )}
+                  {UNIVERSITY_FORM_OPTIONS.map( university => <option key={university.slug} value={university.slug}>{university.name}</option> )}
                   <option value={OTHER_UNIVERSITY_OPTION}>{OTHER_UNIVERSITY_OPTION}</option>
                 </select>
               </label>
@@ -718,24 +674,35 @@ export default function ContributionForm()
           </div>
         )}
 
-        {!universityReview && <fieldset className="border-y border-[#1D3557]/12 py-6">
-          <legend className="px-2 text-sm font-bold text-[#1D3557]">现场图片 <span className="font-medium text-[#1D3557]/48">可选，最多 5 张</span></legend>
+        <fieldset className="border-y border-[#1D3557]/12 py-6">
+          <legend className="px-2 text-sm font-bold text-[#1D3557]">{universityReview ? '校园照片' : '现场图片'} <span className="font-medium text-[#1D3557]/48">可选，最多 5 张</span></legend>
+          {universityReview && <p className="mb-3 text-xs leading-5 text-[#1D3557]/55">可以上传校园、宿舍、教室或设施照片，并为每张照片补充内容说明。</p>}
           <label className="mt-2 inline-flex min-h-11 cursor-pointer items-center gap-2 border border-[#1D3557]/20 px-4 text-sm font-bold text-[#1D3557] transition-colors hover:border-[#0F766E] hover:text-[#0F766E] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[#E63946]">
             <Upload className="h-4 w-4" />
-            选择图片
+            {universityReview ? '选择校园照片' : '选择图片'}
             <input key={fileInputKey} type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={handleImages} className="sr-only" />
           </label>
 
           {images.length > 0 && (
             <div className="mt-4 grid gap-2">
               {images.map( ( image, index ) => (
-                <div key={`${image.name}-${image.lastModified}`} className="flex min-h-12 items-center gap-3 border border-[#1D3557]/12 bg-[#F6F8FC] px-3">
-                  <FileImage className="h-4 w-4 shrink-0 text-[#0F766E]" />
-                  <span className="min-w-0 flex-1 truncate text-sm font-bold text-[#1D3557]">{image.name}</span>
-                  <span className="text-xs font-medium text-[#1D3557]/50">{( image.size / 1024 / 1024 ).toFixed( 1 )} MB</span>
-                  <button type="button" onClick={() => removeImage( index )} className="grid h-9 w-9 place-items-center text-[#C92935] hover:bg-[#C92935]/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C92935]" aria-label={`移除 ${image.name}`} title="移除图片">
-                    <Trash2 className="h-4 w-4" />
-                  </button>
+                <div key={`${image.name}-${image.lastModified}-${index}`} className="border border-[#1D3557]/12 bg-[#F6F8FC] p-3">
+                  <div className="flex min-h-14 items-center gap-3">
+                    <div className="grid h-14 w-16 shrink-0 place-items-center overflow-hidden bg-white">
+                      <LocalImagePreview file={image} />
+                    </div>
+                    <span className="min-w-0 flex-1 truncate text-sm font-bold text-[#1D3557]">{image.name}</span>
+                    <span className="hidden text-xs font-medium text-[#1D3557]/50 sm:block">{( image.size / 1024 / 1024 ).toFixed( 1 )} MB</span>
+                    <button type="button" onClick={() => removeImage( index )} className="grid h-9 w-9 shrink-0 place-items-center text-[#C92935] hover:bg-[#C92935]/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C92935]" aria-label={`移除 ${image.name}`} title="移除图片">
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                  {universityReview && (
+                    <label className="mt-3 grid gap-1.5 border-t border-[#1D3557]/10 pt-3 text-xs font-black text-[#1D3557]">
+                      <span>照片 {index + 1} 的内容 <span className="font-medium text-[#1D3557]/45">可选</span></span>
+                      <input value={imageCaptions[ index ] ?? ''} onChange={event => updateImageCaption( index, event.target.value )} maxLength={200} className="min-h-11 border-b-2 border-[#1D3557]/18 bg-white px-2 text-sm font-medium text-[#1D3557] outline-none transition-colors placeholder:text-[#1D3557]/35 focus:border-[#0F766E]" placeholder="例如：图书馆二楼自习区、宿舍公共厨房" />
+                    </label>
+                  )}
                 </div>
               ) )}
             </div>
@@ -747,7 +714,7 @@ export default function ContributionForm()
               <span>我拥有这些图片的版权或已获得公开使用授权，并确认图片不包含需要隐藏的个人信息。</span>
             </label>
           )}
-        </fieldset>}
+        </fieldset>
 
         <input tabIndex={-1} autoComplete="off" aria-hidden="true" value={form.website} onChange={event => updateField( 'website', event.target.value )} className="absolute h-px w-px overflow-hidden opacity-0" name="website" />
 

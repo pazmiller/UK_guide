@@ -72,6 +72,7 @@ export async function POST( request: NextRequest )
     studyYear: parsed.data.type === 'university'
       ? `${parsed.data.studyStartYear}–${parsed.data.studyEndYear}`
       : '',
+    imageCaptions: parsed.data.type === 'university' ? parsed.data.imageCaptions : [],
     customCuisine: parsed.data.type === 'restaurant' && parsed.data.cuisine === 'Other'
       ? parsed.data.customCuisine
       : '',
@@ -82,6 +83,7 @@ export async function POST( request: NextRequest )
       recommendSignatures: '',
     } ),
     ...( parsed.data.type === 'university' ? {} : {
+      universitySlug: '',
       studyYear: '',
       studyStartYear: '',
       studyEndYear: '',

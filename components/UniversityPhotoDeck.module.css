@@ -1,0 +1,217 @@
+.deckSection {
+  padding: clamp(64px, 9vw, 120px) clamp(18px, 5vw, 72px) clamp(76px, 10vw, 140px);
+  background: #171815;
+  color: #f1eee6;
+}
+
+.deckSection > header,
+.viewer {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+.deckSection > header {
+  display: grid;
+  grid-template-columns: .7fr 1fr;
+  gap: 12px 40px;
+  margin-bottom: 48px;
+}
+
+.deckSection header > span {
+  grid-row: span 2;
+  font: 700 9px/1.4 "Courier New", monospace;
+  letter-spacing: .1em;
+}
+
+.deckSection h2 {
+  margin: 0;
+  font: 750 clamp(32px, 4.5vw, 62px)/1 var(--font-noto-sans-sc), sans-serif;
+  letter-spacing: -.055em;
+}
+
+.deckSection header p {
+  margin: 6px 0 0;
+  color: #aaa69d;
+  font: 520 14px/1.65 var(--font-noto-sans-sc), sans-serif;
+}
+
+.viewer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, .55fr);
+  gap: clamp(28px, 6vw, 84px);
+  align-items: end;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  outline: none;
+  perspective: 1500px;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.frame:focus-visible {
+  outline: 4px solid #f0cf45;
+  outline-offset: 8px;
+}
+
+.cube {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(calc(-1 * var(--cube-depth))) rotateY(0deg);
+  transform-style: preserve-3d;
+}
+
+.cubeAnimating {
+  transition: transform 380ms cubic-bezier(.32, .72, 0, 1);
+  will-change: transform;
+}
+
+.cubeDragging {
+  cursor: grabbing;
+  will-change: transform;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #252720;
+  backface-visibility: hidden;
+}
+
+.front { transform: rotateY(0deg) translateZ(var(--cube-depth)); }
+.left { transform: rotateY(-90deg) translateZ(var(--cube-depth)); }
+.right { transform: rotateY(90deg) translateZ(var(--cube-depth)); }
+
+.image {
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.imageWash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 48%, rgba(10, 10, 8, .78));
+}
+
+.face b {
+  position: absolute;
+  right: 24px;
+  bottom: 19px;
+  color: white;
+  font: 900 clamp(34px, 6vw, 76px)/.8 var(--font-inter), Arial, sans-serif;
+  letter-spacing: -.07em;
+}
+
+.arrow {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  place-items: center;
+  background: #f1eee6;
+  color: #171815;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .3);
+  cursor: pointer;
+  font: 800 22px/1 var(--font-inter), sans-serif;
+  transform: translateY(-50%);
+  transition: transform 140ms cubic-bezier(.22, 1, .36, 1), background-color 140ms ease;
+}
+
+.previous { left: -24px; }
+.next { right: -24px; }
+
+.arrow:focus-visible {
+  outline: 3px solid #f0cf45;
+  outline-offset: 3px;
+}
+
+.deckMeta {
+  display: grid;
+  padding: 18px 0 4px 22px;
+  border-left: 1px solid rgba(241, 238, 230, .28);
+}
+
+.deckMeta span,
+.deckMeta small {
+  font: 700 9px/1.4 "Courier New", monospace;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.deckMeta strong {
+  margin: 42px 0 13px;
+  font: 700 clamp(34px, 4.4vw, 62px)/.92 Georgia, "Times New Roman", serif;
+  letter-spacing: -.055em;
+}
+
+.deckMeta a {
+  width: fit-content;
+  margin-top: 48px;
+  padding: 12px 15px;
+  background: #f0cf45;
+  color: #171815;
+  font: 800 11px/1.2 var(--font-noto-sans-sc), sans-serif;
+  text-decoration: none;
+}
+
+.liveRegion {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .arrow:hover {
+    background: #f0cf45;
+    transform: translateY(-50%) scale(1.06);
+  }
+}
+
+@media (max-width: 760px) {
+  .deckSection > header,
+  .viewer {
+    display: block;
+  }
+
+  .deckSection header > span {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .deckSection h2 {
+    font-size: clamp(34px, 10vw, 48px);
+  }
+
+  .frame {
+    aspect-ratio: 4 / 5;
+  }
+
+  .previous { left: -10px; }
+  .next { right: -10px; }
+
+  .deckMeta {
+    margin-top: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cubeAnimating,
+  .arrow {
+    transition: none;
+  }
+
+  .arrow:hover {
+    transform: translateY(-50%);
+  }
+}

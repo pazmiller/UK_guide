@@ -19,6 +19,8 @@
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:report": "playwright show-report",
+    "test:university-reviews": "node --import tsx --test scripts/university-reviews.test.mts",
+    "test:guide-contributions": "node --import tsx --test scripts/guide-contributions.test.mts scripts/guide-page.test.tsx",
     "test:city-data": "node --import tsx --test scripts/city-data.test.mts scripts/destination-generation.test.mjs evals/runtimeRagDataset.test.mts"
   },
   "dependencies": {

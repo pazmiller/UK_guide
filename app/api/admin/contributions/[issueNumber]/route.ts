@@ -1,9 +1,13 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { auth } from '@/auth';
-import { replaceStatusLabel } from '@/lib/server/githubApp';
+import { tipRoutingSchema } from '@/lib/contributions/schema';
+import { acceptContributionIssue, replaceStatusLabel } from '@/lib/server/githubApp';
 
-const actionSchema = z.object( { action: z.enum( [ 'accept', 'close' ] ) } );
+const actionSchema = z.discriminatedUnion( 'action', [
+  z.object( { action: z.literal( 'accept' ), tipRouting: tipRoutingSchema.optional() } ),
+  z.object( { action: z.literal( 'close' ) } ),
+] );
 
 export async function POST( request: Request, context: { params: Promise<{ issueNumber: string }> } )
 {
@@ -26,7 +30,7 @@ export async function POST( request: Request, context: { params: Promise<{ issue
 
   try
   {
-    if ( parsed.data.action === 'accept' ) await replaceStatusLabel( issueNumber, 'status:accepted' );
+    if ( parsed.data.action === 'accept' ) await acceptContributionIssue( issueNumber, parsed.data.tipRouting );
     else await replaceStatusLabel( issueNumber, 'status:closed', true );
     return NextResponse.json( { ok: true } );
   } catch ( error )

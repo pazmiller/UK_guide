@@ -5,6 +5,8 @@ export const contributionIntents = [ 'add', 'update', 'closure', 'image', 'other
 export const contributionRegions = [ 'uk', 'europa' ] as const;
 export const contributionImageTypes = [ 'image/jpeg', 'image/png', 'image/webp' ] as const;
 export const universityStudyStages = [ '本科', '硕士', '博士', '博士后', '教职' ] as const;
+export const tipRoutingOptions = [ 'guide', 'agent' ] as const;
+export const tipRoutingSchema = z.enum( tipRoutingOptions );
 export const restaurantCuisineOptions = [
   'American',
   'Brazilian',
@@ -71,6 +73,7 @@ export const contributionSubmissionSchema = z.object( {
   price: z.string().trim().max( 100 ).default( '' ),
   recommendReason: z.string().trim().max( 2000 ).default( '' ),
   recommendSignatures: z.string().trim().max( 1000 ).default( '' ),
+  universitySlug: z.string().trim().regex( /^(?:[a-z0-9-]+)?$/ ).max( 120 ).default( '' ),
   studyYear: z.string().trim().max( 40 ).default( '' ),
   studyStartYear: z.string().trim().max( 4 ).default( '' ),
   studyEndYear: z.string().trim().max( 4 ).or( z.literal( '至今' ) ).default( '' ),
@@ -81,6 +84,9 @@ export const contributionSubmissionSchema = z.object( {
   sourceUrl: optionalHttpUrl.default( '' ),
   submitterName: z.string().trim().max( 80 ).default( '' ),
   imageKeys: z.array( z.string().regex( /^incoming\/[a-z0-9/_-]+\.(?:jpe?g|png|webp)$/ ) )
+    .max( MAX_CONTRIBUTION_IMAGES )
+    .default( [] ),
+  imageCaptions: z.array( z.string().trim().max( 200 ) )
     .max( MAX_CONTRIBUTION_IMAGES )
     .default( [] ),
   imageRightsConfirmed: z.boolean().default( false ),
@@ -124,6 +130,22 @@ export const contributionSubmissionSchema = z.object( {
 
   if ( submission.type === 'university' )
   {
+    if ( !submission.universitySlug )
+    {
+      context.addIssue( {
+        code: 'custom',
+        path: [ 'universitySlug' ],
+        message: '请选择学校。',
+      } );
+    }
+    if ( submission.imageCaptions.length !== submission.imageKeys.length )
+    {
+      context.addIssue( {
+        code: 'custom',
+        path: [ 'imageCaptions' ],
+        message: '照片说明与上传图片数量不一致。',
+      } );
+    }
     if ( !submission.studyStartYear || !submission.studyEndYear )
     {
       context.addIssue( {
@@ -200,6 +222,7 @@ export type ContributionIntent = typeof contributionIntents[ number ];
 export type ContributionRegion = typeof contributionRegions[ number ];
 export type RestaurantCuisine = typeof restaurantCuisineOptions[ number ];
 export type UniversityStudyStage = typeof universityStudyStages[ number ];
+export type TipRouting = typeof tipRoutingOptions[ number ];
 
 export const contributionTypeLabels: Record<ContributionType, string> = {
   restaurant: '餐厅 / Restaurant',

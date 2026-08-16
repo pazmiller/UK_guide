@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import guideContributionData from '@/data/guide-contributions.json';
+import { parseGuideContributionData } from '@/lib/guideContributions';
 import GuideBookPage from './GuideBookPage';
 
 export const metadata: Metadata = {
@@ -8,5 +10,6 @@ export const metadata: Metadata = {
 
 export default function GuidePage()
 {
-  return <GuideBookPage />;
+  const contributions = parseGuideContributionData( guideContributionData ).guides;
+  return <GuideBookPage contributions={contributions} />;
 }

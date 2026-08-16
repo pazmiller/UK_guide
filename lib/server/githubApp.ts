@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { createAppAuth } from '@octokit/auth-app';
-import type { ContributionSubmission } from '@/lib/contributions/schema';
+import type { ContributionSubmission, TipRouting } from '@/lib/contributions/schema';
 
 const GITHUB_API_VERSION = '2026-03-10';
 const ISSUE_DATA_PREFIX = '<!-- contribution-data:';
@@ -128,12 +128,19 @@ function buildIssueBody( submission: ContributionSubmission )
   ] : [];
 
   const universityDetails = submission.type === 'university' ? [
+    `- **University slug:** ${escapeHtml( submission.universitySlug )}`,
     `- **Study years:** ${escapeHtml( submission.studyYear )}`,
     `- **Stage:** ${escapeHtml( submission.studyStage )}`,
     `- **Programme:** ${escapeHtml( submission.studyProgram )}`,
     `- **Rating:** ${submission.rating?.toFixed( 1 ) ?? 'Not supplied'} / 5`,
     `- **Name visibility:** ${submission.discloseSubmitterName ? 'Public' : 'Anonymous'}`,
   ] : [];
+
+  const imageDetails = submission.type === 'university'
+    ? submission.imageKeys.map( ( _, index ) =>
+      `- **Image ${index + 1}:** ${escapeHtml( submission.imageCaptions?.[ index ] || 'No description supplied' )}`,
+    )
+    : [];
 
   return [
     '## Submission details',
@@ -148,6 +155,7 @@ function buildIssueBody( submission: ContributionSubmission )
     `- **Private image objects:** ${submission.imageKeys.length}`,
     ...restaurantDetails,
     ...universityDetails,
+    ...imageDetails,
     '',
     '## Contributor notes',
     '',
@@ -168,6 +176,8 @@ const labelColours: Record<string, string> = {
   'status:failed': 'D93F0B',
   'status:merged': '6F42C1',
   'status:closed': '6A737D',
+  'routing:guide': 'D9B46F',
+  'routing:agent': '0F766E',
 };
 
 async function ensureLabel( label: string )
@@ -244,6 +254,27 @@ export async function replaceStatusLabel( issueNumber: number, status: string, c
       labels: [ ...labels, status ],
       ...( closeIssue ? { state: 'closed', state_reason: 'not_planned' } : {} ),
     } ),
+  } );
+}
+
+export async function acceptContributionIssue( issueNumber: number, tipRouting?: TipRouting )
+{
+  const repository = getContributionRepository();
+  const issue = await githubRequest<GitHubIssue>( `/repos/${repository.owner}/${repository.repo}/issues/${issueNumber}` );
+  const submission = parseSubmissionFromIssue( issue.body );
+  if ( !submission ) throw new Error( `Issue #${issueNumber} has no valid contribution payload.` );
+  if ( submission.type === 'tip' && !tipRouting ) throw new Error( 'Helpful tips require an admin routing choice.' );
+  if ( submission.type !== 'tip' && tipRouting ) throw new Error( 'Only helpful tips accept an admin routing choice.' );
+
+  const routingLabel = tipRouting ? `routing:${tipRouting}` : '';
+  await Promise.all( [ 'status:accepted', routingLabel ].filter( Boolean ).map( ensureLabel ) );
+  const labels = issue.labels
+    .map( label => typeof label === 'string' ? label : label.name ?? '' )
+    .filter( label => label && !label.startsWith( 'status:' ) && !label.startsWith( 'routing:' ) );
+
+  await githubRequest( `/repos/${repository.owner}/${repository.repo}/issues/${issueNumber}`, {
+    method: 'PATCH',
+    body: JSON.stringify( { labels: [ ...labels, ...( routingLabel ? [ routingLabel ] : [] ), 'status:accepted' ] } ),
   } );
 }
 
