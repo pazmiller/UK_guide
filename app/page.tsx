@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Building, Globe, MapPin } from 'lucide-react';
 import Hero from '@/components/Hero';
 import ClickableRestaurantGrid from '@/components/ClickableRestaurantGrid';
 import CreditsSection from '@/components/CreditsSection';
+import InteractiveUKMap from '@/components/InteractiveUKMap';
 import { londonRestaurants } from '@/data/london/restaurants';
 import millerIcon from '@/src/img/miller_icon.png';
 
@@ -14,6 +15,8 @@ export default function Home()
   return (
     <>
       <Hero />
+
+
 
       {/* About Section */}
       <section className="py-20 bg-white">
@@ -195,7 +198,7 @@ export default function Home()
           </div>
         </section>
       </div>
-
+      <InteractiveUKMap />
       <CreditsSection />
     </>
   );

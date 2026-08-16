@@ -705,7 +705,7 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
         </div>
         <button
           type="button"
-          aria-label={isBookOpen ? '合上赴英提醒册子' : '翻开赴英提醒册子'}
+          aria-label={isBookOpen ? '合上赴英指北册子' : '翻开赴英指北册子'}
           aria-pressed={isBookOpen}
           onClick={() => setIsBookOpen( ( open ) => !open )}
           className="guide-book-cover absolute left-[7%] top-[14%] z-20 h-[76%] w-[70%] cursor-pointer overflow-hidden rounded-l-md rounded-r-xl bg-[#1D3557] text-left shadow-[0_28px_62px_rgba(10,18,32,0.44)] ring-1 ring-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9B46F]"
