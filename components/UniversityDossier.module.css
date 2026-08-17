@@ -15,7 +15,7 @@
 
 .caseNav {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 24px;
   padding-bottom: 17px;
   border-bottom: 1px solid rgba(244, 241, 233, .17);
@@ -24,11 +24,6 @@
 }
 
 .caseNav span { font-family: "Courier New", monospace; }
-
-.caseNav a {
-  color: inherit;
-  text-decoration: none;
-}
 
 .caseHeader > p {
   margin: clamp(64px, 9vw, 124px) 0 18px;
@@ -84,6 +79,19 @@
 .folderTab span {
   font: 700 23px/1 Georgia, "Times New Roman", serif;
 }
+
+.backToCabinet {
+  position: absolute;
+  z-index: 3;
+  top: 17px;
+  left: clamp(18px, 5vw, 70px);
+  color: var(--folder-text);
+  font: 800 20px/1.3 var(--font-noto-sans-sc), sans-serif;
+  letter-spacing: .03em;
+  text-decoration: none;
+}
+
+.backArrow { color: #000; }
 
 .folderTab small,
 .reviewHeader > div > span,
@@ -319,8 +327,10 @@
   max-width: 820px;
   margin: 18px 0 0;
   white-space: pre-wrap;
-  font: 520 clamp(17px, 2vw, 22px)/1.9 var(--font-noto-sans-sc), sans-serif;
+  font: 520 clamp(15.3px, 1.8vw, 19.8px)/1.9 var(--font-noto-sans-sc), sans-serif;
 }
+
+.reviewBody span strong { font-size: 18px; }
 
 .reviewPhotos {
   display: grid;
@@ -491,7 +501,7 @@
   font: 400 clamp(40px, 6vw, 80px)/1 var(--font-inter), sans-serif;
 }
 
-.caseNav a:focus-visible,
+.backToCabinet:focus-visible,
 .sideTabs a:focus-visible,
 .scoreLedger:focus-visible,
 .emptyReviews a:focus-visible,
@@ -502,7 +512,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .caseNav a:hover { color: var(--folder-tab); }
+  .backToCabinet:hover { text-decoration: underline; }
   .scoreLedger:not(:disabled):hover { transform: rotate(0) translateY(-3px); }
   .nextFile a:hover,
   .sideTabs a:hover { filter: brightness(1.12); }
@@ -526,7 +536,7 @@
 
   .folderShell {
     width: calc(100% - 16px);
-    padding: 38px 8px 0;
+    padding: 70px 8px 0;
   }
 
   .folderTab {

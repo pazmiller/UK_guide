@@ -11,6 +11,8 @@ export type UniversityCatalogEntry = {
   featured: boolean;
 };
 
+type UniversityPalette = Pick<UniversityCatalogEntry, 'color' | 'tabColor' | 'tabTextColor' | 'textColor'>;
+
 const universityNames = [
   'Aston University',
   'Bangor University',
@@ -201,12 +203,23 @@ const shortNameOverrides: Record<string, string> = {
   'University of Oxford': 'OXFORD',
 };
 
-const visualOverrides: Record<string, ( typeof visualPalettes )[ number ]> = {
+const visualOverrides: Record<string, UniversityPalette> = {
   ucl: visualPalettes[ 0 ],
   kcl: visualPalettes[ 1 ],
   oxford: visualPalettes[ 2 ],
   exeter: visualPalettes[ 3 ],
-  'royal-holloway': visualPalettes[ 4 ],
+  'royal-holloway': {
+    color: '#eb641e',
+    tabColor: '#69376f',
+    tabTextColor: '#fff8e9',
+    textColor: '#fff8e9',
+  },
+  'imperial-college-london': {
+    color: '#0057ff',
+    tabColor: '#4cffd2',
+    tabTextColor: '#002d3d',
+    textColor: '#4cffd2',
+  },
 };
 
 function slugifyUniversityName( name: string )

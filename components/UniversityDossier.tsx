@@ -27,7 +27,6 @@ export default function UniversityDossier( { university, nextUniversity, reviews
     <article className={styles.page} style={theme}>
       <header className={styles.caseHeader}>
         <div className={styles.caseNav}>
-          <Link href="/universities">← 返回大学档案柜</Link>
           <span>FILE {university.fileNumber}</span>
         </div>
         <p>{reviews.length} STUDENT {reviews.length === 1 ? 'REVIEW' : 'REVIEWS'}</p>
@@ -39,6 +38,10 @@ export default function UniversityDossier( { university, nextUniversity, reviews
           <span>{university.shortName}</span>
           <small>OPEN FILE</small>
         </div>
+
+        <Link href="/universities" className={styles.backToCabinet}>
+          <span className={styles.backArrow} aria-hidden="true">←</span> 返回大学档案柜
+        </Link>
 
         <nav className={styles.sideTabs} aria-label="相邻大学档案">
           <span className={styles.currentTab}>{university.shortName}</span>
@@ -88,18 +91,18 @@ export default function UniversityDossier( { university, nextUniversity, reviews
                     <div className={styles.reviewNarrative}>
                       {review.pros && (
                         <section className={styles.reviewBody} aria-label={`${author}写的特别好之处`}>
-                          <span>特别好之处 / {author} 写</span>
+                          <span><strong>特别好之处</strong> / {author} 写</span>
                           <p>{review.pros}</p>
                         </section>
                       )}
                       {review.cons && (
                         <section className={styles.reviewBody} aria-label={`${author}写的特别坏之处`}>
-                          <span>特别坏之处 / {author} 写</span>
+                          <span><strong>特别坏之处</strong> / {author} 写</span>
                           <p>{review.cons}</p>
                         </section>
                       )}
                       <section className={`${styles.reviewBody} ${styles.overallReview}`} aria-label={`${author}的整体评价`}>
-                        <span>整体评价 / {author} 写</span>
+                        <span><strong>整体评价</strong> / {author} 写</span>
                         <p>{review.body}</p>
                       </section>
                     </div>
