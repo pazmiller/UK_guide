@@ -38,6 +38,7 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
   const isOnCities = pathname.startsWith( '/othercities' );
   const isOnEuropa = pathname.startsWith( '/europa' );
   const isOnGuide = pathname.startsWith( '/guide' );
+  const isOnUniversities = pathname.startsWith( '/universities' );
   const isOnContribute = pathname.startsWith( '/contribute' );
 
   const londonSubLinks = [
@@ -201,7 +202,7 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
               </Link>
 
               <Link href="/guide" className={`hidden lg:inline-flex font-medium text-sm ${isOnGuide ? activePill : hoverPill}`}>
-                赴英提醒
+                赴英指北
               </Link>
 
               {/* London Dropdown */}
@@ -314,9 +315,9 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
               <Link href="/furcon" className={`font-medium text-sm ${pathname === '/furcon' ? activePill : hoverPill}`}>
                 兽聚Furcon
               </Link>
-              {/* Contact */}
-              <Link href="/contact" className={`font-medium text-sm ${pathname === '/contact' ? activePill : hoverPill}`}>
-                Contact
+              {/* Universities */}
+              <Link href="/universities" className={`font-medium text-sm ${isOnUniversities ? activePill : hoverPill}`}>
+                大学！
               </Link>
 
               <Link href="/contribute" className={`font-medium text-sm ${isOnContribute ? activePill : hoverPill}`}>
@@ -364,7 +365,7 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
             <div className="px-4 py-4 space-y-0.5">
               {( [
                 { href: '/', label: 'Home', exact: true },
-                { href: '/guide', label: '赴英提醒', exact: true },
+                { href: '/guide', label: '赴英指北', exact: true },
               ] as const ).map( ( item, i ) => (
                 <Link
                   key={item.href}
@@ -437,10 +438,10 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
                 </Link>
               </div>
 
-              {/* Contact & Contribute */}
-              {[ { href: '/contact', label: 'Contact', delay: 680 }, { href: '/contribute', label: '出一份力！', delay: 720 } ].map( ( item ) => (
+              {/* Universities & Contribute */}
+              {[ { href: '/universities', label: '大学！', delay: 680 }, { href: '/contribute', label: '出一份力！', delay: 720 } ].map( ( item ) => (
                 <div key={item.href} style={{ animation: 'slideInLeft 0.2s ease forwards', animationDelay: `${item.delay}ms`, opacity: 0 }}>
-                  <Link href={item.href} onClick={() => setIsOpen( false )} className={`block font-medium py-2 px-3 rounded-xl transition-colors ${pathname === item.href ? 'text-black bg-white/58 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)]' : 'text-black/82 hover:text-black hover:bg-white/42'}`}>
+                  <Link href={item.href} onClick={() => setIsOpen( false )} className={`block font-medium py-2 px-3 rounded-xl transition-colors ${( item.href === '/universities' ? isOnUniversities : pathname === item.href ) ? 'text-black bg-white/58 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)]' : 'text-black/82 hover:text-black hover:bg-white/42'}`}>
                     {item.label}
                   </Link>
                 </div>
