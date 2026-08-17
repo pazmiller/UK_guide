@@ -74,8 +74,8 @@ export default function UniversityReviewPage( { universities }: { universities: 
           <p className={styles.eyebrow}>英国大学观察簿 · 第一柜</p>
           <h1 id="university-files-title">UNIVERSITY<br />FILES</h1>
           <div className={styles.heroNotes}>
-            <p>只收录就读者提交并通过审核的年份、专业、评分、原文和照片。</p>
-            <span>点击大学标签，打开学生评价档案。</span>
+            <p>The Good, The Bad, and The Ugly</p>
+            <span></span>
           </div>
         </section>
 
