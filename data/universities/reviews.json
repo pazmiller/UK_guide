@@ -1,4 +1,22 @@
 {
   "schemaVersion": 1,
-  "universities": {}
+  "universities": {
+    "exeter": [
+      {
+        "id": "review-16",
+        "sourceIssueNumber": 16,
+        "author": {
+          "kind": "named",
+          "displayName": "幻翼狼影"
+        },
+        "studyStartYear": "2021",
+        "studyEndYear": "2025",
+        "studyStage": "博士",
+        "studyProgram": "Biological science",
+        "rating": 5,
+        "body": "宏观生物/生态研究跟排名分家的学校，细分领域仅次于牛津，导师实力都很强，很多领域大佬，学术资源相当丰富，分校区在康沃尔，自然旅游资源和研究资源也十分丰富，学术网络更是遍布英联邦，选题好的话相当于公费旅游了。\n总体来说是一个如果想混学术圈的话很推荐的学校。",
+        "images": []
+      }
+    ]
+  }
 }
