@@ -49,6 +49,8 @@ type ContributionFormState = {
   studyEndYear: string;
   studyStage: UniversityStudyStage | '';
   studyProgram: string;
+  universityPros: string;
+  universityCons: string;
   rating: number | null;
   discloseSubmitterName: boolean;
   sourceUrl: string;
@@ -75,6 +77,8 @@ const initialForm: ContributionFormState = {
   studyEndYear: '',
   studyStage: '',
   studyProgram: '',
+  universityPros: '',
+  universityCons: '',
   rating: null,
   discloseSubmitterName: false,
   sourceUrl: '',
@@ -653,9 +657,22 @@ export default function ContributionForm()
           </fieldset>
         )}
 
+        {universityReview && (
+          <div className="grid gap-6 sm:grid-cols-2">
+            <label className="grid gap-2 text-sm font-bold text-[#1D3557]">
+              特别好之处 <span className="font-medium text-[#1D3557]/48">可选</span>
+              <textarea value={form.universityPros} onChange={event => updateField( 'universityPros', event.target.value )} maxLength={2000} rows={4} className="resize-y border border-[#1D3557]/18 bg-[#F6F8FC] p-4 text-base font-medium leading-7 text-[#1D3557] outline-none transition-colors placeholder:text-[#1D3557]/35 focus:border-[#0F766E]" placeholder="课程质量、机会、老师、设施，同学1或校园生活中，哪些地方让你觉得值得的？" />
+            </label>
+            <label className="grid gap-2 text-sm font-bold text-[#1D3557]">
+              特别坏之处 <span className="font-medium text-[#1D3557]/48">可选</span>
+              <textarea value={form.universityCons} onChange={event => updateField( 'universityCons', event.target.value )} maxLength={2000} rows={4} className="resize-y border border-[#1D3557]/18 bg-[#F6F8FC] p-4 text-base font-medium leading-7 text-[#1D3557] outline-none transition-colors placeholder:text-[#1D3557]/35 focus:border-[#0F766E]" placeholder="请开喷" />
+            </label>
+          </div>
+        )}
+
         <label className="grid gap-2 text-sm font-bold text-[#1D3557]">
           {universityReview ? '整体评价' : form.type === 'restaurant' ? '餐厅简介与其他补充' : '具体情况、推荐理由或避雷原因'} <span className="text-[#E63946]">*</span>
-          <textarea required value={form.details} onChange={event => updateField( 'details', event.target.value )} maxLength={4000} rows={universityReview ? 9 : 7} className="resize-y border border-[#1D3557]/18 bg-[#F6F8FC] p-4 text-base font-medium leading-7 text-[#1D3557] outline-none transition-colors placeholder:text-[#1D3557]/35 focus:border-[#0F766E]" placeholder={universityReview ? '我对这所带学，设施和师资的锐评是……' : form.type === 'restaurant' ? '简要介绍餐厅特色，也可以补充到访时间、分店、服务或其他值得注意的信息。' : '尽量写下你亲自体验到的细节：什么时候去、价格、服务、需要注意什么，或为什么值得推荐。'} />
+          <textarea required value={form.details} onChange={event => updateField( 'details', event.target.value )} maxLength={4000} rows={universityReview ? 5 : 7} className="resize-y border border-[#1D3557]/18 bg-[#F6F8FC] p-4 text-base font-medium leading-7 text-[#1D3557] outline-none transition-colors placeholder:text-[#1D3557]/35 focus:border-[#0F766E]" placeholder={universityReview ? '我对这所带学，设施和师资的锐评是……' : form.type === 'restaurant' ? '简要介绍餐厅特色，也可以补充到访时间、分店、服务或其他值得注意的信息。' : '尽量写下你亲自体验到的细节：什么时候去、价格、服务、需要注意什么，或为什么值得推荐。'} />
         </label>
 
         {!universityReview && (

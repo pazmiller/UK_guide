@@ -187,6 +187,8 @@ test('contribution form sends a half-star university review', async ({ page }) =
   await page.getByRole('button', { name: '署名投稿' }).click();
   await expect(page.getByLabel(/希望公开显示的名字/)).toHaveValue('');
   await page.getByLabel(/希望公开显示的名字/).fill('Test Student');
+  await page.getByLabel(/特别好之处/).fill('图书馆资源充足。');
+  await page.getByLabel(/特别坏之处/).fill('行政回复偏慢。');
   await page.getByLabel(/整体评价/).fill('设施和师资都经过了自动化测试。');
   await page.locator('input[type="file"]').setInputFiles({
     name: 'university-library.jpg',
@@ -215,6 +217,8 @@ test('contribution form sends a half-star university review', async ({ page }) =
     rating: 4.5,
     discloseSubmitterName: true,
     submitterName: 'Test Student',
+    universityPros: '图书馆资源充足。',
+    universityCons: '行政回复偏慢。',
     details: '设施和师资都经过了自动化测试。',
     imageKeys: [ 'incoming/e2e/university-library.jpg' ],
     imageCaptions: [ '图书馆二楼自习区' ],

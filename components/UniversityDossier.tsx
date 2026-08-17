@@ -85,10 +85,24 @@ export default function UniversityDossier( { university, nextUniversity, reviews
                       <div><dt>投稿者</dt><dd>{author}</dd></div>
                     </dl>
 
-                    <section className={styles.reviewBody} aria-label={`${author}的整体评价`}>
-                      <span>整体评价 / {author} 写</span>
-                      <p>{review.body}</p>
-                    </section>
+                    <div className={styles.reviewNarrative}>
+                      {review.pros && (
+                        <section className={styles.reviewBody} aria-label={`${author}写的特别好之处`}>
+                          <span>特别好之处 / {author} 写</span>
+                          <p>{review.pros}</p>
+                        </section>
+                      )}
+                      {review.cons && (
+                        <section className={styles.reviewBody} aria-label={`${author}写的特别坏之处`}>
+                          <span>特别坏之处 / {author} 写</span>
+                          <p>{review.cons}</p>
+                        </section>
+                      )}
+                      <section className={`${styles.reviewBody} ${styles.overallReview}`} aria-label={`${author}的整体评价`}>
+                        <span>整体评价 / {author} 写</span>
+                        <p>{review.body}</p>
+                      </section>
+                    </div>
 
                     {review.images.length > 0 && (
                       <div className={styles.reviewPhotos} aria-label={`${author}上传的照片`}>

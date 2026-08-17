@@ -89,6 +89,8 @@ export async function POST( request: NextRequest )
       studyEndYear: '',
       studyStage: '',
       studyProgram: '',
+      universityPros: '',
+      universityCons: '',
       rating: null,
       discloseSubmitterName: false,
     } ),

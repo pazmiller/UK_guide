@@ -21,6 +21,8 @@ function submission( overrides: Partial<ContributionSubmission> ): ContributionS
     studyEndYear: '2025',
     studyStage: '硕士',
     studyProgram: 'MSc Testing',
+    universityPros: '图书馆和导师资源充足。',
+    universityCons: '行政回复速度偏慢。',
     rating: 4.5,
     discloseSubmitterName: true,
     submitterName: 'Miller',
@@ -85,6 +87,15 @@ test( 'materialization keeps image captions paired with deterministic public pat
     src: '/contributions/universities/ucl/review-44/1.webp',
     caption: '图书馆二楼自习区',
   } ] );
+} );
+
+test( 'materialization preserves the good, bad, and overall review sections', () =>
+{
+  const result = materializeUniversityReview( submission( {} ), 47 );
+
+  assert.equal( result.review.pros, '图书馆和导师资源充足。' );
+  assert.equal( result.review.cons, '行政回复速度偏慢。' );
+  assert.equal( result.review.body, '真实的整体评价。' );
 } );
 
 test( 're-running one Issue replaces its review instead of changing the average twice', () =>

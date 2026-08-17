@@ -143,7 +143,22 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
                           ) )}
                         </dl>
                       )}
-                      <p className="mt-4 whitespace-pre-wrap text-base leading-7 text-[#1D3557]/76">{submission.details}</p>
+                      {submission.type === 'university' ? (
+                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                          {[
+                            [ '特别好之处', submission.universityPros ],
+                            [ '特别坏之处', submission.universityCons ],
+                            [ '整体评价', submission.details ],
+                          ].map( ( [ label, value ], index ) => (
+                            <section key={label} className={`border-l-4 border-[#1D3557]/16 bg-white px-4 py-3 ${index === 2 ? 'sm:col-span-2' : ''}`}>
+                              <h3 className="text-xs font-black text-[#1D3557]/48">{label}</h3>
+                              <p className="mt-1 whitespace-pre-wrap text-sm font-medium leading-6 text-[#1D3557]/76">{value || '未填写'}</p>
+                            </section>
+                          ) )}
+                        </div>
+                      ) : (
+                        <p className="mt-4 whitespace-pre-wrap text-base leading-7 text-[#1D3557]/76">{submission.details}</p>
+                      )}
                       <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold">
                         {submission.sourceUrl && <a href={submission.sourceUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-[#0F766E] underline decoration-[#0F766E]/35 underline-offset-4 hover:decoration-[#0F766E]"><ExternalLink className="h-3.5 w-3.5" />查看投稿链接</a>}
                         <a href={issue.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-[#1D3557]/65 underline decoration-[#1D3557]/25 underline-offset-4 hover:text-[#1D3557]"><ExternalLink className="h-3.5 w-3.5" />打开私人 Issue</a>

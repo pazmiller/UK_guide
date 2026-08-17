@@ -79,6 +79,8 @@ export const contributionSubmissionSchema = z.object( {
   studyEndYear: z.string().trim().max( 4 ).or( z.literal( '至今' ) ).default( '' ),
   studyStage: z.union( [ z.enum( universityStudyStages ), z.literal( '' ) ] ).default( '' ),
   studyProgram: z.string().trim().max( 160 ).default( '' ),
+  universityPros: z.string().trim().max( 2000 ).default( '' ),
+  universityCons: z.string().trim().max( 2000 ).default( '' ),
   rating: z.number().min( 1 ).max( 5 ).multipleOf( .5 ).nullable().default( null ),
   discloseSubmitterName: z.boolean().default( false ),
   sourceUrl: optionalHttpUrl.default( '' ),

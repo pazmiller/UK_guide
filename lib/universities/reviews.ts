@@ -19,6 +19,8 @@ export const publicUniversityReviewSchema = z.object( {
   studyStage: z.enum( [ '本科', '硕士', '博士', '博士后', '教职' ] ),
   studyProgram: z.string().trim().min( 1 ).max( 160 ),
   rating: z.number().min( 1 ).max( 5 ).multipleOf( .5 ),
+  pros: z.string().trim().max( 2000 ).default( '' ),
+  cons: z.string().trim().max( 2000 ).default( '' ),
   body: z.string().trim().min( 1 ).max( 4000 ),
   images: z.array( z.object( {
     src: z.string().regex( /^\/contributions\/universities\/[a-z0-9-]+\/review-[a-z0-9-]+\/[1-5]\.webp$/ ),

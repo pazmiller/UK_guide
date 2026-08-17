@@ -134,6 +134,8 @@ function buildIssueBody( submission: ContributionSubmission )
     `- **Programme:** ${escapeHtml( submission.studyProgram )}`,
     `- **Rating:** ${submission.rating?.toFixed( 1 ) ?? 'Not supplied'} / 5`,
     `- **Name visibility:** ${submission.discloseSubmitterName ? 'Public' : 'Anonymous'}`,
+    `- **Particularly good:** ${escapeHtml( submission.universityPros || 'Not supplied' )}`,
+    `- **Particularly bad:** ${escapeHtml( submission.universityCons || 'Not supplied' )}`,
   ] : [];
 
   const imageDetails = submission.type === 'university'

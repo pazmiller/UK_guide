@@ -38,6 +38,8 @@ export function materializeUniversityReview( input: ContributionSubmission, sour
     studyStage: submission.studyStage,
     studyProgram: submission.studyProgram,
     rating: submission.rating,
+    pros: submission.universityPros,
+    cons: submission.universityCons,
     body: submission.details,
     images: imageDestinations.map( ( src, index ) => ( {
       src,
