@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { contributionSubmissionSchema, type ContributionSubmission } from '../lib/contributions/schema';
 import { materializeUniversityReview, upsertUniversityReview } from '../lib/universities/materializeReview';
+import { getUniversityBySlug, UNIVERSITY_CATALOG } from '../lib/universities/catalog';
 import { calculateAverageRating, displayReviewAuthor, parseUniversityReviewData } from '../lib/universities/reviews';
 
 function submission( overrides: Partial<ContributionSubmission> ): ContributionSubmission
@@ -29,6 +30,13 @@ function submission( overrides: Partial<ContributionSubmission> ): ContributionS
     ...overrides,
   } );
 }
+
+test( 'every university has a Chinese display name for its dossier', () =>
+{
+  assert.equal( UNIVERSITY_CATALOG.length, 75 );
+  UNIVERSITY_CATALOG.forEach( university => assert.match( university.chineseName, /\p{Script=Han}/u ) );
+  assert.equal( getUniversityBySlug( 'exeter' )?.chineseName, '埃克塞特大学' );
+} );
 
 test( 'three accepted submissions retain attribution and calculate an equal-weight average', () =>
 {

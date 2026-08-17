@@ -53,7 +53,7 @@ export default function UniversityDossier( { university, nextUniversity, reviews
           <section className={styles.reviewHeader} aria-labelledby="review-heading">
             <div>
               <span>STUDENT TESTIMONIES</span>
-              <h2 id="review-heading">真实就读者<br />留下的档案</h2>
+              <h2 id="review-heading">{university.chineseName}</h2>
             </div>
             <UniversityRatingSummary averageRating={averageRating} reviews={reviews} />
           </section>

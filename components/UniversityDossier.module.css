@@ -250,7 +250,7 @@
 
 .reviewCard h2 {
   margin: 13px 0 0;
-  font: 700 clamp(32px, 5vw, 54px)/1 Georgia, "Times New Roman", var(--font-noto-sans-sc), serif;
+  font: 700 clamp(13.8px, 2.17vw, 23.4px)/1 Georgia, "Times New Roman", var(--font-noto-sans-sc), serif;
   letter-spacing: -.04em;
 }
 
@@ -292,7 +292,7 @@
 .reviewCard dt,
 .reviewCard dd {
   margin: 0;
-  font: 700 10px/1.5 "Courier New", monospace;
+  font: 700 16.8px/1.5 "Courier New", monospace;
 }
 
 .reviewCard dt { color: rgba(23, 24, 21, .56); }
