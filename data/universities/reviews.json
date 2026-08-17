@@ -14,6 +14,8 @@
         "studyStage": "博士",
         "studyProgram": "Biological science",
         "rating": 5,
+        "pros": "",
+        "cons": "",
         "body": "宏观生物/生态研究跟排名分家的学校，细分领域仅次于牛津，导师实力都很强，很多领域大佬，学术资源相当丰富，分校区在康沃尔，自然旅游资源和研究资源也十分丰富，学术网络更是遍布英联邦，选题好的话相当于公费旅游了。\n总体来说是一个如果想混学术圈的话很推荐的学校。",
         "images": []
       }
@@ -31,7 +33,28 @@
         "studyStage": "硕士",
         "studyProgram": "Finance Management",
         "rating": 4,
+        "pros": "",
+        "cons": "",
         "body": "老师、职工和同学们都很友好，学校里有Tesco Express可以给下了课身心俱疲的亲们提供物资支持（但均价比Tesco Supermarket贵一点），中午有学校的食堂和Subway可供选择，不过要吐槽的是食堂里的白菜貌似被Pickles包圆了，饭里的菜就算了，当调剂一下口味，甚至Burger里夹的菜也是Pickles，个人来讲无法接受。Subway的话给一个搭配推荐：Tomato meat balls, Steak, Tomato slices and Teriyaki sauce（西红柿怪人了属于是）。如果有幸去到 Bay campus，下了课如果不急着离开可以去沙滩上散步、吹海风散心，海边的日落配合海浪的声音很治愈。最后，住在学校外面的亲，在期末考试的那段时间一定注意公交车的时间，到时候去到学校的车会从4～5班次/H锐减至1班次/H，千万不要因为贪睡错过了！！！",
+        "images": []
+      }
+    ],
+    "imperial-college-london": [
+      {
+        "id": "review-19",
+        "sourceIssueNumber": 19,
+        "author": {
+          "kind": "named",
+          "displayName": "Sion"
+        },
+        "studyStartYear": "2021",
+        "studyEndYear": "2026",
+        "studyStage": "博士",
+        "studyProgram": "Clinical Medicine Research",
+        "rating": 3,
+        "pros": "以下观点仅就我个人而言：\n1. 在IC认识的同学/同事，人都非常好，非常友善，在专业/语言上都帮助了我很多\n2. 在本校内就可以接触到很多优秀的研究者，和其他英国知名高校之间的联系也比较密切\n3. 研究所需设备比较齐全",
+        "cons": "1. 学费巨高！！！住宿费和餐食费也巨高！！！\n2. 学校对PI监管不力，导致我的老师总是不来上班，整个博士阶段的研究主要要靠自己（因导师而异）\n3. 各个校区通过校车往返会经过交通拥堵路段，车上还没有空调，很煎熬",
+        "body": "一般般，感觉能否很好的利用起来学校的资源全都看自己有没有获取资源的渠道。",
         "images": []
       }
     ]
