@@ -80,6 +80,24 @@
           }
         ]
       }
+    ],
+    "kcl": [
+      {
+        "id": "review-21",
+        "sourceIssueNumber": 21,
+        "author": {
+          "kind": "anonymous"
+        },
+        "studyStartYear": "2022",
+        "studyEndYear": "2026",
+        "studyStage": "本科",
+        "studyProgram": "Business management with modern language",
+        "rating": 4,
+        "pros": "老师人都挺好的，上课也非常轻松娱乐",
+        "cons": "语言要求极高，需要认真思考自己是否有能力学会一门第三语言",
+        "body": "总体不错，语言课程较难。但是能读出来那就很厉害了",
+        "images": []
+      }
     ]
   }
 }
