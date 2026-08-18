@@ -587,7 +587,7 @@ function CommunityGuideBody( { guide }: { guide: GuideContribution } )
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-wide">
-        <span className="bg-[#D9B46F] px-2 py-1 text-[#1D3557]">群'大头'补充</span>
+        <span className="bg-[#D9B46F] px-2 py-1 text-[#1D3557]">群“大头”补充</span>
         <span className="text-[#1D3557]/55">{guide.city} · {guide.region === 'uk' ? 'UK' : 'EUROPA'}</span>
       </div>
       <p className="whitespace-pre-wrap text-[15px] leading-8 text-[#2C261E]/84">{guide.body}</p>
