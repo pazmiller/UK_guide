@@ -57,6 +57,29 @@
         "body": "一般般，感觉能否很好的利用起来学校的资源全都看自己有没有获取资源的渠道。",
         "images": []
       }
+    ],
+    "royal-holloway": [
+      {
+        "id": "review-20",
+        "sourceIssueNumber": 20,
+        "author": {
+          "kind": "anonymous"
+        },
+        "studyStartYear": "2020",
+        "studyEndYear": "2023",
+        "studyStage": "本科",
+        "studyProgram": "BSc Computer Science",
+        "rating": 3.5,
+        "pros": "1：城堡确实很漂亮阿\n2：位置离伦敦近，火车站to Waterlook 35-45 mins，适合喜欢英国乡村生活，但又不想离大城市太远的人\n3：信息安全，心理学和Arts部门很强（上世纪AI也很强，SVM发明者是学校教授，一堆前苏联的学者，21世纪后衰落矣）\n4：学校所在的小镇是英格兰最安全的地方之一",
+        "cons": "1：乡村生活可好可坏（走路去最近大超市30mins）\n2：双学位项目非常混乱不推荐\n3：学生人数不算多，只有12000左右，食堂较贵也不好吃（自己做菜吧！）\n4：Algorithms的教授Magnus非常shite",
+        "body": "风景好，环境美，肯尼迪纪念碑的小水流啊流，大宪章也顺便在这签。这地确实还是蛮不错，有钱人也多，离温莎还近。学校的教学质量嘛，英国的其实都差不多，看运气，好坏教授都有，要多参照学长学姐的建议。\n[计算机系的华人中国人老师都非常好，Reuben， Eduard， Yuri，Nicolas也都是很优秀教得也好的老师]\n关于机会的话，建议拿One year Industry，一整年的工作经验很重要。其他机会的话并没有高于英国平均，需要自己争取。本地人里水平高的很多，外国学生水平高的相对比较少。",
+        "images": [
+          {
+            "src": "/contributions/universities/royal-holloway/review-20/1.webp",
+            "caption": "若有雪景，确实能争一争英国大学最美城堡。（学习法国château设计的当然美）"
+          }
+        ]
+      }
     ]
   }
 }
