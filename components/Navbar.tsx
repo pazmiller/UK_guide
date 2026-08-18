@@ -13,8 +13,8 @@ interface NavbarProps
 
 interface NavLink
 {
-    href: string;
-    label: string;
+  href: string;
+  label: string;
 }
 
 export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps )
@@ -40,6 +40,11 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
   const isOnGuide = pathname.startsWith( '/guide' );
   const isOnUniversities = pathname.startsWith( '/universities' );
   const isOnContribute = pathname.startsWith( '/contribute' );
+  const mobileQuickLinks = [
+    { href: '/guide', label: '赴英指北', active: isOnGuide },
+    { href: '/universities', label: '大学！', active: isOnUniversities },
+    { href: '/contribute', label: '出一份力！', active: isOnContribute },
+  ];
 
   const londonSubLinks = [
     { href: '/london/attractions', label: 'Attractions', icon: Building },
@@ -183,15 +188,33 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
           }`}>
           <div className="flex h-[64px] items-center justify-between">
 
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="flex h-10 w-10 items-center justify-center rounded-[18px] border border-white/56 bg-white/34 shadow-[inset_0_1px_0_rgba(255,255,255,0.72),inset_0_-10px_18px_rgba(255,255,255,0.16),0_10px_24px_rgba(29,53,87,0.14)] transition-[transform,background-color,box-shadow] duration-200 group-hover:scale-[1.04] group-hover:bg-white/48">
-                <MapPin className="w-6 h-6 text-[#E63946]" />
+            <div className="flex min-w-0 items-center gap-1.5">
+              {/* Logo */}
+              <Link href="/" className="flex shrink-0 items-center gap-2.5 group">
+                <div className="flex h-10 w-10 items-center justify-center rounded-[18px] border border-white/56 bg-white/34 shadow-[inset_0_1px_0_rgba(255,255,255,0.72),inset_0_-10px_18px_rgba(255,255,255,0.16),0_10px_24px_rgba(29,53,87,0.14)] transition-[transform,background-color,box-shadow] duration-200 group-hover:scale-[1.04] group-hover:bg-white/48">
+                  <MapPin className="w-6 h-6 text-[#E63946]" />
+                </div>
+                <span className="hidden min-[360px]:inline text-black font-black text-xl tracking-tighter drop-shadow-[0_1px_0_rgba(255,255,255,0.58)]">
+                  CFFA<span className="text-[#F4A261]">UK</span>
+                </span>
+              </Link>
+
+              {/* Direct mobile destinations */}
+              <div className="ml-3 flex items-center gap-5 rounded-full border border-white/52 bg-white/20 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.68)] md:hidden">
+                {mobileQuickLinks.map( item => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsOpen( false )}
+                    className={`inline-flex min-h-8 items-center whitespace-nowrap rounded-full px-0.5 py-1.5 text-xs font-bold leading-none transition-[background-color,color,box-shadow] duration-200 ${item.href === '/guide' ? 'translate-x-2' : ''} ${item.href === '/universities' ? 'translate-x-1' : ''} ${item.active
+                      ? 'bg-white/64 text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.82),0_2px_8px_rgba(29,53,87,0.12)]'
+                      : 'text-black/82 hover:bg-white/42 hover:text-black'}`}
+                  >
+                    {item.label}
+                  </Link>
+                ) )}
               </div>
-              <span className="text-black font-black text-xl tracking-tighter drop-shadow-[0_1px_0_rgba(255,255,255,0.58)]">
-                CFFA<span className="text-[#F4A261]">UK</span>
-              </span>
-            </Link>
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1">
