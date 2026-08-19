@@ -24,6 +24,7 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
   const [ citiesOpen, setCitiesOpen ] = useState( false );
   const [ europaOpen, setEuropaOpen ] = useState( false );
   const [ scrolled, setScrolled ] = useState( false );
+  const [ isCollapsed, setIsCollapsed ] = useState( false );
   const pathname = usePathname();
 
   useEffect( () =>
@@ -62,6 +63,19 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
   const dropdownBase = 'absolute top-full left-1/2 z-50 -translate-x-1/2 pt-3 transition-[opacity,transform] duration-200 ease-out origin-top';
   const dropdownOpen = 'opacity-100 scale-100 translate-y-0 pointer-events-auto';
   const dropdownClosed = 'opacity-0 scale-95 -translate-y-1 pointer-events-none';
+
+  const toggleCollapsed = () =>
+  {
+    if ( !isCollapsed )
+    {
+      setIsOpen( false );
+      setLondonOpen( false );
+      setCitiesOpen( false );
+      setEuropaOpen( false );
+    }
+
+    setIsCollapsed( current => !current );
+  };
 
   return (
     <>
@@ -152,6 +166,23 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
 
         .liquid-glass.nav-liquid-shell {
           overflow: visible;
+          width: 100%;
+          transition:
+            width 300ms cubic-bezier(0.25, 1, 0.5, 1),
+            border-radius 300ms cubic-bezier(0.25, 1, 0.5, 1),
+            background-color 300ms cubic-bezier(0.25, 1, 0.5, 1),
+            border-color 300ms cubic-bezier(0.25, 1, 0.5, 1),
+            box-shadow 300ms cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .liquid-glass.nav-liquid-shell[data-collapsed="true"] {
+          width: 66px;
+          overflow: hidden;
+          border-radius: 33px;
+        }
+
+        .liquid-glass.nav-liquid-shell[data-collapsed="true"]::before {
+          clip-path: inset(0 round 33px);
         }
 
         .liquid-glass.nav-liquid-shell::before {
@@ -173,51 +204,120 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
           --glass-blur: 20px;
         }
 
+        .nav-expanded-content {
+          flex: 0 0 calc(min(100vw - 24px, 80rem) - 70px);
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+          transition:
+            opacity 150ms cubic-bezier(0.22, 1, 0.36, 1) 130ms,
+            transform 240ms cubic-bezier(0.25, 1, 0.5, 1) 90ms;
+        }
+
+        .nav-liquid-shell[data-collapsed="true"] .nav-expanded-content {
+          opacity: 0;
+          transform: translate3d(-10px, 0, 0);
+          pointer-events: none;
+          transition-delay: 0ms;
+          transition-duration: 100ms, 180ms;
+        }
+
+        .nav-collapse-trigger {
+          transform: scale(1);
+          transition:
+            transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+            background-color 200ms ease,
+            box-shadow 200ms ease;
+        }
+
+        .nav-collapse-trigger:active {
+          transform: scale(0.97);
+        }
+
+        .nav-collapse-trigger svg {
+          transform: rotate(0deg);
+          transition: transform 300ms cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .nav-liquid-shell[data-collapsed="true"] .nav-collapse-trigger svg {
+          transform: rotate(-8deg);
+        }
+
+        @media (min-width: 640px) {
+          .nav-expanded-content {
+            flex-basis: calc(min(100vw - 32px, 80rem) - 70px);
+          }
+        }
+
         @media (prefers-reduced-motion: reduce) {
           .liquid-glass::before {
             animation: none;
+          }
+
+          .liquid-glass.nav-liquid-shell,
+          .nav-expanded-content,
+          .nav-collapse-trigger,
+          .nav-collapse-trigger svg {
+            transition: none;
           }
         }
       `}</style>
 
       <nav className="fixed top-3 left-0 right-0 z-50 px-3 transition-[opacity,transform] duration-300 sm:px-4">
         {/* Main Nav Row */}
-        <div className={`liquid-glass nav-liquid-shell relative z-30 mx-auto max-w-7xl rounded-[28px] border px-4 transition-[background-color,border-color,box-shadow] duration-300 sm:px-6 lg:px-8 ${scrolled
-          ? 'liquid-glass--scrolled'
-          : ''
-          }`}>
-          <div className="flex h-[64px] items-center justify-between">
-
-            <div className="flex min-w-0 items-center gap-1.5">
-              {/* Logo */}
-              <Link href="/" className="flex shrink-0 items-center gap-2.5 group">
-                <div className="flex h-10 w-10 items-center justify-center rounded-[18px] border border-white/56 bg-white/34 shadow-[inset_0_1px_0_rgba(255,255,255,0.72),inset_0_-10px_18px_rgba(255,255,255,0.16),0_10px_24px_rgba(29,53,87,0.14)] transition-[transform,background-color,box-shadow] duration-200 group-hover:scale-[1.04] group-hover:bg-white/48">
+        <div className="mx-auto max-w-7xl">
+          <div
+            className={`liquid-glass nav-liquid-shell relative z-30 rounded-[28px] border px-[11px] ${scrolled
+              ? 'liquid-glass--scrolled'
+              : ''
+              }`}
+            data-collapsed={isCollapsed}
+          >
+            <div className="flex h-[64px] items-center gap-1.5">
+              <button
+                type="button"
+                onClick={toggleCollapsed}
+                className="nav-collapse-trigger flex h-10 w-10 shrink-0 items-center justify-center rounded-[18px] border border-white/56 bg-white/34 shadow-[inset_0_1px_0_rgba(255,255,255,0.72),inset_0_-10px_18px_rgba(255,255,255,0.16),0_10px_24px_rgba(29,53,87,0.14)] hover:bg-white/48 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D3557]"
+                aria-expanded={!isCollapsed}
+                aria-controls="primary-navigation-content"
+                aria-label={isCollapsed ? '展开导航' : '收起导航'}
+                title={isCollapsed ? '展开导航' : '收起导航'}
+              >
                   <MapPin className="w-6 h-6 text-[#E63946]" />
-                </div>
-                <span className="hidden min-[360px]:inline text-black font-black text-xl tracking-tighter drop-shadow-[0_1px_0_rgba(255,255,255,0.58)]">
-                  CFFA<span className="text-[#F4A261]">UK</span>
-                </span>
-              </Link>
+              </button>
 
-              {/* Direct mobile destinations */}
-              <div className="ml-3 flex items-center gap-5 rounded-full border border-white/52 bg-white/20 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.68)] md:hidden">
-                {mobileQuickLinks.map( item => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setIsOpen( false )}
-                    className={`inline-flex min-h-8 items-center whitespace-nowrap rounded-full px-0.5 py-1.5 text-xs font-bold leading-none transition-[background-color,color,box-shadow] duration-200 ${item.href === '/guide' ? 'translate-x-2' : ''} ${item.href === '/universities' ? 'translate-x-1' : ''} ${item.active
-                      ? 'bg-white/64 text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.82),0_2px_8px_rgba(29,53,87,0.12)]'
-                      : 'text-black/82 hover:bg-white/42 hover:text-black'}`}
-                  >
-                    {item.label}
+              <div
+                id="primary-navigation-content"
+                className="nav-expanded-content flex min-w-0 items-center justify-between"
+                aria-hidden={isCollapsed}
+                inert={isCollapsed}
+              >
+                <div className="flex min-w-0 items-center gap-1.5">
+                  {/* Logo */}
+                  <Link href="/" className="hidden shrink-0 items-center gap-2.5 min-[480px]:flex" aria-label="返回首页">
+                    <span className="text-xl font-black tracking-tighter text-black drop-shadow-[0_1px_0_rgba(255,255,255,0.58)]">
+                      CFFA<span className="text-[#F4A261]">UK</span>
+                    </span>
                   </Link>
-                ) )}
-              </div>
-            </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-1">
+                  {/* Direct mobile destinations */}
+                  <div className="ml-3 flex items-center gap-5 rounded-full border border-white/52 bg-white/20 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.68)] md:hidden">
+                    {mobileQuickLinks.map( item => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setIsOpen( false )}
+                        className={`inline-flex min-h-8 items-center whitespace-nowrap rounded-full px-0.5 py-1.5 text-xs font-bold leading-none transition-[background-color,color,box-shadow] duration-200 ${item.href === '/guide' ? 'translate-x-2' : ''} ${item.href === '/universities' ? 'translate-x-1' : ''} ${item.active
+                          ? 'bg-white/64 text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.82),0_2px_8px_rgba(29,53,87,0.12)]'
+                          : 'text-black/82 hover:bg-white/42 hover:text-black'}`}
+                      >
+                        {item.label}
+                      </Link>
+                    ) )}
+                  </div>
+                </div>
+
+                {/* Desktop Navigation */}
+                <div className="hidden md:flex items-center gap-1">
 
               {/* Home */}
               <Link href="/" className={`font-medium text-sm ${pathname === '/' ? activePill : hoverPill}`}>
@@ -346,21 +446,23 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
               <Link href="/contribute" className={`font-medium text-sm ${isOnContribute ? activePill : hoverPill}`}>
                 出一份力！
               </Link>
-            </div>
+                </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen( !isOpen )}
-              className="md:hidden rounded-full border border-white/50 bg-white/32 p-2 text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] transition-colors hover:bg-white/48"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+                {/* Mobile Menu Button */}
+                <button
+                  onClick={() => setIsOpen( !isOpen )}
+                  className="shrink-0 rounded-full border border-white/50 bg-white/32 p-2 text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] transition-colors hover:bg-white/48 md:hidden"
+                  aria-label="Toggle menu"
+                >
+                  {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* London Sub-Nav Bar */}
-        {isOnLondon && (
+        {isOnLondon && !isCollapsed && (
           <div className="mt-2 hidden md:block">
             <div className="liquid-glass liquid-glass--menu mx-auto max-w-7xl rounded-2xl border px-4 sm:px-6 lg:px-8">
               <div className="flex items-center gap-1 h-10">
@@ -383,7 +485,7 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
         )}
 
         {/* Mobile Navigation */}
-        {isOpen && (
+        {isOpen && !isCollapsed && (
           <div className="liquid-glass liquid-glass--menu mx-auto mt-2 max-w-7xl rounded-[24px] border md:hidden">
             <div className="px-4 py-4 space-y-0.5">
               {( [
