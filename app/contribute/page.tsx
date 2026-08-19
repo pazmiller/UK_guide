@@ -14,8 +14,14 @@ const contributionTypes = [
   { title: '大学评价 / University', detail: '留下真实体验，帮助后来的学弟学妹，或者帮避雷……', icon: GraduationCap },
 ];
 
-export default function ContributePage()
+type ContributePageProps = {
+  searchParams: Promise<{ type?: string | string[] }>;
+};
+
+export default async function ContributePage( { searchParams }: ContributePageProps )
 {
+  const requestedType = ( await searchParams ).type;
+
   return (
     <div className="min-h-screen bg-[#F6F8FC] pt-20 text-[#1D3557]">
       <section className="overflow-hidden bg-[#1D3557] text-white">
@@ -73,7 +79,7 @@ export default function ContributePage()
           </div>
         </aside>
 
-        <ContributionForm />
+        <ContributionForm initialType={requestedType === 'university' ? 'university' : undefined} />
       </section>
     </div>
   );

@@ -75,7 +75,17 @@ export default function UniversityReviewPage( { universities }: { universities: 
           <h1 id="university-files-title">UNIVERSITY<br />FILES</h1>
           <div className={styles.heroNotes}>
             <p>The Good, The Bad, and The Ugly</p>
-            <span></span>
+            <Link
+              href="/contribute?type=university#contribution-form"
+              className={styles.contributionCta}
+              aria-label="前往投稿大学评价"
+            >
+              <span>
+                <small>ADD YOUR FILE / 投稿入口</small>
+                <strong>写下你的大学评价</strong>
+              </span>
+              <b aria-hidden="true">↗</b>
+            </Link>
           </div>
         </section>
 

@@ -61,12 +61,40 @@
   font: 540 clamp(15px, 1.3vw, 19px)/1.7 var(--font-noto-sans-sc), sans-serif;
 }
 
-.heroNotes span {
-  display: block;
+.contributionCta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: end;
   margin-top: 32px;
-  color: #b2aca0;
-  font: 700 10px/1.4 var(--font-noto-sans-sc), monospace;
-  letter-spacing: .06em;
+  padding: 18px 0 15px;
+  border-top: 1px dashed rgba(241, 238, 230, .34);
+  border-bottom: 1px solid rgba(241, 238, 230, .16);
+  color: inherit;
+  text-decoration: none;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.contributionCta small,
+.contributionCta strong {
+  display: block;
+}
+
+.contributionCta small {
+  color: #f0cf45;
+  font: 700 9px/1.35 "Courier New", monospace;
+  letter-spacing: .08em;
+}
+
+.contributionCta strong {
+  margin-top: 7px;
+  font: 800 clamp(15px, 1.4vw, 19px)/1.45 var(--font-noto-sans-sc), sans-serif;
+}
+
+.contributionCta b {
+  padding-bottom: 1px;
+  font: 400 30px/1 var(--font-inter), Arial, sans-serif;
+  transition: transform 180ms ease;
 }
 
 .cabinet {
@@ -243,7 +271,8 @@
 }
 
 .folder:focus-visible,
-.archiveMark:focus-visible {
+.archiveMark:focus-visible,
+.contributionCta:focus-visible {
   outline: 4px solid #f0cf45;
   outline-offset: 6px;
 }
@@ -255,6 +284,15 @@
 
   .archiveMark:hover {
     color: #f0cf45;
+  }
+
+  .contributionCta:hover {
+    border-color: rgba(240, 207, 69, .72);
+    color: #f0cf45;
+  }
+
+  .contributionCta:hover b {
+    transform: translate(3px, -3px);
   }
 }
 
@@ -281,6 +319,10 @@
 
   .heroNotes {
     margin-top: 44px;
+  }
+
+  .contributionCta {
+    max-width: 360px;
   }
 
   .cabinet {

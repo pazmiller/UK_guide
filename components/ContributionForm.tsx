@@ -285,9 +285,12 @@ function StarRating( { value, onChange }: { value: number | null; onChange: ( va
   );
 }
 
-export default function ContributionForm()
+export default function ContributionForm( { initialType }: { initialType?: ContributionType } )
 {
-  const [ form, setForm ] = useState<ContributionFormState>( initialForm );
+  const [ form, setForm ] = useState<ContributionFormState>( () => ( {
+    ...initialForm,
+    type: initialType ?? initialForm.type,
+  } ) );
   const [ images, setImages ] = useState<File[]>( [] );
   const [ imageCaptions, setImageCaptions ] = useState<string[]>( [] );
   const [ fileInputKey, setFileInputKey ] = useState( 0 );
@@ -456,7 +459,7 @@ export default function ContributionForm()
   const universityReview = form.type === 'university';
 
   return (
-    <section className="border border-[#1D3557]/14 bg-white p-5 shadow-[0_20px_48px_rgba(29,53,87,0.10)] sm:p-8 lg:p-10">
+    <section id="contribution-form" className="scroll-mt-24 border border-[#1D3557]/14 bg-white p-5 shadow-[0_20px_48px_rgba(29,53,87,0.10)] sm:p-8 lg:p-10">
       <div className="flex items-start justify-between gap-4 border-b border-[#1D3557]/12 pb-6">
         <div>
           <p className="text-sm font-bold uppercase tracking-wide text-[#E63946]">Submit a contribution</p>
