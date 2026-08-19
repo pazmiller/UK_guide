@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, type ReactNode } from 'react';
+import { useState, type CSSProperties, type ReactNode } from 'react';
 import
 {
   AlertTriangle,
@@ -31,6 +31,8 @@ const linkTones = {
   vodafone: 'text-[#C8102E]',
   three: 'text-[#3B1B6F]',
   giffgaff: 'text-[#202020]',
+  signalChecker: 'text-[#005EB8]',
+  uswitch: 'text-[#A0006B]',
   aldi: 'text-[#0050AA]',
   lidl: 'text-[#0050AA]',
   tesco: 'text-[#00539F]',
@@ -77,13 +79,22 @@ const quickChecklist = [
   '保存学校紧急联系人',
 ];
 
+const guideFolderPalettes = [
+  { color: '#D39A29', textColor: '#171510' },
+  { color: '#B32A31', textColor: '#FFF8E9' },
+  { color: '#2851D8', textColor: '#FFF8E9' },
+  { color: '#34745B', textColor: '#FFF8E9' },
+  { color: '#69376F', textColor: '#FFF8E9' },
+  { color: '#EB641E', textColor: '#171510' },
+] as const;
+
 const simScenarios = [
   {
     title: '伦敦、曼城、伯明翰、利兹等大城市',
     body: <>优先比较价格、流量、是否支持 eSIM。常见选择包括 <InlineGuideLink href="https://ee.co.uk/" tone={linkTones.ee}>EE</InlineGuideLink>、<InlineGuideLink href="https://www.o2.co.uk/" tone={linkTones.o2}>O2</InlineGuideLink>、<InlineGuideLink href="https://www.vodafone.co.uk/" tone={linkTones.vodafone}>Vodafone</InlineGuideLink>、<InlineGuideLink href="https://www.three.co.uk/" tone={linkTones.three}>Three</InlineGuideLink>，以及 <InlineGuideLink href="https://www.giffgaff.com/" tone={linkTones.giffgaff}>giffgaff</InlineGuideLink>、VOXI、SMARTY、Lebara 等虚拟运营商。</>,
   },
   {
-    title: '苏格兰、威尔士、英格兰北部小城、海边或乡村校区',
+    title: '小地方，或乡村校区',
     body: '不要只看价格，先用宿舍、教学楼和常去区域的 postcode 查信号覆盖。',
   },
   {
@@ -92,7 +103,7 @@ const simScenarios = [
   },
   {
     title: '流量需求很高',
-    body: '比较 unlimited data、fair usage policy、热点共享、限速规则和月费变化。',
+    body: '比较 unlimited data、fair usage policy、热点共享、限速规则和月费变化。有些用户会觉得 giffgaff 的 unlimited 套餐性价比不错，但仍应按住址覆盖与限速规则判断。',
   },
   {
     title: '短期刚落地',
@@ -102,8 +113,9 @@ const simScenarios = [
 
 const supermarketGroups = [
   <>便宜型：<SupermarketMapLink query="Aldi" tone={linkTones.aldi}>Aldi</SupermarketMapLink>、<SupermarketMapLink query="Lidl" tone={linkTones.lidl}>Lidl</SupermarketMapLink>。</>,
-  <>常见综合型：<SupermarketMapLink query="Tesco" tone={linkTones.tesco}>Tesco</SupermarketMapLink>、<SupermarketMapLink query="Sainsbury's" tone={linkTones.sainsburys}>Sainsbury’s</SupermarketMapLink>、<SupermarketMapLink query="Asda" tone={linkTones.asda}>Asda</SupermarketMapLink>、<SupermarketMapLink query="Morrisons" tone={linkTones.morrisons}>Morrisons</SupermarketMapLink>。</>,
+  <>常见综合型：<SupermarketMapLink query="Tesco" tone={linkTones.tesco}>Tesco</SupermarketMapLink>、<SupermarketMapLink query="Sainsbury's" tone={linkTones.sainsburys}>Sainsbury’s</SupermarketMapLink>、<SupermarketMapLink query="Asda" tone={linkTones.asda}>Asda</SupermarketMapLink>、<SupermarketMapLink query="Morrisons" tone={linkTones.morrisons}>Morrisons</SupermarketMapLink>、Co-op。</>,
   <>偏贵 / 品质型：<SupermarketMapLink query="Waitrose" tone={linkTones.waitrose}>Waitrose</SupermarketMapLink>、<SupermarketMapLink query="M&S Food" tone={linkTones.marks}>M&amp;S Food</SupermarketMapLink>。</>,
+  '便利店型：Sainsbury’s Local、Tesco Express。',
   '日用品 / 药妆：Boots、Superdrug、Savers。',
   '亚洲 / 中国超市：中超、韩国超市、亚洲食品店，适合买米、调料、火锅底料、速冻食品。',
 ];
@@ -286,21 +298,19 @@ const guideSections: GuideSection[] = [
         <BulletList
           items={[
             '很多同学在签证中心或抵达前后会拿到赠送 SIM 卡，这类卡可以临时过渡，但不建议长期绑定银行、学校账户、邮箱二次验证。',
-            '如果收到异常多的诈骗电话、陌生短信、可疑链接，应尽快考虑更换正式 SIM。',
-            '不要点击短信里的“银行验证”“快递补款”“HMRC 退税”“签证问题”“NHS 付款”等可疑链接。',
-            '办卡前先用学校宿舍、租房 postcode 查询信号覆盖，再选择运营商。',
+            <>办卡前先用学校宿舍、租房 postcode 查询信号覆盖；可用 <InlineGuideLink href="https://www.signalchecker.co.uk/" tone={linkTones.signalChecker}>Signalchecker</InlineGuideLink> 查询信号覆盖，再用 <InlineGuideLink href="https://www.uswitch.com/mobiles/compare/sim_only_deals/" tone={linkTones.uswitch}>uSwitch</InlineGuideLink> 方便对比套餐价格，然后选择运营商。</>,
           ]}
         />
         <TextRows rows={simScenarios} />
         <Notice>
-          <strong>重要：</strong>不要把刚拿到的临时号码马上绑定所有重要账户。确认号码稳定、安全、不会马上停用后，再绑定银行、学校邮箱和二次验证。
+          <strong>重要：</strong>遇到不确定的短信或链接，先问群友或 AI；不要把刚拿到的临时号码马上绑定所有重要账户。确认号码稳定、安全、不会马上停用后，再绑定银行、学校邮箱和二次验证。
         </Notice>
       </div>
     ),
   },
   {
     id: 'groceries',
-    title: '2. 线下超市：拼好饭Iceland，高贵的等玫瑰 & 网购：即日达Amazon和京东入欧Joybuy',
+    title: '2. 超市：身边的线下超市 & 线上 Amazon 和欧洲版京东',
     body: (
       <div className="space-y-5">
         <BulletList items={supermarketGroups} />
@@ -617,11 +627,35 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
         }
 
         .guide-book-cover {
+          border: 2px solid #151614;
+          background: transparent;
+          box-shadow: none;
           transform: perspective(1100px) rotateZ(-6deg) rotateY(0deg);
           transform-origin: 12% 50%;
           transform-style: preserve-3d;
           backface-visibility: hidden;
           transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .guide-book-cover::before {
+          position: absolute;
+          inset: 12px;
+          border: 1px solid rgba(21, 22, 20, 0.34);
+          content: "";
+          pointer-events: none;
+        }
+
+        .guide-book-frame {
+          border: 1.5px solid rgba(21, 22, 20, 0.42);
+          background: transparent;
+          box-shadow: none;
+        }
+
+        .guide-current-file {
+          border: 1.5px solid rgba(21, 22, 20, 0.48);
+          background: transparent;
+          box-shadow: none;
+          opacity: 0.46;
         }
 
         .guide-cat-paw {
@@ -634,15 +668,18 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
         }
 
         .guide-cat-fur {
-          background: #fffdf8;
+          border: 2px solid rgba(21, 22, 20, 0.72);
+          background: transparent;
         }
 
         .guide-cat-bean {
-          background: #f1a0aa;
+          border: 2px solid #b32a31;
+          background: transparent;
         }
 
         .guide-cat-main-pad {
-          background: #e98491;
+          border: 2px solid #b32a31;
+          background: transparent;
         }
 
         @media (hover: hover) and (pointer: fine) {
@@ -676,22 +713,22 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
       `}</style>
 
       <div className="guide-book-shell relative mx-auto aspect-[0.78] max-w-[390px]" data-book-open={isBookOpen}>
-        <div className="absolute inset-x-12 bottom-0 h-8 rounded-[50%] bg-[#160F0B]/25 blur-xl" />
-        <div className="absolute left-[17%] top-[9%] h-[74%] w-[69%] rotate-3 rounded-lg bg-[#EFE0C1] shadow-[0_28px_70px_rgba(18,22,30,0.34)] ring-1 ring-[#6B4A2C]/20" />
+        <div className="absolute inset-x-12 bottom-0 h-8 rounded-[50%] border border-[#151614]/16" />
+        <div className="guide-book-frame absolute left-[17%] top-[9%] h-[74%] w-[69%] rotate-3 rounded-sm" />
         <div
-          className="absolute left-[22%] top-[5%] h-[74%] w-[67%] rotate-6 rounded-lg border border-[#8A6A45]/20 bg-[#FFF8E8] shadow-[0_10px_28px_rgba(26,18,12,0.14)]"
+          className="guide-book-frame absolute left-[22%] top-[5%] h-[74%] w-[67%] rotate-6 rounded-sm"
           style={{
-            backgroundImage: 'repeating-linear-gradient(0deg, rgba(44,38,30,0.08) 0 1px, transparent 1px 27px)',
+            backgroundImage: 'repeating-linear-gradient(0deg, rgba(21,22,20,0.12) 0 1px, transparent 1px 27px)',
           }}
         />
         <div
-          className="absolute left-[13%] top-[15%] z-10 h-[74%] w-[67%] -rotate-2 overflow-hidden rounded-lg border border-[#AA8A5E]/25 bg-[#FFF8E8] shadow-[0_16px_34px_rgba(44,38,30,0.18)]"
+          className="guide-book-frame absolute left-[13%] top-[15%] z-10 h-[74%] w-[67%] -rotate-2 overflow-hidden rounded-sm"
           aria-hidden="true"
           style={{
-            backgroundImage: 'repeating-linear-gradient(0deg, rgba(44,38,30,0.09) 0 1px, transparent 1px 26px)',
+            backgroundImage: 'repeating-linear-gradient(0deg, rgba(21,22,20,0.14) 0 1px, transparent 1px 26px)',
           }}
         >
-          <div className="absolute left-8 top-8 h-px w-36 bg-[#D66F78]/30" />
+          <div className="absolute left-8 top-8 h-px w-36 bg-[#EB641E]/40" />
           <div className="absolute left-8 top-16 h-px w-48 bg-[#2C261E]/13" />
           <div className="absolute left-8 top-24 h-px w-40 bg-[#2C261E]/13" />
           <div className="guide-cat-paw absolute bottom-[12%] right-[8%] h-36 w-36">
@@ -708,25 +745,25 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
           aria-label={isBookOpen ? '合上赴英指北册子' : '翻开赴英指北册子'}
           aria-pressed={isBookOpen}
           onClick={() => setIsBookOpen( ( open ) => !open )}
-          className="guide-book-cover absolute left-[7%] top-[14%] z-20 h-[76%] w-[70%] cursor-pointer overflow-hidden rounded-l-md rounded-r-xl bg-[#1D3557] text-left shadow-[0_28px_62px_rgba(10,18,32,0.44)] ring-1 ring-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9B46F]"
+          className="guide-book-cover absolute left-[7%] top-[14%] z-20 h-[76%] w-[70%] cursor-pointer overflow-hidden rounded-l-sm rounded-r-md text-left focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#69376F]"
         >
-          <div className="absolute inset-y-0 left-0 w-[18%] bg-[#D66F78]" aria-hidden="true" />
-          <div className="absolute inset-y-0 left-[18%] w-px bg-white/18" aria-hidden="true" />
-          <div className="absolute right-5 top-5 h-16 w-9 rounded-b-full bg-[#D9B46F] shadow-md" aria-hidden="true" />
-          <div className="absolute inset-0 px-8 py-10 text-[#FFF8E8]" aria-hidden="true">
-            <BookOpen className="mb-6 h-9 w-9 text-[#D9B46F]" />
-            <p className="mb-3 text-sm uppercase">UK Arrival</p>
-            <div className="h-px w-24 bg-[#D9B46F]" />
+          <div className="absolute inset-y-0 left-0 w-[18%] border-r-2 border-[#EB641E]" aria-hidden="true" />
+          <div className="absolute inset-y-0 left-[20%] w-px bg-[#151614]/24" aria-hidden="true" />
+          <div className="absolute right-5 top-5 h-16 w-9 rounded-b-full border-2 border-[#151614]" aria-hidden="true" />
+          <div className="absolute inset-0 px-8 py-10 text-[#151614]" aria-hidden="true">
+            <BookOpen className="mb-6 h-9 w-9 text-[#151614]" />
+            <p className="mb-3 font-mono text-sm font-black uppercase tracking-[0.12em]">UK Arrival</p>
+            <div className="h-px w-24 bg-[#151614]" />
             <h2 className="mt-5 text-4xl font-black leading-tight">带英十一律</h2>
-            <p className="mt-4 max-w-[11rem] text-sm leading-6 text-[#FFF8E8]/78">
+            <p className="mt-4 max-w-[11rem] text-sm font-semibold leading-6 text-[#151614]/70">
               手机卡、交通、安全、医疗和租房的第一周清单。
             </p>
           </div>
         </button>
-        <div className="absolute bottom-[2%] right-[3%] w-[68%] rotate-2 rounded-md border border-[#AA8A5E]/30 bg-[#FFF8E8] p-5 shadow-[0_18px_42px_rgba(44,38,30,0.22)]">
+        <div className="guide-current-file absolute bottom-[2%] right-[3%] w-[68%] rotate-2 rounded-sm p-5">
           <div className="mb-3 flex items-center justify-between border-b border-[#2C261E]/18 pb-2">
-            <FileText className="h-5 w-5 text-[#D66F78]" />
-            <span className="text-xs font-bold uppercase text-[#1D3557]">Current chapter</span>
+            <FileText className="h-5 w-5 text-[#EB641E]" />
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.08em] text-[#151614]">Current file</span>
           </div>
           <p className="text-lg font-black leading-snug text-[#2C261E]">{activeTitle}</p>
           <div className="mt-5 space-y-2">
@@ -737,15 +774,15 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
         </div>
       </div>
 
-      <div className="mx-auto mt-8 max-w-[390px] border border-[#2C261E]/12 bg-[#FFF8E8] p-5 shadow-[0_16px_36px_rgba(44,38,30,0.13)]">
+      <div className="mx-auto mt-8 max-w-[390px] border border-white/16 bg-[#F1EEE6] p-5 shadow-[0_16px_36px_rgba(0,0,0,0.28)]">
         <div className="mb-4 flex items-center gap-2">
-          <Bookmark className="h-5 w-5 text-[#D66F78]" />
-          <h2 className="text-2xl font-black text-[#1D3557]">第一周先确认一下~</h2>
+          <Bookmark className="h-5 w-5 text-[#EB641E]" />
+          <h2 className="text-2xl font-black text-[#151614]">第一周先确认一下~</h2>
         </div>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
           {quickChecklist.map( ( item ) => (
-            <div key={item} className="flex min-h-11 items-center gap-2 border-b border-[#2C261E]/10 py-2 text-sm font-semibold text-[#2C261E]/82 last:border-b-0">
-              <CheckCircle2 className="h-4 w-4 shrink-0 text-[#0F766E]" />
+            <div key={item} className="flex min-h-11 items-center gap-2 border-b border-[#151614]/10 py-2 text-sm font-semibold text-[#151614]/80 last:border-b-0">
+              <CheckCircle2 className="h-4 w-4 shrink-0 text-[#EB641E]" />
               <span>{item}</span>
             </div>
           ) )}
@@ -768,11 +805,10 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
 
   return (
     <div
-      className="min-h-screen overflow-hidden bg-[#F2E8D0] pt-[68px] text-[#2C261E]"
+      className="min-h-screen overflow-hidden bg-[#CEC6B8] text-[#151614]"
       style={{
-        fontFamily: '"PingFang SC", var(--font-noto-sans-sc), "Microsoft YaHei", "Heiti SC", sans-serif',
-        backgroundImage: 'linear-gradient(90deg, rgba(29,53,87,0.08) 1px, transparent 1px), linear-gradient(0deg, rgba(214,111,120,0.05) 1px, transparent 1px)',
-        backgroundSize: '34px 34px',
+        fontFamily: 'var(--font-inter), "PingFang SC", var(--font-noto-sans-sc), "Microsoft YaHei", sans-serif',
+        backgroundImage: 'radial-gradient(circle at 12% 18%, rgba(255,255,255,0.30), transparent 28%), linear-gradient(115deg, rgba(255,255,255,0.08), rgba(21,22,20,0.045))',
       }}
     >
       <svg className="fixed h-0 w-0 overflow-hidden" aria-hidden="true" focusable="false">
@@ -784,69 +820,87 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
       </svg>
 
       <style>{`
-        @keyframes guideLiquidGlint {
-          0%, 100% { opacity: 0.42; transform: translate3d(-7%, -5%, 0) scale(1.03); }
-          50%      { opacity: 0.72; transform: translate3d(6%, 4%, 0) scale(1.06); }
+        .guide-archive-header {
+          display: flex;
+          justify-content: space-between;
+          gap: 24px;
+          width: min(1360px, calc(100% - 44px));
+          margin: 0 auto;
+          padding: 112px 0 17px;
+          border-bottom: 1px solid rgba(21, 22, 20, 0.2);
+          color: #151614;
+          font: 700 10px/1.3 "Courier New", monospace;
+          letter-spacing: 0.09em;
+        }
+
+        .guide-archive-mark {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        .guide-archive-hero {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(250px, 0.36fr);
+          gap: clamp(32px, 7vw, 120px);
+          align-items: end;
+          width: min(1360px, calc(100% - 44px));
+          margin: 0 auto;
+          padding: clamp(74px, 10vw, 146px) 0 clamp(70px, 9vw, 120px);
+        }
+
+        .guide-archive-eyebrow {
+          grid-column: 1 / -1;
+          margin: 0 0 -34px;
+          color: #514c43;
+          font: 700 12px/1.4 var(--font-noto-sans-sc), sans-serif;
+          letter-spacing: 0.08em;
+        }
+
+        .guide-archive-title {
+          margin: 0;
+          font: 900 clamp(66px, 10.4vw, 152px)/0.76 var(--font-inter), Arial, sans-serif;
+          letter-spacing: -0.09em;
+        }
+
+        .guide-archive-title-arrival {
+          color: #e63946;
+        }
+
+        .guide-archive-title-guide {
+          color: #1d3557;
+        }
+
+        .guide-archive-notes {
+          padding: 0 0 5px 18px;
+          border-left: 1px solid rgba(21, 22, 20, 0.28);
+        }
+
+        .guide-archive-notes strong {
+          display: block;
+          color: #7a5200;
+          font: 800 clamp(22px, 2.4vw, 38px)/1.2 var(--font-noto-sans-sc), sans-serif;
+        }
+
+        .guide-archive-notes span {
+          display: block;
+          margin-top: 14px;
+          color: #514c43;
+          font: 700 10px/1.5 "Courier New", monospace;
+          letter-spacing: 0.09em;
+        }
+
+        .guide-content-grid {
+          width: min(1360px, calc(100% - 44px));
+          margin: 0 auto;
+          padding: 0 0 92px;
         }
 
         .guide-liquid-section {
-          --guide-glass-bg: rgba(255, 248, 232, 0.34);
-          --guide-glass-edge: rgba(255, 255, 255, 0.56);
-          --guide-glass-shadow: rgba(44, 38, 30, 0.14);
           position: relative;
+          z-index: calc(10 + var(--guide-folder-index));
           isolation: isolate;
-          overflow: hidden;
-          border: 1px solid var(--guide-glass-edge);
-          border-radius: 24px;
-          background:
-            linear-gradient(135deg, rgba(255,255,255,0.58), rgba(255,248,232,0.22) 42%, rgba(255,255,255,0.34)),
-            var(--guide-glass-bg);
-          backdrop-filter: blur(18px) saturate(1.72) brightness(1.04);
-          backdrop-filter: url(#guide-section-glass-filter) blur(18px) saturate(1.72) brightness(1.04);
-          -webkit-backdrop-filter: blur(18px) saturate(1.72) brightness(1.04);
-          box-shadow:
-            0 16px 42px var(--guide-glass-shadow),
-            0 2px 16px rgba(214,111,120,0.08),
-            inset 0 1px 0 rgba(255,255,255,0.74),
-            inset 0 -1px 0 rgba(255,255,255,0.28),
-            inset 0 -22px 40px rgba(255,255,255,0.13);
-        }
-
-        .guide-liquid-section::before {
-          content: "";
-          position: absolute;
-          inset: -35%;
-          z-index: 0;
-          border-radius: inherit;
-          background:
-            radial-gradient(circle at 18% 12%, rgba(255,255,255,0.78), transparent 18%),
-            radial-gradient(circle at 86% 18%, rgba(217,180,111,0.22), transparent 24%),
-            radial-gradient(circle at 76% 92%, rgba(15,118,110,0.10), transparent 24%),
-            linear-gradient(115deg, transparent 18%, rgba(255,255,255,0.46) 34%, transparent 48%);
-          mix-blend-mode: screen;
-          opacity: 0.56;
-          pointer-events: none;
-          animation: guideLiquidGlint 10s ease-in-out infinite;
-        }
-
-        .guide-liquid-section::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-          padding: 1px;
-          border-radius: inherit;
-          background:
-            linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,255,255,0.18) 35%, rgba(214,111,120,0.12) 58%, rgba(255,255,255,0.68));
-          -webkit-mask:
-            linear-gradient(#000 0 0) content-box,
-            linear-gradient(#000 0 0);
-          -webkit-mask-composite: xor;
-          mask:
-            linear-gradient(#000 0 0) content-box,
-            linear-gradient(#000 0 0);
-          mask-composite: exclude;
-          pointer-events: none;
+          overflow: visible;
+          background: transparent;
         }
 
         .guide-liquid-section > * {
@@ -855,63 +909,194 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
         }
 
         .guide-liquid-section--open {
-          --guide-glass-bg: rgba(255, 248, 232, 0.48);
-          --guide-glass-edge: rgba(255, 255, 255, 0.68);
-          --guide-glass-shadow: rgba(44, 38, 30, 0.18);
+          background: transparent;
+        }
+
+        .guide-liquid-trigger {
+          position: relative;
+          min-height: 82px;
+          padding: 24px clamp(18px, 3vw, 30px) 40px;
+          border-radius: 5px 5px 2px 2px;
+          background: var(--guide-folder-color);
+          color: var(--guide-folder-text);
+        }
+
+        .guide-section-tab {
+          position: absolute;
+          top: -34px;
+          left: var(--guide-tab-offset);
+          display: flex;
+          width: clamp(142px, 20vw, 210px);
+          height: 38px;
+          padding: 0 16px;
+          border-radius: 19px 19px 0 0;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          background: var(--guide-folder-color);
+          color: var(--guide-folder-text);
+          font-family: "Courier New", monospace;
+          pointer-events: none;
+        }
+
+        .guide-section-tab::after {
+          position: absolute;
+          right: -24px;
+          bottom: 0;
+          width: 34px;
+          height: 21px;
+          border-radius: 0 0 0 20px;
+          background: var(--guide-folder-color);
+          clip-path: polygon(0 0, 43% 0, 100% 100%, 0 100%);
+          content: "";
         }
 
         .guide-liquid-trigger:hover {
-          background: rgba(255, 255, 255, 0.26);
+          filter: brightness(1.06);
+        }
+
+        .guide-liquid-section--open .guide-liquid-trigger {
+          padding-bottom: 20px;
+          border-radius: 5px 5px 0 0;
+          filter: brightness(1.02);
+        }
+
+        .guide-liquid-section--open .guide-section-title,
+        .guide-liquid-section--open .guide-section-chevron {
+          color: var(--guide-folder-text);
+        }
+
+        .guide-section-title,
+        .guide-section-chevron {
+          color: var(--guide-folder-text);
         }
 
         .guide-liquid-body {
-          background:
-            linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,248,232,0.30)),
-            rgba(255,248,232,0.18);
+          border-right: 2px solid var(--guide-folder-color);
+          border-bottom: 2px solid var(--guide-folder-color);
+          border-left: 2px solid var(--guide-folder-color);
+          background: #f1eee6;
+          color: #151614;
+          box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-          .guide-liquid-section::before {
-            animation: none;
+        .guide-liquid-section--open .guide-liquid-body {
+          padding-bottom: 58px;
+        }
+
+        .guide-folder-stack {
+          padding-top: 34px;
+        }
+
+        .guide-official-footer {
+          border-top: 1px solid rgba(21, 22, 20, 0.24);
+          border-bottom: 1px solid rgba(21, 22, 20, 0.14);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          .guide-archive-mark:hover {
+            color: #69376f;
+          }
+
+        }
+
+        @media (max-width: 760px) {
+          .guide-archive-header {
+            width: calc(100% - 30px);
+            padding-top: 102px;
+            font-size: 8px;
+          }
+
+          .guide-archive-hero {
+            display: block;
+            width: calc(100% - 30px);
+            padding: 68px 0 72px;
+          }
+
+          .guide-archive-eyebrow {
+            margin: 0 0 32px;
+          }
+
+          .guide-archive-title {
+            font-size: clamp(44px, 12.8vw, 58px);
+          }
+
+          .guide-archive-notes {
+            margin-top: 44px;
+          }
+
+          .guide-content-grid {
+            width: calc(100% - 30px);
+            padding-bottom: 58px;
+          }
+
+          .guide-liquid-trigger {
+            min-height: 78px;
+            padding: 22px 16px 40px;
+          }
+
+          .guide-section-tab {
+            left: clamp(8px, var(--guide-tab-offset), calc(100% - 166px));
+            width: 142px;
           }
         }
       `}</style>
 
-      <main className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[0.88fr_1.12fr] lg:px-8 lg:py-16">
-        <BookIllustration activeTitle={activeSection?.title ?? '选择一个章节展开'} />
+      <header className="guide-archive-header">
+        <Link href="/" className="guide-archive-mark">CFFA / STUDENT ARCHIVE</Link>
+        <span>UK ARRIVAL · {allGuideSections.length} FILES</span>
+      </header>
 
-        <section className="relative">
-          <div className="mb-8 border-l-4 border-[#D66F78] bg-[#FFF8E8]/78 px-5 py-5 shadow-[0_16px_38px_rgba(44,38,30,0.12)]">
-            <p className="mb-2 text-sm font-black uppercase text-[#D66F78]">UK Arrival Guide</p>
-            <h1 className="text-4xl font-black leading-tight text-[#1D3557] sm:text-5xl">
-              带英十一律
-            </h1>
-            <p className="mt-4 max-w-2xl text-base leading-8 text-[#2C261E]/78">
-              Keep Calm
-            </p>
+      <main>
+        <section className="guide-archive-hero" aria-labelledby="guide-files-title">
+          <p className="guide-archive-eyebrow">赴英指北 · 新生档案柜</p>
+          <h1 id="guide-files-title" className="guide-archive-title">
+            <span className="guide-archive-title-arrival">ARRIVAL</span><br />
+            <span className="guide-archive-title-guide">GUIDE</span>
+          </h1>
+          <div className="guide-archive-notes">
+            <strong>带英十一律</strong>
+            <span>KEEP CALM / READ BEFORE ARRIVAL</span>
           </div>
+        </section>
 
-          <div className="space-y-3" aria-label="带英十一律章节">
-            {allGuideSections.map( ( section ) =>
+        <div className="guide-content-grid grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
+          <BookIllustration activeTitle={activeSection?.title ?? '选择一个章节展开'} />
+
+          <section className="relative">
+            <div className="mb-5 flex items-end justify-between gap-4 border-b border-[#151614]/20 pb-4 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-[#514C43]">
+              <span>Open a field note</span>
+              <span>{allGuideSections.length.toString().padStart( 2, '0' )} records</span>
+            </div>
+
+            <div className="guide-folder-stack" aria-label="带英十一律章节">
+            {allGuideSections.map( ( section, index ) =>
             {
               const isOpen = section.id === openSectionId;
+              const palette = guideFolderPalettes[ index % guideFolderPalettes.length ];
               return (
                 <article
                   key={section.id}
-                  className={`guide-liquid-section transition-[border-color,box-shadow,transform] duration-200 ${isOpen ? 'guide-liquid-section--open translate-x-0' : 'hover:-translate-y-0.5'
-                    }`}
+                  className={`guide-liquid-section ${isOpen ? 'guide-liquid-section--open' : ''}`}
+                  style={{
+                    '--guide-folder-color': palette.color,
+                    '--guide-folder-text': palette.textColor,
+                    '--guide-folder-index': index,
+                    '--guide-tab-offset': `${6 + index % 5 * 9}%`,
+                  } as CSSProperties}
                 >
                   <button
                     type="button"
                     aria-expanded={isOpen}
                     aria-controls={`${section.id}-content`}
                     onClick={() => setOpenSectionId( isOpen ? '' : section.id )}
-                    className="guide-liquid-trigger flex min-h-14 w-full cursor-pointer items-center justify-between gap-4 px-4 py-4 text-left transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0F766E] sm:px-5"
+                    className="guide-liquid-trigger flex w-full cursor-pointer items-center justify-between gap-4 text-left transition-[filter,border-radius] duration-200 focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EEE6]"
                   >
-                    <span className="text-lg font-black leading-snug text-[#1D3557] sm:text-xl">
+                    <span className="guide-section-tab" aria-hidden="true" />
+                    <span className="guide-section-title text-lg font-medium leading-snug sm:text-xl">
                       {section.title}
                     </span>
-                    <ChevronDown className={`h-5 w-5 shrink-0 text-[#D66F78] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`guide-section-chevron h-5 w-5 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
 
                   <div
@@ -920,7 +1105,7 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
                       }`}
                   >
                     <div className="overflow-hidden">
-                      <div className="guide-liquid-body border-t border-white/38 px-4 pb-5 pt-4 sm:px-5">
+                      <div className="guide-liquid-body px-4 pb-5 pt-5 sm:px-6">
                         {section.body}
                       </div>
                     </div>
@@ -928,14 +1113,14 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
                 </article>
               );
             } )}
-          </div>
+            </div>
 
-          <section className="mt-8 border border-[#1D3557]/18 bg-[#1D3557] px-5 py-5 text-[#FFF8E8] shadow-[0_16px_38px_rgba(29,53,87,0.2)]">
+          <section className="guide-official-footer mt-10 px-1 py-7 text-[#151614]">
             <div className="mb-3 flex items-center gap-2">
-              <ShieldAlert className="h-5 w-5 text-[#D9B46F]" />
+              <ShieldAlert className="h-5 w-5 text-[#7A5200]" />
               <h2 className="text-2xl font-black">官方信息为准</h2>
             </div>
-            <p className="max-w-2xl text-sm leading-7 text-[#FFF8E8]/78">
+            <p className="max-w-2xl text-sm leading-7 text-[#514C43]">
               页面是出发前后的提醒清单，涉及签证、医疗、报警和学生签证条件时，请以官方页面、学校邮件和个人 UKVI account 显示为准。
             </p>
             <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
@@ -945,7 +1130,7 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
                   href={link.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-11 items-center gap-1.5 border-b border-[#D9B46F]/45 text-sm font-bold text-[#FFF8E8] transition-colors hover:text-[#D9B46F] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9B46F]"
+                  className="inline-flex min-h-11 items-center gap-1.5 border-b border-[#7A5200]/45 text-sm font-bold text-[#151614] transition-colors hover:text-[#69376F] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#69376F]"
                 >
                   {link.label}
                   <ExternalLink className="h-3.5 w-3.5" />
@@ -953,7 +1138,8 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
               ) )}
             </div>
           </section>
-        </section>
+          </section>
+        </div>
       </main>
     </div>
   );
