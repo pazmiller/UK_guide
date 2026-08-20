@@ -171,6 +171,13 @@ function formatDate( value: string )
   return date.getFullYear() + '.' + pad( date.getMonth() + 1 ) + '.' + pad( date.getDate() );
 }
 
+function calendarDaysBetween( startIso: string, endIso: string )
+{
+  const start = Date.parse( startIso + 'T00:00:00Z' );
+  const end = Date.parse( endIso + 'T00:00:00Z' );
+  return Math.max( 0, Math.round( ( end - start ) / 86_400_000 ) );
+}
+
 export default function FurconIndex()
 {
   const [ region, setRegion ] = useState<RegionFilter>( 'all' );
@@ -213,11 +220,11 @@ export default function FurconIndex()
     const nextUp = events.find( ( event ) => !event.past && !event.live && !event.cancelled );
     const ukNext = events.find( ( event ) => event.country === 'UK' && !event.past && !event.live && !event.cancelled );
     const europeNext = events.find( ( event ) => event.region === 'europe' && !event.past && !event.live && !event.cancelled );
-    const longest = events.reduce( ( longestEvent, event ) => event.days > longestEvent.days ? event : longestEvent, events[ 0 ] );
+    const asiaPacificNext = events.find( ( event ) => event.region === 'asia-pacific' && !event.past && !event.live && !event.cancelled );
     const cancelled = events.filter( ( event ) => event.cancelled );
     const maxRegionCount = Math.max( ...Object.values( byRegion ) );
 
-    return { byRegion, cancelled, europeNext, longest, maxRegionCount, nextUp, ukNext };
+    return { asiaPacificNext, byRegion, cancelled, europeNext, maxRegionCount, nextUp, ukNext };
   }, [ events ] );
 
   const monthKeys = useMemo( () => Array.from( new Set( events.map( ( event ) => event.key ) ) ).sort(), [ events ] );
@@ -245,7 +252,9 @@ export default function FurconIndex()
   }, [ filteredEvents ] );
 
   const countries = useMemo( () => new Set( events.map( ( event ) => event.country ) ).size, [ events ] );
-  const { byRegion, cancelled, europeNext, longest, maxRegionCount, nextUp, ukNext } = statistics;
+  const { asiaPacificNext, byRegion, cancelled, europeNext, maxRegionCount, nextUp, ukNext } = statistics;
+  const nextLondonFursDate = LONDON_FURS_DATES.find( ( date ) => date.iso >= todayIso );
+  const daysUntilLondonFurs = nextLondonFursDate ? calendarDaysBetween( todayIso, nextLondonFursDate.iso ) : null;
   const selectedRegionLabel = REGION_FILTERS.find( ( filter ) => filter.value === region )?.label ?? '全部';
 
   return (
@@ -278,6 +287,17 @@ export default function FurconIndex()
           </div>
           <div className="furcon-square">
             <span className="furcon-num">02</span>
+            {daysUntilLondonFurs === null ? (
+              <>
+                <h2>—</h2>
+                <span className="furcon-meta-label">下一次 London Furs 日期待公布</span>
+              </>
+            ) : (
+              <>
+                <h2>{daysUntilLondonFurs} <em>days</em></h2>
+                <span className="furcon-meta-label">距离下一次 London Furs · {formatDate( nextLondonFursDate!.iso )}</span>
+              </>
+            )}
           </div>
           <div className="furcon-square furcon-focus-square furcon-invert">
             <span className="furcon-num">UK</span>
@@ -324,15 +344,19 @@ export default function FurconIndex()
               地点：Tank &amp; Paddle (Minster Court)
             </div>
           </div>
-          <div className="furcon-square">
-            <span className="furcon-num">06</span>
-            <div className="furcon-figure">{byRegion[ 'asia-pacific' ]}<span>场</span></div>
-            <span className="furcon-meta-label">亚太场次 / asia-pacific</span>
+          <div className="furcon-square furcon-focus-square">
+            <span className="furcon-num">APAC</span>
+            <div>
+              <span className="furcon-meta-label furcon-inline-label furcon-next-label">亚太下一场 / next in Asia-Pacific</span>
+              <h2>{asiaPacificNext ? <a href={asiaPacificNext.officialUrl} target="_blank" rel="noopener noreferrer">{asiaPacificNext.name}</a> : '—'}</h2>
+            </div>
+            <div className="furcon-status">
+              <span className="furcon-status-dot" />
+              {asiaPacificNext ? formatDate( asiaPacificNext.start ) + ' · ' + asiaPacificNext.place : '暂无已公布场次'}
+            </div>
           </div>
           <div className="furcon-square">
             <span className="furcon-num">07</span>
-            <h2>{longest.days} <em>days</em></h2>
-            <span className="furcon-meta-label">最长会期 · {longest.name}</span>
           </div>
           <div className="furcon-square furcon-double-width furcon-london-dates">
             <span className="furcon-num">08</span>
