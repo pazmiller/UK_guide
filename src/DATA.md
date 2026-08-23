@@ -770,6 +770,7 @@ Avebury 巨石阵
 推荐原因： 
 推荐菜： 
 价位： 
+地址： Avebury, Marlborough, Wiltshire, SN8 1RD
 
 Cotswold｜科茨沃尔德
 水上伯顿 Bourton-on-the-Water

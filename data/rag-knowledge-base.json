@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-08-23T09:42:11.973Z",
+  "generatedAt": "2026-08-23T13:49:57.108Z",
   "source": "src/DATA.json",
   "cities": [
     {
@@ -219,6 +219,7 @@
           "name": "Avebury 巨石阵",
           "shortDescription": "比起那个众所周知的巨石阵，这个40分钟外的另一个巨石阵 is just as impressive, 还可以离得更近，它所在的小村子整体上也更有意思。",
           "description": "比起那个众所周知的巨石阵，这个40分钟外的另一个巨石阵 is just as impressive, 还可以离得更近，它所在的小村子整体上也更有意思。",
+          "address": "Avebury, Marlborough, Wiltshire, SN8 1RD",
           "images": [
             "/contributions/23/1.webp"
           ]
@@ -2174,7 +2175,7 @@
       "category": "attraction",
       "section": "Wiltshire｜威尔特郡（景点）",
       "title": "Avebury 巨石阵",
-      "content": "城市/地区：Wiltshire\n分类：attraction\n来源章节：Wiltshire｜威尔特郡（景点）\n条目：Avebury 巨石阵\n图片： /contributions/23/1.webp\n简介： 比起那个众所周知的巨石阵，这个40分钟外的另一个巨石阵 is just as impressive, 还可以离得更近，它所在的小村子整体上也更有意思。\n推荐原因：\n推荐菜：\n价位：",
+      "content": "城市/地区：Wiltshire\n分类：attraction\n来源章节：Wiltshire｜威尔特郡（景点）\n条目：Avebury 巨石阵\n图片： /contributions/23/1.webp\n简介： 比起那个众所周知的巨石阵，这个40分钟外的另一个巨石阵 is just as impressive, 还可以离得更近，它所在的小村子整体上也更有意思。\n推荐原因：\n推荐菜：\n价位：\n地址： Avebury, Marlborough, Wiltshire, SN8 1RD",
       "source": "src/DATA.json",
       "tags": [
         "Wiltshire",
