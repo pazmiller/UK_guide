@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-08-16T16:27:42.464Z",
+  "generatedAt": "2026-08-23T09:42:11.973Z",
   "source": "src/DATA.json",
   "cities": [
     {
@@ -201,9 +201,34 @@
       "attractions": [],
       "avoids": [],
       "tips": []
+    },
+    {
+      "slug": "wiltshire",
+      "name": "威尔特郡",
+      "nameEn": "Wiltshire",
+      "description": "英格兰西南部郡，拥有巨石阵与埃夫伯里等世界遗产。",
+      "heroImage": "/contributions/23/1.webp",
+      "country": "uk",
+      "order": 20,
+      "restaurants": [],
+      "cafes": [],
+      "attractions": [
+        {
+          "id": "wiltshire-attraction-avebury",
+          "slug": "avebury",
+          "name": "Avebury 巨石阵",
+          "shortDescription": "比起那个众所周知的巨石阵，这个40分钟外的另一个巨石阵 is just as impressive, 还可以离得更近，它所在的小村子整体上也更有意思。",
+          "description": "比起那个众所周知的巨石阵，这个40分钟外的另一个巨石阵 is just as impressive, 还可以离得更近，它所在的小村子整体上也更有意思。",
+          "images": [
+            "/contributions/23/1.webp"
+          ]
+        }
+      ],
+      "avoids": [],
+      "tips": []
     }
   ],
-  "chunkCount": 123,
+  "chunkCount": 124,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -2144,7 +2169,22 @@
       ]
     },
     {
-      "id": "0122-cotswold-restaurant-bourton-on-the-water",
+      "id": "0122-wiltshire-attraction-avebury",
+      "city": "Wiltshire",
+      "category": "attraction",
+      "section": "Wiltshire｜威尔特郡（景点）",
+      "title": "Avebury 巨石阵",
+      "content": "城市/地区：Wiltshire\n分类：attraction\n来源章节：Wiltshire｜威尔特郡（景点）\n条目：Avebury 巨石阵\n图片： /contributions/23/1.webp\n简介： 比起那个众所周知的巨石阵，这个40分钟外的另一个巨石阵 is just as impressive, 还可以离得更近，它所在的小村子整体上也更有意思。\n推荐原因：\n推荐菜：\n价位：",
+      "source": "src/DATA.json",
+      "tags": [
+        "Wiltshire",
+        "attraction",
+        "Wiltshire｜威尔特郡（景点）",
+        "Avebury 巨石阵"
+      ]
+    },
+    {
+      "id": "0123-cotswold-restaurant-bourton-on-the-water",
       "city": "Cotswold",
       "category": "restaurant",
       "section": "Cotswold｜科茨沃尔德",
@@ -2159,7 +2199,7 @@
       ]
     },
     {
-      "id": "0123-general-restaurant-chunk",
+      "id": "0124-general-restaurant-chunk",
       "city": "General",
       "category": "restaurant",
       "section": "致谢名单",
