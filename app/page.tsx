@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Building, Globe, MapPin } from 'lucide-react';
 import Hero from '@/components/Hero';
 import ClickableRestaurantGrid from '@/components/ClickableRestaurantGrid';
 import CreditsSection from '@/components/CreditsSection';
+import HomeDispatchBoard from '@/components/HomeDispatchBoard';
 import { londonRestaurants } from '@/data/london/restaurants';
 import millerIcon from '@/src/img/miller_icon.png';
 
@@ -74,7 +75,7 @@ export default function Home()
                   CFFA UK Onboarding
                 </h3>
                 <p className="mt-4 max-w-xl text-base leading-8 text-[#1D3557]/70 sm:text-lg">
-                  从落地后的第一张手机卡，到体验NHS医疗，各种指南与逼坑，尽在CFFA出版的带英十一诫里！第一次来英国也不用慌nia
+                  从落地后的第一张手机卡，到体验NHS医疗，各种指南与逼坑，尽在CFFA出版的带英十二律里！第一次来英国也不用慌nia
                 </p>
 
                 <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-[#1D3557]/75">
@@ -88,10 +89,10 @@ export default function Home()
 
               <div className="relative flex min-h-[230px] flex-col justify-between border-t border-dashed border-[#1D3557]/25 px-7 py-8 sm:px-10 lg:min-h-0 lg:border-l lg:border-t-0">
                 <span className="pointer-events-none absolute right-5 top-2 text-[9rem] font-black leading-none text-[#1D3557]/[0.055] sm:right-8 sm:text-[11rem]" aria-hidden="true">
-                  11
+                  12
                 </span>
                 <div className="relative">
-                  <p className="text-sm font-bold uppercase text-[#E63946]">Eleven Teachings</p>
+                  <p className="text-sm font-bold uppercase text-[#E63946]">Twelve Teachings</p>
                   <p className="mt-2 max-w-[16rem] text-xl font-black leading-snug text-[#1D3557]">
                     一次读完，之后需要时随手翻开。
                   </p>
@@ -194,6 +195,12 @@ export default function Home()
             </div>
 
             <ClickableRestaurantGrid restaurants={featuredRestaurants} />
+          </div>
+        </section>
+
+        <section className="relative z-10 pb-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <HomeDispatchBoard />
           </div>
         </section>
       </div>

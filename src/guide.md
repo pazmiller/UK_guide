@@ -1,4 +1,4 @@
-# 带英十一律
+# 带英十二律
 
 UK Arrival Guide
 
@@ -29,78 +29,24 @@ Keep Calm
 | 流量需求很高 | 比较 unlimited data、fair usage policy、热点共享、限速规则和月费变化。有些用户会觉得 giffgaff 的 unlimited 套餐性价比不错，但仍应按住址覆盖与限速规则判断。 |
 | 短期刚落地 | 可以先用月付 SIM-only 或 pay as you go，稳定后再绑定银行、学校邮箱和 2FA。 |
 
-## 2. 超市：身边的线下超市 & 线上Amazon和欧洲版京东
+## 2. 入境 UK 携带物品指南
+- **证件：** 护照、签证或现在代替 BRP 的 **eVisa** / UKVI account 提前在网上准备好；学校 CAS 这些就更不用说了。充电线、**转换头、转换插座**，以及以备机场或火车延误不时之需的基础洗漱用品，也值得一起准备。意外发生时，你会谢自己的额外准备。
+- **药！** 药品尽量保留原包装和成分标签.如精神类等处方药，准备英文处方、医生证明或至少有用药说明。UK 和国内的药物管控不同，要提前查阅；含**麻黄碱或伪麻黄碱的感冒药**尤其容易被忽略。褪黑素在国内可以直接购买，但在 UK 属于处方药，按自己的实际需求适当备一些。
+- **不要随便帮带：** 可能会有人想让你批量帮忙带一些东西，或带一些 UK 买不到的药；携带前一定要知道是什么，至少**先问 AI** 是否触犯 UK 法。不确定时宁可不带。
+- **现金、相机和贵重物：** 携带现金等值 £10,000 或以上进出 UK 时按规定须申报。贵重物品可以随身带；UK 虽然一般不会像泰国甚至日本那样偷乘客物品，但以防万一也是上策。
+- **不确定？走申报这条路：** 超过个人免税额度、受禁或受限、或准备出售/用于业务的物品都需要申报。可在抵达前在线核对、申报并缴税。。
 
-- 便宜型：[Aldi](https://www.google.com/maps/search/?api=1&query=Aldi)、[Lidl](https://www.google.com/maps/search/?api=1&query=Lidl)。
-- 常见综合型：[Tesco](https://www.google.com/maps/search/?api=1&query=Tesco)、[Sainsbury’s](https://www.google.com/maps/search/?api=1&query=Sainsbury%27s)、[Asda](https://www.google.com/maps/search/?api=1&query=Asda)、[Morrisons](https://www.google.com/maps/search/?api=1&query=Morrisons)。、Coop
-- 偏贵／品质型：[Waitrose](https://www.google.com/maps/search/?api=1&query=Waitrose)、[M&S Food](https://www.google.com/maps/search/?api=1&query=M%26S%20Food)。
-- 便利店型：邻里版的Sainsbury Local, Tesco Express
-- 日用品／药妆：Boots、Superdrug、Savers。
-- 亚洲／中国超市：中超、韩国超市、亚洲食品店，适合买米、调料、火锅底料和速冻食品。
+官方核对：[携带个人物品](https://www.gov.uk/bringing-goods-into-uk-personal-use)、[食品与动物产品](https://www.gov.uk/bringing-food-into-great-britain)、[携带药物](https://www.gov.uk/take-medicine-in-or-out-uk)、[现金申报](https://www.gov.uk/bringing-cash-into-uk)。
 
-### 网上超市
+## 3. 银行卡与支付方式：刚到UK记得带英镑现金
 
-- Amazon 和最近京东在英国做起来的 [Joybuy UK](https://www.joybuy.co.uk/) 普遍会被当作送货最快的网购平台之一，适合买日用品、零食和临时缺的东西。
-- [Ocado](https://www.ocado.com/) 以及 Tesco、Sainsbury’s、Asda、Morrisons 等大超市都可网上大批量购物，适合补米面粮油、饮料和清洁用品。
-- 不少传统中超也有购物网站，例如优西，适合中餐调料、火锅底料、速冻及亚洲食品。
-- 不过现在不少同学会感觉这类传统中超网站正在被 Joybuy 这类更快的平台挤压。下单前还是按 postcode、配送费、最低起送、缺货替换和退货规则确认。
-
-### 省钱技巧
-
-- 办理 [Tesco Clubcard](https://www.tesco.com/clubcard/)、Sainsbury’s Nectar、Boots Advantage Card 等会员。
-- 晚上留意 yellow sticker reduced items。
-- 使用 Too Good To Go 一类 app 购买临期食物。
-- 初到英国不要一次买太多锅具和电器，先确认宿舍是否允许使用。
-
-## 3. 公共交通：火车、地铁、Bus（最不靠谱但很多小城市只能以靠它）、Railcard
-
-如果经常坐火车，建议尽早办 [16–25 Railcard](https://www.16-25railcard.co.uk/) 或 [26–30 Railcard](https://www.26-30railcard.co.uk/)，学生通常可享火车票折扣。乘车时确保能正常出示 Railcard，工作人员可能同时查票和 Railcard。可在 [Trainline](https://www.thetrainline.com/) app 关联或办理。
-
-### 各城市交通
-
-#### London／伦敦
-
-- 地铁、公交、Elizabeth line、Overground、DLR 等主要使用 contactless 银行卡、Apple Pay／Google Pay 或 [TfL／Oyster](https://tfl.gov.uk/fares/contactless-and-oyster-account)。
-- Tube／rail 通常进出站都要 tap；公交一般只 tap in。
-- 不要多人共用同一张 contactless 卡进站。
-- 学生可了解 [18+ Student Oyster](https://tfl.gov.uk/fares/free-and-discounted-travel/18-plus-student-oyster-photocard) 与 Railcard 绑定 Oyster 等优惠。
-
-#### Manchester／曼彻斯特
-
-- 使用 [Bee Network](https://bee.network/)；公交和 tram 可 contactless tap and go。
-- 搭 tram 注意 tap in／tap out。
-- 多次出行前查看 daily／weekly cap 是否更划算。
-
-#### Birmingham／West Midlands
-
-- 常见方式包括 bus、tram、train。
-- 可查看 [Swift card](https://www.swiftcard.org.uk/)、[National Express West Midlands](https://www.nationalexpress.com/en/west-midlands) 和 [West Midlands Metro](https://westmidlandsmetro.com/)。
-- 城市间通勤注意 train ticket 类型及 peak／off-peak 时间。
-
-#### Edinburgh／爱丁堡
-
-- 常见方式包括 [Lothian Buses](https://www.lothianbuses.com/) 和 [Edinburgh Trams](https://edinburghtrams.com/)。
-- 可使用官方 Bus & Tram app 或 contactless。
-- Tram 前往机场时票价规则可能不同，出发前确认。
-
-#### Glasgow／格拉斯哥
-
-- 常见方式包括 Subway、bus 和 [ScotRail](https://www.scotrail.co.uk/)。
-- Subway、rail、bus 的票务系统不完全相同；频繁通勤可研究 Smartcard 或 season ticket。
-- 在苏格兰城市之间通勤时优先查看 ScotRail。
-
-#### Oxford／Cambridge
-
-- 城市较适合步行、骑车和公交。
-- 骑车要买锁、灯、头盔，注意靠左行驶和环岛规则。
-- 不要把自行车停在禁止停车区域。
-
-### 火车、机票与整体出行
-
-- [Trip.com](https://uk.trip.com/)、[National Rail](https://www.nationalrail.co.uk/)、[Trainline](https://www.thetrainline.com/)、[TrainPal](https://www.mytrainpal.com/) 或各铁路公司官网均可购火车票。
-- 留意 Advance、Off-Peak、Anytime、Return、Open Return 的区别。
-- 晚上回家提前查末班车，不要假定公交或地铁 24 小时运行。
-- 地铁偶尔会延迟、维修、罢工，但比伦敦地铁更不可靠的是全英国的散漫巴士司机。
+- 初到英国可先准备可用的国际银行卡和**英镑现金**，确保在国内时已开启银行卡的海外支付功能。
+- 到英国后再看本地账户；不少银行会有 referral 送现金活动，**记得联系群主或群友**来白嫖。
+- 常见银行包括 [HSBC](https://www.hsbc.co.uk/)、[Barclays](https://www.barclays.co.uk/)、[Lloyds](https://www.lloydsbank.com/)、[NatWest](https://www.natwest.com/)、[Santander](https://www.santander.co.uk/)、[Monzo](https://monzo.com/)、[Starling](https://www.starlingbank.com/) 和 [Revolut](https://www.revolut.com/en-GB/)。
+- 开户可能需要地址证明、学生证明、护照、签证或 eVisa 状态。
+- 谨慎处理二手交易、租房押金、兼职押金、代缴学费、低价机票等**老乡骗老乡**骗局。
+- 英国银行对于转账上的**反洗钱非常敏感**，所以一次性转入几千英镑就很容易触发冻结。这种时候联系银行基本都能解决，因此也建议多办几张银行卡。
+- 英国大部分地方都支持 Visa、Mastercard 的 contactless 支付：带实体卡碰一下，或者绑定手机上的 Apple Pay、Google Pay、Samsung Pay 等；少数地方仍需现金。
 
 ## 4. 手机安全：英国大城市一定要注意
 
@@ -157,17 +103,55 @@ NHS 的 GP（General Practitioner）是 primary care doctor，即全科医生，
 
 官方链接：[注册 NHS GP](https://www.nhs.uk/nhs-services/gps/how-to-register-with-a-gp-surgery/)，[何时使用 NHS 111](https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/)。
 
-## 7. 银行卡与支付：自由流动
+## 7. 公共交通：火车、地铁、Bus（最不靠谱但很多小城市只能以靠它）、Railcard
 
-- 初到英国可先准备可用的国际银行卡，再开英国本地账户。
-- 常见银行包括 [HSBC](https://www.hsbc.co.uk/)、[Barclays](https://www.barclays.co.uk/)、[Lloyds](https://www.lloydsbank.com/)、[NatWest](https://www.natwest.com/)、[Santander](https://www.santander.co.uk/)、[Monzo](https://monzo.com/)、[Starling](https://www.starlingbank.com/) 和 [Revolut](https://www.revolut.com/en-GB/)。
-- 开户可能需要地址证明、学生证明、护照、签证或 eVisa 状态。
-- 不要把验证码告诉任何人。
-- 银行、警察、HMRC、学校都不会要求把钱转到“安全账户”。
-- 谨慎处理二手交易、租房押金、兼职押金、代缴学费和低价机票等骗局。
-- 大额转账前，电话或当面确认收款方。
+如果经常坐火车，建议尽早办 [16–25 Railcard](https://www.16-25railcard.co.uk/) 或 [26–30 Railcard](https://www.26-30railcard.co.uk/)，学生通常可享火车票折扣。乘车时确保能正常出示 Railcard，工作人员可能同时查票和 Railcard。可在 [Trainline](https://www.thetrainline.com/) app 关联或办理。
 
-**遇到“账户涉案”“安全账户”“限时转账”“低价内部票”或“代缴学费折扣”等说法，先停下来核实。真正紧急的事也经得起你通过学校、银行或警方官方渠道确认。**
+### 各城市交通
+
+#### London／伦敦
+
+- 地铁、公交、Elizabeth line、Overground、DLR 等主要使用 contactless 银行卡、Apple Pay／Google Pay 或 [TfL／Oyster](https://tfl.gov.uk/fares/contactless-and-oyster-account)。
+- Tube／rail 通常进出站都要 tap；公交一般只 tap in。
+- 不要多人共用同一张 contactless 卡进站。
+- 学生可了解 [18+ Student Oyster](https://tfl.gov.uk/fares/free-and-discounted-travel/18-plus-student-oyster-photocard) 与 Railcard 绑定 Oyster 等优惠。
+
+#### Manchester／曼彻斯特
+
+- 使用 [Bee Network](https://bee.network/)；公交和 tram 可 contactless tap and go。
+- 搭 tram 注意 tap in／tap out。
+- 多次出行前查看 daily／weekly cap 是否更划算。
+
+#### Birmingham／West Midlands
+
+- 常见方式包括 bus、tram、train。
+- 可查看 [Swift card](https://www.swiftcard.org.uk/)、[National Express West Midlands](https://www.nationalexpress.com/en/west-midlands) 和 [West Midlands Metro](https://westmidlandsmetro.com/)。
+- 城市间通勤注意 train ticket 类型及 peak／off-peak 时间。
+
+#### Edinburgh／爱丁堡
+
+- 常见方式包括 [Lothian Buses](https://www.lothianbuses.com/) 和 [Edinburgh Trams](https://edinburghtrams.com/)。
+- 可使用官方 Bus & Tram app 或 contactless。
+- Tram 前往机场时票价规则可能不同，出发前确认。
+
+#### Glasgow／格拉斯哥
+
+- 常见方式包括 Subway、bus 和 [ScotRail](https://www.scotrail.co.uk/)。
+- Subway、rail、bus 的票务系统不完全相同；频繁通勤可研究 Smartcard 或 season ticket。
+- 在苏格兰城市之间通勤时优先查看 ScotRail。
+
+#### Oxford／Cambridge
+
+- 城市较适合步行、骑车和公交。
+- 骑车要买锁、灯、头盔，注意靠左行驶和环岛规则。
+- 不要把自行车停在禁止停车区域。
+
+### 火车、机票与整体出行
+
+- [Trip.com](https://uk.trip.com/)、[National Rail](https://www.nationalrail.co.uk/)、[Trainline](https://www.thetrainline.com/)、[TrainPal](https://www.mytrainpal.com/) 或各铁路公司官网均可购火车票。
+- 留意 Advance、Off-Peak、Anytime、Return、Open Return 的区别。
+- 晚上回家提前查末班车，不要假定公交或地铁 24 小时运行。
+- 地铁偶尔会延迟、维修、罢工，但比伦敦地铁更不可靠的是全英国的散漫巴士司机。
 
 ## 8. 租房：入住记得拍照
 
@@ -218,6 +202,29 @@ NHS 的 GP（General Practitioner）是 primary care doctor，即全科医生，
 - 心理健康：保存学校 wellbeing service／counselling service。
 - 中国大使馆／领馆：保存护照遗失、紧急旅行证件相关联系信息。
 - Apple Care+：建议英国大城市的群友购买一项附加的 [Theft & Loss](https://support.apple.com/en-gb/iphone/theft-loss-claims)，这样手机被偷了、抢了可以直接换新机。（如果在伦敦，感觉这个是刚需。）
+
+## 13. 超市：身边的线下超市 & 线上Amazon和欧洲版京东
+
+- 便宜型：[Aldi](https://www.google.com/maps/search/?api=1&query=Aldi)、[Lidl](https://www.google.com/maps/search/?api=1&query=Lidl)。
+- 常见综合型：[Tesco](https://www.google.com/maps/search/?api=1&query=Tesco)、[Sainsbury’s](https://www.google.com/maps/search/?api=1&query=Sainsbury%27s)、[Asda](https://www.google.com/maps/search/?api=1&query=Asda)、[Morrisons](https://www.google.com/maps/search/?api=1&query=Morrisons)。、Coop
+- 偏贵／品质型：[Waitrose](https://www.google.com/maps/search/?api=1&query=Waitrose)、[M&S Food](https://www.google.com/maps/search/?api=1&query=M%26S%20Food)。
+- 便利店型：邻里版的Sainsbury Local, Tesco Express
+- 日用品／药妆：Boots、Superdrug、Savers。
+- 亚洲／中国超市：中超、韩国超市、亚洲食品店，适合买米、调料、火锅底料和速冻食品。
+
+### 网上超市
+
+- Amazon 和最近京东在英国做起来的 [Joybuy UK](https://www.joybuy.co.uk/) 普遍会被当作送货最快的网购平台之一，适合买日用品、零食和临时缺的东西。
+- [Ocado](https://www.ocado.com/) 以及 Tesco、Sainsbury’s、Asda、Morrisons 等大超市都可网上大批量购物，适合补米面粮油、饮料和清洁用品。
+- 不少传统中超也有购物网站，例如优西，适合中餐调料、火锅底料、速冻及亚洲食品。
+- 不过现在不少同学会感觉这类传统中超网站正在被 Joybuy 这类更快的平台挤压。下单前还是按 postcode、配送费、最低起送、缺货替换和退货规则确认。
+
+### 省钱技巧
+
+- 办理 [Tesco Clubcard](https://www.tesco.com/clubcard/)、Sainsbury’s Nectar、Boots Advantage Card 等会员。
+- 晚上留意 yellow sticker reduced items。
+- 使用 Too Good To Go 一类 app 购买临期食物。
+- 初到英国不要一次买太多锅具和电器，先确认宿舍是否允许使用。
 
 ## 官方信息为准
 

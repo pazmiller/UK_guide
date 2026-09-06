@@ -500,23 +500,20 @@ const guideSections: GuideSection[] = [
   },
   {
     id: 'banking',
-    title: '7. 银行卡与支付：自由流动',
+    title: '7. 银行卡与支付方式：刚到UK记得带英镑现金',
     body: (
       <div className="space-y-5">
         <BulletList
           items={[
-            '初到英国可以先准备一张可用的国际银行卡，再开英国本地账户。',
+            <>初到英国可先准备可用的国际银行卡和<mark className="rounded border-b-2 border-[#C6A04D] bg-[#F5E4AF] px-1 py-0.5 font-semibold text-[#70500C] [box-decoration-break:clone]">英镑现金</mark>，确保在国内时已开启银行卡的海外支付功能。</>,
+            <>到英国后再看本地账户；不少银行会有 referral 送现金活动，<mark className="rounded bg-[#D9EAE1] px-1 py-0.5 font-semibold text-[#245D53] [box-decoration-break:clone]">记得联系群主或群友</mark>来白嫖。</>,
             <>常见银行包括 <InlineGuideLink href="https://www.hsbc.co.uk/" tone={linkTones.hsbc}>HSBC</InlineGuideLink>、<InlineGuideLink href="https://www.barclays.co.uk/" tone={linkTones.barclays}>Barclays</InlineGuideLink>、<InlineGuideLink href="https://www.lloydsbank.com/" tone={linkTones.lloyds}>Lloyds</InlineGuideLink>、<InlineGuideLink href="https://www.natwest.com/" tone={linkTones.natwest}>NatWest</InlineGuideLink>、<InlineGuideLink href="https://www.santander.co.uk/" tone={linkTones.santander}>Santander</InlineGuideLink>、<InlineGuideLink href="https://monzo.com/" tone={linkTones.monzo}>Monzo</InlineGuideLink>、<InlineGuideLink href="https://www.starlingbank.com/" tone={linkTones.starling}>Starling</InlineGuideLink>、<InlineGuideLink href="https://www.revolut.com/en-GB/" tone={linkTones.revolut}>Revolut</InlineGuideLink> 等。</>,
             '开户可能需要地址证明、学生证明、护照、签证或 eVisa 状态。',
-            '不要把验证码告诉任何人。',
-            '银行、警察、HMRC、学校都不会要求你把钱转到“安全账户”。',
-            '谨慎处理二手交易、租房押金、兼职押金、代缴学费、低价机票等骗局。',
-            '大额转账前先电话或当面确认收款方。',
+            <>谨慎处理二手交易、租房押金、兼职押金、代缴学费、低价机票等<mark className="rounded border-b-2 border-[#CA7581] bg-[#F8DBDE] px-1 py-0.5 font-semibold text-[#992C3A] [box-decoration-break:clone]">老乡骗老乡</mark>骗局。</>,
+            <>英国银行对于转账上的<mark className="rounded border-b-2 border-[#C6A04D] bg-[#F5E4AF] px-1 py-0.5 font-semibold text-[#70500C] [box-decoration-break:clone]">反洗钱非常敏感</mark>，所以一次性转入几千英镑就很容易触发冻结。这种时候联系银行基本都能解决，因此也建议多办几张银行卡。</>,
+            '英国大部分地方都支持 Visa、Mastercard 的 contactless 支付：带实体卡碰一下，或者绑定手机上的 Apple Pay、Google Pay、Samsung Pay 等；少数地方仍需现金。',
           ]}
         />
-        <Notice>
-          遇到“账户涉案”“安全账户”“限时转账”“低价内部票”“代缴学费折扣”等说法，先停下来核实。真正紧急的事也经得起你向学校、银行或警方官方渠道确认。
-        </Notice>
       </div>
     ),
   },
@@ -591,6 +588,45 @@ const guideSections: GuideSection[] = [
     body: <BulletList items={otherReminders} />,
   },
 ];
+
+const arrivalItemsSection: GuideSection = {
+  id: 'arrival-items',
+  title: '13. 入境 UK 携带物品指南',
+  body: (
+    <div className="space-y-5">
+      <TextRows
+        rows={[
+          {
+            title: '证件',
+            body: <>护照、签证或现在代替 BRP 的 <mark className="rounded px-1 py-0.5 font-semibold text-[#1D3557] bg-[#DCE8F3] [box-decoration-break:clone]">eVisa</mark> / UKVI account 提前在网上准备好；学校 CAS 这些就更不用说了。充电线、<mark className="rounded px-1 py-0.5 font-semibold text-[#70500C] bg-[#F5E4AF] [box-decoration-break:clone]">转换头、转换插座</mark>，以及以备机场或火车延误不时之需的基础洗漱用品，也值得一起准备。意外发生时，你会谢自己的额外准备。</>,
+          },
+          {
+            title: '药！',
+            body: <>药品尽量保留原包装和成分标签.如精神类等处方药，准备英文处方、医生证明或至少有用药说明。UK 和国内的药物管控不同，要提前查阅；含<mark className="rounded px-1 py-0.5 font-semibold text-[#992C3A] bg-[#F8DBDE] [box-decoration-break:clone]">麻黄碱或伪麻黄碱的感冒药</mark>尤其容易被忽略。褪黑素在国内可以直接购买，但在 UK 属于处方药，按自己的实际需求适当备一些。</>,
+          },
+          {
+            title: '不要随便帮带',
+            body: <>可能会有人想让你批量帮忙带一些东西，或带一些 UK 买不到的药；携带前一定要知道是什么，至少<mark className="rounded px-1 py-0.5 font-semibold text-[#245D53] bg-[#D9EAE1] [box-decoration-break:clone]">先问 AI</mark> 是否触犯 UK 法。不确定时宁可不带。</>,
+          },
+          {
+            title: '现金、相机和贵重物',
+            body: '携带现金等值 £10,000 或以上进出 UK 时按规定须申报。贵重物品可以随身带；UK 虽然一般不会像泰国甚至日本那样偷乘客物品，但以防万一也是上策。',
+          },
+          {
+            title: '不确定？走申报这条路',
+            body: '超过个人免税额度、受禁或受限、或准备出售/用于业务的物品都需要申报。可在抵达前在线核对、申报并缴税。。',
+          },
+        ]}
+      />
+      <div className="flex flex-wrap gap-4">
+        <ExternalGuideLink href="https://www.gov.uk/bringing-goods-into-uk-personal-use" label="GOV.UK 携带个人物品" />
+        <ExternalGuideLink href="https://www.gov.uk/bringing-food-into-great-britain" label="GOV.UK 食品与动物产品" />
+        <ExternalGuideLink href="https://www.gov.uk/take-medicine-in-or-out-uk" label="GOV.UK 携带药物" />
+        <ExternalGuideLink href="https://www.gov.uk/bringing-cash-into-uk" label="GOV.UK 现金申报" />
+      </div>
+    </div>
+  ),
+};
 
 function CommunityGuideBody( { guide }: { guide: GuideContribution } )
 {
@@ -754,7 +790,7 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
             <BookOpen className="mb-6 h-9 w-9 text-[#151614]" />
             <p className="mb-3 font-mono text-sm font-black uppercase tracking-[0.12em]">UK Arrival</p>
             <div className="h-px w-24 bg-[#151614]" />
-            <h2 className="mt-5 text-4xl font-black leading-tight">带英十一律</h2>
+            <h2 className="mt-5 text-4xl font-black leading-tight">带英十二律</h2>
             <p className="mt-4 max-w-[11rem] text-sm font-semibold leading-6 text-[#151614]/70">
               手机卡、交通、安全、医疗和租房的第一周清单。
             </p>
@@ -800,7 +836,16 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
     title: `${guideSections.length + index + 1}. ${guide.title}`,
     body: <CommunityGuideBody guide={guide} />,
   } ) );
-  const allGuideSections = [ ...guideSections, ...contributionSections ];
+  const allGuideSections = [ ...guideSections, ...contributionSections, arrivalItemsSection ];
+  for ( const [ firstId, secondId ] of [ [ 'transport', 'banking' ], [ 'groceries', 'arrival-items' ] ] )
+  {
+    const firstIndex = allGuideSections.findIndex( section => section.id === firstId );
+    const secondIndex = allGuideSections.findIndex( section => section.id === secondId );
+    const firstSection = allGuideSections[ firstIndex ];
+    const secondSection = allGuideSections[ secondIndex ];
+    allGuideSections[ firstIndex ] = { ...secondSection, title: secondSection.title.replace( /^\d+\./, firstSection.title.match( /^\d+\./ )![ 0 ] ) };
+    allGuideSections[ secondIndex ] = { ...firstSection, title: firstSection.title.replace( /^\d+\./, secondSection.title.match( /^\d+\./ )![ 0 ] ) };
+  }
   const activeSection = allGuideSections.find( ( section ) => section.id === openSectionId );
 
   return (
@@ -1055,7 +1100,7 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
             <span className="guide-archive-title-guide">GUIDE</span>
           </h1>
           <div className="guide-archive-notes">
-            <strong>带英十一律</strong>
+            <strong>带英十二律</strong>
             <span>KEEP CALM / READ BEFORE ARRIVAL</span>
           </div>
         </section>
@@ -1069,75 +1114,75 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
               <span>{allGuideSections.length.toString().padStart( 2, '0' )} records</span>
             </div>
 
-            <div className="guide-folder-stack" aria-label="带英十一律章节">
-            {allGuideSections.map( ( section, index ) =>
-            {
-              const isOpen = section.id === openSectionId;
-              const palette = guideFolderPalettes[ index % guideFolderPalettes.length ];
-              return (
-                <article
-                  key={section.id}
-                  className={`guide-liquid-section ${isOpen ? 'guide-liquid-section--open' : ''}`}
-                  style={{
-                    '--guide-folder-color': palette.color,
-                    '--guide-folder-text': palette.textColor,
-                    '--guide-folder-index': index,
-                    '--guide-tab-offset': `${6 + index % 5 * 9}%`,
-                  } as CSSProperties}
-                >
-                  <button
-                    type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={`${section.id}-content`}
-                    onClick={() => setOpenSectionId( isOpen ? '' : section.id )}
-                    className="guide-liquid-trigger flex w-full cursor-pointer items-center justify-between gap-4 text-left transition-[filter,border-radius] duration-200 focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EEE6]"
+            <div className="guide-folder-stack" aria-label="带英十二律章节">
+              {allGuideSections.map( ( section, index ) =>
+              {
+                const isOpen = section.id === openSectionId;
+                const palette = guideFolderPalettes[ index % guideFolderPalettes.length ];
+                return (
+                  <article
+                    key={section.id}
+                    className={`guide-liquid-section ${isOpen ? 'guide-liquid-section--open' : ''}`}
+                    style={{
+                      '--guide-folder-color': palette.color,
+                      '--guide-folder-text': palette.textColor,
+                      '--guide-folder-index': index,
+                      '--guide-tab-offset': `${6 + index % 5 * 9}%`,
+                    } as CSSProperties}
                   >
-                    <span className="guide-section-tab" aria-hidden="true" />
-                    <span className="guide-section-title text-lg font-medium leading-snug sm:text-xl">
-                      {section.title}
-                    </span>
-                    <ChevronDown className={`guide-section-chevron h-5 w-5 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
-                  </button>
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={`${section.id}-content`}
+                      onClick={() => setOpenSectionId( isOpen ? '' : section.id )}
+                      className="guide-liquid-trigger flex w-full cursor-pointer items-center justify-between gap-4 text-left transition-[filter,border-radius] duration-200 focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F1EEE6]"
+                    >
+                      <span className="guide-section-tab" aria-hidden="true" />
+                      <span className="guide-section-title text-lg font-medium leading-snug sm:text-xl">
+                        {section.title}
+                      </span>
+                      <ChevronDown className={`guide-section-chevron h-5 w-5 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                    </button>
 
-                  <div
-                    id={`${section.id}-content`}
-                    className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-                      }`}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="guide-liquid-body px-4 pb-5 pt-5 sm:px-6">
-                        {section.body}
+                    <div
+                      id={`${section.id}-content`}
+                      className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                        }`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="guide-liquid-body px-4 pb-5 pt-5 sm:px-6">
+                          {section.body}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </article>
-              );
-            } )}
+                  </article>
+                );
+              } )}
             </div>
 
-          <section className="guide-official-footer mt-10 px-1 py-7 text-[#151614]">
-            <div className="mb-3 flex items-center gap-2">
-              <ShieldAlert className="h-5 w-5 text-[#7A5200]" />
-              <h2 className="text-2xl font-black">官方信息为准</h2>
-            </div>
-            <p className="max-w-2xl text-sm leading-7 text-[#514C43]">
-              页面是出发前后的提醒清单，涉及签证、医疗、报警和学生签证条件时，请以官方页面、学校邮件和个人 UKVI account 显示为准。
-            </p>
-            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
-              {officialFooterLinks.map( ( link ) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex min-h-11 items-center gap-1.5 border-b border-[#7A5200]/45 text-sm font-bold text-[#151614] transition-colors hover:text-[#69376F] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#69376F]"
-                >
-                  {link.label}
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </Link>
-              ) )}
-            </div>
-          </section>
+            <section className="guide-official-footer mt-10 px-1 py-7 text-[#151614]">
+              <div className="mb-3 flex items-center gap-2">
+                <ShieldAlert className="h-5 w-5 text-[#7A5200]" />
+                <h2 className="text-2xl font-black">官方信息为准</h2>
+              </div>
+              <p className="max-w-2xl text-sm leading-7 text-[#514C43]">
+                页面是出发前后的提醒清单，涉及签证、医疗、报警和学生签证条件时，请以官方页面、学校邮件和个人 UKVI account 显示为准。
+              </p>
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+                {officialFooterLinks.map( ( link ) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-11 items-center gap-1.5 border-b border-[#7A5200]/45 text-sm font-bold text-[#151614] transition-colors hover:text-[#69376F] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#69376F]"
+                  >
+                    {link.label}
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </Link>
+                ) )}
+              </div>
+            </section>
           </section>
         </div>
       </main>
