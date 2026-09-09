@@ -75,7 +75,7 @@ export default function Home()
                   CFFA UK Onboarding
                 </h3>
                 <p className="mt-4 max-w-xl text-base leading-8 text-[#1D3557]/70 sm:text-lg">
-                  从落地后的第一张手机卡，到体验NHS医疗，各种指南与逼坑，尽在CFFA出版的带英十二律里！第一次来英国也不用慌nia
+                  从落地后的第一张手机卡，到体验NHS医疗，各种指南与逼坑，尽在CFFA出版的带英十三律里！第一次来英国也不用慌nia
                 </p>
 
                 <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-[#1D3557]/75">

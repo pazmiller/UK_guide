@@ -628,6 +628,27 @@ const arrivalItemsSection: GuideSection = {
   ),
 };
 
+const provisionalLicenceSection: GuideSection = {
+  id: 'provisional-licence',
+  title: '14. 申请一张临时驾照学习卡（Provisional Driving Licence）来作为没有本地 实体ID Card的平替指南',
+  body: (
+    <div className="space-y-5 text-[15px] leading-8 text-[#2C261E]/84">
+      <p>对留学生而言，申请一张英国临时驾照（Provisional Driving Licence，在线申请费 £34，满足合法居留许可即可）是替代护照作为日常 Photo ID 的极佳选择。广泛适用于线下年龄验证、取包裹及常规身份核查（包括LondonFurs [不清楚是什么者可以 refer <Link href="/furcon" className="font-semibold underline underline-offset-4">兽聚 Furcon 区</Link>]）。</p>
+      <p>目前出示仍<strong>严格以实体卡为主</strong>。虽然英国政府正推进基于 GOV.UK Wallet 的官方电子驾照（Digital Driving Licence），计划未来用于手机端证明身份与年龄。</p>
+      <a
+        href="https://www.gov.uk/apply-first-provisional-driving-licence"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex min-h-14 max-w-full items-center gap-4 rounded-xl border border-[#1D3557]/30 border-l-4 border-l-[#B83A46] bg-[#E6EDF4] px-5 py-3 font-semibold text-[#1D3557] shadow-sm hover:border-[#B83A46] hover:bg-[#F4E3E5] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1D3557]"
+      >
+        <span><span className="block font-mono text-[10px] tracking-[0.14em] text-[#B83A46]">GOV.UK</span>官方申请临时驾照</span>
+        <ExternalLink className="h-5 w-5 shrink-0" aria-hidden="true" />
+        <span className="sr-only">（在新标签页打开）</span>
+      </a>
+    </div>
+  ),
+};
+
 function CommunityGuideBody( { guide }: { guide: GuideContribution } )
 {
   return (
@@ -790,7 +811,7 @@ function BookIllustration( { activeTitle }: { activeTitle: string } )
             <BookOpen className="mb-6 h-9 w-9 text-[#151614]" />
             <p className="mb-3 font-mono text-sm font-black uppercase tracking-[0.12em]">UK Arrival</p>
             <div className="h-px w-24 bg-[#151614]" />
-            <h2 className="mt-5 text-4xl font-black leading-tight">带英十二律</h2>
+            <h2 className="mt-5 text-4xl font-black leading-tight">带英十三律</h2>
             <p className="mt-4 max-w-[11rem] text-sm font-semibold leading-6 text-[#151614]/70">
               手机卡、交通、安全、医疗和租房的第一周清单。
             </p>
@@ -846,6 +867,10 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
     allGuideSections[ firstIndex ] = { ...secondSection, title: secondSection.title.replace( /^\d+\./, firstSection.title.match( /^\d+\./ )![ 0 ] ) };
     allGuideSections[ secondIndex ] = { ...firstSection, title: firstSection.title.replace( /^\d+\./, secondSection.title.match( /^\d+\./ )![ 0 ] ) };
   }
+  allGuideSections.push( {
+    ...provisionalLicenceSection,
+    title: provisionalLicenceSection.title.replace( /^\d+\./, `${Math.max( ...allGuideSections.map( section => Number.parseInt( section.title, 10 ) ) ) + 1}.` ),
+  } );
   const activeSection = allGuideSections.find( ( section ) => section.id === openSectionId );
 
   return (
@@ -1100,7 +1125,7 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
             <span className="guide-archive-title-guide">GUIDE</span>
           </h1>
           <div className="guide-archive-notes">
-            <strong>带英十二律</strong>
+            <strong>带英十三律</strong>
             <span>KEEP CALM / READ BEFORE ARRIVAL</span>
           </div>
         </section>
@@ -1114,7 +1139,7 @@ export default function GuideBookPage( { contributions }: { contributions: Guide
               <span>{allGuideSections.length.toString().padStart( 2, '0' )} records</span>
             </div>
 
-            <div className="guide-folder-stack" aria-label="带英十二律章节">
+            <div className="guide-folder-stack" aria-label="带英十三律章节">
               {allGuideSections.map( ( section, index ) =>
               {
                 const isOpen = section.id === openSectionId;

@@ -1,4 +1,4 @@
-# 带英十二律
+# 带英十三律
 
 UK Arrival Guide
 
@@ -225,6 +225,14 @@ NHS 的 GP（General Practitioner）是 primary care doctor，即全科医生，
 - 晚上留意 yellow sticker reduced items。
 - 使用 Too Good To Go 一类 app 购买临期食物。
 - 初到英国不要一次买太多锅具和电器，先确认宿舍是否允许使用。
+
+## 14. 申请一张临时驾照学习卡（Provisional Driving Licence）来作为没有本地 实体ID Card的平替指南
+
+对留学生而言，申请一张英国临时驾照（Provisional Driving Licence，在线申请费 £34，满足合法居留许可即可）是替代护照作为日常 Photo ID 的极佳选择。广泛适用于线下年龄验证、取包裹及常规身份核查（包括LondonFurs [不清楚是什么者可以 refer [兽聚 Furcon 区](/furcon)]）。
+
+目前出示仍**严格以实体卡为主**。虽然英国政府正推进基于 GOV.UK Wallet 的官方电子驾照（Digital Driving Licence），计划未来用于手机端证明身份与年龄。
+
+> **[GOV.UK · 官方申请临时驾照 ↗](https://www.gov.uk/apply-first-provisional-driving-licence)**
 
 ## 官方信息为准
 
