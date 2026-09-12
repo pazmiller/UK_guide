@@ -766,11 +766,11 @@ Wiltshire｜威尔特郡（景点）
 导航顺序： 20
 Avebury 巨石阵
 图片： /contributions/23/1.webp
-简介： 比起那个众所周知的巨石阵，这个40分钟外的另一个巨石阵 is just as impressive, 还可以离得更近，它所在的小村子整体上也更有意思。
+简介： 比起那个众所周知的巨石阵，这个40分钟外的另一个巨石阵 is just as impressive, 还可以离得更近，它所在的小村子整体上也更有意思。免费进入，白天开放。
 推荐原因： 
 推荐菜： 
 价位： 
-地址： Avebury, Marlborough, Wiltshire, SN8 1RD
+地址： Avebury, Marlborough, Wiltshire, SN8 1RF
 
 Cotswold｜科茨沃尔德
 水上伯顿 Bourton-on-the-Water
