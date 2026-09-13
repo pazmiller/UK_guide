@@ -1,6 +1,7 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { NextResponse } from 'next/server';
 import { dispatchContributionWorkflow } from '@/lib/server/githubApp';
+import { invalidateManualReview } from '@/lib/server/manualContributionReview';
 
 export const runtime = 'nodejs';
 
@@ -60,6 +61,9 @@ export async function POST( request: Request )
 
   try
   {
+    if ( payload.action === 'synchronize' || payload.action === 'reopened' ) {
+      await invalidateManualReview( Number( branchMatch[ 1 ] ), Number( payload.pull_request?.number ) );
+    }
     await dispatchContributionWorkflow( payload.action === 'closed' ? 'content-pr-closed' : 'content-pr-updated', {
       issueNumber: Number( branchMatch[ 1 ] ),
       pullRequestNumber: payload.pull_request?.number,

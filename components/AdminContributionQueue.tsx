@@ -5,6 +5,8 @@ import { ExternalLink, FileImage, ListFilter, LoaderCircle, Play, RefreshCw, X }
 import { useRouter } from 'next/navigation';
 import type { ContributionSubmission, TipRouting } from '@/lib/contributions/schema';
 import { contributionIntentLabels, contributionRegionLabels, contributionTypeLabels } from '@/lib/contributions/schema';
+import ContributionScoreReview from './ContributionScoreReview';
+import type { ManualReview } from '@/lib/server/manualContributionReview';
 
 export type AdminContributionIssue = {
   number: number;
@@ -13,6 +15,7 @@ export type AdminContributionIssue = {
   createdAt: string;
   labels: string[];
   submission: ContributionSubmission | null;
+  review?: ManualReview | null;
 };
 
 const statusLabels: Record<string, string> = {
@@ -22,6 +25,8 @@ const statusLabels: Record<string, string> = {
   'status:draft-pr': 'Draft PR',
   'status:ready': '等待 PR 审核',
   'status:failed': '处理失败',
+  'status:manual-review': '评分未达标 · 待人工审核',
+  'status:manual-ready': '已人工放行 · 等待 PR 审核',
   'status:merged': '已合并',
   'status:closed': '已关闭',
 };
@@ -39,7 +44,7 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
   const [ tipRouting, setTipRouting ] = useState<TipRouting | ''>( '' );
   const [ error, setError ] = useState( '' );
 
-  async function updateIssue( issueNumber: number, action: 'accept' | 'close', routing?: TipRouting )
+  async function updateIssue( issueNumber: number, action: 'accept' | 'close' | 'manual-approve' | 'reevaluate', routing?: TipRouting, approval?: { headSha: string; reason: string } )
   {
     const actionId = `${issueNumber}:${action}`;
     setActiveAction( actionId );
@@ -49,7 +54,7 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
       const response = await fetch( `/api/admin/contributions/${issueNumber}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( { action, ...( routing ? { tipRouting: routing } : {} ) } ),
+        body: JSON.stringify( { action, ...( routing ? { tipRouting: routing } : {} ), ...approval } ),
       } );
       const result = await response.json() as { error?: string };
       if ( !response.ok ) throw new Error( result.error ?? '操作没有完成。' );
@@ -103,6 +108,14 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
                     {submission && <span className="text-[#0F766E]">{contributionTypeLabels[ submission.type ]} · {contributionIntentLabels[ submission.intent ]}</span>}
                   </div>
                   <h2 className="mt-3 text-2xl font-black text-[#1D3557]">{submission?.name ?? issue.title}</h2>
+                  {issue.review && <ContributionScoreReview
+                    review={issue.review}
+                    canApprove={status === 'status:manual-review'}
+                    canReevaluate={['status:failed', 'status:manual-review', 'status:manual-ready'].includes( status )}
+                    busy={Boolean( activeAction )}
+                    onApprove={( headSha, reason ) => void updateIssue( issue.number, 'manual-approve', undefined, { headSha, reason } )}
+                    onReevaluate={() => void updateIssue( issue.number, 'reevaluate' )}
+                  />}
                   {submission ? (
                     <>
                       <p className="mt-1 text-sm font-bold text-[#1D3557]/55">

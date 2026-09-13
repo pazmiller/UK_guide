@@ -2,6 +2,7 @@ import 'server-only';
 
 import { createAppAuth } from '@octokit/auth-app';
 import type { ContributionSubmission, TipRouting } from '@/lib/contributions/schema';
+import { loadManualReview } from './manualContributionReview';
 
 const GITHUB_API_VERSION = '2026-03-10';
 const ISSUE_DATA_PREFIX = '<!-- contribution-data:';
@@ -63,6 +64,7 @@ export async function githubRequest<T>( path: string, init: RequestInit = {} ): 
   const token = await getInstallationToken();
   const response = await fetch( `https://api.github.com${path}`, {
     ...init,
+    cache: 'no-store',
     headers: {
       Accept: 'application/vnd.github+json',
       Authorization: `Bearer ${token}`,
@@ -176,6 +178,8 @@ const labelColours: Record<string, string> = {
   'status:draft-pr': '5319E7',
   'status:ready': '0E8A16',
   'status:failed': 'D93F0B',
+  'status:manual-review': 'D9B46F',
+  'status:manual-ready': '0F766E',
   'status:merged': '6F42C1',
   'status:closed': '6A737D',
   'routing:guide': 'D9B46F',
@@ -231,14 +235,16 @@ export async function listContributionIssues()
     `/repos/${repository.owner}/${repository.repo}/issues?state=all&per_page=100&sort=created&direction=desc`,
   );
 
-  return issues.filter( issue => !issue.pull_request ).map( issue => ( {
+  return Promise.all( issues.filter( issue => !issue.pull_request ).map( async issue => ( {
     number: issue.number,
     title: issue.title,
     url: issue.html_url,
     createdAt: issue.created_at,
     labels: issue.labels.map( label => typeof label === 'string' ? label : label.name ?? '' ).filter( Boolean ),
     submission: parseSubmissionFromIssue( issue.body ),
-  } ) );
+    review: issue.labels.some( label => [ 'status:manual-review', 'status:manual-ready', 'status:failed' ].includes( typeof label === 'string' ? label : label.name ?? '' ) )
+      ? await loadManualReview( issue.number ).catch( () => ( { report: null, eligible: false, message: '暂时无法核对评分或 PR 状态，请刷新后重试。', prUrl: null } ) ) : null,
+  } ) ) );
 }
 
 export async function replaceStatusLabel( issueNumber: number, status: string, closeIssue = false )

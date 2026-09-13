@@ -49,6 +49,10 @@ for ( const testCase of evaluationCases )
 
   results.push( {
     id: testCase.id,
+    question: testCase.question,
+    referenceAnswer: testCase.referenceAnswer,
+    answer: ragResult.llmAnswer,
+    context: buildRagContextFromChunks( ragResult.chunks ),
     score,
     judgment,
   } );
