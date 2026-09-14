@@ -19,6 +19,16 @@ export default function ContributionScoreReview( { review, canApprove, canReeval
     <section aria-label="AI 评分与人工审核" className="mt-5 rounded-xl border border-[#D9B46F]/60 bg-[#FFF8E8] p-5 text-[#1D3557]">
       <h3 className="text-base font-bold">AI 评分与人工审核</h3>
       {report && <>
+        {report.fidelity && <div className="mt-4 space-y-3">
+          <p className="text-sm font-bold">投稿内容核对：{report.fidelity.result.verdict === 'pass' ? '通过' : '需要人工确认'} · {report.fidelity.target.city} / {report.fidelity.target.id}</p>
+          <p className="whitespace-pre-wrap text-sm">{report.fidelity.result.explanation}</p>
+          {report.fidelity.fields.map( field => <div key={field.field} className="grid gap-3 rounded border border-[#D9B46F]/50 bg-white p-3 md:grid-cols-3">
+            <div><p className="text-xs opacity-60">{field.field} · 修改前</p><p className="whitespace-pre-wrap break-words text-sm">{field.before || '（空）'}</p></div>
+            <div><p className="text-xs opacity-60">管理员确认的投稿内容</p><p className="whitespace-pre-wrap break-words text-sm">{field.after || '（空）'}</p></div>
+            <div><p className="text-xs opacity-60">程序验证后的实际内容</p><p className="whitespace-pre-wrap break-words text-sm">{field.after || '（空）'}</p></div>
+          </div> )}
+          {report.fidelity.result.issues.map( ( issue, i ) => <p key={i} className="text-sm text-amber-900">{issue.field}：{issue.reason}（原文：{issue.before}；投稿：{issue.submitted}；修改后：{issue.after}）</p> )}
+        </div>}
         <div className="mt-3 flex flex-wrap items-baseline gap-x-6 gap-y-2">
           <p><strong className="text-3xl font-semibold text-[#93611B]">{report.judgeAverage.toFixed( 2 )}</strong><span className="ml-2 text-sm">/ {report.threshold} 分门槛</span></p>
           <p className="text-sm">第一次 {report.judgeScores[0].toFixed( 2 )} · 第二次 {report.judgeScores[1].toFixed( 2 )}</p>

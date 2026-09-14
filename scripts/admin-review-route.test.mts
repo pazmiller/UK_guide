@@ -9,6 +9,7 @@ const bundle=await build({entryPoints:['app/api/admin/contributions/[issueNumber
   b.onLoad({filter:/.*/,namespace:'stub'},()=>({contents:'export const NextResponse = Response;'}));
   b.onLoad({filter:/\/auth\.ts$/},()=>({contents:'export const auth = async () => globalThis.routeTestHarness.session;'}));
   b.onLoad({filter:/\/githubApp\.ts$/},()=>({contents:'export const acceptContributionIssue = async()=>{}; export const replaceStatusLabel=async()=>{};'}));
+  b.onLoad({filter:/\/approvedChanges\.ts$/},()=>({contents:'export const prepareChange=async()=>({}); export const approveChange=async()=>({});'}));
   b.onLoad({filter:/\/manualContributionReview\.ts$/},()=>({contents:`
     export class ReviewConflict extends Error {}
     export const reevaluateContribution=async()=>{};
