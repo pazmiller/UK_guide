@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import type { ContributionSubmission, TipRouting } from '@/lib/contributions/schema';
 import { contributionIntentLabels, contributionRegionLabels, contributionTypeLabels } from '@/lib/contributions/schema';
 import ContributionScoreReview from './ContributionScoreReview';
+import ContributionChangeApproval from './ContributionChangeApproval';
 import type { ManualReview } from '@/lib/server/manualContributionReview';
 
 export type AdminContributionIssue = {
@@ -25,7 +26,7 @@ const statusLabels: Record<string, string> = {
   'status:draft-pr': 'Draft PR',
   'status:ready': '等待 PR 审核',
   'status:failed': '处理失败',
-  'status:manual-review': '评分未达标 · 待人工审核',
+  'status:manual-review': 'AI 疑点或评分未达标 · 待人工审核',
   'status:manual-ready': '已人工放行 · 等待 PR 审核',
   'status:merged': '已合并',
   'status:closed': '已关闭',
@@ -95,7 +96,7 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
         {issues.map( issue => {
           const submission = issue.submission;
           const status = issueStatus( issue.labels );
-          const canStart = status === 'status:submitted' || status === 'status:failed';
+          const canStart = false;
           const closed = status === 'status:closed' || status === 'status:merged';
 
           return (
@@ -108,6 +109,7 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
                     {submission && <span className="text-[#0F766E]">{contributionTypeLabels[ submission.type ]} · {contributionIntentLabels[ submission.intent ]}</span>}
                   </div>
                   <h2 className="mt-3 text-2xl font-black text-[#1D3557]">{submission?.name ?? issue.title}</h2>
+                  {submission && ['status:submitted', 'status:failed', 'status:manual-review'].includes( status ) && <ContributionChangeApproval issueNumber={issue.number} submission={submission} />}
                   {issue.review && <ContributionScoreReview
                     review={issue.review}
                     canApprove={status === 'status:manual-review'}

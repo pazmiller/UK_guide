@@ -4,9 +4,12 @@ import { auth } from '@/auth';
 import { tipRoutingSchema } from '@/lib/contributions/schema';
 import { acceptContributionIssue, replaceStatusLabel } from '@/lib/server/githubApp';
 import { manuallyApproveContribution, reevaluateContribution, ReviewConflict } from '@/lib/server/manualContributionReview';
+import { changeRequestSchema } from '@/lib/contributions/change-contract';
+import { approveChange, prepareChange } from '@/lib/server/approvedChanges';
 
 const actionSchema = z.discriminatedUnion( 'action', [
-  z.object( { action: z.literal( 'accept' ), tipRouting: tipRoutingSchema.optional() } ),
+  z.object( { action: z.literal( 'accept' ), tipRouting: tipRoutingSchema.optional(), change: changeRequestSchema } ),
+  z.object( { action: z.literal( 'prepare-change' ) } ),
   z.object( { action: z.literal( 'close' ) } ),
   z.object( { action: z.literal( 'manual-approve' ), headSha: z.string().regex( /^[a-f0-9]{40}$/ ), reason: z.string().trim().min( 1 ).max( 500 ) } ),
   z.object( { action: z.literal( 'reevaluate' ) } ),
@@ -36,7 +39,11 @@ export async function POST( request: Request, context: { params: Promise<{ issue
 
   try
   {
-    if ( parsed.data.action === 'accept' ) await acceptContributionIssue( issueNumber, parsed.data.tipRouting );
+    if ( parsed.data.action === 'prepare-change' ) return NextResponse.json( await prepareChange( issueNumber ) );
+    if ( parsed.data.action === 'accept' ) {
+      const change = await approveChange( issueNumber, parsed.data.change, actor );
+      await acceptContributionIssue( issueNumber, parsed.data.tipRouting, change );
+    }
     else if ( parsed.data.action === 'manual-approve' ) await manuallyApproveContribution( issueNumber, parsed.data.headSha, parsed.data.reason, actor );
     else if ( parsed.data.action === 'reevaluate' ) await reevaluateContribution( issueNumber );
     else await replaceStatusLabel( issueNumber, 'status:closed', true );

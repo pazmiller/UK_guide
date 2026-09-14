@@ -3,6 +3,7 @@ import 'server-only';
 import { createAppAuth } from '@octokit/auth-app';
 import type { ContributionSubmission, TipRouting } from '@/lib/contributions/schema';
 import { loadManualReview } from './manualContributionReview';
+import type { ChangeRequest } from '@/lib/contributions/change-contract';
 
 const GITHUB_API_VERSION = '2026-03-10';
 const ISSUE_DATA_PREFIX = '<!-- contribution-data:';
@@ -265,8 +266,9 @@ export async function replaceStatusLabel( issueNumber: number, status: string, c
   } );
 }
 
-export async function acceptContributionIssue( issueNumber: number, tipRouting?: TipRouting )
+export async function acceptContributionIssue( issueNumber: number, tipRouting?: TipRouting, change?: ChangeRequest )
 {
+  if ( !change || change.issueNumber !== issueNumber ) throw new Error( 'An explicit approved field change is required.' );
   const repository = getContributionRepository();
   const issue = await githubRequest<GitHubIssue>( `/repos/${repository.owner}/${repository.repo}/issues/${issueNumber}` );
   const submission = parseSubmissionFromIssue( issue.body );

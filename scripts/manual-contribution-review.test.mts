@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { build } from 'esbuild';
 import { REPORT_PREFIX } from '../lib/contributions/evaluation';
-import { report } from './contribution-evaluation.test.mjs';
+import { report, approvedRequest, submissionPayload } from './contribution-evaluation.test.mjs';
+import { CHANGE_PREFIX } from '../lib/contributions/change-contract';
 
 const requests: Array<{ path: string; body: string }> = [];
 let state: ReturnType<typeof fixture>;
@@ -16,12 +17,12 @@ const harness = {
   request: async ( path: string, init: RequestInit = {} ) => {
     const body = String( init.body ?? '' );
     requests.push( { path, body } );
-    if ( path.includes( '/comments?' ) ) return [{ id:1, performed_via_github_app:{id:state.appId}, body:`${REPORT_PREFIX}${JSON.stringify(state.report)} -->` }];
+    if ( path.includes( '/comments?' ) ) return [{ id:1, performed_via_github_app:{id:state.appId}, body:`${REPORT_PREFIX}${JSON.stringify(state.report)} -->` }, { id: 2, performed_via_github_app: { id: state.appId }, body: `${CHANGE_PREFIX}${JSON.stringify( approvedRequest )} -->` }];
     if ( path.endsWith( '/comments' ) ) return {};
     if ( path.endsWith( '/pulls/26' ) ) return structuredClone( state.pr );
     if ( path.includes( '/pulls?state=open' ) ) return [structuredClone(state.pr)];
     if ( path.includes( '/actions/runs/' ) ) return {status:state.runStatus};
-    if ( path.endsWith( '/issues/24' ) ) return {state:'open',labels:[{name:state.label}]};
+    if ( path.endsWith( '/issues/24' ) ) return {state:'open',labels:[{name:state.label}],body: `<!-- contribution-data:${Buffer.from( submissionPayload ).toString( 'base64url' )} -->`};
     if ( path === '/graphql' ) {
       state.pr.draft = body.includes( 'convertPullRequestToDraft' );
       if ( state.changeDuringApproval ) state.pr.head.sha = 'c'.repeat(40);

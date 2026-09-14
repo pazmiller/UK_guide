@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { fidelityReportSchema } from './change-contract';
 
 const score = z.number().min( 0 ).max( 100 );
 export const evaluationReportSchema = z.object( {
@@ -17,6 +18,7 @@ export const evaluationReportSchema = z.object( {
   threshold: z.literal( 95 ),
   failures: z.array( z.string().max( 2000 ) ).max( 30 ),
   explanation: z.string().max( 2000 ),
+  fidelity: fidelityReportSchema.optional(),
 } );
 export type EvaluationReport = z.infer<typeof evaluationReportSchema>;
 export const REPORT_PREFIX = '<!-- agent-evaluation-v1:';
@@ -24,10 +26,11 @@ export const REPORT_PREFIX = '<!-- agent-evaluation-v1:';
 export function judgeOnlyFailure( report: EvaluationReport ): boolean
 {
   return report.deterministicPassed && report.sourceRecall >= 0.8 && report.dynamicCasePassed
-    && report.judgeAverage < report.threshold
+    && Boolean( report.fidelity )
     && Math.abs( report.judgeAverage - ( report.judgeScores[0] + report.judgeScores[1] ) / 2 ) < 0.000001
-    && report.failures.length === 1
-    && report.failures[0] === `Judge average ${report.judgeAverage.toFixed( 2 )}% is below 95%`;
+    && report.failures.length > 0
+    && report.failures.every( failure => failure === `Judge average ${report.judgeAverage.toFixed( 2 )}% is below 95%`
+      || failure === 'Content fidelity requires human review' );
 }
 
 export function parseEvaluationComment( body: string ): EvaluationReport | null
@@ -41,4 +44,3 @@ export function parseEvaluationComment( body: string ): EvaluationReport | null
     return parsed.success ? parsed.data : null;
   } catch { return null; }
 }
-
