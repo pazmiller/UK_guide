@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { existingEditSchema } from './change-contract';
 
 export const contributionTypes = [ 'restaurant', 'attraction', 'avoid', 'tip', 'university' ] as const;
 export const contributionIntents = [ 'add', 'update', 'closure', 'image', 'other' ] as const;
@@ -62,6 +63,7 @@ const customCuisineName = z.string()
 
 export const contributionSubmissionSchema = z.object( {
   version: z.literal( 1 ).default( 1 ),
+  existingEdit: existingEditSchema.optional(),
   type: z.enum( contributionTypes ),
   intent: z.enum( contributionIntents ),
   region: z.enum( contributionRegions ).default( 'uk' ),

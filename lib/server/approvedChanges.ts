@@ -4,6 +4,11 @@ import { changeRequestSchema, CHANGE_PREFIX, type ChangeRequest } from '@/lib/co
 import { candidates, expectedFiles, findCandidate, splitImages, type Files } from '@/lib/contributions/change-engine';
 import { getContributionRepository, githubRequest, parseSubmissionFromIssue } from './githubApp';
 import { ReviewConflict } from './manualContributionReview';
+import { normalizeExact, type ChangeTarget } from '@/lib/contributions/change-contract';
+
+function selectedTargetMatches( left: ChangeTarget, right: ChangeTarget ) {
+  return JSON.stringify( left ) === JSON.stringify( right );
+}
 
 const hash = ( value: string ) => createHash( 'sha256' ).update( value ).digest( 'hex' );
 export async function changeIssue( issueNumber: number ) {
@@ -33,8 +38,17 @@ export async function prepareChange( issueNumber: number ) {
   if ( !['restaurant', 'attraction'].includes( loaded.submission.type ) || !['update', 'image'].includes( loaded.submission.intent ) )
     throw new ReviewConflict( '第一阶段仅自动处理已有餐厅／景点的字段修改和补充图片；此操作需要人工处理。' );
   const source = await currentChangeSources();
+  if ( loaded.submission.existingEdit ) {
+    const edit = loaded.submission.existingEdit;
+    let entry;
+    try { entry = findCandidate( source.files, edit.target ); }
+    catch { throw new ReviewConflict( '用户选择的条目已变化，不能自动改选其他条目。' ); }
+    for ( const [field, value] of Object.entries( edit.before ) ) {
+      if ( normalizeExact( entry.fields[field as keyof typeof entry.fields] ?? '' ) !== normalizeExact( value ) ) throw new ReviewConflict( '用户提交后原资料已变化，请先人工处理冲突。' );
+    }
+  }
   return { baseSha: source.baseSha, submissionHash: loaded.submissionHash,
-    candidates: candidates( source.files ).filter( candidate => ( loaded.submission.type === 'attraction' ? candidate.target.category === 'attraction' : candidate.target.category !== 'attraction' ) && candidate.target.region === loaded.submission.region ),
+    candidates: candidates( source.files ).filter( candidate => ( loaded.submission.type === 'attraction' ? candidate.target.category === 'attraction' : candidate.target.category !== 'attraction' ) && candidate.target.region === loaded.submission.region && ( !loaded.submission.existingEdit || selectedTargetMatches( candidate.target, loaded.submission.existingEdit.target ) ) ),
     imagePaths: loaded.submission.imageKeys.map( ( _, i ) => `/contributions/${issueNumber}/${i + 1}.webp` ),
   };
 }
@@ -44,11 +58,22 @@ export async function approveChange( issueNumber: number, input: ChangeRequest, 
   const loaded = await changeIssue( issueNumber );
   if ( !loaded.issue.labels.some( label => ['status:submitted', 'status:failed', 'status:manual-review'].includes( label.name ) ) ) throw new ReviewConflict( '当前投稿正在处理或已完成，请刷新。' );
   if ( loaded.submissionHash !== request.submissionHash || loaded.submission.intent !== request.operation || !['restaurant', 'attraction'].includes( loaded.submission.type ) ) throw new ReviewConflict( '投稿内容已变化，请重新确认。' );
+  if ( loaded.submission.existingEdit ) {
+    const edit = loaded.submission.existingEdit;
+    if ( !selectedTargetMatches( request.target, edit.target ) ) throw new ReviewConflict( '不能更换用户指定的条目。' );
+    const textChanges = request.fields.filter( item => item.field !== 'images' );
+    if ( textChanges.length !== edit.changes.length || edit.changes.some( item => !textChanges.some( approved => approved.field === item.field && normalizeExact( approved.after ) === normalizeExact( item.after ) && normalizeExact( approved.before ) === normalizeExact( edit.before[item.field] ) ) ) ) throw new ReviewConflict( '批准内容必须与用户提交的字段修改一致；需要其他修改请另建投稿。' );
+  }
   if ( ( loaded.submission.type === 'attraction' ) !== ( request.target.category === 'attraction' ) || loaded.submission.region !== request.target.region ) throw new ReviewConflict( '目标类型或地区与投稿不一致。' );
   const source = await currentChangeSources();
   if ( request.baseSha !== source.baseSha ) throw new ReviewConflict( '网站版本已更新，请重新载入修改预览。' );
   try {
-    findCandidate( source.files, request.target );
+    const candidate = findCandidate( source.files, request.target );
+    if ( loaded.submission.existingEdit ) {
+      for ( const [field, before] of Object.entries( loaded.submission.existingEdit.before ) ) {
+        if ( normalizeExact( candidate.fields[field as keyof typeof candidate.fields] ?? '' ) !== normalizeExact( before ) ) throw new ReviewConflict( '用户提交后原资料已变化，请先人工处理冲突。' );
+      }
+    }
     expectedFiles( source.files, request );
   } catch ( error ) { throw new ReviewConflict( error instanceof Error ? error.message : '无法确认目标和字段范围。' ); }
   const images = loaded.submission.imageKeys.map( ( _, i ) => `/contributions/${issueNumber}/${i + 1}.webp` );

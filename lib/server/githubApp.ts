@@ -165,6 +165,15 @@ function buildIssueBody( submission: ContributionSubmission )
     '## Contributor notes',
     '',
     `<pre>${escapeHtml( submission.details )}</pre>`,
+    ...( submission.existingEdit ? [
+      '', '## Selected existing entry',
+      `<pre>${escapeHtml( submission.existingEdit.target.city )} / ${escapeHtml( submission.existingEdit.target.id )}</pre>`,
+      ...submission.existingEdit.changes.flatMap( change => [
+        `### ${escapeHtml( change.field )}`,
+        'Before:', `<pre>${escapeHtml( submission.existingEdit!.before[change.field] )}</pre>`,
+        'Requested after:', `<pre>${escapeHtml( change.after )}</pre>`,
+      ] ),
+    ] : [] ),
     '',
     'Raw submission data is private. Do not copy personal information into a public pull request.',
     '',

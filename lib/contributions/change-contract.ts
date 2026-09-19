@@ -42,6 +42,19 @@ export const changeRequestSchema = z.object( {
 } );
 export type ChangeRequest = z.infer<typeof changeRequestSchema>;
 export type ChangeTarget = z.infer<typeof targetSchema>;
+// A contributor selects an existing record; this is a request, never admin approval.
+export const existingEditSchema = z.object( {
+  target: targetSchema,
+  before: z.record( changeFieldSchema, z.string().max( 10000 ) ),
+  changes: z.array( z.object( {
+    field: changeFieldSchema,
+    after: z.string().max( 10000 ),
+  } ).strict() ).max( 9 ),
+} ).strict().superRefine( ( value, ctx ) => {
+  if ( new Set( value.changes.map( item => item.field ) ).size !== value.changes.length || value.changes.some( item => item.field === 'images' ) )
+    ctx.addIssue( { code: 'custom', message: '图片只能通过上传补充；修改字段不得重复。' } );
+} );
+export type ExistingEdit = z.infer<typeof existingEditSchema>;
 export const CHANGE_PREFIX = '<!-- approved-change-v1:';
 export const normalizeExact = ( value: string ) => value.replaceAll( '\r\n', '\n' );
 

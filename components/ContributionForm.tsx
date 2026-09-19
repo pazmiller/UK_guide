@@ -31,6 +31,8 @@ import
   type UniversityStudyStage,
 } from '@/lib/contributions/schema';
 import { getUniversityBySlug, UNIVERSITY_FORM_OPTIONS } from '@/lib/universities/catalog';
+import ExistingContributionEditor from './ExistingContributionEditor';
+import type { ExistingEdit } from '@/lib/contributions/change-contract';
 
 type ContributionFormState = {
   type: ContributionType;
@@ -297,14 +299,23 @@ export default function ContributionForm( { initialType }: { initialType?: Contr
   const [ universityChoice, setUniversityChoice ] = useState( '' );
   const [ status, setStatus ] = useState<'idle' | 'uploading' | 'submitting' | 'success' | 'error'>( 'idle' );
   const [ message, setMessage ] = useState( '' );
+  const [existingEdit, setExistingEdit] = useState<ExistingEdit>();
+  const existingMode = ['restaurant', 'attraction'].includes( form.type ) && ['update', 'image'].includes( form.intent );
 
   function updateField<K extends keyof ContributionFormState>( field: K, value: ContributionFormState[ K ] )
   {
+    if ( form[field] === value ) return;
+    if ( ['type', 'intent', 'region'].includes( field ) ) {
+      setExistingEdit( undefined ); setImages( [] ); setImageCaptions( [] );
+      setFileInputKey( current => current + 1 );
+    }
     setForm( current => ( { ...current, [ field ]: value } ) );
   }
 
   function selectContributionType( type: ContributionType )
   {
+    if ( form.type === type ) return;
+    setExistingEdit( undefined ); setImages( [] ); setImageCaptions( [] ); setFileInputKey( current => current + 1 );
     setForm( current => ( {
       ...current,
       type,
@@ -394,6 +405,10 @@ export default function ContributionForm( { initialType }: { initialType?: Contr
     event.preventDefault();
     setMessage( '' );
 
+    if ( existingMode && ( !existingEdit || ( form.intent === 'update' && !existingEdit.changes.length ) || ( form.intent === 'image' && !images.length ) ) ) {
+      setStatus( 'error' ); setMessage( !existingEdit ? '请先选择现有条目。' : form.intent === 'image' ? '请上传至少一张新图片。' : '请先修改至少一项资料。' ); return;
+    }
+
     if ( form.type === 'university' && form.rating === null )
     {
       setStatus( 'error' );
@@ -433,6 +448,13 @@ export default function ContributionForm( { initialType }: { initialType?: Contr
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify( {
           ...form,
+          ...( existingMode && existingEdit ? {
+            existingEdit,
+            name: existingEdit.target.name,
+            city: existingEdit.target.city,
+            details: form.intent === 'image' ? '为选定条目补充图片；不修改文字。' : '请按下方结构化字段修改记录审核，不改动其他资料。',
+            cuisine: '', customCuisine: '', price: '', recommendReason: '', recommendSignatures: '', sourceUrl: '', submitterName: '',
+          } : {} ),
           version: 1,
           imageKeys,
           imageCaptions: form.type === 'university' ? imageCaptions.map( caption => caption.trim() ) : [],
@@ -442,6 +464,7 @@ export default function ContributionForm( { initialType }: { initialType?: Contr
       if ( !response.ok ) throw new Error( result.error ?? '投稿暂时没有送达，请稍后再试。' );
 
       setForm( initialForm );
+      setExistingEdit( undefined );
       setImages( [] );
       setImageCaptions( [] );
       setFileInputKey( current => current + 1 );
@@ -459,7 +482,7 @@ export default function ContributionForm( { initialType }: { initialType?: Contr
   const universityReview = form.type === 'university';
 
   return (
-    <section id="contribution-form" className="scroll-mt-24 border border-[#1D3557]/14 bg-white p-5 shadow-[0_20px_48px_rgba(29,53,87,0.10)] sm:p-8 lg:p-10">
+    <section id="contribution-form" className="min-w-0 scroll-mt-24 border border-[#1D3557]/14 bg-white p-5 shadow-[0_20px_48px_rgba(29,53,87,0.10)] sm:p-8 lg:p-10">
       <div className="flex items-start justify-between gap-4 border-b border-[#1D3557]/12 pb-6">
         <div>
           <p className="text-sm font-bold uppercase tracking-wide text-[#E63946]">Submit a contribution</p>
@@ -527,7 +550,7 @@ export default function ContributionForm( { initialType }: { initialType?: Contr
               </div>
             </fieldset>
 
-            <div className="grid gap-6 sm:grid-cols-2">
+            {!existingMode && <div className="grid gap-6 sm:grid-cols-2">
               <label className="grid gap-2 text-sm font-bold text-[#1D3557]">
                 地点 / 主题名称 <span className="text-[#E63946]">*</span>
                 <input required value={form.name} onChange={event => updateField( 'name', event.target.value )} maxLength={120} className="min-h-12 border-b-2 border-[#1D3557]/22 bg-transparent px-1 text-base font-medium text-[#1D3557] outline-none transition-colors placeholder:text-[#1D3557]/35 focus:border-[#0F766E]" placeholder="例如：某家餐厅、某条步行路线" />
@@ -536,7 +559,7 @@ export default function ContributionForm( { initialType }: { initialType?: Contr
                 城市（街区请写在补充里）<span className="text-[#E63946]">*</span>
                 <input required value={form.city} onChange={event => updateField( 'city', event.target.value )} maxLength={100} className="min-h-12 border-b-2 border-[#1D3557]/22 bg-transparent px-1 text-base font-medium text-[#1D3557] outline-none transition-colors placeholder:text-[#1D3557]/35 focus:border-[#0F766E]" placeholder="例如：London、Nottingham、Paris" />
               </label>
-            </div>
+            </div>}
           </>
         )}
 
@@ -605,7 +628,15 @@ export default function ContributionForm( { initialType }: { initialType?: Contr
           </section>
         )}
 
-        {form.type === 'restaurant' && (
+        {existingMode && <ExistingContributionEditor key={`${form.type}:${form.region}:${form.intent}`} type={form.type} region={form.region} intent={form.intent} onChange={value => {
+          if ( JSON.stringify( value?.target ) !== JSON.stringify( existingEdit?.target ) ) {
+            setImages( [] ); setImageCaptions( [] ); setFileInputKey( current => current + 1 );
+            updateField( 'imageRightsConfirmed', false );
+          }
+          setExistingEdit( value );
+        }} />}
+
+        {form.type === 'restaurant' && !existingMode && (
           <fieldset className="border-y border-[#1D3557]/12 bg-[#F6F8FC] px-4 py-6 sm:px-6">
             <legend className="flex items-center gap-2 bg-white px-2 text-sm font-black text-[#1D3557]">
               <UtensilsCrossed className="h-4 w-4 text-[#E63946]" />
@@ -673,12 +704,12 @@ export default function ContributionForm( { initialType }: { initialType?: Contr
           </div>
         )}
 
-        <label className="grid gap-2 text-sm font-bold text-[#1D3557]">
+        {!existingMode && <label className="grid gap-2 text-sm font-bold text-[#1D3557]">
           {universityReview ? '整体评价' : form.type === 'restaurant' ? '餐厅简介与其他补充' : '具体情况、推荐理由或避雷原因'} <span className="text-[#E63946]">*</span>
           <textarea required value={form.details} onChange={event => updateField( 'details', event.target.value )} maxLength={4000} rows={universityReview ? 5 : 7} className="resize-y border border-[#1D3557]/18 bg-[#F6F8FC] p-4 text-base font-medium leading-7 text-[#1D3557] outline-none transition-colors placeholder:text-[#1D3557]/35 focus:border-[#0F766E]" placeholder={universityReview ? '我对这所带学，设施和师资的锐评是……' : form.type === 'restaurant' ? '简要介绍餐厅特色，也可以补充到访时间、分店、服务或其他值得注意的信息。' : '尽量写下你亲自体验到的细节：什么时候去、价格、服务、需要注意什么，或为什么值得推荐。'} />
-        </label>
+        </label>}
 
-        {!universityReview && (
+        {!universityReview && !existingMode && (
           <div className="grid gap-6 sm:grid-cols-2">
             <label className="grid gap-2 text-sm font-bold text-[#1D3557]">
               地图或官网链接 <span className="font-medium text-[#1D3557]/48">可选</span>

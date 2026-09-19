@@ -33,7 +33,8 @@ export default function ContributionChangeApproval( { issueNumber, submission }:
     setTargetIndex( index ); setConfirmed( false );
     const item = preview?.candidates[Number( index )];
     const oldImages = ( item?.fields.images || '' ).split( /\n|[,，;；]/ ).map( part => part.trim() ).filter( Boolean );
-    setFields( preview?.imagePaths.length ? { images: [...new Set( [...oldImages, ...preview.imagePaths] )].join( ', ' ) } : {} );
+    const submitted = submission.existingEdit?.changes ?? [];
+    setFields( { ...Object.fromEntries( submitted.map( change => [change.field, change.after] ) ), ...( preview?.imagePaths.length ? { images: [...new Set( [...oldImages, ...preview.imagePaths] )].join( ', ' ) } : {} ) } );
   }
   async function approve() {
     if ( !preview || !candidate || !targetIndex || !confirmed ) return;
@@ -55,7 +56,8 @@ export default function ContributionChangeApproval( { issueNumber, submission }:
         </select>
       </label>
       {targetIndex !== '' && candidate && <>
-        <p className="text-xs leading-5">仅勾选本次要修改的字段。未勾选的字段保持不变；勾选后留空表示明确清空。下方内容是管理员最终确认的发布文本。</p>
+        <p className="text-xs leading-5">{submission.existingEdit ? '已载入用户指定条目和实际修改的字段。请核对原文与新内容后确认。' : '仅勾选本次要修改的字段。未勾选的字段保持不变；勾选后留空表示明确清空。下方内容是管理员最终确认的发布文本。'}</p>
+        {submission.existingEdit && <div className="space-y-3 rounded border bg-white p-3"><h4 className="text-sm font-bold">用户提交的修改记录（只读）</h4>{submission.existingEdit.changes.map( change => <div key={change.field} className="text-sm"><p className="font-bold">{fieldLabels[change.field]}</p><p className="whitespace-pre-wrap break-words">原文：{submission.existingEdit!.before[change.field] || '（空）'}</p><p className="whitespace-pre-wrap break-words">新内容：{change.after || '（清空）'}</p></div> )}</div>}
         <p className="text-xs leading-5">简介用于页面短简介；没有独立备注／景点推荐原因时，也用于详情正文。备注用于详情正文。找不到目标的旧条目需要先人工映射 ID。</p>
         {( Object.keys( fieldLabels ) as ChangeField[] ).filter( field => ( submission.intent !== 'image' || field === 'images' ) && ( submission.type !== 'attraction' || !['cuisine', 'recommendSignatures'].includes( field ) ) ).map( field => <div key={field} className="rounded border border-[#1D3557]/15 bg-white p-3">
           <label className="flex items-center gap-2 text-sm font-bold"><input type="checkbox" checked={fields[field] !== undefined} disabled={busy || field === 'images'} onChange={event => { setConfirmed( false ); setFields( old => { const next = { ...old }; if ( event.target.checked ) next[field] = field === 'summary' ? submission.details : field === 'recommendReason' ? submission.recommendReason : field === 'recommendSignatures' ? submission.recommendSignatures : field === 'price' ? submission.price : field === 'cuisine' ? ( submission.cuisine === 'Other' ? submission.customCuisine : submission.cuisine ) : candidate.fields[field] ?? ''; else delete next[field]; return next; } ); }} />{fieldLabels[field]}</label>
