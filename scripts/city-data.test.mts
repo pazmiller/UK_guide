@@ -61,12 +61,12 @@ test( 'the dynamic registry resolves every existing Other Cities slug', () =>
 
   assert.deepEqual(
     registry.map( city => city.slug ).sort(),
-    [ 'colchester', 'edinburgh', 'glasgow', 'nottingham', 'southampton', 'swansea', 'york' ],
+    [ 'colchester', 'edinburgh', 'glasgow', 'nottingham', 'southampton', 'swansea', 'wiltshire', 'york' ],
   );
   assert.equal( registry.find( city => city.slug === 'york' )?.restaurants[ 0 ].id, 'york-restaurant-bettys-cafe-tea-rooms' );
   assert.equal( registry.find( city => city.slug === 'nottingham' )?.restaurants.length, 8 );
   assert.equal( countCityRecommendations( registry.find( city => city.slug === 'nottingham' )! ), 8 );
-  assert.equal( countCityRecommendations( registry.find( city => city.slug === 'swansea' )! ), 8 );
+  assert.equal( countCityRecommendations( registry.find( city => city.slug === 'swansea' )! ), 9 );
 } );
 
 test( 'the dynamic registry resolves every existing Europa slug', () =>

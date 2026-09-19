@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { contributionRequestSchema, contributionSubmissionSchema } from '@/lib/contributions/schema';
 import { createContributionIssue } from '@/lib/server/githubApp';
+import { getContributionEntries } from '@/lib/server/contributionEntries';
+import { validateExistingEdit } from '@/lib/contributions/existing';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -63,6 +65,18 @@ export async function POST( request: NextRequest )
   {
     return NextResponse.json( { error: parsed.error.issues[ 0 ]?.message ?? '请检查投稿内容。' }, { status: 400 } );
   }
+
+  if ( ['restaurant', 'attraction'].includes( parsed.data.type ) && ['update', 'image'].includes( parsed.data.intent ) ) {
+    try {
+      const edit = parsed.data.existingEdit;
+      if ( !edit ) throw new Error( '请先选择要修改的现有条目。' );
+      const entry = ( await getContributionEntries() ).find( item => JSON.stringify( item.target ) === JSON.stringify( edit.target ) );
+      if ( !entry ) throw new Error( '条目已变化或暂不支持自动编辑，请重新选择。' );
+      validateExistingEdit( edit, entry, parsed.data.intent, parsed.data.type, parsed.data.region, parsed.data.name, parsed.data.city, parsed.data.imageKeys.length );
+    } catch ( error ) {
+      return NextResponse.json( { error: error instanceof Error ? error.message : '无法核对原资料，请稍后重试。' }, { status: 409 } );
+    }
+  } else if ( parsed.data.existingEdit ) return NextResponse.json( { error: '此操作不能包含条目修改。' }, { status: 400 } );
 
   const submission = contributionSubmissionSchema.parse( {
     ...parsed.data,

@@ -7,6 +7,11 @@ type Chunk = { city: string; category: string; section: string; title: string };
 type Entry = { id: string; name: string; [key: string]: unknown };
 type City = { slug: string; country: 'uk' | 'europa'; nameEn: string; restaurants: Entry[]; cafes?: Entry[]; attractions?: Entry[] };
 const labels = new Set<string>( Object.values( fieldLabels ) );
+// JSON object key order is not content; array order and string bytes remain significant.
+function orderedJson( value: unknown ) {
+  return JSON.stringify( value, ( _key, item ) => item && typeof item === 'object' && !Array.isArray( item )
+    ? Object.fromEntries( Object.keys( item ).sort().map( key => [key, item[key]] ) ) : item );
+}
 const propName = ( node: ts.PropertyName ) => ts.isIdentifier( node ) || ts.isStringLiteral( node ) ? node.text : '';
 function prop( object: ts.ObjectLiteralExpression, key: string ) {
   return object.properties.find( ( node ): node is ts.PropertyAssignment => ts.isPropertyAssignment( node ) && propName( node.name ) === key );
@@ -30,6 +35,8 @@ function block( markdown: string, target: ChangeTarget ) {
   const start = sectionStarts[0] + 1;
   let end = lines.length;
   for ( let i = start; i < lines.length; i++ ) {
+    // Field content is not a section heading, even when it begins with 推荐.
+    if ( /^\s*(条目标识|简介|菜系|推荐原因|推荐菜|价位|价格|地址|链接|网站|邮编|营业时间|图片|避雷原因|原因|备注)：/.test( lines[i] ) ) continue;
     if ( lines[i].includes( '｜' ) || /\s\|\s/.test( lines[i] ) || /^(伦敦景点|伦敦避雷|UK 性价比|推荐|避雷|其他|长期居住|致谢名单)/.test( lines[i] ) ) { end = i; break; }
   }
   const titles = lines.flatMap( ( line, i ) => i >= start && i < end && line.trim().replace( /[：:]\s*$/, '' ) === target.name ? [i] : [] );
@@ -112,6 +119,16 @@ function frontendValues( fields: Partial<Record<ChangeField, string>>, request: 
 }
 export function splitImages( value: string ) { return value ? value.split( /\n|[,，;；]/ ).map( part => part.trim() ).filter( Boolean ) : []; }
 
+function preserveLegacyImages( values: Record<string, string | string[]>, source: string, request: ChangeRequest ) {
+  if ( !values.images ) return values;
+  const objects = legacyObjects( source ).filter( object => stringProp( object, 'id' ) === request.target.id && stringProp( object, 'name' ) === request.target.name );
+  if ( objects.length !== 1 ) throw new Error( 'Legacy image target is not unique.' );
+  const images = prop( objects[0], 'images' )?.initializer;
+  if ( images && ( !ts.isArrayLiteralExpression( images ) || images.elements.some( item => !ts.isStringLiteralLike( item ) ) ) ) throw new Error( 'Legacy images require manual mapping.' );
+  const old = images && ts.isArrayLiteralExpression( images ) ? images.elements.map( item => ( item as ts.StringLiteralLike ).text ) : [];
+  return { ...values, images: [...new Set( [...old, ...values.images] )] };
+}
+
 export function expectedFiles( before: Files, request: ChangeRequest ): Files {
   const candidate = findCandidate( before, request.target );
   for ( const change of request.fields ) {
@@ -141,7 +158,7 @@ export function expectedFiles( before: Files, request: ChangeRequest ): Files {
     const objects = legacyObjects( source ).filter( object => stringProp( object, 'id' ) === request.target.id && stringProp( object, 'name' ) === request.target.name );
     if ( objects.length !== 1 ) throw new Error( 'Legacy ID is not unique.' );
     const object = objects[0], edits: Array<{ start: number; end: number; value: string }> = [];
-    for ( const [key, value] of Object.entries( frontendValues( { ...candidate.fields, ...Object.fromEntries( request.fields.map( item => [item.field, item.after] ) ) }, request ) ) ) {
+    for ( const [key, value] of Object.entries( preserveLegacyImages( frontendValues( { ...candidate.fields, ...Object.fromEntries( request.fields.map( item => [item.field, item.after] ) ) }, request ), source, request ) ) ) {
       const property = prop( object, key );
       if ( property ) edits.push( { start: property.initializer.getStart(), end: property.initializer.end, value: JSON.stringify( value ) } );
       else edits.push( { start: object.getStart() + 1, end: object.getStart() + 1, value: '\n' + key + ': ' + JSON.stringify( value ) + ',' } );
@@ -158,7 +175,8 @@ export function validateExactFiles( actual: Files, expected: Files ) {
 }
 export function expectedFrontendValues( request: ChangeRequest, baseline: Files ) {
   const fields = readFields( baseline['src/DATA.md'], request.target );
-  return frontendValues( { ...fields, ...Object.fromEntries( request.fields.map( item => [item.field, item.after] ) ) }, request );
+  const values = frontendValues( { ...fields, ...Object.fromEntries( request.fields.map( item => [item.field, item.after] ) ) }, request );
+  return request.target.sourcePath === 'src/DATA.json' ? values : preserveLegacyImages( values, baseline[request.target.sourcePath], request );
 }
 
 export function validateGeneratedFields( actual: Files, baseline: Files, request: ChangeRequest ) {
@@ -198,7 +216,7 @@ export function validateGeneratedFields( actual: Files, baseline: Files, request
       else if ( maskedTarget[group] ) { delete maskedTarget[group][key]; if ( !Object.keys( maskedTarget[group] ).length && !oldTarget[group] ) delete maskedTarget[group]; }
     }
   }
-  if ( JSON.stringify( maskedTarget ) !== JSON.stringify( oldTarget ) ) throw new Error( 'Generated target changed unapproved fields.' );
+  if ( orderedJson( maskedTarget ) !== orderedJson( oldTarget ) ) throw new Error( 'Generated target changed unapproved fields.' );
   clone.chunks[targetIndex] = oldTarget;
   // Only specified frontend properties may change on the target entry.
   const city = clone.cities.find( ( city: City ) => city.slug === request.target.city );
@@ -214,5 +232,5 @@ export function validateGeneratedFields( actual: Files, baseline: Files, request
       if ( Object.hasOwn( oldEntry, key ) ) entry[key] = oldEntry[key]; else delete entry[key];
     }
   }
-  if ( JSON.stringify( clone ) !== JSON.stringify( before ) ) throw new Error( 'Generated data changed other fields or entries.' );
+  if ( orderedJson( clone ) !== orderedJson( before ) ) throw new Error( 'Generated data changed other fields or entries.' );
 }
