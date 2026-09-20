@@ -82,6 +82,24 @@ export function candidates( files: Files ): Candidate[] {
     }
   }
   const result: Candidate[] = [];
+  // London pages use exported arrays, not a CityData object.
+  for ( const [file, list, exported] of [
+    ['data/london/restaurants.ts', 'restaurants', 'londonRestaurants'],
+    ['data/london/cafes.ts', 'cafes', 'londonCafes'],
+    ['data/london/attractions.ts', 'attractions', 'londonAttractions'],
+  ] as const ) {
+    if ( !files[file] ) continue;
+    const ast = ts.createSourceFile( file, files[file], ts.ScriptTarget.Latest, true );
+    const city: City = { slug: 'london', nameEn: 'London', country: 'uk', restaurants: [], cafes: [], attractions: [] };
+    for ( const statement of ast.statements ) {
+      if ( !ts.isVariableStatement( statement ) ) continue;
+      for ( const declaration of statement.declarationList.declarations ) {
+        if ( !ts.isIdentifier( declaration.name ) || declaration.name.text !== exported || !declaration.initializer || !ts.isArrayLiteralExpression( declaration.initializer ) ) continue;
+        city[list] = declaration.initializer.elements.filter( ts.isObjectLiteralExpression ).map( entry => ( {id: stringProp( entry, 'id' ), name: stringProp( entry, 'name' )} ) );
+      }
+    }
+    legacy.push( {city, file} );
+  }
   for ( const { city, file } of [...cities.map( city => ( { city, file: 'src/DATA.json' } ) ), ...legacy] ) {
     for ( const [list, category] of [['restaurants', 'restaurant'], ['cafes', 'cafe'], ['attractions', 'attraction']] as const ) {
       for ( const entry of city[list] ?? [] ) {

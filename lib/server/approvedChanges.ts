@@ -25,7 +25,7 @@ export async function currentChangeSources() {
   const commit = await githubRequest<{ sha: string }>( `/repos/${repo}/commits/${encodeURIComponent( branch )}` );
   const tree = await githubRequest<{ truncated: boolean; tree: Array<{ path: string; type: string }> }>( `/repos/${repo}/git/trees/${commit.sha}?recursive=1` );
   if ( tree.truncated ) throw new ReviewConflict( '仓库目录不完整，不能确认修改范围。' );
-  const paths = tree.tree.filter( item => item.type === 'blob' && ( ['src/DATA.md', 'src/DATA.json', 'lib/server/cities.ts', 'data/cityRegistry.ts'].includes( item.path ) || /^data\/(?:europa\/)?[\w-]+\.ts$/.test( item.path ) ) ).map( item => item.path );
+  const paths = tree.tree.filter( item => item.type === 'blob' && ( ['src/DATA.md', 'src/DATA.json', 'lib/server/cities.ts', 'lib/server/contributionCities.ts', 'data/cityRegistry.ts'].includes( item.path ) || /^data\/(?:(?:europa|london)\/)?[\w-]+\.ts$/.test( item.path ) ) ).map( item => item.path );
   const files: Files = Object.fromEntries( await Promise.all( paths.map( async file => {
     const content = await githubRequest<{ content: string; encoding: string }>( `/repos/${repo}/contents/${file}?ref=${commit.sha}` );
     if ( content.encoding !== 'base64' ) throw new ReviewConflict( '文件过大或无法读取。' );

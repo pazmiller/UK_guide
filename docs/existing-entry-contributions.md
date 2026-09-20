@@ -37,3 +37,11 @@ Real Tilt tests cover exact legacy identity, text replacement, preservation of u
 - Updated stale city-test expectations to include existing Wiltshire and Swansea's eight restaurants plus one attraction. No content data was changed.
 
 No live Issue, PR, R2 upload, AI Judge or deployed Admin round trip is exercised by these offline tests.
+
+## London support
+
+London uses three dedicated exported arrays rather than the Other Cities registry. Candidate discovery now reads the named `londonRestaurants`, `londonCafes` and `londonAttractions` arrays, matches exact canonical names/categories, and retains their stable IDs and specific source paths. Avoid lists and ambiguous/nonmatching names are not selected automatically.
+
+The submission catalog and frontend checker use `lib/server/contributionCities.ts`, importing the same arrays as the London pages without changing Other Cities navigation. Admin repository reads, deployed source-file tracing, Agent snapshots and destination resolution include `data/london/`. London restaurant/cafe/attraction edits and image append have isolated full-generation/retry tests; mobile and desktop tests verify selection and submitted identity.
+
+Deploy the public checker/adapter before running the updated Agent for London. Neither half alone is sufficient. The old Agent safely rejects London targets until its companion update is deployed.

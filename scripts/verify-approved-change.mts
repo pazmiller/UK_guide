@@ -3,15 +3,15 @@ import fs from 'node:fs';
 import { build } from 'esbuild';
 
 // The CLI reads the same registry as the page. Only Next's server-only marker is stubbed.
-const bundle = await build( { entryPoints: ['lib/server/cities.ts'], bundle: true, write: false, platform: 'node', format: 'esm', plugins: [{ name: 'server-marker', setup( builder ) {
+const bundle = await build( { entryPoints: ['lib/server/contributionCities.ts'], bundle: true, write: false, platform: 'node', format: 'esm', plugins: [{ name: 'server-marker', setup( builder ) {
   builder.onResolve( { filter: /^server-only$/ }, () => ( { path: 'server-only', namespace: 'marker' } ) );
   builder.onLoad( { filter: /.*/, namespace: 'marker' }, () => ( { contents: '' } ) );
 } }] } );
-const { getUkCities, getEuropaDestinations } = await import( `data:text/javascript;base64,${Buffer.from( bundle.outputFiles[0].text ).toString( 'base64' )}` ) as typeof import( '../lib/server/cities' );
+const { getContributionCities } = await import( `data:text/javascript;base64,${Buffer.from( bundle.outputFiles[0].text ).toString( 'base64' )}` ) as typeof import( '../lib/server/contributionCities' );
 
 const { target, values } = JSON.parse( process.env.APPROVED_FRONTEND_CHECK || '{}' );
 if ( !target || !values ) throw new Error( 'Missing approved frontend check.' );
-const cities = target.region === 'uk' ? getUkCities() : getEuropaDestinations();
+const cities = getContributionCities().filter( city => city.country === target.region );
 const matchedCities = cities.filter( city => city.slug === target.city );
 assert.equal( matchedCities.length, 1, 'Frontend city must resolve uniquely.' );
 const city = matchedCities[0];

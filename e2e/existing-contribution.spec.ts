@@ -2,6 +2,28 @@ import { test, expect } from '@playwright/test';
 import type { ExistingEdit } from '../lib/contributions/change-contract';
 import type { Page } from '@playwright/test';
 
+for ( const width of [360, 1280] ) test( `London restaurant, cafe and attraction are selectable at ${width}px`, async ( { page } ) => {
+  await page.setViewportSize( {width, height: 900} );
+  await page.goto( '/contribute' ); await page.waitForLoadState( 'networkidle' );
+  await page.getByRole( 'button', {name: '修改资料', exact: true} ).click();
+  await page.getByRole( 'combobox', {name: '选择城市', exact: true} ).selectOption( 'london' );
+  for ( const [id, name] of [['lon-r17', 'Med Salleh Kopitiam'], ['lon-c1', 'Arôme Bakery']] ) {
+    await page.getByRole( 'combobox', {name: '选择现有条目', exact: true} ).selectOption( id );
+    await expect( page.getByRole( 'heading', {name, exact: true} ) ).toBeVisible();
+  }
+  await page.getByRole( 'button', {name: '景点', exact: true} ).click();
+  await page.getByRole( 'combobox', {name: '选择城市', exact: true} ).selectOption( 'london' );
+  await page.getByRole( 'combobox', {name: '选择现有条目', exact: true} ).selectOption( 'lon-a1' );
+  await expect( page.getByRole( 'heading', {name: 'Westminster Abbey', exact: true} ) ).toBeVisible();
+  await page.getByRole( 'textbox', {name: '简介', exact: true} ).fill( '伦敦景点新简介' );
+  let edit: ExistingEdit | undefined;
+  await page.route( '**/api/contributions', async route => { edit = route.request().postDataJSON().existingEdit; await route.fulfill( {status: 201, json: {message: 'London test accepted'}} ); } );
+  await page.getByRole( 'button', {name: '提交审核', exact: true} ).click();
+  await expect( page.getByText( 'London test accepted', {exact: true} ) ).toBeVisible();
+  expect( edit?.target.sourcePath ).toBe( 'data/london/attractions.ts' );
+  expect( edit?.changes ).toEqual( [{field: 'summary', after: '伦敦景点新简介'}] );
+} );
+
 async function chooseTilt( page: Page, intent = '修改资料' ) {
   await page.goto( '/contribute' );
   await page.waitForLoadState( 'networkidle' );

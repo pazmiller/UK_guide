@@ -239,14 +239,50 @@ Westminster Abbey
 推荐原因：
 （英国之魂，如同大不列颠的先贤祠，）
 Kew Garden
+简介： 皇家植物园
+备注： 世界级皇家植物园，拥有超过 50,000 种植物。温室建筑本身就是一大看点。
+图片： /kew garden.png
+
 Richmond Park
+简介： 伦敦最大皇家公园
+备注： 伦敦最大的皇家公园，可以近距离观赏自由漫步的鹿群，是逃离城市喧嚣的绝佳去处。
+图片： /richmond park.png
+
 Victoria and Albert Museum
+简介： 世界最大装饰艺术博物馆
+备注： 全球最大的装饰艺术与设计博物馆，收藏跨越 5,000 年的人类创造力。免费入场。
+图片： /v&a.png
+
 Natural History Museum
+简介： 自然历史博物馆
+备注： 壮观的罗马式建筑内展示着超过 8,000 万件自然标本，从恐龙骨架到蓝鲸模型。免费入场。
+图片： /natural history museum.png
+
 Imperial War Museum
+简介： 帝国战争博物馆
+备注： 记录从一战至今的战争与冲突历史，展品震撼人心。免费入场。
+图片： /imperial war museum.png
+
 London Transport Museum
+简介： 伦敦交通博物馆
+备注： 展示伦敦公共交通 200 多年的发展史，从马车到地铁，互动展品丰富。
+图片： /london transport museum.png
+
 Tate Modern
+简介： 现代艺术馆
+备注： 坐落于泰晤士河南岸的前发电站内，是全球最重要的现代艺术馆之一。免费入场。
+图片： /tate modern.png
+
 Tate Britain
+简介： 英国艺术馆
+备注： 收藏从 1500 年至今的英国艺术，是了解英国艺术史的最佳去处。免费入场。
+图片： /tate britain.png
+
 National Gallery
+简介： 国家美术馆
+备注： 位于特拉法加广场，收藏 2,300 余幅 13 至 20 世纪的欧洲绘画杰作。免费入场。
+图片： /national gallery.png
+
 Horizon 22
 价位：免费（需预约）
 推荐原因：

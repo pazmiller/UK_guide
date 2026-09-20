@@ -4,6 +4,7 @@ import { createRequire } from 'node:module';
 import { build } from 'esbuild';
 import { completeFields, type ExistingEntry } from '../lib/contributions/existing';
 import type { ContributionSubmission } from '../lib/contributions/schema';
+import { londonAttractions } from '../data/london/attractions';
 
 const harness = { writes: [] as ContributionSubmission[] };
 (globalThis as unknown as { existingRouteHarness: typeof harness }).existingRouteHarness = harness;
@@ -33,12 +34,26 @@ async function submit( value: unknown, ip = `test-${client++}` ) {
   return POST( new Request( 'https://site.test/api/contributions', { method: 'POST', headers: {'content-type': 'application/json', 'x-forwarded-for': ip}, body: JSON.stringify( value ) } ) );
 }
 test( 'real catalog includes Tilt current page details and legacy images; no internal credentials', () => {
+  for ( const category of ['restaurant', 'cafe', 'attraction'] ) assert.ok( catalog.some( item => item.target.city === 'london' && item.target.category === category ), 'London category available: ' + category );
   assert.equal( tilt.target.id, 'no-r3' );
   assert.equal( tilt.display.cuisine, 'Cocktail Bar' );
   assert.equal( tilt.images.length, 3 );
   assert.ok( tilt.fields.notes?.includes( '门头很小' ) );
   assert.equal( catalogResponse.headers.get( 'cache-control' ), 'no-store' );
   for ( const item of catalog ) assert.deepEqual( Object.keys( item ).sort(), ['cityName', 'display', 'fields', 'images', 'target'] );
+} );
+test( 'all 14 London attractions are selectable with their original stable IDs', () => {
+  const entries = catalog.filter( item => item.target.city === 'london' && item.target.category === 'attraction' );
+  assert.equal( entries.length, 14 );
+  assert.deepEqual( entries.map( item => item.target.id ).sort(), londonAttractions.map( item => item.id ).sort() );
+  for ( const original of londonAttractions.slice( 1, 10 ) ) {
+    const candidate = entries.find( item => item.target.id === original.id )!;
+    assert.equal( candidate.fields.summary, original.shortDescription );
+    assert.equal( candidate.fields.notes, original.description );
+    assert.equal( candidate.fields.images, original.images.join( ', ' ) );
+    assert.deepEqual( candidate.images, original.images );
+    assert.equal( candidate.target.sourcePath, 'data/london/attractions.ts' );
+  }
 } );
 test( 'real POST accepts exact restaurant/attraction changes and preserves complete before/after payload', async () => {
   for ( const entry of [tilt, attraction] ) {

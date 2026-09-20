@@ -3,8 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: 'standalone',
   outputFileTracingIncludes: {
-    '/api/contributions': ['./src/DATA.md', './src/DATA.json', './data/*.ts', './data/europa/*.ts'],
-    '/api/contributions/entries': ['./src/DATA.md', './src/DATA.json', './data/*.ts', './data/europa/*.ts'],
+    '/api/contributions': ['./src/DATA.md', './src/DATA.json', './data/*.ts', './data/europa/*.ts', './data/london/*.ts'],
+    '/api/contributions/entries': ['./src/DATA.md', './src/DATA.json', './data/*.ts', './data/europa/*.ts', './data/london/*.ts'],
   },
   images: {
     unoptimized: true,
