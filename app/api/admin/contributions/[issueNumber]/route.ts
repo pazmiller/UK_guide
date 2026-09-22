@@ -8,7 +8,7 @@ import { changeRequestSchema } from '@/lib/contributions/change-contract';
 import { approveChange, prepareChange } from '@/lib/server/approvedChanges';
 
 const actionSchema = z.discriminatedUnion( 'action', [
-  z.object( { action: z.literal( 'accept' ), tipRouting: tipRoutingSchema.optional(), change: changeRequestSchema } ),
+  z.object( { action: z.literal( 'accept' ), tipRouting: tipRoutingSchema.optional(), change: changeRequestSchema.optional() } ),
   z.object( { action: z.literal( 'prepare-change' ) } ),
   z.object( { action: z.literal( 'close' ) } ),
   z.object( { action: z.literal( 'manual-approve' ), headSha: z.string().regex( /^[a-f0-9]{40}$/ ), reason: z.string().trim().min( 1 ).max( 500 ) } ),
@@ -41,7 +41,7 @@ export async function POST( request: Request, context: { params: Promise<{ issue
   {
     if ( parsed.data.action === 'prepare-change' ) return NextResponse.json( await prepareChange( issueNumber ) );
     if ( parsed.data.action === 'accept' ) {
-      const change = await approveChange( issueNumber, parsed.data.change, actor );
+      const change = parsed.data.change ? await approveChange( issueNumber, parsed.data.change, actor ) : undefined;
       await acceptContributionIssue( issueNumber, parsed.data.tipRouting, change );
     }
     else if ( parsed.data.action === 'manual-approve' ) await manuallyApproveContribution( issueNumber, parsed.data.headSha, parsed.data.reason, actor );

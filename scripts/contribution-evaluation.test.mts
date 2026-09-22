@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto';
 import type { ChangeRequest } from '../lib/contributions/change-contract';
 import { judgeOnlyFailure, parseEvaluationComment, REPORT_PREFIX, type EvaluationReport } from '../lib/contributions/evaluation';
 
-export const submissionPayload = '{"version":1,"details":"new"}';
+export const submissionPayload = '{"version":1,"type":"attraction","intent":"update","details":"new"}';
 export const approvedRequest: ChangeRequest = { version: 1, issueNumber: 24, submissionHash: createHash( 'sha256' ).update( submissionPayload ).digest( 'hex' ), baseSha: 'b'.repeat( 40 ), actor: 'editor', approvedAt: '2026-09-13T00:00:00.000Z', target: { city: 'wiltshire', region: 'uk', category: 'attraction', id: 'wiltshire-attraction-avebury', name: 'Avebury', section: 'Wiltshire｜威尔特郡（景点）', sourcePath: 'src/DATA.json' }, operation: 'update', fields: [{ field: 'summary', before: 'old', after: 'new' }] };
 export const report: EvaluationReport = {
   version: 1, issueNumber: 24, pullRequestNumber: 26,
@@ -19,6 +19,8 @@ export const report: EvaluationReport = {
 
 test( 'only the isolated judge threshold failure can be overridden', () => {
   assert.equal( judgeOnlyFailure( report ), true );
+  assert.equal( judgeOnlyFailure( { ...report, fidelity: undefined } ), true, 'New entries have Judge reports without field-edit fidelity' );
+  assert.equal( judgeOnlyFailure( { ...report, fidelity: undefined, failures: ['Content fidelity requires human review'] } ), false );
   for ( const changes of [ { deterministicPassed: false }, { sourceRecall: 0.79 }, { dynamicCasePassed: false }, { judgeAverage: 95 }, { judgeScores: [ 0, 0 ] as [number, number] }, { failures: [] }, { failures: [...report.failures, 'Judge run 2: timeout'] } ] ) {
     assert.equal( judgeOnlyFailure( { ...report, ...changes } ), false );
   }

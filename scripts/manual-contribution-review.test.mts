@@ -10,6 +10,7 @@ let state: ReturnType<typeof fixture>;
 function fixture() {
   return {
     report: structuredClone( report ), appId: 123, label: 'status:manual-review', runStatus: 'completed', changeDuringApproval: false,
+    submissionPayload,
     pr: { number: 26, node_id: 'PR_test', draft: true, state: 'open', merged: false, head: { sha: report.headSha, ref: 'agent/submission-24', repo: { full_name: 'owner/public' } }, base: { sha: report.baseSha, ref: 'master', repo: { full_name: 'owner/public' } } },
   };
 }
@@ -22,7 +23,7 @@ const harness = {
     if ( path.endsWith( '/pulls/26' ) ) return structuredClone( state.pr );
     if ( path.includes( '/pulls?state=open' ) ) return [structuredClone(state.pr)];
     if ( path.includes( '/actions/runs/' ) ) return {status:state.runStatus};
-    if ( path.endsWith( '/issues/24' ) ) return {state:'open',labels:[{name:state.label}],body: `<!-- contribution-data:${Buffer.from( submissionPayload ).toString( 'base64url' )} -->`};
+    if ( path.endsWith( '/issues/24' ) ) return {state:'open',labels:[{name:state.label}],body: `<!-- contribution-data:${Buffer.from( state.submissionPayload ).toString( 'base64url' )} -->`};
     if ( path === '/graphql' ) {
       state.pr.draft = body.includes( 'convertPullRequestToDraft' );
       if ( state.changeDuringApproval ) state.pr.head.sha = 'c'.repeat(40);
@@ -44,6 +45,7 @@ const bundled = await build({
       export const getContributionRepository = () => ({fullName:'owner/private'});
       export const replaceStatusLabel = (...args) => globalThis.reviewTestHarness.status(...args);
       export const dispatchContributionWorkflow = (...args) => globalThis.reviewTestHarness.dispatch(...args);
+      export const parseSubmissionFromIssue = body => JSON.parse(Buffer.from(body.match(/contribution-data:([A-Za-z0-9_-]+)/)[1], 'base64url').toString('utf8'));
     `}));
   }}],
 });
@@ -63,6 +65,7 @@ test( 'manual review rejects forged, stale, incomplete and running assessments; 
       () => {state.report.failures.push('Judge run 2: timeout');},
       () => {state.runStatus='in_progress';},
       () => {state.label='status:closed';},
+      () => {state.report.fidelity=undefined;},
     ] ) {
       state=fixture(); requests.length=0; mutate();
       await assert.rejects(service.manuallyApproveContribution(24,report.headSha,'Reviewed','admin'));
@@ -73,6 +76,11 @@ test( 'manual review rejects forged, stale, incomplete and running assessments; 
     assert.equal(state.pr.draft,false); assert.equal(state.label,'status:manual-ready');
     assert.ok(requests.some(r=>r.body.includes('Reviewed the actual diff') && r.body.includes(report.headSha)));
     assert.equal(requests.some(r=>r.path.includes('/merge') || r.body.includes('mergePullRequest')),false);
+    state=fixture(); requests.length=0;
+    state.submissionPayload=JSON.stringify({version:1,type:'restaurant',intent:'add'});
+    state.report.fidelity=undefined;
+    await service.manuallyApproveContribution(24,report.headSha,'Reviewed new restaurant','admin');
+    assert.equal(state.pr.draft,false); assert.equal(state.label,'status:manual-ready');
     state=fixture(); requests.length=0; state.changeDuringApproval=true;
     await assert.rejects(service.manuallyApproveContribution(24,report.headSha,'Reviewed','admin'),/发生变化/);
     assert.equal(state.pr.draft,true);

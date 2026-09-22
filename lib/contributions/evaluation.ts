@@ -26,11 +26,10 @@ export const REPORT_PREFIX = '<!-- agent-evaluation-v1:';
 export function judgeOnlyFailure( report: EvaluationReport ): boolean
 {
   return report.deterministicPassed && report.sourceRecall >= 0.8 && report.dynamicCasePassed
-    && Boolean( report.fidelity )
     && Math.abs( report.judgeAverage - ( report.judgeScores[0] + report.judgeScores[1] ) / 2 ) < 0.000001
     && report.failures.length > 0
     && report.failures.every( failure => failure === `Judge average ${report.judgeAverage.toFixed( 2 )}% is below 95%`
-      || failure === 'Content fidelity requires human review' );
+      || ( Boolean( report.fidelity ) && failure === 'Content fidelity requires human review' ) );
 }
 
 export function parseEvaluationComment( body: string ): EvaluationReport | null

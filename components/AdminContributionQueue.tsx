@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ExternalLink, FileImage, ListFilter, LoaderCircle, Play, RefreshCw, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import type { ContributionSubmission, TipRouting } from '@/lib/contributions/schema';
-import { contributionIntentLabels, contributionRegionLabels, contributionTypeLabels } from '@/lib/contributions/schema';
+import { contributionIntentLabels, contributionRegionLabels, contributionTypeLabels, requiresApprovedChange } from '@/lib/contributions/schema';
 import ContributionScoreReview from './ContributionScoreReview';
 import ContributionChangeApproval from './ContributionChangeApproval';
 import type { ManualReview } from '@/lib/server/manualContributionReview';
@@ -17,6 +17,7 @@ export type AdminContributionIssue = {
   labels: string[];
   submission: ContributionSubmission | null;
   review?: ManualReview | null;
+  readyPrUrl?: string | null;
 };
 
 const statusLabels: Record<string, string> = {
@@ -96,7 +97,8 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
         {issues.map( issue => {
           const submission = issue.submission;
           const status = issueStatus( issue.labels );
-          const canStart = false;
+          const needsFieldApproval = submission && requiresApprovedChange( submission );
+          const canStart = submission && !needsFieldApproval && ['status:submitted', 'status:failed'].includes( status );
           const closed = status === 'status:closed' || status === 'status:merged';
 
           return (
@@ -109,7 +111,7 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
                     {submission && <span className="text-[#0F766E]">{contributionTypeLabels[ submission.type ]} · {contributionIntentLabels[ submission.intent ]}</span>}
                   </div>
                   <h2 className="mt-3 text-2xl font-black text-[#1D3557]">{submission?.name ?? issue.title}</h2>
-                  {submission && ['status:submitted', 'status:failed', 'status:manual-review'].includes( status ) && <ContributionChangeApproval issueNumber={issue.number} submission={submission} />}
+                  {submission && needsFieldApproval && ['status:submitted', 'status:failed', 'status:manual-review'].includes( status ) && <ContributionChangeApproval issueNumber={issue.number} submission={submission} />}
                   {issue.review && <ContributionScoreReview
                     review={issue.review}
                     canApprove={status === 'status:manual-review'}
@@ -203,6 +205,17 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
 
                 {!closed && submission && (
                   <div className="flex shrink-0 flex-col gap-2 lg:w-80">
+                    {['status:ready', 'status:manual-ready'].includes( status ) && (
+                      <div className="border-l-4 border-[#0F766E] bg-[#0F766E]/6 p-4 text-[#1D3557]">
+                        {issue.readyPrUrl ? <>
+                          <p className="text-sm font-bold text-[#0F766E]">{status === 'status:ready' ? '自动检查已通过，可以审核并合并' : '已人工放行，可以审核并合并'}</p>
+                          <p className="mt-2 text-xs leading-5 text-[#1D3557]/65">{status === 'status:ready' ? '前往公开网站仓库查看修改，确认无误后点击 Merge pull request。' : '人工放行不代表 AI 评分通过。前往公开网站仓库核对修改后，再决定是否合并。'}</p>
+                          <a href={issue.readyPrUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex min-h-11 w-full items-center justify-center gap-2 bg-[#0F766E] px-3 text-sm font-bold text-white transition-colors hover:bg-[#0B625C] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F766E]">
+                            打开网站 PR，审核并合并 <ExternalLink className="h-4 w-4 shrink-0" />
+                          </a>
+                        </> : <p className="text-sm leading-6">暂未找到可审核的 Ready PR，请刷新后重试。</p>}
+                      </div>
+                    )}
                     {canStart && (
                       routingIssueNumber === issue.number && submission.type === 'tip' ? (
                         <div className="border-l-4 border-[#D9B46F] bg-[#FFF8E8] p-4 shadow-[0_12px_30px_rgba(29,53,87,0.10)]" role="group" aria-labelledby={`routing-title-${issue.number}`}>
