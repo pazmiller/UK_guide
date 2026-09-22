@@ -221,6 +221,10 @@ export const contributionUploadRequestSchema = z.object( {
 } );
 
 export type ContributionSubmission = z.infer<typeof contributionSubmissionSchema>;
+export function requiresApprovedChange( submission: Pick<ContributionSubmission, 'type' | 'intent'> ): boolean
+{
+  return ['restaurant', 'attraction'].includes( submission.type ) && ['update', 'image'].includes( submission.intent );
+}
 export type ContributionType = typeof contributionTypes[ number ];
 export type ContributionIntent = typeof contributionIntents[ number ];
 export type ContributionRegion = typeof contributionRegions[ number ];

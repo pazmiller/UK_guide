@@ -2,6 +2,7 @@ import 'server-only';
 
 import { createAppAuth } from '@octokit/auth-app';
 import type { ContributionSubmission, TipRouting } from '@/lib/contributions/schema';
+import { requiresApprovedChange } from '@/lib/contributions/schema';
 import { loadManualReview } from './manualContributionReview';
 import type { ChangeRequest } from '@/lib/contributions/change-contract';
 
@@ -238,6 +239,16 @@ export async function createContributionIssue( submission: ContributionSubmissio
   } );
 }
 
+async function readyContributionPrUrl( issueNumber: number )
+{
+  const repository = process.env.PUBLIC_GITHUB_REPOSITORY!;
+  const head = `${repository.split( '/' )[0]}:agent/submission-${issueNumber}`;
+  const prs = await githubRequest<Array<{ html_url: string; draft: boolean }>>(
+    `/repos/${repository}/pulls?state=open&head=${encodeURIComponent( head )}`,
+  );
+  return prs.find( pr => !pr.draft )?.html_url ?? null;
+}
+
 export async function listContributionIssues()
 {
   const repository = getContributionRepository();
@@ -252,6 +263,8 @@ export async function listContributionIssues()
     createdAt: issue.created_at,
     labels: issue.labels.map( label => typeof label === 'string' ? label : label.name ?? '' ).filter( Boolean ),
     submission: parseSubmissionFromIssue( issue.body ),
+    readyPrUrl: issue.labels.some( label => ['status:ready', 'status:manual-ready'].includes( typeof label === 'string' ? label : label.name ?? '' ) )
+      ? await readyContributionPrUrl( issue.number ).catch( () => null ) : null,
     review: issue.labels.some( label => [ 'status:manual-review', 'status:manual-ready', 'status:failed' ].includes( typeof label === 'string' ? label : label.name ?? '' ) )
       ? await loadManualReview( issue.number ).catch( () => ( { report: null, eligible: false, message: '暂时无法核对评分或 PR 状态，请刷新后重试。', prUrl: null } ) ) : null,
   } ) ) );
@@ -277,11 +290,11 @@ export async function replaceStatusLabel( issueNumber: number, status: string, c
 
 export async function acceptContributionIssue( issueNumber: number, tipRouting?: TipRouting, change?: ChangeRequest )
 {
-  if ( !change || change.issueNumber !== issueNumber ) throw new Error( 'An explicit approved field change is required.' );
   const repository = getContributionRepository();
   const issue = await githubRequest<GitHubIssue>( `/repos/${repository.owner}/${repository.repo}/issues/${issueNumber}` );
   const submission = parseSubmissionFromIssue( issue.body );
   if ( !submission ) throw new Error( `Issue #${issueNumber} has no valid contribution payload.` );
+  if ( requiresApprovedChange( submission ) && ( !change || change.issueNumber !== issueNumber ) ) throw new Error( 'An explicit approved field change is required.' );
   if ( submission.type === 'tip' && !tipRouting ) throw new Error( 'Helpful tips require an admin routing choice.' );
   if ( submission.type !== 'tip' && tipRouting ) throw new Error( 'Only helpful tips accept an admin routing choice.' );
 

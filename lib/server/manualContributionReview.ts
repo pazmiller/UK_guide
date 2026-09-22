@@ -1,13 +1,16 @@
 import 'server-only';
 import { evaluationReportSchema, judgeOnlyFailure, parseEvaluationComment, REPORT_PREFIX, type EvaluationReport } from '@/lib/contributions/evaluation';
-import { getContributionRepository, githubRequest, replaceStatusLabel, dispatchContributionWorkflow } from './githubApp';
+import { getContributionRepository, githubRequest, replaceStatusLabel, dispatchContributionWorkflow, parseSubmissionFromIssue } from './githubApp';
+import { requiresApprovedChange } from '@/lib/contributions/schema';
 import { createHash } from 'node:crypto';
 import { CHANGE_PREFIX, changeRequestSchema } from '@/lib/contributions/change-contract';
 
 async function currentApprovalMatches( issueNumber: number, report: EvaluationReport ) {
-  if ( !report.fidelity ) return false;
   const repo = getContributionRepository().fullName;
   const issue = await githubRequest<{ body: string }>( `/repos/${repo}/issues/${issueNumber}` );
+  const submission = parseSubmissionFromIssue( issue.body );
+  if ( submission && !requiresApprovedChange( submission ) ) return true;
+  if ( !report.fidelity ) return false;
   const encoded = issue.body.match( /<!-- contribution-data:([A-Za-z0-9_-]+) -->/ )?.[1];
   if ( !encoded ) return false;
   const hash = ( value: string ) => createHash( 'sha256' ).update( value ).digest( 'hex' );
