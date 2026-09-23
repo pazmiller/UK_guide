@@ -1,3 +1,16 @@
+Lodon｜伦敦（餐厅）
+城市标识： lodon
+城市描述： 伦敦餐厅推荐。
+城市封面： /globe.svg
+国家： uk
+导航顺序： 30
+Gina Street food
+简介： 巴勒斯坦风味餐厅
+菜系： Palestinian
+推荐原因： 味道可以
+推荐菜： Today’s Platter
+价位： £8-20
+
 London｜伦敦
 Med Salleh Kopitiam
 简介： 马来西亚餐厅
