@@ -1,3 +1,18 @@
+10 Tottenham St｜10 Tottenham St（餐厅）
+城市标识： 10-tottenham-st
+城市描述： 位于伦敦市中心托特纳姆街的巴勒斯坦餐厅，提供正宗中东美食。
+城市封面： /contributions/27/1.webp
+国家： uk
+导航顺序： 30
+Hiba Street Food
+简介： 一家巴勒斯坦餐厅
+菜系： Palestein
+推荐原因： 味道不错的巴勒斯坦菜，甜品美味，性价比高，吃完不晕碳
+推荐菜： Today's Platter Houmous, moutabal, tabbouleh, mixed shawarma Baklawa , mint tea
+价位： £10-20
+图片： /contributions/27/1.webp、/contributions/27/2.webp、/contributions/27/3.webp、/contributions/27/4.webp、/contributions/27/5.webp
+地址： 10 Tottenham St, London W1T 4RD
+
 London｜伦敦
 Med Salleh Kopitiam
 简介： 马来西亚餐厅
