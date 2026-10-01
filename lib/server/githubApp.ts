@@ -1,10 +1,12 @@
 import 'server-only';
 
 import { createAppAuth } from '@octokit/auth-app';
+import { createHash } from 'node:crypto';
 import type { ContributionSubmission, TipRouting } from '@/lib/contributions/schema';
 import { requiresApprovedChange } from '@/lib/contributions/schema';
 import { loadManualReview } from './manualContributionReview';
 import type { ChangeRequest } from '@/lib/contributions/change-contract';
+import { submissionBranch, submissionRevision } from '@/lib/contributions/revision';
 
 const GITHUB_API_VERSION = '2026-03-10';
 const ISSUE_DATA_PREFIX = '<!-- contribution-data:';
@@ -61,6 +63,34 @@ async function getInstallationToken()
   return authentication.token;
 }
 
+export class GitHubRequestError extends Error
+{
+  readonly path: string;
+
+  constructor( readonly status: number, path: string )
+  {
+    super( `GitHub API request failed with status ${status}.` );
+    this.name = 'GitHubRequestError';
+    this.path = path.split( /[?#]/, 1 )[0];
+  }
+}
+
+export function describeGitHubReadFailure( error: unknown, context: 'manual-review' | 'ready-pr' | 'actions-run', issueNumber: number )
+{
+  const status = error instanceof GitHubRequestError ? error.status : null;
+  console.warn( '[contributions] GitHub read failed.', {
+    context, issueNumber, status,
+    kind: error instanceof GitHubRequestError ? 'http' : error instanceof TypeError ? 'connection-or-response' : 'unexpected',
+  } );
+  if ( status === 401 ) return 'GitHub 身份验证失败（401），请检查网站 GitHub App 配置。';
+  if ( status === 403 ) return 'GitHub 拒绝读取审核资料（403），请检查网站 GitHub App 的仓库访问权限。';
+  if ( status === 404 ) return '未找到审核资料（404），请检查记录是否已删除以及 GitHub App 的仓库访问权限。';
+  if ( status === 429 || ( status !== null && status >= 500 ) ) return `GitHub 服务暂时不可用（${status}），请稍后刷新重试。`;
+  if ( status !== null ) return `读取 GitHub 审核资料失败（${status}），请稍后重试；若持续失败，请检查服务器日志。`;
+  if ( error instanceof TypeError ) return '暂时无法连接或读取 GitHub，请检查网络后刷新重试。';
+  return '核对 GitHub 审核资料时发生异常，请检查网站配置和服务器日志后重试。';
+}
+
 export async function githubRequest<T>( path: string, init: RequestInit = {} ): Promise<T>
 {
   const token = await getInstallationToken();
@@ -78,7 +108,7 @@ export async function githubRequest<T>( path: string, init: RequestInit = {} ): 
 
   if ( !response.ok )
   {
-    throw new Error( `GitHub API request failed with status ${response.status}.` );
+    throw new GitHubRequestError( response.status, path );
   }
 
   if ( response.status === 204 ) return undefined as T;
@@ -118,7 +148,13 @@ export function parseSubmissionFromIssue( body: string | null )
   }
 }
 
-function buildIssueBody( submission: ContributionSubmission )
+export function submissionHashFromIssue( body: string | null )
+{
+  const encoded = body?.match( /<!-- contribution-data:([A-Za-z0-9_-]+) -->/ )?.[1];
+  return encoded ? createHash( 'sha256' ).update( Buffer.from( encoded, 'base64url' ) ).digest( 'hex' ) : '';
+}
+
+export function buildIssueBody( submission: ContributionSubmission )
 {
   const source = submission.sourceUrl
     ? `<a href="${escapeHtml( submission.sourceUrl )}">Open submitted link</a>`
@@ -239,10 +275,10 @@ export async function createContributionIssue( submission: ContributionSubmissio
   } );
 }
 
-async function readyContributionPrUrl( issueNumber: number )
+async function readyContributionPrUrl( issueNumber: number, revision: number )
 {
   const repository = process.env.PUBLIC_GITHUB_REPOSITORY!;
-  const head = `${repository.split( '/' )[0]}:agent/submission-${issueNumber}`;
+  const head = `${repository.split( '/' )[0]}:${submissionBranch( issueNumber, revision )}`;
   const prs = await githubRequest<Array<{ html_url: string; draft: boolean }>>(
     `/repos/${repository}/pulls?state=open&head=${encodeURIComponent( head )}`,
   );
@@ -263,10 +299,11 @@ export async function listContributionIssues()
     createdAt: issue.created_at,
     labels: issue.labels.map( label => typeof label === 'string' ? label : label.name ?? '' ).filter( Boolean ),
     submission: parseSubmissionFromIssue( issue.body ),
+    submissionHash: submissionHashFromIssue( issue.body ),
     readyPrUrl: issue.labels.some( label => ['status:ready', 'status:manual-ready'].includes( typeof label === 'string' ? label : label.name ?? '' ) )
-      ? await readyContributionPrUrl( issue.number ).catch( () => null ) : null,
+      ? await readyContributionPrUrl( issue.number, submissionRevision( parseSubmissionFromIssue( issue.body ) ) ).catch( error => { describeGitHubReadFailure( error, 'ready-pr', issue.number ); return null; } ) : null,
     review: issue.labels.some( label => [ 'status:manual-review', 'status:manual-ready', 'status:failed' ].includes( typeof label === 'string' ? label : label.name ?? '' ) )
-      ? await loadManualReview( issue.number ).catch( () => ( { report: null, eligible: false, message: '暂时无法核对评分或 PR 状态，请刷新后重试。', prUrl: null } ) ) : null,
+      ? await loadManualReview( issue.number ).catch( error => ( { report: null, eligible: false, message: describeGitHubReadFailure( error, 'manual-review', issue.number ), prUrl: null } ) ) : null,
   } ) ) );
 }
 

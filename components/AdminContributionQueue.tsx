@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { ExternalLink, FileImage, ListFilter, LoaderCircle, Play, RefreshCw, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import type { ContributionSubmission, TipRouting } from '@/lib/contributions/schema';
@@ -8,6 +8,9 @@ import { contributionIntentLabels, contributionRegionLabels, contributionTypeLab
 import ContributionScoreReview from './ContributionScoreReview';
 import ContributionChangeApproval from './ContributionChangeApproval';
 import type { ManualReview } from '@/lib/server/manualContributionReview';
+import AdminContributionEditor from './AdminContributionEditor';
+import { editableSubmissionStatuses } from '@/lib/contributions/admin-edit';
+import { submissionRevision } from '@/lib/contributions/revision';
 
 export type AdminContributionIssue = {
   number: number;
@@ -18,6 +21,7 @@ export type AdminContributionIssue = {
   submission: ContributionSubmission | null;
   review?: ManualReview | null;
   readyPrUrl?: string | null;
+  submissionHash?: string;
 };
 
 const statusLabels: Record<string, string> = {
@@ -45,12 +49,17 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
   const [ routingIssueNumber, setRoutingIssueNumber ] = useState<number | null>( null );
   const [ tipRouting, setTipRouting ] = useState<TipRouting | ''>( '' );
   const [ error, setError ] = useState( '' );
+  const [ editingIssueNumber, setEditingIssueNumber ] = useState<number | null>( null );
+  const [ savedMessage, setSavedMessage ] = useState( '' );
+  const [ refreshing, startRefresh ] = useTransition();
+  const busy = Boolean( activeAction ) || editingIssueNumber !== null || refreshing;
 
   async function updateIssue( issueNumber: number, action: 'accept' | 'close' | 'manual-approve' | 'reevaluate', routing?: TipRouting, approval?: { headSha: string; reason: string } )
   {
     const actionId = `${issueNumber}:${action}`;
     setActiveAction( actionId );
     setError( '' );
+    setSavedMessage( '' );
     try
     {
       const response = await fetch( `/api/admin/contributions/${issueNumber}`, {
@@ -62,7 +71,10 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
       if ( !response.ok ) throw new Error( result.error ?? '操作没有完成。' );
       setRoutingIssueNumber( null );
       setTipRouting( '' );
-      router.refresh();
+      if ( action === 'manual-approve' ) setSavedMessage( '已人工放行当前 PR，原 AI 评分已保留。请到 GitHub 审核并合并；本操作没有自动上线。' );
+      if ( action === 'accept' ) setSavedMessage( '已交给 Agent 重新处理，请等待新版评估结果。' );
+      if ( action === 'reevaluate' ) setSavedMessage( '已请求重新审核现有 PR；没有修改投稿内容。' );
+      startRefresh( () => router.refresh() );
     } catch ( caught )
     {
       setError( caught instanceof Error ? caught.message : '操作没有完成。' );
@@ -93,6 +105,7 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
   return (
     <div>
       {error && <p role="alert" className="mb-4 border-l-4 border-[#C92935] bg-[#C92935]/6 px-4 py-3 text-sm font-bold text-[#A51F2B]">{error}</p>}
+      {savedMessage && <p role="status" className="mb-4 border-l-4 border-[#0F766E] bg-[#0F766E]/6 px-4 py-3 text-sm leading-6 text-[#1D3557]">{savedMessage}</p>}
       <div className="border-t border-[#1D3557]/14">
         {issues.map( issue => {
           const submission = issue.submission;
@@ -100,6 +113,7 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
           const needsFieldApproval = submission && requiresApprovedChange( submission );
           const canStart = submission && !needsFieldApproval && ['status:submitted', 'status:failed'].includes( status );
           const closed = status === 'status:closed' || status === 'status:merged';
+          const editing = editingIssueNumber === issue.number;
 
           return (
             <article key={issue.number} className="border-b border-[#1D3557]/14 py-7">
@@ -107,16 +121,23 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-wide">
                     <span className="text-[#E63946]">Submission #{issue.number}</span>
+                    {submissionRevision( submission ) > 1 && <span className="text-[#1D3557]/55">第 {submissionRevision( submission )} 版</span>}
                     <span className="border border-[#1D3557]/16 px-2 py-1 text-[#1D3557]/68">{statusLabels[ status ] ?? status}</span>
                     {submission && <span className="text-[#0F766E]">{contributionTypeLabels[ submission.type ]} · {contributionIntentLabels[ submission.intent ]}</span>}
                   </div>
                   <h2 className="mt-3 text-2xl font-black text-[#1D3557]">{submission?.name ?? issue.title}</h2>
-                  {submission && needsFieldApproval && ['status:submitted', 'status:failed', 'status:manual-review'].includes( status ) && <ContributionChangeApproval issueNumber={issue.number} submission={submission} />}
-                  {issue.review && <ContributionScoreReview
+                  {editing && submission && issue.submissionHash && <AdminContributionEditor
+                    key={`${issue.number}:${issue.submissionHash}`} issueNumber={issue.number} submission={submission} submissionHash={issue.submissionHash}
+                    onCancel={() => setEditingIssueNumber( null )}
+                    onSaved={message => { setEditingIssueNumber( null ); setSavedMessage( message ); startRefresh( () => router.refresh() ); }}
+                  />}
+                  {!busy && submission && needsFieldApproval && ['status:submitted', 'status:failed', 'status:manual-review'].includes( status ) && <ContributionChangeApproval issueNumber={issue.number} submission={submission} />}
+                  {!editing && issue.review && <ContributionScoreReview
                     review={issue.review}
                     canApprove={status === 'status:manual-review'}
+                    showOverride={['status:failed', 'status:manual-review'].includes( status )}
                     canReevaluate={['status:failed', 'status:manual-review', 'status:manual-ready'].includes( status )}
-                    busy={Boolean( activeAction )}
+                    busy={busy}
                     onApprove={( headSha, reason ) => void updateIssue( issue.number, 'manual-approve', undefined, { headSha, reason } )}
                     onReevaluate={() => void updateIssue( issue.number, 'reevaluate' )}
                   />}
@@ -205,7 +226,13 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
 
                 {!closed && submission && (
                   <div className="flex shrink-0 flex-col gap-2 lg:w-80">
-                    {['status:ready', 'status:manual-ready'].includes( status ) && (
+                    {['status:failed', 'status:manual-review'].includes( status ) && <div className="border-l-4 border-[#1D3557]/25 bg-[#F6F8FC] p-4 text-sm leading-6 text-[#1D3557]">
+                      <h3 className="font-bold">修改内容，或人工判断</h3>
+                      <p className="mt-2">投稿有误：编辑并保存，再重新交给 AI。认可当前 PR：查看评分面板中的强制通过选项。</p>
+                      <p className="mt-2 text-xs text-[#1D3557]/65">编辑后的新内容不能沿用旧评分放行。程序检查未通过时，请先修正问题。</p>
+                    </div>}
+                    {issue.submissionHash && editableSubmissionStatuses.includes( status ) && <button type="button" disabled={busy} onClick={() => { setEditingIssueNumber( issue.number ); setSavedMessage( '' ); setError( '' ); }} className="inline-flex min-h-11 items-center justify-center border border-[#1D3557]/25 px-4 text-sm font-bold text-[#1D3557] hover:border-[#0F766E] disabled:opacity-40">编辑投稿内容</button>}
+                    {!editing && ['status:ready', 'status:manual-ready'].includes( status ) && (
                       <div className="border-l-4 border-[#0F766E] bg-[#0F766E]/6 p-4 text-[#1D3557]">
                         {issue.readyPrUrl ? <>
                           <p className="text-sm font-bold text-[#0F766E]">{status === 'status:ready' ? '自动检查已通过，可以审核并合并' : '已人工放行，可以审核并合并'}</p>
@@ -238,23 +265,23 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
                             <button type="button" onClick={() => {
                               setRoutingIssueNumber( null );
                               setTipRouting( '' );
-                            }} disabled={Boolean( activeAction )} className="min-h-10 border border-[#1D3557]/18 px-3 text-xs font-black text-[#1D3557] hover:border-[#1D3557] disabled:opacity-50">
+                            }} disabled={busy} className="min-h-10 border border-[#1D3557]/18 px-3 text-xs font-black text-[#1D3557] hover:border-[#1D3557] disabled:opacity-50">
                               返回
                             </button>
-                            <button type="button" onClick={() => tipRouting && updateIssue( issue.number, 'accept', tipRouting )} disabled={!tipRouting || Boolean( activeAction )} className="inline-flex min-h-10 items-center justify-center gap-2 bg-[#0F766E] px-3 text-xs font-black text-white hover:bg-[#0B625C] disabled:cursor-not-allowed disabled:opacity-40">
+                            <button type="button" onClick={() => tipRouting && updateIssue( issue.number, 'accept', tipRouting )} disabled={!tipRouting || busy} className="inline-flex min-h-10 items-center justify-center gap-2 bg-[#0F766E] px-3 text-xs font-black text-white hover:bg-[#0B625C] disabled:cursor-not-allowed disabled:opacity-40">
                               {activeAction === `${issue.number}:accept` && <LoaderCircle className="h-4 w-4 animate-spin" />}
                               确认并启动
                             </button>
                           </div>
                         </div>
                       ) : (
-                        <button type="button" onClick={() => startAgentStep( issue )} disabled={Boolean( activeAction )} className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#0F766E] px-4 text-sm font-black text-white hover:bg-[#0B625C] disabled:opacity-50">
+                        <button type="button" onClick={() => startAgentStep( issue )} disabled={busy} className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#0F766E] px-4 text-sm font-black text-white hover:bg-[#0B625C] disabled:opacity-50">
                           {activeAction === `${issue.number}:accept` ? <LoaderCircle className="h-4 w-4 animate-spin" /> : status === 'status:failed' ? <RefreshCw className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                          {status === 'status:failed' ? '重新处理' : '交给 Agent 处理'}
+                          {status === 'status:failed' ? '重新处理' : submissionRevision( submission ) > 1 ? '重新 AI 审核' : '交给 Agent 处理'}
                         </button>
                       )
                     )}
-                    <button type="button" onClick={() => updateIssue( issue.number, 'close' )} disabled={Boolean( activeAction )} className="inline-flex min-h-11 items-center justify-center gap-2 border border-[#C92935]/30 px-4 text-sm font-black text-[#A51F2B] hover:border-[#C92935] disabled:opacity-50">
+                    <button type="button" onClick={() => updateIssue( issue.number, 'close' )} disabled={busy} className="inline-flex min-h-11 items-center justify-center gap-2 border border-[#C92935]/30 px-4 text-sm font-black text-[#A51F2B] hover:border-[#C92935] disabled:opacity-50">
                       {activeAction === `${issue.number}:close` ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <X className="h-4 w-4" />}
                       关闭投稿
                     </button>
