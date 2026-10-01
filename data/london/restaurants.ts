@@ -347,6 +347,29 @@ export const londonRestaurants: Restaurant[] = [
     images: [ '/Chili Point.jpg' ],
     mustTry: [ '哑巴兔' ],
   },
+  {
+    id: 'lon-r32',
+    slug: 'hiba-street-food',
+    name: 'Hiba Street Food',
+    cuisine: 'Palestinian',
+    shortDescription: '黎巴嫩/巴勒斯坦餐厅',
+    description: '味道不错的黎巴嫩/巴勒斯坦菜，甜品美味，性价比高，吃完不晕碳。',
+    address: '10 Tottenham St, London W1T 4RD',
+    recommendReason: "味道不错的黎巴嫩/巴勒斯坦菜，甜品美味，性价比高，吃完不晕碳。",
+    priceRange: '£10-20',
+    images: [
+      '/contributions/27/1.webp',
+      '/contributions/27/2.webp',
+      '/contributions/27/3.webp',
+      '/contributions/27/4.webp',
+      '/contributions/27/5.webp'
+    ],
+    mustTry: [
+      "Today's Platter",
+      'Houmous, moutabal, tabbouleh, mixed shawarma',
+      'Baklawa , mint tea'
+    ],
+  },
 ];
 
 export const londonRestaurantAvoids: AvoidItem[] = [
