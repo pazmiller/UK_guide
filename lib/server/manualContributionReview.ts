@@ -1,14 +1,20 @@
 import 'server-only';
 import { evaluationReportSchema, judgeOnlyFailure, parseEvaluationComment, REPORT_PREFIX, type EvaluationReport } from '@/lib/contributions/evaluation';
-import { getContributionRepository, githubRequest, replaceStatusLabel, dispatchContributionWorkflow, parseSubmissionFromIssue } from './githubApp';
+import { getContributionRepository, githubRequest, replaceStatusLabel, dispatchContributionWorkflow, parseSubmissionFromIssue, GitHubRequestError, describeGitHubReadFailure } from './githubApp';
 import { requiresApprovedChange } from '@/lib/contributions/schema';
 import { createHash } from 'node:crypto';
 import { CHANGE_PREFIX, changeRequestSchema } from '@/lib/contributions/change-contract';
+import { submissionBranch, submissionRevision } from '@/lib/contributions/revision';
 
 async function currentApprovalMatches( issueNumber: number, report: EvaluationReport ) {
   const repo = getContributionRepository().fullName;
   const issue = await githubRequest<{ body: string }>( `/repos/${repo}/issues/${issueNumber}` );
   const submission = parseSubmissionFromIssue( issue.body );
+  const revision = submissionRevision( submission );
+  if ( ( report.submissionRevision ?? 1 ) !== revision ) return false;
+  const payload = issue.body.match( /<!-- contribution-data:([A-Za-z0-9_-]+) -->/ )?.[1];
+  const payloadHash = payload ? createHash( 'sha256' ).update( Buffer.from( payload, 'base64url' ) ).digest( 'hex' ) : '';
+  if ( ( report.submissionHash && report.submissionHash !== payloadHash ) || ( revision > 1 && !report.submissionHash ) ) return false;
   if ( submission && !requiresApprovedChange( submission ) ) return true;
   if ( !report.fidelity ) return false;
   const encoded = issue.body.match( /<!-- contribution-data:([A-Za-z0-9_-]+) -->/ )?.[1];
@@ -65,7 +71,7 @@ async function latestReport( issueNumber: number ): Promise<{ report: Evaluation
 export function matchingReviewCommit( report: EvaluationReport, pr: PullRequest, repo: string ): boolean
 {
   return pr.number === report.pullRequestNumber && pr.state === 'open' && !pr.merged
-    && pr.head.ref === `agent/submission-${report.issueNumber}`
+    && pr.head.ref === submissionBranch( report.issueNumber, report.submissionRevision ?? 1 )
     && pr.head.repo.full_name === repo && pr.base.repo.full_name === repo
     && pr.head.sha === report.headSha && pr.base.sha === report.baseSha;
 }
@@ -73,17 +79,30 @@ export function matchingReviewCommit( report: EvaluationReport, pr: PullRequest,
 export async function loadManualReview( issueNumber: number ): Promise<ManualReview>
 {
   const { report, failure } = await latestReport( issueNumber );
-  if ( !report ) {
+  const issue = await githubRequest<{ body: string }>( `/repos/${getContributionRepository().fullName}/issues/${issueNumber}` );
+  const revision = submissionRevision( parseSubmissionFromIssue( issue.body ) );
+  if ( !report || ( report.submissionRevision ?? 1 ) !== revision ) {
     const repo = publicRepository();
-    const prs = await githubRequest<PullRequest[]>( `/repos/${repo}/pulls?state=open&head=${encodeURIComponent( `${repo.split( '/' )[0]}:agent/submission-${issueNumber}` )}` );
-    return { report: null, eligible: false, message: failure || '缺少可信的完整评估记录，请重新评估；不能仅凭历史平均分放行。', prUrl: prs.length === 1 ? `https://github.com/${repo}/pull/${prs[0].number}` : null };
+    const prs = await githubRequest<PullRequest[]>( `/repos/${repo}/pulls?state=open&head=${encodeURIComponent( `${repo.split( '/' )[0]}:${submissionBranch( issueNumber, revision )}` )}` );
+    return { report: null, eligible: false, message: report ? '投稿已修改，旧版评分不适用于当前内容，请重新处理新版投稿。' : failure || '缺少可信的完整评估记录，请重新评估；不能仅凭历史平均分放行。', prUrl: prs.length === 1 ? `https://github.com/${repo}/pull/${prs[0].number}` : null };
   }
   const repo = publicRepository();
   const prUrl = `https://github.com/${repo}/pull/${report.pullRequestNumber}`;
   if ( !await currentApprovalMatches( issueNumber, report ) ) return { report, prUrl, eligible: false, message: '缺少本版投稿的字段校验，或批准内容已改变。请重新确认修改范围并评估。' };
   const pr = await githubRequest<PullRequest>( `/repos/${repo}/pulls/${report.pullRequestNumber}` );
   if ( !matchingReviewCommit( report, pr, repo ) ) return { report, prUrl, eligible: false, message: 'PR 已关闭或提交/基线发生变化，旧评分不能用于放行，请重新评估。' };
-  const run = await githubRequest<{ status: string }>( `/repos/${getContributionRepository().fullName}/actions/runs/${report.runId}` );
+  let run: { status: string };
+  try {
+    run = await githubRequest<{ status: string }>( `/repos/${getContributionRepository().fullName}/actions/runs/${report.runId}` );
+  } catch ( error ) {
+    const diagnostic = describeGitHubReadFailure( error, 'actions-run', issueNumber );
+    const message = error instanceof GitHubRequestError && error.status === 403
+      ? '无法读取评估运行状态（403）。请为网站使用的 GitHub App 开启仓库 Actions: Read-only 权限，并在安装页面批准新增权限，然后刷新。'
+      : error instanceof GitHubRequestError && error.status === 404
+        ? '未找到本次评估的 Actions 运行记录（404），记录可能已删除或不可访问。请检查仓库权限，必要时重新评估。'
+        : diagnostic;
+    return { report, prUrl, eligible: false, message: `${message}运行状态未核验，暂不能人工放行；已有评分和 PR 链接仍保留供核对。` };
+  }
   if ( run.status !== 'completed' ) return { report, prUrl, eligible: false, message: '本次评估尚未结束，请稍后刷新。' };
   return { report, prUrl, eligible: pr.draft && judgeOnlyFailure( report ), message: !pr.draft ? 'PR 已为 Ready；原 AI 结论仍保留。' : judgeOnlyFailure( report ) ? '程序检查已通过；请核对内容差异和 AI 疑点／低评分。人工放行不会合并 PR。' : '存在程序检查失败，不允许人工绕过。' };
 }
@@ -123,30 +142,33 @@ export async function manuallyApproveContribution( issueNumber: number, headSha:
   const finalPr = await githubRequest<PullRequest>( prPath );
   if ( !matchingReviewCommit( report, finalPr, repo ) || !await currentApprovalMatches( issueNumber, report ) ) {
     await invalidateManualReview( issueNumber, report.pullRequestNumber );
-    await dispatchContributionWorkflow( 'content-pr-updated', { issueNumber, pullRequestNumber: report.pullRequestNumber } );
+    await dispatchContributionWorkflow( 'content-pr-updated', { issueNumber, pullRequestNumber: report.pullRequestNumber, submissionRevision: report.submissionRevision ?? 1, branchName: submissionBranch( issueNumber, report.submissionRevision ?? 1 ) } );
     throw new ReviewConflict( 'PR 已更新，本次放行失效，已要求重新评估。' );
   }
 }
 
 export async function reevaluateContribution( issueNumber: number )
 {
-  const issue = await githubRequest<{ state: string; labels: Array<{ name: string }> }>( `/repos/${getContributionRepository().fullName}/issues/${issueNumber}` );
+  const issue = await githubRequest<{ body: string; state: string; labels: Array<{ name: string }> }>( `/repos/${getContributionRepository().fullName}/issues/${issueNumber}` );
   if ( issue.state !== 'open' || !issue.labels.some( label => [ 'status:failed', 'status:manual-review', 'status:manual-ready' ].includes( label.name ) ) ) throw new ReviewConflict( '当前状态不能重新评估，请刷新。' );
   const repo = publicRepository();
-  const prs = await githubRequest<PullRequest[]>( `/repos/${repo}/pulls?state=open&head=${encodeURIComponent( `${repo.split( '/' )[0]}:agent/submission-${issueNumber}` )}` );
-  if ( prs.length !== 1 || prs[0].head.repo.full_name !== repo || prs[0].head.ref !== `agent/submission-${issueNumber}` ) throw new ReviewConflict( '没有唯一的现有开放 PR，无法重新评估。' );
+  const revision = submissionRevision( parseSubmissionFromIssue( issue.body ) );
+  const branchName = submissionBranch( issueNumber, revision );
+  const prs = await githubRequest<PullRequest[]>( `/repos/${repo}/pulls?state=open&head=${encodeURIComponent( `${repo.split( '/' )[0]}:${branchName}` )}` );
+  if ( prs.length !== 1 || prs[0].head.repo.full_name !== repo || prs[0].head.ref !== branchName ) throw new ReviewConflict( '没有唯一的现有开放 PR，无法重新评估。' );
   await setDraft( prs[0], true );
   await replaceStatusLabel( issueNumber, 'status:agent-running' );
   try {
-    await dispatchContributionWorkflow( 'content-pr-updated', { issueNumber, pullRequestNumber: prs[0].number } );
+    await dispatchContributionWorkflow( 'content-pr-updated', { issueNumber, pullRequestNumber: prs[0].number, submissionRevision: revision, branchName } );
   } catch ( error ) { await replaceStatusLabel( issueNumber, 'status:failed' ); throw error; }
 }
 
 export async function invalidateManualReview( issueNumber: number, prNumber: number )
 {
-  const issue = await githubRequest<{ labels: Array<{ name: string }> }>( `/repos/${getContributionRepository().fullName}/issues/${issueNumber}` );
+  const issue = await githubRequest<{ body: string; labels: Array<{ name: string }> }>( `/repos/${getContributionRepository().fullName}/issues/${issueNumber}` );
   if ( !issue.labels.some( label => [ 'status:manual-review', 'status:manual-ready' ].includes( label.name ) ) ) return;
   const pr = await githubRequest<PullRequest>( `/repos/${publicRepository()}/pulls/${prNumber}` );
+  if ( pr.head.ref !== submissionBranch( issueNumber, submissionRevision( parseSubmissionFromIssue( issue.body ) ) ) ) return;
   if ( pr.state === 'open' ) await setDraft( pr, true );
   await replaceStatusLabel( issueNumber, 'status:agent-running' );
 }

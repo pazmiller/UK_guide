@@ -62,6 +62,10 @@ test( 'real POST accepts exact restaurant/attraction changes and preserves compl
     assert.deepEqual( harness.writes.at( -1 )!.existingEdit, value.existingEdit );
   }
 } );
+test( 'new public submissions always start at revision 1 even if a client supplies another revision', async () => {
+  assert.equal( ( await submit( { ...payload(), revision: 99 } ) ).status, 201 );
+  assert.equal( harness.writes.at( -1 )!.revision, 1 );
+} );
 test( 'POST rejects missing/wrong target, stale unedited fields, category/region/city/name spoofing and no-op', async () => {
   const start = harness.writes.length;
   for ( const mutate of [

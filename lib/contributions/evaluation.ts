@@ -5,6 +5,8 @@ const score = z.number().min( 0 ).max( 100 );
 export const evaluationReportSchema = z.object( {
   version: z.literal( 1 ),
   issueNumber: z.number().int().positive(),
+  submissionRevision: z.number().int().positive().optional(),
+  submissionHash: z.string().regex( /^[a-f0-9]{64}$/ ).optional(),
   pullRequestNumber: z.number().int().positive(),
   headSha: z.string().regex( /^[a-f0-9]{40}$/ ),
   baseSha: z.string().regex( /^[a-f0-9]{40}$/ ),

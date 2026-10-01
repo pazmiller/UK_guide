@@ -80,6 +80,7 @@ export async function POST( request: NextRequest )
 
   const submission = contributionSubmissionSchema.parse( {
     ...parsed.data,
+    revision: 1,
     submitterName: parsed.data.type === 'university' && !parsed.data.discloseSubmitterName
       ? ''
       : parsed.data.submitterName,

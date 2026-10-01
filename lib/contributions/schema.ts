@@ -63,6 +63,7 @@ const customCuisineName = z.string()
 
 export const contributionSubmissionSchema = z.object( {
   version: z.literal( 1 ).default( 1 ),
+  revision: z.number().int().positive().optional(),
   existingEdit: existingEditSchema.optional(),
   type: z.enum( contributionTypes ),
   intent: z.enum( contributionIntents ),

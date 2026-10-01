@@ -19,6 +19,7 @@ const bundle = await build( {
     b.onLoad( { filter: /\/auth\.ts$/ }, () => ({ contents: 'export const auth=async()=>({user:{githubLogin:"editor"}});' }) );
     b.onLoad( { filter: /\/manualContributionReview\.ts$/ }, () => ({ contents: 'export class ReviewConflict extends Error {} export const loadManualReview=async()=>null; export const manuallyApproveContribution=async()=>{}; export const reevaluateContribution=async()=>{};' }) );
     b.onLoad( { filter: /\/approvedChanges\.ts$/ }, () => ({ contents: 'export const prepareChange=async()=>({}); export const approveChange=async(_id,change)=>{globalThis.dispatchHarness.approvals++;return change;};' }) );
+    b.onLoad( { filter: /\/submissionEdits\.ts$/ }, () => ({ contents: 'export const saveSubmissionEdits=async()=>({ok:true});' }) );
   } }],
 } );
 const bundledModule = { exports: {} };

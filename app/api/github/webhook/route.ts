@@ -1,7 +1,8 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { NextResponse } from 'next/server';
-import { dispatchContributionWorkflow } from '@/lib/server/githubApp';
+import { dispatchContributionWorkflow, getContributionRepository, githubRequest, parseSubmissionFromIssue } from '@/lib/server/githubApp';
 import { invalidateManualReview } from '@/lib/server/manualContributionReview';
+import { parseSubmissionBranch, submissionRevision } from '@/lib/contributions/revision';
 
 export const runtime = 'nodejs';
 
@@ -49,7 +50,7 @@ export async function POST( request: Request )
 
   const allowedActions = new Set( [ 'synchronize', 'reopened', 'closed' ] );
   const branch = payload.pull_request?.head?.ref ?? '';
-  const branchMatch = branch.match( /^agent\/submission-(\d+)$/ );
+  const branchMatch = parseSubmissionBranch( branch );
   if (
     !allowedActions.has( payload.action ?? '' )
     || payload.repository?.full_name !== process.env.PUBLIC_GITHUB_REPOSITORY
@@ -61,11 +62,15 @@ export async function POST( request: Request )
 
   try
   {
+    const issue = await githubRequest<{ body: string }>( `/repos/${getContributionRepository().fullName}/issues/${branchMatch.issueNumber}` );
+    if ( submissionRevision( parseSubmissionFromIssue( issue.body ) ) !== branchMatch.revision ) return NextResponse.json( { ignored: true } );
     if ( payload.action === 'synchronize' || payload.action === 'reopened' ) {
-      await invalidateManualReview( Number( branchMatch[ 1 ] ), Number( payload.pull_request?.number ) );
+      await invalidateManualReview( branchMatch.issueNumber, Number( payload.pull_request?.number ) );
     }
     await dispatchContributionWorkflow( payload.action === 'closed' ? 'content-pr-closed' : 'content-pr-updated', {
-      issueNumber: Number( branchMatch[ 1 ] ),
+      issueNumber: branchMatch.issueNumber,
+      submissionRevision: branchMatch.revision,
+      branchName: branch,
       pullRequestNumber: payload.pull_request?.number,
       headSha: payload.pull_request?.head?.sha,
       merged: payload.pull_request?.merged === true,

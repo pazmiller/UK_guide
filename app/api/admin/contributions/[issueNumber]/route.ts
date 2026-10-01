@@ -6,10 +6,13 @@ import { acceptContributionIssue, replaceStatusLabel } from '@/lib/server/github
 import { manuallyApproveContribution, reevaluateContribution, ReviewConflict } from '@/lib/server/manualContributionReview';
 import { changeRequestSchema } from '@/lib/contributions/change-contract';
 import { approveChange, prepareChange } from '@/lib/server/approvedChanges';
+import { adminSubmissionEditsSchema } from '@/lib/contributions/admin-edit';
+import { saveSubmissionEdits } from '@/lib/server/submissionEdits';
 
 const actionSchema = z.discriminatedUnion( 'action', [
   z.object( { action: z.literal( 'accept' ), tipRouting: tipRoutingSchema.optional(), change: changeRequestSchema.optional() } ),
   z.object( { action: z.literal( 'prepare-change' ) } ),
+  z.object( { action: z.literal( 'save-submission' ), submissionHash: z.string().regex( /^[a-f0-9]{64}$/ ), edits: adminSubmissionEditsSchema } ).strict(),
   z.object( { action: z.literal( 'close' ) } ),
   z.object( { action: z.literal( 'manual-approve' ), headSha: z.string().regex( /^[a-f0-9]{40}$/ ), reason: z.string().trim().min( 1 ).max( 500 ) } ),
   z.object( { action: z.literal( 'reevaluate' ) } ),
@@ -39,6 +42,7 @@ export async function POST( request: Request, context: { params: Promise<{ issue
 
   try
   {
+    if ( parsed.data.action === 'save-submission' ) return NextResponse.json( await saveSubmissionEdits( issueNumber, parsed.data.submissionHash, parsed.data.edits, actor ) );
     if ( parsed.data.action === 'prepare-change' ) return NextResponse.json( await prepareChange( issueNumber ) );
     if ( parsed.data.action === 'accept' ) {
       const change = parsed.data.change ? await approveChange( issueNumber, parsed.data.change, actor ) : undefined;
