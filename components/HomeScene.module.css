@@ -1,0 +1,101 @@
+/* Fades in and out of the shared navy between stations */
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: clip;
+  pointer-events: none;
+  mask-image: linear-gradient(transparent, #000 220px, #000 calc(100% - 220px), transparent);
+}
+
+/* One screen tall and sticky: the photo is scaled to the viewport, never to the section */
+.photo {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background:
+    var(--shade),
+    var(--photo) var(--focus) / cover no-repeat;
+}
+
+/* Darkened enough for white headings and the paper props on top */
+.explore {
+  --shade: linear-gradient(180deg, rgba(11, 26, 46, 0.55), rgba(11, 26, 46, 0.25) 45%, rgba(11, 26, 46, 0.6));
+}
+
+.london {
+  --shade: linear-gradient(180deg, rgba(11, 26, 46, 0.6), rgba(11, 26, 46, 0.42) 50%, rgba(11, 26, 46, 0.7));
+}
+
+/*
+ * Royal Holloway is only 1200px square, so it is never stretched across a wide screen:
+ * the sharp copy is at most 960px wide with feathered edges, and a heavily blurred
+ * copy fills the rest (blur hides any upscaling).
+ */
+.campus {
+  --shade: linear-gradient(180deg, rgba(11, 26, 46, 0.62), rgba(11, 26, 46, 0.4) 50%, rgba(11, 26, 46, 0.72));
+}
+
+.campus .photo {
+  isolation: isolate;
+  overflow: hidden;
+  background: #0B1A2E;
+}
+
+.campus .photo::before,
+.campus .photo::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+}
+
+.campus .photo::before {
+  inset-inline: 0;
+  background: var(--photo) var(--focus) / cover no-repeat;
+  /* Darkened to match the shade on the sharp copy */
+  filter: blur(18px) saturate(1.1) brightness(0.5);
+  transform: scale(1.12);
+}
+
+.campus .photo::after {
+  left: 50%;
+  width: min(100%, 960px);
+  background: var(--shade), var(--photo) var(--focus) / cover no-repeat;
+  transform: translateX(-50%);
+  mask-image:
+    linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent),
+    linear-gradient(transparent, #000 6%, #000 94%, transparent);
+  mask-composite: intersect;
+}
+
+/* ---- Crossfade between neighbouring scenes ---- */
+
+.bleedBottom {
+  /* Long enough to stay pinned under the incoming photo until it is fully opaque */
+  bottom: -110vh;
+}
+
+.bleedTop {
+  top: -70vh;
+}
+
+@keyframes scene-in {
+  from { opacity: 0; transform: scale(1.06); }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* The incoming photo rises over the pinned outgoing one, fading in as it comes */
+    .bleedTop {
+      view-timeline: --scene-in block;
+    }
+
+    .bleedTop .photo {
+      animation: scene-in linear both;
+      animation-timeline: --scene-in;
+      /* Scene top sits 70vh above its section: starts as the section peeks in at the bottom,
+         done once the section top is ~35% down the screen */
+      animation-range: cover 70vh cover 135vh;
+    }
+  }
+}

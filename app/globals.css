@@ -68,70 +68,115 @@ html {
     2px 2px 0 rgba(0,0,0,0.35);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
+/* ---------- Home page motion ---------- */
+
+/* Hero entrance: fades up, hidden before its delay starts */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(28px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+
+.hero-rise {
+  animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes hero-letter {
+  from { opacity: 0; transform: translateY(0.6em) rotate(8deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(0); }
+}
+
+.hero-letter {
+  display: inline-block;
+  animation: hero-letter 0.6s cubic-bezier(0.2, 0.8, 0.25, 1.2) both;
+}
+
+@keyframes hero-glow {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+  50%      { opacity: 0.85; transform: translate(-50%, -50%) scale(1.12); }
+}
+
+.hero-glow {
+  animation: hero-glow 7s ease-in-out infinite;
+}
+
+/* Scroll reveal (see components/Reveal.tsx) */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.8s ease var(--reveal-delay, 0ms),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+.reveal-up    { transform: translateY(40px); }
+
+
+.reveal.is-shown {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* Where supported, reveals are scrubbed by scroll instead (and play backwards on the way up) */
+@keyframes reveal-up       { from { opacity: 0; transform: translateY(60px); } }
+
+@supports (animation-timeline: view()) {
+  .reveal {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+    transition: none;
+    animation: reveal-up linear both;
+    animation-timeline: view();
+    /* Fixed lengths from the moment it enters, so content that grows never re-hides */
+    animation-range: cover var(--reveal-offset, 0vh) cover calc(50vh + var(--reveal-offset, 0vh));
   }
+
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* City ribbon marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.6s ease-out forwards;
+.marquee-track {
+  animation: marquee 38s linear infinite;
 }
 
-.animate-slideIn {
-  animation: slideIn 0.6s ease-out forwards;
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
 }
 
-@keyframes furcon-in {
-  0% {
-    opacity: 0;
-    transform: translate(-36px, 28px) scale(0.72) rotate(-7deg);
-  }
-  65% {
-    opacity: 1;
-    transform: translate(5px, -4px) scale(1.04) rotate(2deg);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0) scale(1) rotate(0);
-  }
+/* Light sweep across explore cards on hover */
+.card-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.28) 48%, transparent 66%);
+  transform: translateX(-120%);
+  transition: transform 0.9s ease;
 }
 
-.furcon-in {
-  animation: furcon-in 0.75s cubic-bezier(0.2, 0.85, 0.25, 1.15) 0.2s both;
+.group:hover .card-shine::after,
+.group:focus-visible .card-shine::after {
+  transform: translateX(120%);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .furcon-in {
+  .hero-rise,
+  .hero-letter,
+  .hero-glow,
+  .marquee-track {
     animation: none;
   }
-}
 
-/* Hero gradient overlay */
-.hero-gradient {
-  background: linear-gradient(
-    to bottom,
-    rgba(29, 53, 87, 0.7) 0%,
-    rgba(29, 53, 87, 0.4) 50%,
-    rgba(29, 53, 87, 0.8) 100%
-  );
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
 }
 
 /* Card hover effects */

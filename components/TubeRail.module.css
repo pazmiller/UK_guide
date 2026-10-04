@@ -1,0 +1,213 @@
+/* --rail (0..1) is the train's position along the line, written on scroll. */
+
+.rail {
+  --rail: 0;
+  position: fixed;
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.rail[data-visible="true"] {
+  opacity: 1;
+}
+
+.track {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(29, 53, 87, 0.18);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.55);
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--fill-direction, 180deg), #E63946, #F4A261 30%, #5280FF 55%, #33C7B0 75%, #E63946);
+  transition: transform 0.15s linear;
+}
+
+.train {
+  position: absolute;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--current);
+  box-shadow: 0 4px 14px rgba(1, 8, 32, 0.35);
+  transition: border-color 0.3s;
+}
+
+.stops {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stops li {
+  position: absolute;
+}
+
+.stop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1D3557;
+  text-decoration: none;
+}
+
+.dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 3px solid var(--line);
+  background: #fff;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.stop[data-state="passed"] .dot {
+  background: var(--line);
+}
+
+.stop[data-state="current"] .dot {
+  transform: scale(1.35);
+  background: var(--line);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--line) 30%, transparent);
+}
+
+.label {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(1, 8, 32, 0.82);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.stop:hover .label,
+.stop:focus-visible .label {
+  opacity: 1;
+  transform: none;
+}
+
+/* Arriving at a station announces it briefly, then gets out of the content's way */
+.stop[data-state="current"] .label {
+  animation: announce 2.6s ease both;
+}
+
+@keyframes announce {
+  0%   { opacity: 0; transform: translateX(-6px); }
+  12%, 75% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: none; }
+}
+
+.stop[data-state="current"]:hover .label,
+.stop[data-state="current"]:focus-visible .label {
+  animation: none;
+}
+
+.stop:focus-visible {
+  outline: none;
+}
+
+.stop:focus-visible .dot {
+  outline: 2px solid #E63946;
+  outline-offset: 3px;
+}
+
+/* Wide screens: a vertical line in the left gutter */
+@media (min-width: 1360px) {
+  .rail {
+    left: 22px;
+    top: 50%;
+    height: min(56vh, 460px);
+    width: 14px;
+    margin-top: calc(min(56vh, 460px) / -2);
+    transform: translateX(-24px);
+  }
+
+  .rail[data-visible="true"] {
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .track {
+    inset: 0 4px;
+  }
+
+  .fill {
+    transform-origin: top;
+    transform: scaleY(var(--rail));
+  }
+
+  .train {
+    left: -3px;
+    top: calc(var(--rail) * 100%);
+    width: 20px;
+    height: 30px;
+    margin-top: -15px;
+  }
+
+  .stops li {
+    left: 0;
+    top: calc(var(--pos) * 100%);
+    margin-top: -7px;
+  }
+}
+
+/* Narrow screens: a thin progress line along the top edge */
+@media (max-width: 1359px) {
+  .rail {
+    --fill-direction: 90deg;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+
+  .track {
+    inset: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .fill {
+    transform-origin: left;
+    transform: scaleX(var(--rail));
+  }
+
+  .train {
+    display: none;
+  }
+
+  .stops li {
+    top: -3px;
+    left: calc(var(--pos) * (100% - 14px));
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-width: 2px;
+  }
+
+  .label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail,
+  .fill,
+  .train,
+  .dot,
+  .label {
+    transition: none;
+    animation: none;
+  }
+}
