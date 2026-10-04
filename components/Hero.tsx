@@ -102,7 +102,7 @@ export default function Hero()
         {mode !== 'static' && (
           <div className={`${styles.caption} ${styles.mapIn}`}>
             <p className={styles.captionTitle}>The UKCFFA Line</p>
-            <p className="mt-2 text-sm sm:text-base">米字旗拆开，就是一张地铁图。点站名直达，或者继续往下滚——列车即将进站。</p>
+            <p className="mt-2 text-sm sm:text-base">我们的UK群就是一张地铁图，连接人类和动物。点站名直达，继续往下滚，都行，反正列车即将进站！Watch the gaps！</p>
           </div>
         )}
 
