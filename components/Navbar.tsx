@@ -272,7 +272,7 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
               }`}
             data-collapsed={isCollapsed}
           >
-            <div className="flex h-[64px] items-center gap-1.5">
+            <div className="flex h-[64px] items-center gap-1 md:gap-1.5">
               <button
                 type="button"
                 onClick={toggleCollapsed}
@@ -299,14 +299,14 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
                     </span>
                   </Link>
 
-                  {/* Direct mobile destinations */}
-                  <div className="ml-3 flex items-center gap-5 rounded-full border border-white/52 bg-white/20 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.68)] md:hidden">
+                  {/* Direct mobile destinations; scroll sideways rather than overlap Home on narrow phones */}
+                  <div className="ml-1 flex min-w-0 items-center gap-0.5 overflow-x-auto rounded-full border border-white/52 bg-white/20 p-0.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.68)] [scrollbar-width:none] md:hidden [&::-webkit-scrollbar]:hidden">
                     {mobileQuickLinks.map( item => (
                       <Link
                         key={item.href}
                         href={item.href}
                         onClick={() => setIsOpen( false )}
-                        className={`inline-flex min-h-8 items-center whitespace-nowrap rounded-full px-0.5 py-1.5 text-xs font-bold leading-none transition-[background-color,color,box-shadow] duration-200 ${item.href === '/guide' ? 'translate-x-2' : ''} ${item.href === '/universities' ? 'translate-x-1' : ''} ${item.active
+                        className={`inline-flex min-h-8 shrink-0 items-center whitespace-nowrap rounded-full px-1.5 py-1.5 text-xs font-bold leading-none transition-[background-color,color,box-shadow] duration-200 ${item.active
                           ? 'bg-white/64 text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.82),0_2px_8px_rgba(29,53,87,0.12)]'
                           : 'text-black/82 hover:bg-white/42 hover:text-black'}`}
                       >
@@ -448,14 +448,25 @@ export default function Navbar( { citiesSubLinks, europaSubLinks }: NavbarProps 
               </Link>
                 </div>
 
-                {/* Mobile Menu Button */}
-                <button
-                  onClick={() => setIsOpen( !isOpen )}
-                  className="shrink-0 rounded-full border border-white/50 bg-white/32 p-2 text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] transition-colors hover:bg-white/48 md:hidden"
-                  aria-label="Toggle menu"
-                >
-                  {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                </button>
+                {/* Mobile: Home, then the menu button */}
+                <div className="ml-1 flex shrink-0 items-center gap-1 md:hidden">
+                  <Link
+                    href="/"
+                    onClick={() => setIsOpen( false )}
+                    aria-current={pathname === '/' ? 'page' : undefined}
+                    className={`flex h-10 items-center px-2 text-xs font-bold transition-colors ${pathname === '/' ? 'text-black' : 'text-black/75 hover:text-black'}`}
+                  >
+                    Home
+                  </Link>
+                  <button
+                    onClick={() => setIsOpen( !isOpen )}
+                    className="shrink-0 rounded-full border border-white/50 bg-white/32 p-1.5 text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] transition-colors hover:bg-white/48"
+                    aria-label="Toggle menu"
+                    aria-expanded={isOpen}
+                  >
+                    {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
