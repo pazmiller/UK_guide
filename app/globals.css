@@ -184,6 +184,17 @@ html {
   }
 }
 
+/* /avoid: the warning sign wobbles on hover */
+@keyframes avoid-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px) rotate(-1deg); }
+  75% { transform: translateX(3px) rotate(1deg); }
+}
+
+.shake-hover:hover {
+  animation: avoid-shake 0.4s ease-in-out;
+}
+
 /* Card hover effects */
 .card-hover {
   transition: all 0.3s ease;

@@ -93,15 +93,6 @@ export default function AvoidPage()
 
   return (
     <>
-      <style jsx>{`
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-3px) rotate(-1deg); }
-          75% { transform: translateX(3px) rotate(1deg); }
-        }
-        .shake-hover:hover { animation: shake 0.4s ease-in-out; }
-      `}</style>
-
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#FBF8F1] pt-28 pb-14 border-b border-[#1D3557]/10">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import millerIcon from '@/src/img/miller_icon.png';
+import styles from './FurconIndex.module.css';
 
 export type Region = 'north-america' | 'europe' | 'asia-pacific' | 'latin-america';
 export type RegionFilter = Region | 'all' | 'uk';
@@ -252,117 +253,117 @@ export default function FurconIndex()
   const selectedRegionLabel = REGION_FILTERS.find( ( filter ) => filter.value === region )?.label ?? '全部';
 
   return (
-    <div className="furcon-index">
-      <div className="furcon-master-grid" aria-hidden="true">
-        {Array.from( { length: 12 }, ( _, index ) => <div key={index} className="furcon-grid-col" /> )}
+    <div className={styles.index}>
+      <div className={styles.masterGrid} aria-hidden="true">
+        {Array.from( { length: 12 }, ( _, index ) => <div key={index} className={styles.gridCol} /> )}
       </div>
 
-      <div className="furcon-shell">
-        <nav className="furcon-nav" aria-label="Furcon index">
+      <div className={styles.shell}>
+        <nav className={styles.nav} aria-label="Furcon index">
           <div>2026 — 2027</div>
-          <div className="furcon-logo">兽展讯息<br />FURCON INDEX</div>
+          <div className={styles.logo}>兽展讯息<br />FURCON INDEX</div>
           <div>{todayIso}</div>
         </nav>
 
-        <header className="furcon-header">
-          <div className="furcon-stack-detail" aria-hidden="true">
-            {[ 120, 160, 200, 240 ].map( ( width, index ) => <div key={width} className="furcon-stack-line" style={{ width, opacity: ( index + 1 ) / 4 }} /> )}
+        <header className={styles.header}>
+          <div className={styles.stackDetail} aria-hidden="true">
+            {[ 120, 160, 200, 240 ].map( ( width, index ) => <div key={width} className={styles.stackLine} style={{ width, opacity: ( index + 1 ) / 4 }} /> )}
           </div>
-          <span className="furcon-meta-label">Convention Index v.2026 — 全球兽展一览</span>
-          <h1>兽展讯息 <em>news</em><br /><span className="furcon-year-2026">2026</span> — <span className="furcon-year-2027">2027</span></h1>
+          <span className={styles.metaLabel}>Convention Index v.2026 — 全球兽展一览</span>
+          <h1>兽展讯息 <em>news</em><br /><span className={styles.year2026}>2026</span> — <span className={styles.year2027}>2027</span></h1>
 
         </header>
 
-        <section className="furcon-stats" aria-label="兽展统计">
-          <div className="furcon-square">
-            <span className="furcon-num">01</span>
-            <div className="furcon-figure">{events.length}<span>场</span></div>
-            <span className="furcon-meta-label">收录场次 / total</span>
+        <section className={styles.stats} aria-label="兽展统计">
+          <div className={styles.square}>
+            <span className={styles.num}>01</span>
+            <div className={styles.figure}>{events.length}<span>场</span></div>
+            <span className={styles.metaLabel}>收录场次 / total</span>
           </div>
-          <div className="furcon-square">
-            <span className="furcon-num">02</span>
+          <div className={styles.square}>
+            <span className={styles.num}>02</span>
             {daysUntilLondonFurs === null ? (
               <>
                 <h2>—</h2>
-                <span className="furcon-meta-label">下一次 London Furs 日期待公布</span>
+                <span className={styles.metaLabel}>下一次 London Furs 日期待公布</span>
               </>
             ) : (
               <>
                 <h2>{daysUntilLondonFurs} <em>days</em></h2>
-                <span className="furcon-meta-label furcon-next-london-date">距离下一次 <strong>London Furs</strong> · {formatDate( nextLondonFursDate!.iso )}</span>
+                <span className={`${styles.metaLabel} ${styles.nextLondonDate}`}>距离下一次 <strong>London Furs</strong> · {formatDate( nextLondonFursDate!.iso )}</span>
               </>
             )}
           </div>
-          <div className="furcon-square furcon-focus-square furcon-invert">
-            <span className="furcon-num">UK</span>
+          <div className={`${styles.square} ${styles.focusSquare} ${styles.invert}`}>
+            <span className={styles.num}>UK</span>
             <div>
-              <span className="furcon-meta-label furcon-inline-label furcon-next-label">英国下一场 / next in UK</span>
+              <span className={`${styles.metaLabel} ${styles.inlineLabel} ${styles.nextLabel}`}>英国下一场兽展 / next in UK</span>
               <h2>{ukNext ? <a href={ukNext.officialUrl} target="_blank" rel="noopener noreferrer">{ukNext.name}</a> : '—'}</h2>
             </div>
-            <div className="furcon-status">
-              <span className="furcon-status-dot" />
+            <div className={styles.status}>
+              <span className={styles.statusDot} />
               {ukNext ? formatDate( ukNext.start ) + ' · ' + ukNext.place : '暂无已公布场次'}
             </div>
           </div>
-          <div className="furcon-square furcon-focus-square">
-            <span className="furcon-num">EU</span>
+          <div className={`${styles.square} ${styles.focusSquare}`}>
+            <span className={styles.num}>EU</span>
             <div>
-              <span className="furcon-meta-label furcon-inline-label furcon-next-label">欧洲下一场 / next in Europe</span>
+              <span className={`${styles.metaLabel} ${styles.inlineLabel} ${styles.nextLabel}`}>欧洲下一场 / next in Europe</span>
               <h2>{europeNext ? <a href={europeNext.officialUrl} target="_blank" rel="noopener noreferrer">{europeNext.name}</a> : '—'}</h2>
             </div>
-            <div className="furcon-status">
-              <span className="furcon-status-dot" />
+            <div className={styles.status}>
+              <span className={styles.statusDot} />
               {europeNext ? formatDate( europeNext.start ) + ' · ' + europeNext.place : '暂无已公布场次'}
             </div>
           </div>
-          <div className="furcon-square furcon-double-height">
-            <span className="furcon-num">04</span>
-            <div className="furcon-bars">
+          <div className={`${styles.square} ${styles.doubleHeight}`}>
+            <span className={styles.num}>04</span>
+            <div className={styles.bars}>
               {Object.entries( byRegion ).sort( ( left, right ) => right[ 1 ] - left[ 1 ] ).map( ( [ regionName, count ] ) => (
-                <div key={regionName} className="furcon-bar-row">
-                  <div><span>{REGION_LABELS[ regionName as Region ]}</span><span className="furcon-num">{count}</span></div>
-                  <span className="furcon-bar-track"><span className="furcon-bar-fill" style={{ width: ( count / maxRegionCount ) * 100 + '%' }} /></span>
+                <div key={regionName} className={styles.barRow}>
+                  <div><span>{REGION_LABELS[ regionName as Region ]}</span><span className={styles.num}>{count}</span></div>
+                  <span className={styles.barTrack}><span className={styles.barFill} style={{ width: ( count / maxRegionCount ) * 100 + '%' }} /></span>
                 </div>
               ) )}
             </div>
-            <span className="furcon-meta-label">区域分布 / by region</span>
+            <span className={styles.metaLabel}>区域分布 / by region</span>
           </div>
-          <div className="furcon-square furcon-focus-square furcon-invert">
-            <span className="furcon-num">05</span>
+          <div className={`${styles.square} ${styles.focusSquare} ${styles.invert}`}>
+            <span className={styles.num}>05</span>
             <div>
-              <span className="furcon-meta-label furcon-inline-label">每三周一次 · 星期六</span>
-              <h2>伦敦兽聚 <a href="https://londonfurs.org.uk/" target="_blank" rel="noopener noreferrer"><em>London Furs</em></a></h2>
+              <span className={`${styles.metaLabel} ${styles.inlineLabel}`}>每三周一次 · 星期六</span>
+              <h2>伦敦兽聚 <a href="https://londonfurs.org.uk/" target="_blank" rel="noopener noreferrer"><em>London Furs网址链接</em></a></h2>
             </div>
-            <div className="furcon-status">
-              <span className="furcon-status-dot" />
+            <div className={styles.status}>
+              <span className={styles.statusDot} />
               地点：Tank &amp; Paddle (Minster Court)
             </div>
           </div>
-          <div className="furcon-square furcon-focus-square">
-            <span className="furcon-num">APAC</span>
+          <div className={`${styles.square} ${styles.focusSquare}`}>
+            <span className={styles.num}>APAC</span>
             <div>
-              <span className="furcon-meta-label furcon-inline-label furcon-next-label">亚太下一场 / next in Asia-Pacific</span>
+              <span className={`${styles.metaLabel} ${styles.inlineLabel} ${styles.nextLabel}`}>亚太下一场 / next in Asia-Pacific</span>
               <h2>{asiaPacificNext ? <a href={asiaPacificNext.officialUrl} target="_blank" rel="noopener noreferrer">{asiaPacificNext.name}</a> : '—'}</h2>
             </div>
-            <div className="furcon-status">
-              <span className="furcon-status-dot" />
+            <div className={styles.status}>
+              <span className={styles.statusDot} />
               {asiaPacificNext ? formatDate( asiaPacificNext.start ) + ' · ' + asiaPacificNext.place : '暂无已公布场次'}
             </div>
           </div>
-          <div className="furcon-square furcon-friend-square">
-            <span className="furcon-num">07 · 友情链接</span>
+          <div className={`${styles.square} ${styles.friendSquare}`}>
+            <span className={styles.num}>07 · 友情链接</span>
             <a
-              className="furcon-friend-link"
+              className={styles.friendLink}
               href="https://www.furrycons.cn/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="前往 FurryCons 国内兽展日程表（新窗口打开）"
             >
-              <span className="furcon-friend-bubble">
+              <span className={styles.friendBubble}>
                 <strong>突然想看下国内兽展的日程表吗，来这个友情网站</strong>
                 <small>FURRYCONS.CN ↗</small>
               </span>
-              <span className="furcon-friend-avatar">
+              <span className={styles.friendAvatar}>
                 <Image
                   src={millerIcon}
                   alt="米勒头像"
@@ -371,13 +372,13 @@ export default function FurconIndex()
               </span>
             </a>
           </div>
-          <div className="furcon-square furcon-double-width furcon-london-dates">
-            <span className="furcon-num">08</span>
-            <div className="furcon-london-dates-head">
+          <div className={`${styles.square} ${styles.doubleWidth} ${styles.londonDates}`}>
+            <span className={styles.num}>08</span>
+            <div className={styles.londonDatesHead}>
               <h2>London Furs Dates <em></em></h2>
-              <span className="furcon-meta-label">2026 · 每三周星期六</span>
+              <span className={styles.metaLabel}>2026 · 每三周星期六</span>
             </div>
-            <div className="furcon-date-grid" aria-label="London Furs 2026 日期">
+            <div className={styles.dateGrid} aria-label="London Furs 2026 日期">
               {LONDON_FURS_DATES.map( ( date ) => (
                 <time key={date.iso} dateTime={date.iso}>
                   <strong>{date.day}</strong>
@@ -386,19 +387,19 @@ export default function FurconIndex()
               ) )}
             </div>
           </div>
-          <div className="furcon-square">
-            <span className="furcon-num">09</span>
-            <div className="furcon-figure">{cancelled.length}<span>场</span></div>
-            <span className="furcon-meta-label">已取消 · {cancelled.map( ( event ) => event.name ).join( ', ' ) || '无'}</span>
+          <div className={styles.square}>
+            <span className={styles.num}>09</span>
+            <div className={styles.figure}>{cancelled.length}<span>场</span></div>
+            <span className={styles.metaLabel}>已取消 · {cancelled.map( ( event ) => event.name ).join( ', ' ) || '无'}</span>
           </div>
         </section>
 
-        <section className="furcon-band" aria-label="按月份筛选">
-          <div className="furcon-band-head">
-            <span className="furcon-meta-label">按月份密度 / one line per convention</span>
-            <span className="furcon-meta-label">{month ? '再次点击取消筛选' : '点击月份筛选'}</span>
+        <section className={styles.band} aria-label="按月份筛选">
+          <div className={styles.bandHead}>
+            <span className={styles.metaLabel}>按月份密度 / one line per convention</span>
+            <span className={styles.metaLabel}>{month ? '再次点击取消筛选' : '点击月份筛选'}</span>
           </div>
-          <div className="furcon-band-months">
+          <div className={styles.bandMonths}>
             {monthKeys.map( ( key ) =>
             {
               const items = events.filter( ( event ) => event.key === key );
@@ -408,14 +409,14 @@ export default function FurconIndex()
                 <button
                   key={key}
                   type="button"
-                  className={'furcon-month' + ( month === key ? ' is-on' : '' )}
+                  className={`${styles.month}${month === key ? ` ${styles.isOn}` : ''}`}
                   aria-pressed={month === key}
                   onClick={() => setMonth( month === key ? null : key )}
                 >
-                  <span className="furcon-ticks">{items.map( ( event ) => <span key={event.name} className={'furcon-tick' + ( event.cancelled ? ' is-cancelled' : '' )} /> )}</span>
+                  <span className={styles.ticks}>{items.map( ( event ) => <span key={event.name} className={`${styles.tick}${event.cancelled ? ` ${styles.isCancelled}` : ''}`} /> )}</span>
                   <span>
-                    <span className="furcon-month-label">{MONTHS[ monthIndex ]} <small>&apos;{key.slice( 2, 4 )}</small></span>
-                    <span className="furcon-month-count">{pad( items.length )}</span>
+                    <span className={styles.monthLabel}>{MONTHS[ monthIndex ]} <small>&apos;{key.slice( 2, 4 )}</small></span>
+                    <span className={styles.monthCount}>{pad( items.length )}</span>
                   </span>
                 </button>
               );
@@ -423,7 +424,7 @@ export default function FurconIndex()
           </div>
         </section>
 
-        <section className="furcon-controls" aria-label="兽展筛选">
+        <section className={styles.controls} aria-label="兽展筛选">
           {REGION_FILTERS.map( ( filter ) =>
           {
             const count = filter.value === 'all'
@@ -437,7 +438,7 @@ export default function FurconIndex()
                 key={filter.value}
                 type="button"
                 data-filter={filter.value}
-                className={'furcon-chip' + ( region === filter.value ? ' is-on' : '' )}
+                className={`${styles.chip}${region === filter.value ? ` ${styles.isOn}` : ''}`}
                 aria-pressed={region === filter.value}
                 aria-controls="furcon-results"
                 onClick={() => setRegion( filter.value )}
@@ -446,19 +447,19 @@ export default function FurconIndex()
               </button>
             );
           } )}
-          <label className="furcon-search-label">
+          <label className={styles.searchLabel}>
             <span className="sr-only">搜索兽展</span>
             <input value={query} onChange={( event ) => setQuery( event.target.value )} type="search" placeholder="搜索名称、城市、场地…" />
           </label>
-          <span className="furcon-tally" aria-hidden="true">{pad( filteredEvents.length )} / {events.length}</span>
+          <span className={styles.tally} aria-hidden="true">{pad( filteredEvents.length )} / {events.length}</span>
           <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
             当前显示 {filteredEvents.length} 场兽展；地区：{selectedRegionLabel}{month ? '；月份：' + month : ''}{query.trim() ? '；搜索：' + query.trim() : ''}。
           </p>
         </section>
 
-        <section id="furcon-results" className="furcon-list" aria-label="兽展列表">
+        <section id="furcon-results" className={styles.list} aria-label="兽展列表">
           {filteredEvents.length === 0 ? (
-            <p className="furcon-empty">没有符合条件的兽展。换一个月份或清空搜索试试。</p>
+            <p className={styles.empty}>没有符合条件的兽展。换一个月份或清空搜索试试。</p>
           ) : (
             Array.from( groups.entries() ).map( ( [ key, entries ] ) =>
             {
@@ -466,9 +467,9 @@ export default function FurconIndex()
 
               return (
                 <section key={key}>
-                  <div className="furcon-month-head">
+                  <div className={styles.monthHead}>
                     <span>{MONTHS_CN[ monthIndex ]} <em>{MONTHS[ monthIndex ]}</em> {key.slice( 0, 4 )}</span>
-                    <span className="furcon-num">{pad( entries.length )}</span>
+                    <span className={styles.num}>{pad( entries.length )}</span>
                   </div>
                   {entries.map( ( event ) =>
                   {
@@ -476,8 +477,8 @@ export default function FurconIndex()
                     const isNext = event.name === nextUp?.name;
 
                     return (
-                      <article key={event.name} className={'furcon-list-row' + ( event.live ? ' is-live' : '' ) + ( event.past ? ' is-past' : '' ) + ( event.cancelled ? ' is-cancelled' : '' )}>
-                        <span className="furcon-num">{pad( eventNumber )}</span>
+                      <article key={event.name} className={[ styles.listRow, event.live && styles.isLive, event.past && styles.isPast, event.cancelled && styles.isCancelled ].filter( Boolean ).join( ' ' )}>
+                        <span className={styles.num}>{pad( eventNumber )}</span>
                         <div>
                           <h3>
                             <a href={event.officialUrl} target="_blank" rel="noopener noreferrer">
@@ -486,10 +487,10 @@ export default function FurconIndex()
                             {event.cancelled && <small>已取消</small>}{event.live && <small>进行中</small>}{isNext && <small>→ 全球下一场</small>}
                           </h3>
                           <p>{event.venue}</p>
-                          <p className="furcon-verification"><span>{event.statusNote}</span><span>核对于 {event.lastVerified}</span></p>
+                          <p className={styles.verification}><span>{event.statusNote}</span><span>核对于 {event.lastVerified}</span></p>
                         </div>
-                        <p className="furcon-when">{event.dates}<br /><span>{event.days} {event.days > 1 ? 'days' : 'day'}</span></p>
-                        <p className="furcon-where">{event.place}<span>{REGION_LABELS[ event.region ]}</span></p>
+                        <p className={styles.when}>{event.dates}<br /><span>{event.days} {event.days > 1 ? 'days' : 'day'}</span></p>
+                        <p className={styles.where}>{event.place}<span>{REGION_LABELS[ event.region ]}</span></p>
                       </article>
                     );
                   } )}
@@ -499,7 +500,7 @@ export default function FurconIndex()
           )}
         </section>
 
-        <footer className="furcon-footer">
+        <footer className={styles.footer}>
           <div>
             <p>兽展讯息汇合 — 共 {events.length} 场 / {countries} 个国家与地区</p>
             <p>日期以主办方公布为准，出行前请再次核对</p>
@@ -509,20 +510,6 @@ export default function FurconIndex()
           </div>
         </footer>
       </div>
-
-      <style jsx>{`
-        .furcon-index{--bg:#D1D1CB;--bg-deep:#BEBEB7;--text:#1A1A1A;--border:#B8B8B2;--accent:#4E76A1;--transition:.6s cubic-bezier(.2,1,.3,1);background:var(--bg);color:var(--text);font-family:var(--font-inter),var(--font-noto-sans-sc),sans-serif;font-weight:400;overflow:hidden;position:relative}
-        .furcon-index *{box-sizing:border-box}.furcon-index em{font-family:Georgia,serif;font-style:italic;font-weight:400}.furcon-master-grid{position:absolute;inset:0;z-index:0;display:grid;grid-template-columns:repeat(12,1fr);border-left:1px solid var(--border);pointer-events:none}.furcon-grid-col{border-right:1px solid var(--border)}.furcon-shell{position:relative;z-index:1}
-        .furcon-nav{display:flex;justify-content:space-between;align-items:flex-start;padding:24px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.1em}.furcon-logo{font-weight:600;font-size:18px;letter-spacing:-.02em;text-align:center;text-transform:none}
-        .furcon-header{text-align:center;padding:110px 24px 56px}.furcon-stack-detail{height:40px;display:flex;flex-direction:column;align-items:center;margin-bottom:-16px}.furcon-stack-line{height:1px;background:var(--border);margin-bottom:4px}.furcon-meta-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;display:block}.furcon-next-label{font-size:20px;letter-spacing:.04em}.furcon-next-london-date{font-size:26px;line-height:1.08;letter-spacing:0;overflow-wrap:anywhere}.furcon-header h1{font-size:clamp(38px,7vw,116px);font-weight:400;letter-spacing:-.04em;line-height:.92;margin:18px 0 0}.furcon-year-2026{color:#1D3557}.furcon-year-2027{color:#B5525C}.furcon-lede{max-width:520px;margin:28px auto 0;font-size:13px;line-height:1.6;opacity:.65;font-weight:300}
-        .furcon-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:36px}.furcon-square{aspect-ratio:1;background:var(--bg);padding:28px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;transition:background-color var(--transition)}.furcon-square:hover{background:#C8C8C1}.furcon-square h2{font-size:clamp(22px,2.4vw,34px);font-weight:400;line-height:.95;letter-spacing:-.035em;margin:0}.furcon-focus-square h2 a{color:inherit;text-decoration:none}.furcon-focus-square h2 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}.furcon-double-width{grid-column:span 2;aspect-ratio:2}.furcon-double-height{grid-row:span 2;aspect-ratio:1/2}.furcon-invert{background:var(--text);color:var(--bg)}.furcon-invert:hover{background:#000}.furcon-num,.furcon-status,.furcon-month-count,.furcon-tally{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;opacity:.6}.furcon-figure{font-size:clamp(44px,5.4vw,76px);font-weight:300;letter-spacing:-.05em;line-height:.85}.furcon-figure span{font-size:14px;letter-spacing:0;margin-left:8px;opacity:.6}.furcon-inline-label{margin-bottom:10px}.furcon-status{font-size:11px;opacity:.7}.furcon-status-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block;margin-right:8px;vertical-align:middle}.furcon-bars{display:flex;flex-direction:column;gap:14px;margin:24px 0}.furcon-bar-row{font-size:11px}.furcon-bar-row>div{display:flex;justify-content:space-between;margin-bottom:6px}.furcon-bar-track,.furcon-bar-fill{display:block;height:1px}.furcon-bar-track{background:var(--border)}.furcon-bar-fill{background:var(--text)}.furcon-friend-square{padding:20px}.furcon-friend-link{display:grid;grid-template-columns:minmax(0,1fr) clamp(62px,6.5vw,84px);align-items:end;gap:12px;flex:1;margin-top:10px;color:inherit;text-decoration:none}.furcon-friend-bubble{position:relative;align-self:start;border:2px solid #1D3557;background:#FFF9EC;padding:13px 14px;color:#1D3557;box-shadow:4px 4px 0 #1D3557;transition:transform 180ms ease,box-shadow 180ms ease}.furcon-friend-bubble::after{content:"";position:absolute;right:-8px;bottom:16px;width:14px;height:14px;border-right:2px solid #1D3557;border-bottom:2px solid #1D3557;background:#FFF9EC;transform:rotate(-45deg)}.furcon-friend-bubble strong{display:block;font-size:clamp(12px,1.15vw,16px);line-height:1.45}.furcon-friend-bubble small{display:block;margin-top:9px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9px;font-weight:700;letter-spacing:.07em}.furcon-friend-avatar{align-self:end;overflow:hidden;width:clamp(62px,6.5vw,84px);aspect-ratio:1;border:3px solid #FFF9EC;border-radius:50%;background:#FFF9EC;box-shadow:0 0 0 2px #F4A261,0 8px 18px rgba(29,53,87,.2);transition:transform 180ms ease}.furcon-friend-link:hover .furcon-friend-bubble{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #1D3557}.furcon-friend-link:hover .furcon-friend-avatar{transform:rotate(4deg) scale(1.04)}
-        .furcon-london-dates{gap:14px}.furcon-london-dates-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px}.furcon-london-dates-head .furcon-meta-label{text-align:right}.furcon-date-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-left:1px solid var(--border)}.furcon-date-grid time{display:flex;align-items:baseline;gap:8px;padding:10px 12px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}.furcon-date-grid strong{font-size:clamp(24px,3vw,42px);font-weight:300;letter-spacing:-.05em;line-height:1}.furcon-date-grid span{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.08em;opacity:.62}
-        .furcon-band{border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:100px}.furcon-band-head{display:flex;justify-content:space-between;align-items:baseline;padding:20px 24px;border-bottom:1px solid var(--border)}.furcon-band-months{display:grid;grid-template-columns:repeat(13,1fr)}.furcon-month{border:0;border-right:1px solid var(--border);padding:16px 10px 14px;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;min-height:170px;background:none;color:inherit;text-align:left;font:inherit;transition:background var(--transition)}.furcon-month:hover{background:var(--bg-deep)}.furcon-month.is-on{background:var(--text);color:var(--bg)}.furcon-ticks{display:flex;flex-direction:column-reverse;gap:3px;min-height:90px;justify-content:flex-start}.furcon-tick{height:1px;background:var(--text);width:100%;opacity:.75}.furcon-tick.is-cancelled{background:var(--border);opacity:1}.furcon-month.is-on .furcon-tick{background:var(--bg)}.furcon-month-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;display:block}.furcon-month-label small{opacity:.45}.furcon-month-count{font-size:11px;display:block;margin-top:4px}
-        .furcon-controls{display:flex;flex-wrap:wrap;gap:10px 8px;align-items:center;padding:24px;border-bottom:1px solid var(--border)}.furcon-chip{border:1px solid var(--border);background:none;color:inherit;padding:7px 14px;font:inherit;font-size:10px;text-transform:uppercase;letter-spacing:.09em;transition:all var(--transition);cursor:pointer}.furcon-chip:hover{border-color:var(--text)}.furcon-chip.is-on{background:var(--text);color:var(--bg);border-color:var(--text)}.furcon-chip span{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;opacity:.55;margin-left:7px}.furcon-search-label{flex:1;min-width:180px}.furcon-search-label input{width:100%;border:0;border-bottom:1px solid var(--border);background:none;padding:8px 2px;font:inherit;font-size:12px;color:inherit}.furcon-search-label input::placeholder{color:var(--text);opacity:.35}.furcon-search-label input:focus{outline:0;border-bottom-color:var(--text)}.furcon-tally{font-size:11px;margin-left:auto}
-        .furcon-list{border-bottom:1px solid var(--border)}.furcon-month-head{position:sticky;top:0;z-index:3;background:var(--bg);display:flex;justify-content:space-between;align-items:baseline;padding:14px 24px;border-bottom:1px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:.1em}.furcon-month-head em{font-size:15px;text-transform:none;letter-spacing:0}.furcon-list-row{display:grid;grid-template-columns:52px 1fr 178px 250px;gap:20px;padding:22px 24px;border-bottom:1px solid var(--border);align-items:baseline;transition:background var(--transition);background:none}.furcon-list-row:hover{background:var(--bg-deep)}.furcon-list-row h3{font-size:clamp(19px,2vw,29px);font-weight:400;letter-spacing:-.03em;line-height:1.05;margin:0}.furcon-list-row h3 a{color:inherit;text-decoration:none}.furcon-list-row h3 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}.furcon-list-row h3 small{font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-left:10px;vertical-align:middle;opacity:.6}.furcon-list-row>div>p,.furcon-list-row>p{margin:0}.furcon-list-row>div>p{font-size:11px;opacity:.5;margin-top:7px;font-weight:300}.furcon-list-row>div>.furcon-verification{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:9px;opacity:.72}.furcon-verification span:last-child{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.furcon-when{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;line-height:1.5}.furcon-when span{opacity:.45}.furcon-where{font-size:11px;text-transform:uppercase;letter-spacing:.06em;opacity:.6;text-align:right;line-height:1.5}.furcon-where span{display:block;opacity:.55}.furcon-list-row.is-live{background:var(--accent);color:#fff}.furcon-list-row.is-live:hover{background:var(--accent)}.furcon-list-row.is-past{opacity:.32}.furcon-list-row.is-cancelled h3{text-decoration:line-through;text-decoration-thickness:1px}.furcon-empty{padding:70px 24px;text-align:center;font-size:12px;opacity:.55}
-        .furcon-footer{padding:56px 24px 40px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-size:10px;text-transform:uppercase;letter-spacing:.05em}.furcon-footer p{margin:0}.furcon-footer p+p{opacity:.4;margin-top:4px}.furcon-footer>div:last-child{display:flex;gap:18px}.furcon-footer a{color:inherit;text-decoration:none;opacity:.6}.furcon-footer a:hover{opacity:1}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-        .furcon-index a:focus-visible,.furcon-index button:focus-visible,.furcon-index input:focus-visible{outline:2px solid currentColor;outline-offset:4px}.furcon-month{cursor:pointer}@media (min-width:1200px){.furcon-stats{width:min(100%,1280px);margin:36px auto 0;border-left:1px solid var(--border);border-right:1px solid var(--border)}.furcon-list-row{grid-template-columns:52px 600px 178px 220px;justify-content:center}.furcon-month-head{padding-left:max(24px,calc((100vw - 1110px)/2));padding-right:max(24px,calc((100vw - 1110px)/2))}}@media (max-width:1000px){.furcon-stats{grid-template-columns:repeat(2,1fr)}.furcon-double-width{grid-column:span 2}.furcon-double-height{grid-row:span 1;aspect-ratio:1}.furcon-london-dates{padding:18px;gap:8px}.furcon-london-dates-head h2{font-size:20px}.furcon-date-grid time{padding:7px 8px}.furcon-band-months{display:flex;overflow-x:auto}.furcon-month{min-width:78px;flex:0 0 auto}.furcon-list-row{grid-template-columns:38px 1fr;gap:12px;padding:18px}.furcon-when,.furcon-where{grid-column:2;text-align:left;margin-top:4px!important}.furcon-master-grid{grid-template-columns:repeat(4,1fr)}.furcon-header{padding:70px 18px 40px}}@media (max-width:640px){.furcon-square,.furcon-double-width,.furcon-double-height{aspect-ratio:auto}.furcon-square{min-height:clamp(190px,58vw,240px);padding:20px}.furcon-focus-square{min-height:clamp(238px,74vw,286px);gap:16px}.furcon-square h2{font-size:clamp(20px,6vw,26px);line-height:1.08;overflow-wrap:anywhere}.furcon-next-label{font-size:clamp(12px,3.6vw,15px);line-height:1.3}.furcon-inline-label{margin-bottom:8px}.furcon-status{font-size:10px;line-height:1.45;overflow-wrap:anywhere}.furcon-bars{gap:12px;margin:16px 0}.furcon-london-dates{min-height:0}.furcon-london-dates-head{align-items:flex-start;gap:12px}.furcon-friend-square{padding:16px}.furcon-friend-link{display:block;position:relative;margin-top:9px}.furcon-friend-bubble{display:block;margin:0 0 34px;padding:10px 11px}.furcon-friend-bubble::after{right:20px;bottom:-8px;transform:rotate(45deg)}.furcon-friend-bubble strong{font-size:clamp(11px,3.2vw,13px);line-height:1.4}.furcon-friend-bubble small{margin-top:6px;font-size:8px}.furcon-friend-avatar{position:absolute;right:0;bottom:0;width:50px}}@media (prefers-reduced-motion:reduce){.furcon-index *{transition:none!important}}
-      `}</style>
     </div>
   );
 }
