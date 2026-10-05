@@ -24,6 +24,11 @@ body {
   font-family: var(--font-noto-sans-sc), var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* Render HDR (gain-map) photos at SDR brightness so they don't look blown out on HDR phones */
+img {
+  dynamic-range-limit: standard;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
