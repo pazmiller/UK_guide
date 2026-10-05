@@ -98,7 +98,7 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
 
           <div className={styles.windows} aria-hidden="true">
             <div className={styles.handles}>
-              {Array.from( { length: 9 }, ( _, i ) => <span key={i} style={{ '--h': i } as CSSProperties} />)}
+              {Array.from( { length: 9 }, ( _, i ) => <span key={i} style={{ '--h': i } as CSSProperties} /> )}
             </div>
             {[ 0, 1, 2 ].map( i => (
               <div key={i} className={styles.window} style={{ '--w': i } as CSSProperties}>
@@ -126,8 +126,8 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
                 <strong>Elizabeth Line</strong>
               </span>
               <span className={styles.lineMeta}>
-                <b>{stations.length} 站 · {total} 条推荐</b>
-                <span>沿途每一站都是群友推荐的城市</span>
+                <b>{stations.length} 条地铁线 · {total} 个站点</b>
+                <span>沿途每一站都来自群友亲笔打字打出来的推荐</span>
               </span>
             </div>
             <div className={styles.track} aria-hidden="true">
@@ -143,9 +143,9 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
             </div>
             {/* Appears once the train doors have opened */}
             <Link href="/contribute" className={styles.yourStop}>
-              <span className={styles.yourSign}>Your stop · 你的站</span>
-              <span className={styles.yourCta}>出一份力 <ArrowRight aria-hidden="true" /></span>
-              <span className={styles.yourText}>你吃过、去过、踩过的雷，都能变成这条线上新的一站</span>
+              <span className={styles.yourSign}>Mind the Gaps</span>
+              <span className={styles.yourCta}>为群地铁铺路 <ArrowRight aria-hidden="true" /></span>
+              <span className={styles.yourText}>下一站造在哪？由你吃过、去过、踩过的雷来决定</span>
             </Link>
           </div>
 
@@ -165,7 +165,7 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
               </li>
             ) )}
             <li className={styles.nextItem}>
-              <Link href="/contribute" className={styles.nextStop} aria-label={`你的站：出一份力，已铺 ${stations.length} 站 ${total} 条推荐`}>
+              <Link href="/contribute" className={styles.nextStop} aria-label={`你的站：出一份力，已铺 ${stations.length} 条线 ${total} 站`}>
                 <Plus aria-hidden="true" />
                 <span className={styles.stopText}>
                   <b>你的站</b>
