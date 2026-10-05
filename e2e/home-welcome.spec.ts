@@ -33,12 +33,16 @@ test( 'onboarding passport stamps every guide chapter and opens the guide', asyn
   await expect( page ).toHaveURL( /\/guide$/ );
 } );
 
-test( 'explore carriage lists three stops and gets off at the chosen city', async ( { page } ) => {
+test( 'explore carriage lists its stops, the unbuilt one, and gets off at the chosen city', async ( { page } ) => {
   await page.goto( '/' );
   const stops = page.getByRole( 'list', { name: '城市探索路线' } );
   await stops.scrollIntoViewIfNeeded();
   await expect( page.getByRole( 'heading', { level: 2, name: /Explore/ } ) ).toBeVisible();
-  await expect( stops.getByRole( 'link' ) ).toHaveCount( 3 );
+  // Three real stops plus the unbuilt one that invites a contribution
+  await expect( stops.getByRole( 'link' ) ).toHaveCount( 4 );
+  const yourStop = stops.getByRole( 'link', { name: /你的站/ } );
+  await expect( yourStop ).toHaveAttribute( 'href', '/contribute' );
+  expect( Number( ( await yourStop.getAttribute( 'aria-label' ) )!.match( /已铺 (\d+) 站/ )![ 1 ] ) ).toBeGreaterThan( 1 );
   await stops.getByRole( 'link', { name: /Europa/ } ).click();
   await expect( page ).toHaveURL( /\/europa$/ );
 } );
@@ -121,4 +125,23 @@ test( 'eats header shows restaurant totals for London, all of the UK and Europa'
   expect( await value( /欧陆/ ) ).toBeGreaterThan( 0 );
   await expect( tally.getByRole( 'link', { name: /全英/ } ) ).toHaveAttribute( 'href', '/othercities' );
   await expect( tally.getByRole( 'link', { name: /欧陆/ } ) ).toHaveAttribute( 'href', '/europa' );
+} );
+
+test( 'the Elizabeth line ride ends on a big contribute button once the doors open', async ( { page } ) => {
+  await page.setViewportSize( { width: 1440, height: 900 } );
+  await page.goto( '/' );
+  const cta = page.getByRole( 'link', { name: /Your stop · 你的站\s*出一份力/ } );
+  const scrollTo = ( fraction: number ) => page.evaluate( f =>
+  {
+    const scroller = document.querySelector<HTMLElement>( '[class*="ExploreCarriage"][class*="scroller"]' )!;
+    const top = scroller.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo( { top: top + ( scroller.offsetHeight - window.innerHeight ) * f, behavior: 'instant' } );
+  }, fraction );
+
+  // Hidden during the ride, shown at the very end
+  await scrollTo( 0.8 );
+  await expect( cta ).toBeHidden();
+  await scrollTo( 1 );
+  await expect( cta ).toBeVisible();
+  await expect( cta ).toHaveAttribute( 'href', '/contribute' );
 } );

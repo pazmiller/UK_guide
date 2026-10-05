@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useRef, type CSSProperties } from 'react';
-import { ArrowRight, Building, Globe, MapPin } from 'lucide-react';
+import { useRef, useState, useSyncExternalStore, type CSSProperties } from 'react';
+import { ArrowRight, Building, Globe, MapPin, Plus } from 'lucide-react';
+import ElizabethLineBuild from './ElizabethLineBuild';
 import styles from './ExploreCarriage.module.css';
 import { useCollapseOnReturn } from './useCollapseOnReturn';
 
@@ -35,16 +36,43 @@ const LED_MESSAGES = [
   'Next stop: York · Edinburgh · Glasgow',
   'Entering the Channel Tunnel · 进入海峡隧道',
   'Arriving: Europa · Iceland · Poland',
+  'Next stop: 你的站 · CFFA Elizabeth Line',
 ];
+
+// Sleepers laid on screen; any further stations are summed into the last label
+const MAX_SLEEPERS = 10;
+
+export type BuiltStation = { name: string; count: number };
+
+// Same conditions as the pinned layout in ExploreCarriage.module.css; elsewhere the dig is hidden
+const PINNED_QUERY = '(min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)';
+const subscribePinned = ( onChange: () => void ) =>
+{
+  const query = window.matchMedia( PINNED_QUERY );
+  query.addEventListener( 'change', onChange );
+  return () => query.removeEventListener( 'change', onChange );
+};
+const isPinned = () => window.matchMedia( PINNED_QUERY ).matches && CSS.supports( 'animation-timeline: view()' );
 
 /**
  * Explore as a ride: three carriage windows share one panorama that runs
  * London → other cities → the Channel Tunnel → Europa as the page scrolls.
+ * Past Europa the track runs out: every sleeper laid is a city the community
+ * has recommended, and the last stretch is left for the reader to contribute.
  */
-export default function ExploreCarriage()
+export default function ExploreCarriage( { stations }: { stations: BuiltStation[] } )
 {
+  const total = stations.reduce( ( sum, station ) => sum + station.count, 0 );
+  const sleepers = stations.length > MAX_SLEEPERS
+    ? [ ...stations.slice( 0, MAX_SLEEPERS - 1 ), { name: `+${stations.length - MAX_SLEEPERS + 1} 站`, count: stations.slice( MAX_SLEEPERS - 1 ).reduce( ( sum, station ) => sum + station.count, 0 ) } ]
+    : stations;
+
   const scrollerRef = useRef<HTMLDivElement>( null );
   useCollapseOnReturn( scrollerRef );
+  // 3D dig once three.js is up; the flat track stays as the fallback
+  const [ dig, setDig ] = useState<'pending' | 'webgl' | 'static'>( 'pending' );
+  // Phones and Firefox never see the dig, so they never download three.js for it
+  const pinned = useSyncExternalStore( subscribePinned, isPinned, () => false );
 
   const panorama = (
     <div className={styles.panorama}>
@@ -80,6 +108,47 @@ export default function ExploreCarriage()
             ) )}
           </div>
 
+          {/* Last stretch (pinned layout only): the line the group has built so far, and the gap left for you */}
+          <div className={styles.build} data-dig={dig} style={{ '--sleeper-count': sleepers.length } as CSSProperties}>
+            {pinned && dig !== 'static' && (
+              <ElizabethLineBuild
+                stations={sleepers}
+                scrollerRef={scrollerRef}
+                onReady={() => setDig( 'webgl' )}
+                onFallback={() => setDig( 'static' )}
+              />
+            )}
+            <div className={styles.buildHead}>
+              {/* Ring-and-bar homage, deliberately not the TfL roundel */}
+              <span className={styles.roundel} aria-hidden="true"><i /><b>CFFA</b></span>
+              <span className={styles.lineName}>
+                <small>CFFA限定 · Pro Max Duo版</small>
+                <strong>Elizabeth Line</strong>
+              </span>
+              <span className={styles.lineMeta}>
+                <b>{stations.length} 站 · {total} 条推荐</b>
+                <span>沿途每一站都是群友推荐的城市</span>
+              </span>
+            </div>
+            <div className={styles.track} aria-hidden="true">
+              <span className={styles.rail} />
+              <ol className={styles.sleepers}>
+                {sleepers.map( ( station, i ) => (
+                  <li key={station.name} style={{ '--i': i } as CSSProperties}>
+                    <span className={styles.tag}><b>{station.name}</b>{station.count} 条</span>
+                  </li>
+                ) )}
+              </ol>
+              <span className={styles.gap} />
+            </div>
+            {/* Appears once the train doors have opened */}
+            <Link href="/contribute" className={styles.yourStop}>
+              <span className={styles.yourSign}>Your stop · 你的站</span>
+              <span className={styles.yourCta}>出一份力 <ArrowRight aria-hidden="true" /></span>
+              <span className={styles.yourText}>你吃过、去过、踩过的雷，都能变成这条线上新的一站</span>
+            </Link>
+          </div>
+
           <ol className={styles.stops} aria-label="城市探索路线">
             {STOPS.map( ( { href, title, blurb, Icon }, i ) => (
               <li key={href} className={styles.stopItem} style={{ '--s': i } as CSSProperties}>
@@ -95,6 +164,15 @@ export default function ExploreCarriage()
                 </Link>
               </li>
             ) )}
+            <li className={styles.nextItem}>
+              <Link href="/contribute" className={styles.nextStop} aria-label={`你的站：出一份力，已铺 ${stations.length} 站 ${total} 条推荐`}>
+                <Plus aria-hidden="true" />
+                <span className={styles.stopText}>
+                  <b>你的站</b>
+                  <span>已铺 {stations.length} 站 · 等你出一份力</span>
+                </span>
+              </Link>
+            </li>
           </ol>
 
           <span className={styles.moquette} aria-hidden="true" />

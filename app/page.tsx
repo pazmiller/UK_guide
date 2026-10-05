@@ -9,7 +9,10 @@ import OnboardingPassport from '@/components/OnboardingPassport';
 import StationStrip from '@/components/StationStrip';
 import TubeRail from '@/components/TubeRail';
 import WelcomeBoard from '@/components/WelcomeBoard';
+import { londonAttractions } from '@/data/london/attractions';
+import { londonCafes } from '@/data/london/cafes';
 import { londonRestaurants } from '@/data/london/restaurants';
+import { countCityRecommendations } from '@/data/cityRegistry';
 import { getEuropaDestinations, getUkCities } from '@/lib/server/cities';
 
 const RIBBON_PLACES = [ 'London', 'Edinburgh', 'York', 'Glasgow', 'Nottingham', 'Oxford', 'Cambridge', 'Manchester', 'Bath', 'Reykjavík', 'Kraków' ];
@@ -24,6 +27,11 @@ export default function Home()
     uk: londonRestaurants.length + countRestaurants( getUkCities() ),
     europa: countRestaurants( getEuropaDestinations() ),
   };
+  // Every built "station" of the community database: London plus each city that has recommendations
+  const builtStations = [
+    { name: 'London', count: londonRestaurants.length + londonCafes.length + londonAttractions.length },
+    ...[ ...getUkCities(), ...getEuropaDestinations() ].map( city => ( { name: city.nameEn, count: countCityRecommendations( city ) } ) ),
+  ].filter( station => station.count > 0 );
 
   return (
     <>
@@ -70,7 +78,7 @@ export default function Home()
           <HomeScene kind="explore" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <StationStrip index={2} tone="dark" className="mb-12" />
-            <ExploreCarriage />
+            <ExploreCarriage stations={builtStations} />
           </div>
         </section>
 
