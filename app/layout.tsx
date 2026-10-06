@@ -27,7 +27,7 @@ const specialElite = Special_Elite( {
 
 
 export const metadata: Metadata = {
-  title: "Discover London | Your Guide to the UK's Capital",
+  title: "CFFA UK | 留英欧洲Furry生活指北",
   description: "Explore London's iconic landmarks, world-class museums, historic sites, and incredible restaurants. Your ultimate guide to the best of the UK.",
   keywords: [ "London", "UK", "travel", "tourism", "attractions", "restaurants", "landmarks" ],
 };

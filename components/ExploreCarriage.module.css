@@ -1,0 +1,868 @@
+.scroller {
+  --gap: 14px;
+  --blue: #5280FF;
+  position: relative;
+}
+
+/* ---- Carriage shell ---- */
+
+.carriage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+  padding: 18px 22px 0;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #F1F4F8 0%, #DCE2EA 100%);
+  box-shadow: 0 30px 70px rgba(1, 8, 32, 0.45), inset 0 2px 0 rgba(255, 255, 255, 0.8);
+}
+
+.header {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 20px;
+}
+
+.title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #1D3557;
+}
+
+.title span {
+  margin-left: 8px;
+  font-size: 0.5em;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: rgba(29, 53, 87, 0.55);
+}
+
+/* Amber dot-matrix destination board, same look as the welcome board */
+.led {
+  position: relative;
+  width: min(440px, 100%);
+  height: 2.3em;
+  border-radius: 8px;
+  background: #0a0a0a;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 6px 16px rgba(0, 0, 0, 0.8);
+}
+
+.ledMessage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #FFB000;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, var(--font-noto-sans-sc), monospace;
+  font-size: 0.95rem;
+  font-weight: 800;
+  background-color: rgba(255, 176, 0, 0.08);
+  text-shadow: 0 0 6px rgba(255, 176, 0, 0.75);
+  mask-image: radial-gradient(circle, #000 0.95px, transparent 1.25px);
+  mask-size: 2.6px 2.6px;
+}
+
+.ledMessage:not(:first-child) {
+  opacity: 0;
+}
+
+/* ---- Windows: one panorama shared by all three ---- */
+
+.windows {
+  position: relative;
+  z-index: 6;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+  height: 300px;
+  margin-top: 54px;
+  container-type: inline-size;
+}
+
+.window {
+  position: relative;
+  overflow: hidden;
+  border: 6px solid #2B3038;
+  border-radius: 22px;
+  background: #000;
+}
+
+.panorama {
+  position: absolute;
+  inset-block: 0;
+  /* Shift each copy by its window's position so the three read as one view */
+  left: calc(var(--w) * -1 * ((100cqw - 2 * var(--gap)) / 3 + var(--gap)));
+  display: flex;
+  width: 400cqw;
+}
+
+.panel {
+  flex: 0 0 100cqw;
+  background-position: center;
+  background-size: cover;
+  /* Soft edges between scenes, like a pillar flashing past */
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.tunnel {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 150px, rgba(255, 196, 120, 0.95) 150px 156px, transparent 156px 320px),
+    radial-gradient(ellipse at 50% 60%, #1b2130, #030407 75%);
+  animation: tunnel-lights 0.5s linear infinite;
+}
+
+@keyframes tunnel-lights {
+  to { background-position: -320px 0, 0 0; }
+}
+
+.glass {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.2) 0 16%, transparent 30% 62%, rgba(255, 255, 255, 0.08) 70%, transparent 80%);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.45);
+}
+
+.handles {
+  position: absolute;
+  top: -40px;
+  inset-inline: 2%;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.handles::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline: -4%;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #c9ced6, #8d96a1);
+}
+
+.handles span {
+  position: relative;
+  width: 2px;
+  height: 26px;
+  background: #8d96a1;
+  transform-origin: top center;
+  animation: swing 2.4s ease-in-out infinite alternate;
+  animation-delay: calc(var(--h) * -0.37s);
+}
+
+.handles span::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  border: 3px solid #b8bec7;
+  border-radius: 50%;
+}
+
+@keyframes swing {
+  from { transform: rotate(-7deg); }
+  to   { transform: rotate(7deg); }
+}
+
+/* ---- Stops along the wall: the actual links ---- */
+
+.stops {
+  position: relative;
+  display: grid;
+  /* Three real stops under the windows, then the unbuilt one */
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  gap: var(--gap);
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stopItem {
+  position: relative;
+}
+
+.tunnelSign {
+  position: absolute;
+  top: -12px;
+  left: calc(var(--gap) / -2);
+  z-index: 1;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #1D3557;
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.stop {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 2px solid rgba(29, 53, 87, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #1D3557;
+  text-decoration: none;
+  transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+}
+
+.stop:hover,
+.stop:focus-visible {
+  border-color: var(--blue);
+  background: #fff;
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.stopDot {
+  width: 14px;
+  height: 14px;
+  border: 3px solid var(--blue);
+  border-radius: 50%;
+  background: #fff;
+}
+
+.stopIcon {
+  width: 22px;
+  height: 22px;
+  color: #E63946;
+}
+
+.stopText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.stopText b {
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.stopText span {
+  overflow: hidden;
+  font-size: 0.78rem;
+  color: rgba(29, 53, 87, 0.6);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.getOff {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--blue);
+  white-space: nowrap;
+}
+
+.getOff svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s;
+}
+
+.stop:hover .getOff svg,
+.stop:focus-visible .getOff svg {
+  transform: translateX(3px);
+}
+
+/* The stop that doesn't exist yet: contribute to build it */
+.nextStop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  padding: 12px 16px;
+  border: 2px dashed #6950A1;
+  border-radius: 16px;
+  background: rgba(244, 240, 252, 0.9);
+  color: #1D3557;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.nextStop > svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  padding: 3px;
+  border-radius: 50%;
+  background: #6950A1;
+  color: #fff;
+}
+
+.nextStop:hover,
+.nextStop:focus-visible {
+  background: #ECE5FA;
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.nextStop:focus-visible {
+  box-shadow: 0 0 0 3px rgba(105, 80, 161, 0.45);
+}
+
+/* ---- Last stretch: the line under construction (pinned layout only) ---- */
+
+.build {
+  position: absolute;
+  top: 84px;
+  inset-inline: 22px;
+  bottom: 148px;
+  z-index: 7;
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  padding: 18px 24px;
+  border-radius: 20px;
+  /* Elizabeth line purple; the 3D tunnel fills this, the gradient shows while it loads */
+  --purple: #6950A1;
+  --tfl-blue: #0019A8;
+  background: radial-gradient(ellipse at 50% 60%, #2a1d47, #0b0716 70%);
+  box-shadow: inset 0 0 0 1px rgba(147, 117, 206, 0.35), 0 20px 40px rgba(1, 8, 32, 0.45);
+  color: #fff;
+  font-family: "Johnston", "Gill Sans", "Gill Sans MT", "Segoe UI", var(--font-noto-sans-sc), sans-serif;
+}
+
+.dig {
+  position: absolute;
+  inset: 0;
+}
+
+.digCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* The flat track below is only the fallback when WebGL isn't available */
+.build:not([data-dig="static"]) .track {
+  visibility: hidden;
+}
+
+.buildHead {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  align-self: flex-start;
+  padding: 8px 16px 8px 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #1a1a2e;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Ring-and-bar homage */
+.roundel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 46px;
+  flex-shrink: 0;
+}
+
+.roundel i {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  border: 8px solid var(--purple);
+  border-radius: 50%;
+}
+
+.roundel b {
+  position: relative;
+  width: 100%;
+  padding: 2px 0;
+  background: var(--tfl-blue);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.lineName {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.lineName small {
+  color: var(--purple);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.lineName strong {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.lineMeta {
+  display: flex;
+  flex-direction: column;
+  padding-left: 14px;
+  border-left: 2px solid rgba(105, 80, 161, 0.3);
+  line-height: 1.3;
+}
+
+.lineMeta b {
+  color: var(--purple);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.lineMeta span {
+  color: rgba(26, 26, 46, 0.65);
+  font-size: 0.72rem;
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  min-height: 140px;
+  --built: 72%;
+}
+
+.rail {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: var(--built);
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 4px;
+  background: linear-gradient(#b9a3e6, #6950A1);
+  box-shadow: 0 10px 0 -4px rgba(147, 117, 206, 0.3);
+  transform-origin: left;
+}
+
+.sleepers {
+  position: absolute;
+  inset: 0 calc(100% - var(--built)) 0 0;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sleepers li {
+  position: relative;
+  width: 10px;
+}
+
+/* the sleeper itself */
+.sleepers li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 10px;
+  height: 46px;
+  margin-top: -23px;
+  border-radius: 3px;
+  background: #C9925A;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.tag {
+  position: absolute;
+  bottom: calc(50% + 30px);
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #FFF9EC;
+  color: #1D3557;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(1, 8, 32, 0.35);
+  transform: translateX(-50%);
+}
+
+.tag b {
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+/* alternate labels above and below so neighbours never collide */
+.sleepers li:nth-child(even) .tag {
+  top: calc(50% + 30px);
+  bottom: auto;
+}
+
+/* the unbuilt stretch */
+.gap {
+  position: absolute;
+  top: 50%;
+  left: var(--built);
+  width: calc(96% - var(--built));
+  height: 0;
+  border-top: 4px dashed rgba(185, 163, 230, 0.85);
+  margin-top: -2px;
+}
+
+.yourStop {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: 88%;
+  padding: 26px 48px 24px;
+  border: 3px solid rgba(255, 255, 255, 0.92);
+  border-radius: 28px;
+  background: linear-gradient(160deg, #7a61b8, var(--purple) 55%, #563f8c);
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 0 0 8px rgba(105, 80, 161, 0.35), 0 30px 70px rgba(0, 0, 0, 0.55);
+  /* translate is separate from the transform the reveal animation scales */
+  translate: -50% -50%;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+/* A slow ring of light, like the station doors' chime */
+.yourStop::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 3px solid rgba(255, 255, 255, 0.7);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.yourStop:hover,
+.yourStop:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 12px rgba(105, 80, 161, 0.5), 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.yourStop:focus-visible {
+  box-shadow: 0 0 0 4px #fff, 0 0 0 12px rgba(105, 80, 161, 0.6);
+}
+
+.yourSign {
+  padding: 4px 14px;
+  border: 2px dashed rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.yourCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+}
+
+.yourCta svg {
+  width: 0.8em;
+  height: 0.8em;
+  transition: transform 0.2s;
+}
+
+.yourStop:hover .yourCta svg,
+.yourStop:focus-visible .yourCta svg {
+  transform: translateX(6px);
+}
+
+.yourText {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+@keyframes cta-ring {
+  from { opacity: 0.9; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.12, 1.3); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .yourStop::after {
+    animation: cta-ring 1.8s ease-out infinite;
+  }
+}
+
+/* London Underground style seat moquette along the bottom */
+.moquette {
+  display: block;
+  height: 30px;
+  margin: 18px -22px 0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.25) 0 2px, transparent 2.5px) 0 0 / 15px 15px,
+    repeating-linear-gradient(90deg, #C8102E 0 10px, #1D3557 10px 22px, #F4A261 22px 26px, #1D3557 26px 40px, #33C7B0 40px 46px, #1D3557 46px 60px);
+  box-shadow: inset 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Interior lights dim in the tunnel; windows and the LED sit above this */
+.dark {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: radial-gradient(ellipse at 50% 40%, rgba(2, 4, 10, 0.55), rgba(2, 4, 10, 0.92));
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- Phones ---- */
+
+@media (max-width: 767px) {
+  .carriage {
+    padding: 16px 14px 0;
+    border-radius: 22px;
+  }
+
+  .windows {
+    grid-template-columns: 1fr;
+    height: 210px;
+  }
+
+  .window + .window {
+    display: none;
+  }
+
+  .stops {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .tunnelSign {
+    display: none;
+  }
+
+  .moquette {
+    margin-inline: -14px;
+  }
+}
+
+/* ---- Motion ---- */
+
+@keyframes ride {
+  0%, 12% { transform: translateX(0); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+  36%, 46% { transform: translateX(-100cqw); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+  58%, 70% { transform: translateX(-200cqw); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+  86%, 100% { transform: translateX(-300cqw); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(2px) rotate(0.12deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Only the windows rock; the stop links below stay still so they're easy to hit */
+  .windows {
+    animation: sway 4s ease-in-out infinite;
+  }
+
+  /* Timed ride where the page can't scrub it */
+  .panorama {
+    animation: ride 28s linear infinite alternate;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tunnel,
+  .handles span {
+    animation: none;
+  }
+}
+
+/* Scrubbed: the carriage pins and scrolling drives the train */
+/* Each message switches off before the next lights up, like a real LED board */
+@keyframes led-0 { 0%, 22% { opacity: 1; } 23.5%, 100% { opacity: 0; } }
+@keyframes led-1 { 0%, 24.5% { opacity: 0; } 26%, 50% { opacity: 1; } 51.5%, 100% { opacity: 0; } }
+@keyframes led-2 { 0%, 52.5% { opacity: 0; } 54%, 70% { opacity: 1; } 71.5%, 100% { opacity: 0; } }
+@keyframes led-3 { 0%, 72.5% { opacity: 0; } 74%, 100% { opacity: 1; } }
+
+@keyframes stop-0 { 0%, 24% { opacity: 1; transform: translateY(-6px); } 32%, 100% { opacity: 0.55; transform: none; } }
+@keyframes stop-1 { 0%, 26% { opacity: 0.55; transform: none; } 34%, 54% { opacity: 1; transform: translateY(-6px); } 62%, 100% { opacity: 0.55; transform: none; } }
+@keyframes stop-2 { 0%, 76% { opacity: 0.55; transform: none; } 84%, 100% { opacity: 1; transform: translateY(-6px); } }
+
+@keyframes dot-0 { 0%, 24% { background: var(--blue); transform: scale(1.3); } 32%, 100% { background: #fff; transform: none; } }
+@keyframes dot-1 { 0%, 26% { background: #fff; transform: none; } 34%, 54% { background: var(--blue); transform: scale(1.3); } 62%, 100% { background: #fff; transform: none; } }
+@keyframes dot-2 { 0%, 76% { background: #fff; transform: none; } 84%, 100% { background: var(--blue); transform: scale(1.3); } }
+
+@keyframes tunnel-dark { 0%, 48% { opacity: 0; } 56%, 72% { opacity: 1; } 80%, 100% { opacity: 0; } }
+
+@supports (animation-timeline: view()) {
+  @media (min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+    .scroller {
+      /* The ride takes the first 62%, the Elizabeth line dig the rest */
+      height: 600vh;
+      view-timeline: --carriage block;
+    }
+
+    .stage {
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      height: 100vh;
+      padding-top: 76px;
+    }
+
+    .carriage {
+      width: 100%;
+      height: min(calc(100vh - 110px), 720px);
+    }
+
+    .windows {
+      flex: 1;
+      min-height: 0;
+      height: auto;
+    }
+
+    .panorama,
+    .ledMessage,
+    .stopItem,
+    .stopDot,
+    .dark {
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-duration: auto;
+      animation-iteration-count: 1;
+      animation-direction: normal;
+      animation-timeline: --carriage;
+      /* The ride uses the first 62%; the rest is the Elizabeth line dig (ElizabethLineBuild) */
+      animation-range: contain 0% contain 62%;
+    }
+
+    .panorama { animation-name: ride; }
+    .ledMessage:nth-child(1) { animation-name: led-0; }
+    .ledMessage:nth-child(2) { animation-name: led-1; }
+    .ledMessage:nth-child(3) { animation-name: led-2; }
+    .ledMessage:nth-child(4) { animation-name: led-3b; animation-range: contain 0% contain 100%; }
+    .ledMessage:nth-child(5) { animation-name: led-4; animation-range: contain 0% contain 100%; }
+    .stopItem:nth-child(1) { animation-name: stop-0; }
+    .stopItem:nth-child(2) { animation-name: stop-1; }
+    .stopItem:nth-child(3) { animation-name: stop-2; }
+    .stopItem:nth-child(1) .stopDot { animation-name: dot-0; }
+    .stopItem:nth-child(2) .stopDot { animation-name: dot-1; }
+    .stopItem:nth-child(3) .stopDot { animation-name: dot-2; }
+    .dark { animation-name: tunnel-dark; }
+
+    .build {
+      display: flex;
+    }
+
+    .build,
+    .rail,
+    .sleepers li,
+    .gap,
+    .yourStop,
+    .nextStop {
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-duration: auto;
+      animation-timeline: --carriage;
+    }
+
+    .build      { animation-name: build-in;  animation-range: contain 62% contain 66%; }
+    .rail       { animation-name: lay-rail;  animation-range: contain 66% contain 84%; }
+    .sleepers li {
+      animation-name: lay-sleeper;
+      animation-range: contain calc(66% + var(--i) * 18% / var(--sleeper-count)) contain calc(68% + var(--i) * 18% / var(--sleeper-count));
+    }
+    .gap        { animation-name: gap-in;    animation-range: contain 84% contain 87%; }
+    /* After the train and platform doors have opened */
+    .yourStop   { animation-name: your-stop; animation-range: contain 97.6% contain 99.5%; }
+    .nextStop   { animation-name: next-glow; animation-range: contain 62% contain 100%; }
+  }
+}
+
+/* LED: Europa now hands over to the construction notice */
+@keyframes led-3b { 0%, 44.8% { opacity: 0; } 45.9%, 61% { opacity: 1; } 62%, 100% { opacity: 0; } }
+@keyframes led-4 { 0%, 62.5% { opacity: 0; } 64%, 100% { opacity: 1; } }
+
+@keyframes build-in {
+  from { opacity: 0; visibility: hidden; transform: translateY(24px) scale(0.98); }
+  1% { visibility: visible; }
+  to { opacity: 1; visibility: visible; transform: none; }
+}
+
+@keyframes lay-rail { from { transform: scaleX(0); } }
+
+@keyframes lay-sleeper {
+  from { opacity: 0; transform: translateY(-40px) rotate(-12deg); }
+  70% { opacity: 1; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes gap-in { from { opacity: 0; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0); } }
+
+@keyframes your-stop {
+  from { opacity: 0; visibility: hidden; transform: scale(0.6); }
+  1% { visibility: visible; }
+  65% { opacity: 1; transform: scale(1.06); }
+  to { opacity: 1; visibility: visible; transform: none; }
+}
+
+@keyframes next-glow {
+  0%, 70% { box-shadow: none; }
+  85%, 100% { box-shadow: 0 0 0 4px rgba(105, 80, 161, 0.35), 0 10px 24px rgba(105, 80, 161, 0.35); }
+}
+
+/* Coming back up from below: unpinned, one screen tall, shown the way phones see it */
+.scroller[data-collapsed="true"] { height: auto; }
+.scroller[data-collapsed="true"] .stage { position: static; display: block; height: auto; padding-top: 0; }
+.scroller[data-collapsed="true"] .carriage { height: auto; }
+.scroller[data-collapsed="true"] .windows { flex: none; height: 300px; }
+.scroller[data-collapsed="true"] .ledMessage,
+.scroller[data-collapsed="true"] .stopItem,
+.scroller[data-collapsed="true"] .stopDot,
+.scroller[data-collapsed="true"] .dark,
+.scroller[data-collapsed="true"] .nextStop { animation: none; }
+.scroller[data-collapsed="true"] .build { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroller[data-collapsed="true"] .panorama { animation: ride 28s linear infinite alternate; }
+}

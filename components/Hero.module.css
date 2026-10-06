@@ -1,0 +1,140 @@
+/* --journey (0..1) is written by ParticleJourney as the pinned hero scrolls. */
+
+.journey {
+  position: relative;
+  height: 280vh;
+  background: #010820;
+}
+
+.journey[data-mode="static"] {
+  height: 100vh;
+  min-height: 600px;
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+/* Hero copy and its glow leave as the flag starts to come apart */
+.fadeOut {
+  opacity: clamp(0, calc(1 - (var(--journey, 0) - 0.03) * 7), 1);
+  transform: translateY(calc(var(--journey, 0) * -140px));
+}
+
+.journey[data-phase="morph"] .fadeOut,
+.journey[data-phase="map"] .fadeOut {
+  pointer-events: none;
+}
+
+.mapIn {
+  opacity: clamp(0, calc((var(--journey, 0) - 0.6) * 8), 1);
+}
+
+.stations {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.station {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 14px 0 0 16px;
+  padding: 5px 11px 6px;
+  border-radius: 999px 999px 999px 4px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(1, 8, 32, 0.72);
+  backdrop-filter: blur(6px);
+  color: white;
+  line-height: 1.15;
+  white-space: nowrap;
+  opacity: clamp(0, calc((var(--journey, 0) - 0.62) * 8), 1);
+  transition: background-color 0.2s, border-color 0.2s;
+  will-change: transform;
+}
+
+.journey[data-phase="map"] .station {
+  pointer-events: auto;
+}
+
+.station:hover,
+.station:focus-visible {
+  background: #E63946;
+  border-color: #E63946;
+  outline: none;
+}
+
+.stationName {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stationZh {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.caption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 7vh;
+  z-index: 10;
+  padding-inline: 16px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.82);
+  pointer-events: none;
+}
+
+.captionTitle {
+  font-family: var(--font-special-elite), monospace;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: white;
+}
+
+/* Lets the scroll cue land with the map already drawn */
+.mapAnchor {
+  position: absolute;
+  top: 46%;
+}
+
+/* The wave into the white welcome section rises only at the very end */
+.wave {
+  transform: translateY(calc((1 - clamp(0, (var(--journey, 0) - 0.86) * 8, 1)) * 100%));
+}
+
+.journey[data-mode="static"] .wave {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey {
+    height: 100vh;
+    min-height: 600px;
+  }
+
+  .wave {
+    transform: none;
+  }
+}

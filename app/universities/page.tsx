@@ -4,7 +4,7 @@ import { UNIVERSITY_CATALOG } from '@/lib/universities/catalog';
 import { calculateAverageRating, getUniversityReviews, getUniversitySlugsWithReviews } from '@/lib/universities/reviews';
 
 export const metadata: Metadata = {
-  title: 'University Files | 英国大学观察簿',
+  title: '大学红黑评测榜｜CFFA UK',
   description: '打开英国大学学生评价档案，查看就读年份、专业、评分、原文与投稿照片。',
 };
 

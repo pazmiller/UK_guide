@@ -14,7 +14,7 @@ const WORD_COLORS = [ '#FFD700', '#FF6B9D', '#7BFF7B', '#87CEEB', '#FFB347', '#D
 
 type PopLabel = { id: number; x: number; y: number; word: string; color: string };
 
-export default function UnionJackDots()
+export default function UnionJackDots( { showDots = true }: { showDots?: boolean } )
 {
   const canvasRef = useRef<HTMLCanvasElement>( null );
   const [ pops, setPops ] = useState<PopLabel[]>( [] );
@@ -174,7 +174,7 @@ export default function UnionJackDots()
       ro.disconnect();
       window.removeEventListener( 'mousemove', onMouseMove );
     };
-  }, [] );
+  }, [ showDots ] );
 
   return (
     <div
@@ -182,11 +182,13 @@ export default function UnionJackDots()
       style={{ cursor: 'crosshair' }}
       onClick={handleClick}
     >
-      <canvas
-        ref={canvasRef}
-        className="w-full h-full"
-        style={{ display: 'block', pointerEvents: 'none' }}
-      />
+      {showDots && (
+        <canvas
+          ref={canvasRef}
+          className="w-full h-full"
+          style={{ display: 'block', pointerEvents: 'none' }}
+        />
+      )}
       {pops.map( p => (
         <span
           key={p.id}

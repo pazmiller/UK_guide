@@ -1,0 +1,450 @@
+.welcome {
+  --amber: #FFB000;
+  display: grid;
+  gap: 32px;
+  align-items: center;
+}
+
+/* Long unwrapped LED lines must not widen the grid on phones */
+.welcome > *,
+.bubble,
+.callingWindow {
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .welcome {
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 48px;
+  }
+}
+
+/* ---- Miller, the station announcer ---- */
+
+.announcer {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .announcer {
+    flex-direction: column;
+    gap: 22px;
+  }
+}
+
+.bubble {
+  position: relative;
+  flex: 1;
+  padding: 14px 18px 16px;
+  border: 2px solid #1D3557;
+  border-radius: 16px;
+  background: #FFF9EC;
+  box-shadow: 5px 6px 0 #1D3557;
+}
+
+/* Tail: left on phones (avatar beside), down on desktop (avatar below) */
+.bubble::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -9px;
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  border-bottom: 2px solid #1D3557;
+  border-left: 2px solid #1D3557;
+  background: #FFF9EC;
+  transform: rotate(45deg);
+}
+
+@media (min-width: 1024px) {
+  .bubble::after {
+    top: auto;
+    bottom: -9px;
+    left: 50%;
+    margin: 0 0 0 -8px;
+    border-left: 0;
+    border-right: 2px solid #1D3557;
+    transform: rotate(45deg);
+  }
+}
+
+.bubbleLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #E63946;
+}
+
+.bubbleLabel svg {
+  width: 14px;
+  height: 14px;
+}
+
+.bubbleText {
+  display: grid;
+  margin-top: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #1D3557;
+}
+
+.sizer,
+.typed {
+  grid-area: 1 / 1;
+}
+
+.sizer {
+  visibility: hidden;
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.12em;
+  background: #E63946;
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% { opacity: 0; }
+}
+
+.avatar {
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 3px #F4A261, 0 10px 25px rgba(29, 53, 87, 0.22);
+}
+
+.avatarImage {
+  display: block;
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+@media (min-width: 1024px) {
+  .avatarImage {
+    width: 112px;
+    height: 112px;
+  }
+}
+
+.announcer[data-speaking="true"] .avatar {
+  animation: speak 0.32s ease-in-out infinite alternate;
+}
+
+@keyframes speak {
+  from { transform: translateY(0) scale(1, 1); }
+  to   { transform: translateY(-3px) scale(1.03, 0.97); }
+}
+
+/* ---- The hanging departure board ---- */
+
+.board {
+  position: relative;
+  margin-top: 30px;
+  padding: 12px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #23262d, #15171c);
+  box-shadow: 0 24px 50px rgba(1, 8, 32, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform-origin: 50% -30px;
+}
+
+.hanger {
+  position: absolute;
+  top: -30px;
+  left: 18%;
+  width: 6px;
+  height: 30px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #8a8f99, #d6d9de 45%, #6c717a);
+}
+
+.hangerRight {
+  left: auto;
+  right: 18%;
+}
+
+.plate {
+  padding: 16px 20px 18px;
+  border-radius: 8px;
+  background: #1D3557;
+  color: #fff;
+}
+
+.title {
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.title span {
+  color: #FF7A84;
+}
+
+.intro {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.screen {
+  margin-top: 10px;
+  padding: 12px 14px 10px;
+  border-radius: 8px;
+  background: #0a0a0a;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 8px 24px rgba(0, 0, 0, 0.8);
+  color: var(--amber);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, var(--font-noto-sans-sc), monospace;
+}
+
+/* LED dot matrix: lit text and the dim unlit grid share one mask per element */
+.screenTop,
+.rows,
+.calling {
+  background-color: rgba(255, 176, 0, 0.09);
+  text-shadow: 0 0 6px rgba(255, 176, 0, 0.75);
+  mask-image: radial-gradient(circle, #000 1.05px, transparent 1.4px);
+  mask-size: 3px 3px;
+}
+
+.screenTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 4px 6px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.screenTop span {
+  white-space: nowrap;
+}
+
+.clock {
+  flex-shrink: 0;
+  margin-left: 8px;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+}
+
+.clock i {
+  font-style: normal;
+  animation: caret 1s steps(1) infinite;
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 3.1em 4.4em minmax(0, 1fr) auto;
+  gap: 0.7em;
+  align-items: center;
+  padding: 0.42em 0.3em;
+  border-bottom: 2px solid rgba(255, 176, 0, 0.14);
+  font-size: clamp(1rem, 2.1vw, 1.32rem);
+  font-weight: 800;
+  color: var(--amber);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.rows li:last-child .row {
+  border-bottom: 0;
+}
+
+.row:hover,
+.row:focus-visible {
+  background-color: rgba(255, 176, 0, 0.16);
+  outline: none;
+}
+
+.order {
+  opacity: 0.75;
+}
+
+.destination {
+  position: relative;
+  overflow: hidden;
+  height: 1.4em;
+  line-height: 1.4em;
+}
+
+.destinationMain,
+.destinationSwap {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: transform 0.36s steps(5);
+}
+
+.destinationSwap {
+  position: absolute;
+  inset: 0;
+  transform: translateY(100%);
+}
+
+/* "出一份力" turns into an empty station waiting for you */
+.row[data-swap]:hover .destinationMain,
+.row[data-swap]:focus-visible .destinationMain {
+  transform: translateY(-100%);
+}
+
+.row[data-swap]:hover .destinationSwap,
+.row[data-swap]:focus-visible .destinationSwap {
+  transform: none;
+}
+
+.status {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.calling {
+  display: flex;
+  gap: 0.8em;
+  align-items: center;
+  margin-top: 6px;
+  padding: 6px 4px 2px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.callingLabel {
+  flex-shrink: 0;
+}
+
+.callingWindow {
+  flex: 1;
+  overflow: hidden;
+}
+
+.callingTrack {
+  display: inline-flex;
+  width: max-content;
+  animation: calling 32s linear infinite;
+}
+
+@keyframes calling {
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 639px) {
+  /* Phones: date and countdown on one line, the destination gets its own */
+  .row {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "time . status" "dest dest dest";
+    row-gap: 0.1em;
+    font-size: 1.05rem;
+  }
+
+  .time { grid-area: time; }
+  .destination { grid-area: dest; }
+  .status { grid-area: status; }
+
+  .order {
+    display: none;
+  }
+
+  .screenTop,
+  .rows,
+  .calling {
+    mask-image: radial-gradient(circle, #000 0.85px, transparent 1.15px);
+    mask-size: 2.5px 2.5px;
+  }
+
+  .screenTop span:first-child {
+    font-size: 0.7rem;
+  }
+}
+
+/* ---- Motion ---- */
+
+@keyframes row-on {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes flicker {
+  0%   { opacity: 0.15; }
+  10%  { opacity: 1; }
+  18%  { opacity: 0.35; }
+  30%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes board-drop {
+  from { opacity: 0; transform: translateY(-80px) rotate(-3deg); }
+  65%  { opacity: 1; transform: translateY(6px) rotate(1.2deg); }
+  85%  { transform: translateY(-2px) rotate(-0.4deg); }
+  to   { transform: none; }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-60px); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .board[data-powered="false"] .rows li,
+  .board[data-powered="false"] .calling {
+    opacity: 0;
+  }
+
+  .board[data-powered="true"] .screen {
+    animation: flicker 0.7s linear both;
+  }
+
+  .board[data-powered="true"] .rows li {
+    animation: row-on 0.45s steps(14) both;
+    animation-delay: calc(0.25s + var(--row) * 0.18s);
+  }
+
+  .board[data-powered="true"] .calling {
+    animation: row-on 0.45s steps(14) 1s both;
+  }
+
+  @supports (animation-timeline: view()) {
+    .board {
+      animation: board-drop linear both;
+      animation-timeline: view();
+      animation-range: cover 0vh cover 45vh;
+    }
+
+    .announcer {
+      animation: slide-in linear both;
+      animation-timeline: view();
+      animation-range: cover 0vh cover 40vh;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret,
+  .clock i,
+  .callingTrack {
+    animation: none;
+  }
+}

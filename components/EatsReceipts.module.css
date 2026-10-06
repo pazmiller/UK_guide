@@ -1,0 +1,562 @@
+.scroller {
+  --paper: #FBFAF4;
+  --ink: #22252b;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Restaurant totals as little torn receipt stubs */
+.tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stub {
+  --zig: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px calc(7px + var(--zig));
+  background: #FBFAF4;
+  color: #22252b;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, var(--font-noto-sans-sc), monospace;
+  text-decoration: none;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.3));
+  mask:
+    linear-gradient(#000 0 0) top / 100% calc(100% - var(--zig)) no-repeat,
+    conic-gradient(from -45deg at bottom, transparent, #000 1deg 89deg, transparent 90deg) bottom / calc(var(--zig) * 2) var(--zig) repeat-x;
+  transition: translate 0.2s ease;
+}
+
+.tally li:nth-child(1) .stub { rotate: -2deg; }
+.tally li:nth-child(2) .stub { rotate: 1.5deg; }
+.tally li:nth-child(3) .stub { rotate: -1deg; }
+
+.stub b {
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #C8102E;
+  font-variant-numeric: tabular-nums;
+}
+
+.stub span {
+  font-size: 0.6rem;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.stub:hover,
+.stub:focus-visible {
+  translate: 0 -3px;
+  outline: none;
+}
+
+.stub:focus-visible b {
+  text-decoration: underline;
+}
+
+/* "View All" as the printer's FEED key */
+.feedKey {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.keycap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px 10px 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #4a505b, #2a2e35 55%, #1e2126);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.45),
+    0 4px 0 #111317,
+    0 10px 22px rgba(0, 0, 0, 0.4);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.keyLed {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #FFB000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.45), 0 0 10px #FFB000;
+}
+
+.keyIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #F4A261;
+}
+
+.keyText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.keyText b {
+  font-size: 0.98rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.keyText small {
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, var(--font-noto-sans-sc), monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+/* A tongue of receipt paper that feeds out under the key */
+.tongue {
+  position: absolute;
+  top: calc(100% - 10px);
+  left: 50%;
+  width: 78%;
+  padding: 12px 10px 10px;
+  background: #FBFAF4;
+  color: #22252b;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-align: center;
+  white-space: nowrap;
+  mask:
+    linear-gradient(#000 0 0) top / 100% calc(100% - 6px) no-repeat,
+    conic-gradient(from -45deg at bottom, transparent, #000 1deg 89deg, transparent 90deg) bottom / 12px 6px repeat-x;
+  transform: translate(-50%, -100%);
+  transition: transform 0.35s steps(6, end);
+}
+
+.feedKey:hover .keycap,
+.feedKey:focus-visible .keycap {
+  background: linear-gradient(180deg, #555c68, #30353d 55%, #22262c);
+}
+
+.feedKey:hover .tongue,
+.feedKey:focus-visible .tongue {
+  transform: translate(-50%, 0);
+}
+
+.feedKey:active .keycap {
+  transform: translateY(3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+    0 1px 0 #111317,
+    0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.feedKey:focus-visible {
+  outline: none;
+}
+
+.feedKey:focus-visible .keycap {
+  outline: 2px solid #F4A261;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .keycap,
+  .tongue {
+    transition: none;
+  }
+}
+
+/* ---- Printer ---- */
+
+.printer {
+  position: relative;
+}
+
+.body {
+  position: absolute;
+  top: 0;
+  inset-inline: -10px;
+  z-index: 2;
+  display: none;
+  height: 54px;
+  border-radius: 14px 14px 10px 10px;
+  background: linear-gradient(180deg, #3a3f48, #23272e 70%, #1b1e23);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.brand {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+}
+
+/* Slot on top where the Explore ticket goes in */
+.inlet {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 120px;
+  height: 6px;
+  margin-left: -60px;
+  border-radius: 3px;
+  background: #0b0c0e;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8);
+}
+
+.led {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+  animation: blink 1.4s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.25; }
+}
+
+.ticket {
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  z-index: 1;
+  display: none;
+  flex-direction: column;
+  width: 110px;
+  margin-left: -55px;
+  padding: 6px 10px 8px;
+  border-radius: 4px;
+  background: #F4A261;
+  color: #1D3557;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  /* punched hole */
+  mask-image: radial-gradient(circle at 88% 30%, transparent 4px, #000 4.5px);
+}
+
+.ticket b {
+  font-size: 0.72rem;
+}
+
+.feeds {
+  display: grid;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .feeds {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+.feed {
+  position: relative;
+  min-width: 0;
+}
+
+/* Each column's print head; on phones every receipt has its own little printer */
+.head {
+  position: relative;
+  z-index: 3;
+  display: block;
+  height: 30px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #3a3f48, #23272e);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+.head::after {
+  content: "";
+  position: absolute;
+  bottom: 7px;
+  inset-inline: 12%;
+  height: 4px;
+  border-radius: 2px;
+  background: #0b0c0e;
+}
+
+/* The paper emerges from the slot: everything above it is clipped */
+.window {
+  position: relative;
+  margin-top: -9px;
+  padding: 0 6% 16px;
+  overflow: clip;
+  view-timeline: --feed block;
+}
+
+/* ---- Receipt ---- */
+
+.receipt {
+  --zig: 9px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 18px 16px calc(14px + var(--zig));
+  border: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, var(--font-noto-sans-sc), monospace;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.3));
+  transform-origin: 50% 0;
+  transform: rotate(var(--tilt));
+  /* torn zig-zag bottom edge */
+  mask:
+    linear-gradient(#000 0 0) top / 100% calc(100% - var(--zig)) no-repeat,
+    conic-gradient(from -45deg at bottom, transparent, #000 1deg 89deg, transparent 90deg) bottom / calc(var(--zig) * 2) var(--zig) repeat-x;
+  transition: translate 0.25s ease;
+}
+
+.receipt:hover,
+.receipt:focus-visible {
+  translate: 0 6px;
+  outline: none;
+}
+
+.receipt:focus-visible .thanks {
+  outline: 2px solid #E63946;
+  outline-offset: 2px;
+}
+
+.receiptTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.receiptTop b {
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+}
+
+.receiptTop span {
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+/* Photos print in full colour */
+.photo {
+  position: relative;
+  display: block;
+  height: 104px;
+  margin: 12px 0 10px;
+  overflow: hidden;
+}
+
+.photoImage {
+  object-fit: cover;
+}
+
+.name {
+  font-size: 1.02rem;
+  font-weight: 900;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.cuisine {
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+
+.rule {
+  display: block;
+  height: 0;
+  margin: 8px 0;
+  border-top: 2px dashed rgba(34, 37, 43, 0.35);
+}
+
+.label {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.line > span:first-child {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.note {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 0.74rem;
+  opacity: 0.85;
+}
+
+.total {
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.total b {
+  color: #C8102E;
+}
+
+.barcode {
+  display: block;
+  height: 30px;
+  margin: 10px 0 6px;
+  background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 8px, var(--ink) 8px 11px, transparent 11px 13px);
+}
+
+.thanks {
+  align-self: center;
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+/* ---- Motion ---- */
+
+/* Paper feeds out in small mechanical steps, then hangs at a slight angle */
+@keyframes print {
+  0%   { transform: translateY(-101%) rotate(0); animation-timing-function: steps(22, end); }
+  86%  { transform: translateY(0) rotate(0); animation-timing-function: cubic-bezier(0.3, 1.4, 0.5, 1); }
+  100% { transform: translateY(0) rotate(var(--tilt)); }
+}
+
+@keyframes ticket-in {
+  0%   { opacity: 0; transform: translateY(-140px) rotate(-14deg); }
+  55%  { opacity: 1; transform: translateY(0) rotate(4deg); }
+  70%  { transform: translateY(0) rotate(0); clip-path: inset(0 0 0 0); }
+  100% { transform: translateY(58px) rotate(0); clip-path: inset(0 0 100% 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .led {
+    animation: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Not pinned: each receipt prints as its column scrolls into view */
+    .receipt {
+      animation: print linear both;
+      animation-timeline: --feed;
+      animation-range: cover 0vh cover 55vh;
+    }
+
+    /* Pinned on large screens: one printer, three receipts in turn */
+    @media (min-width: 1024px) and (min-height: 760px) {
+      .scroller {
+        height: 300vh;
+        view-timeline: --eats block;
+      }
+
+      .stage {
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+        padding-top: 80px;
+      }
+
+      .body,
+      .ticket {
+        display: flex;
+      }
+
+      .body {
+        display: block;
+      }
+
+      .head {
+        background: transparent;
+        box-shadow: none;
+        height: 54px;
+      }
+
+      .head::after {
+        bottom: 6px;
+      }
+
+      .receipt {
+        animation-timeline: --eats;
+        animation-range: contain calc(8% + var(--i) * 22%) contain calc(34% + var(--i) * 22%);
+      }
+
+      .ticket {
+        animation: ticket-in linear both;
+        animation-timeline: --eats;
+        animation-range: entry 40% contain 8%;
+      }
+    }
+  }
+}

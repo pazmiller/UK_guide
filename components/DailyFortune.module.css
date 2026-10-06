@@ -1,0 +1,57 @@
+/* Printed on The UKCFFA Dispatch: ink on newsprint, matching the "每日新闻" ear opposite */
+.widget { --ink: #25221f; --red: #b80000; --paper: #F4F1E7; position: relative; color: var(--ink); font-family: var(--font-noto-sans-sc), sans-serif; }
+.trigger { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 76px; padding: 4px 0 4px 2px; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; border-radius: 2px; }
+.trigger:disabled { cursor: default; }
+.trigger:focus-visible, .close:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+.caption { display: flex; flex-direction: column; min-width: 0; gap: 3px; }
+.eyebrow { align-self: flex-start; padding-bottom: 3px; border-bottom: 3px double var(--ink); font-size: 11px; font-weight: 800; letter-spacing: .2em; white-space: nowrap; }
+.result { font: 900 17px/1.2 Georgia, 'Times New Roman', var(--font-noto-sans-sc), serif; word-break: keep-all; overflow-wrap: anywhere; transition: color 150ms ease; }
+.widget:not([data-drawn='true']):not([data-drawing='true']) .result::after { content: ' ▸'; color: var(--red); font-size: .8em; }
+.widget[data-drawn='true'] .result { color: var(--red); }
+.hint { font-size: 9px; color: #6b5e52; white-space: nowrap; letter-spacing: .04em; }
+
+/* Ink-drawn fortune jar */
+.jar { position: relative; display: block; flex-shrink: 0; width: 44px; height: 64px; transform-origin: 50% 85%; }
+.sticks { position: absolute; inset: 0; }
+.sticks i, .winner { position: absolute; top: 6px; width: 7px; height: 40px; border-radius: 3px 3px 1px 1px; background: linear-gradient(var(--red) 0 6px, var(--paper) 6px); border: 1.5px solid var(--ink); transform-origin: 50% 90%; }
+.sticks i:nth-child(1) { left: 8px; transform: rotate(-19deg); }
+.sticks i:nth-child(2) { left: 16px; top: 3px; transform: rotate(-7deg); }
+.sticks i:nth-child(3) { left: 24px; transform: rotate(9deg); }
+.sticks i:nth-child(4) { left: 30px; top: 9px; transform: rotate(21deg); }
+.winner { left: 19px; z-index: 1; top: 9px; height: 42px; width: 10px; font-size: 7px; font-weight: 900; padding-top: 8px; text-align: center; color: var(--red); background: linear-gradient(var(--red) 0 6px, #fff 6px); transform: translateY(0); transition: transform 300ms cubic-bezier(.22, 1, .36, 1); }
+.cup {
+  position: absolute; z-index: 2; bottom: 1px; left: 2px; width: 40px; height: 36px;
+  display: grid; place-items: center;
+  border: 2px solid var(--ink); border-top-width: 3px; border-radius: 4px 4px 14px 14px;
+  /* engraving-style hatching on the right side */
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 3px, rgba(37, 34, 31, .28) 3px 4px) right / 40% 100% no-repeat,
+    var(--paper);
+  color: var(--ink); font-family: Georgia, var(--font-noto-sans-sc), serif; font-size: 16px; font-weight: 900;
+}
+.widget[data-drawn='true'] .winner { transform: translateY(-20px) rotate(8deg); }
+.widget[data-drawing='true'] .jar { animation: shake 650ms ease-in-out; }
+.widget[data-drawing='true'] .winner { animation: emerge 300ms 650ms cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes shake { 0%, 100% { transform: rotate(0); } 15%, 45%, 75% { transform: rotate(-13deg); } 30%, 60%, 90% { transform: rotate(12deg); } }
+@keyframes emerge { from { transform: translateY(0); } to { transform: translateY(-20px) rotate(8deg); } }
+
+/* The fortune slip: a newsprint cutting */
+.panel { position: absolute; z-index: 8; right: -11px; top: calc(100% + 14px); width: min(268px, calc(100vw - 78px)); padding: 22px 22px 18px; border: 1.5px solid var(--ink); border-radius: 2px; background: var(--paper); color: var(--ink); box-shadow: 5px 6px 0 var(--ink), 0 18px 34px rgba(0, 0, 0, .25); visibility: hidden; opacity: 0; transform: translateY(-6px) scale(.97); transform-origin: top right; transition: opacity 160ms ease, transform 160ms cubic-bezier(.22, 1, .36, 1), visibility 0s 160ms; }
+.panel[data-open='true'] { visibility: visible; opacity: 1; transform: translateY(0) scale(1); transition-delay: 0s; }
+.panel[data-tone='rare'] { background: #FBF0C8; border-color: #8a6a12; box-shadow: 5px 6px 0 #8a6a12, 0 18px 34px rgba(0, 0, 0, .25); }
+.panel[data-tone='mischief'] { background: #E7E6E1; }
+.close { position: absolute; top: 0; right: 0; display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: none; color: #6b5e52; cursor: pointer; border-radius: 2px; }
+.close svg { width: 14px; height: 14px; }
+.kicker { margin: 0 14px 12px 0; padding-bottom: 6px; border-bottom: 3px double var(--ink); font-size: 10px; font-weight: 800; letter-spacing: .14em; }
+.grade { display: block; font: 900 30px/1.15 Georgia, 'Times New Roman', var(--font-noto-sans-sc), serif; color: var(--red); word-break: keep-all; overflow-wrap: anywhere; }
+.note { font: 400 13px/1.85 Georgia, var(--font-noto-sans-sc), serif; margin: 12px 0 16px; }
+.disclaimer { margin: 0; border-top: 1px solid rgba(37, 34, 31, .3); padding-top: 10px; font-size: 9px; color: #6b5e52; line-height: 1.8; }
+.warning, .error { font-size: 10px; line-height: 1.6; color: #a13b36; }
+.warning { margin: 10px 0 0; }
+.error { display: block; }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.widget[data-instant='true'] .winner, .widget[data-instant='true'] .panel { transition: none; }
+.widget[data-instant='true'] .jar, .widget[data-instant='true'] .winner { animation: none; }
+@media (hover: hover) and (pointer: fine) { .trigger:hover .result { color: var(--red); } .trigger:hover .jar { transform: rotate(-5deg); transition: transform 200ms ease; } }
+@media (max-width: 600px) { .trigger { gap: 8px; padding: 2px 0; min-height: 68px; } .result { font-size: 14px; } .hint { font-size: 8px; } .panel { right: -7px; } }
+@media (prefers-reduced-motion: reduce) { .widget .jar, .widget .winner { animation: none; } .winner, .panel, .trigger:hover .jar { transition: none; } }

@@ -12,7 +12,8 @@ test( 'renders the supplied provisional licence copy and the Furcon link', () =>
   assert.match( html, /严格以实体卡为主/ );
   assert.match( html, /Digital Driving Licence/ );
   assert.match( html, /https:\/\/www.gov.uk\/apply-first-provisional-driving-licence/ );
-  assert.match( html, /官方申请临时驾照的链接/ );
+  // The GOV.UK button reads 官方申请临时驾照 (never 「…的链接」 since it was added in 6192c57)
+  assert.match( html, /官方申请临时驾照/ );
 } );
 
 test( 'renders reviewed community Guides after the eleven fixed chapters', () =>
@@ -30,5 +31,6 @@ test( 'renders reviewed community Guides after the eleven fixed chapters', () =>
 
   assert.match( html, /12\. 雨天参观提示/ );
   assert.match( html, /提前预约热门博物馆。/ );
-  assert.match( html, /社区补充/ );
+  // Community chapters carry the group's own badge (renamed from 社区补充 in 14e3b10)
+  assert.match( html, /群“大头”补充/ );
 } );

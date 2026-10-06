@@ -26,7 +26,9 @@ test('mobile navigation opens and closes after a route change', async ({ page })
 
   await expect(page).toHaveURL(/\/london\/restaurants$/);
   await expect(page.getByRole('heading', { name: 'London Restaurants' })).toBeVisible();
-  await expect(navigation.getByRole('link', { name: 'Home', exact: true })).toBeHidden();
+  // The menu has closed: only the always-visible Home pill next to the toggle remains
+  await expect(navigation.getByRole('button', { name: 'Toggle menu' })).toHaveAttribute('aria-expanded', 'false');
+  await expect(navigation.getByRole('link', { name: 'Home', exact: true })).toHaveCount(1);
 });
 
 test('restaurant details open and close with Escape', async ({ page }) => {
