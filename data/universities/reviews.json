@@ -98,6 +98,25 @@
         "body": "总体不错，语言课程较难。但是能读出来那就很厉害了",
         "images": []
       }
+    ],
+    "university-of-edinburgh": [
+      {
+        "id": "review-28",
+        "sourceIssueNumber": 28,
+        "author": {
+          "kind": "named",
+          "displayName": "灵阳"
+        },
+        "studyStartYear": "2023",
+        "studyEndYear": "2024",
+        "studyStage": "硕士",
+        "studyProgram": "MSc Islamic and Middle Eastern Studies",
+        "rating": 4,
+        "pros": "老师很聪明。\n可以选神学院的课，很酷。\n学校很漂亮。\n爱丁堡很好。",
+        "cons": "笨的人别来。\n刚开始念书就要想毕业论文题目了。",
+        "body": "文科就读体验很好，别的不清楚。神学院的老师大推荐。",
+        "images": []
+      }
     ]
   }
 }
