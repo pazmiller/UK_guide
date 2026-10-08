@@ -20,14 +20,14 @@ const STOPS = [
     href: '/othercities',
     title: 'Other Cities',
     blurb: 'York, Glasgow, Edinburgh, Nottingham + more',
-    image: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?w=1600&q=80',
+    image: '/trains/train2.png',
     Icon: Building,
   },
   {
     href: '/europa',
     title: 'Europa',
     blurb: 'Iceland, Poland',
-    image: 'https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=1600&q=80',
+    image: '/trains/train3.png',
     Icon: Globe,
   },
 ];
