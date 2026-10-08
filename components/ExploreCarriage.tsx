@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { useRef, useState, useSyncExternalStore, type CSSProperties } from 'react';
-import { ArrowRight, Building, Globe, MapPin, Plus } from 'lucide-react';
+import { ArrowRight, Building, Globe, MapPin, Pause, Play, Plus } from 'lucide-react';
 import ElizabethLineBuild from './ElizabethLineBuild';
 import styles from './ExploreCarriage.module.css';
 import { useCollapseOnReturn } from './useCollapseOnReturn';
+import { useCarriageAutoplay } from './useCarriageAutoplay';
 
 const STOPS = [
   {
@@ -37,6 +38,13 @@ const LED_MESSAGES = [
   'Entering the Channel Tunnel · 进入海峡隧道',
   'Arriving: Europa · Iceland · Poland',
   'Next stop: 你的站 · CFFA Elizabeth Line',
+];
+
+// Placeholder copy for the three windows during the tunnel crossing.
+const TUNNEL_MESSAGES = [
+  { caption: '你来到了这个期待又陌生的国家', text: '一开始可能很不适应，\n有的开始想念国内。' },
+  { caption: ' 未完待续', text: '但你逐渐喜欢上了这里，\n或是伦敦的多姿多彩，或是英国悠闲的风吹过了你毛绒发梢。' },
+  { caption: '沿途都是故事', text: '有的人留在这里，有的已经离开却已难舍难分，\n记得回来分享！在这里留下你存在的证据，永恒记下' },
 ];
 
 // Sleepers laid on screen; any further stations are summed into the last label
@@ -73,6 +81,7 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
   const [ dig, setDig ] = useState<'pending' | 'webgl' | 'static'>( 'pending' );
   // Phones and Firefox never see the dig, so they never download three.js for it
   const pinned = useSyncExternalStore( subscribePinned, isPinned, () => false );
+  const playback = useCarriageAutoplay( scrollerRef, pinned );
 
   const panorama = (
     <div className={styles.panorama}>
@@ -84,9 +93,9 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
   );
 
   return (
-    <div ref={scrollerRef} className={styles.scroller}>
+    <div ref={scrollerRef} className={styles.scroller} data-playback={playback.status}>
       <div className={styles.stage}>
-        <div className={styles.carriage}>
+        <div className={styles.carriage} data-carriage>
           <div className={styles.header}>
             <h2 className={styles.title}>Explore <span>城市探索</span></h2>
             <div className={styles.led} aria-hidden="true">
@@ -94,6 +103,18 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
                 <span key={message} className={styles.ledMessage} style={{ '--m': i } as CSSProperties}>{message}</span>
               ) )}
             </div>
+            {pinned && (
+              <button
+                type="button"
+                className={styles.playback}
+                data-carriage-playback
+                onClick={playback.toggle}
+                disabled={playback.status === 'finished'}
+              >
+                {playback.status === 'playing' ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
+                {playback.status === 'playing' ? '暂停游览' : playback.status === 'finished' ? '行程结束' : playback.status === 'paused' ? '继续游览' : '开始游览'}
+              </button>
+            )}
           </div>
 
           <div className={styles.windows} aria-hidden="true">
@@ -103,6 +124,10 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
             {[ 0, 1, 2 ].map( i => (
               <div key={i} className={styles.window} style={{ '--w': i } as CSSProperties}>
                 {panorama}
+                <div className={styles.tunnelMessage}>
+                  <span className={styles.tunnelCaption}>{TUNNEL_MESSAGES[ i ].caption}</span>
+                  <p className={styles.tunnelText}>{TUNNEL_MESSAGES[ i ].text}</p>
+                </div>
                 <span className={styles.glass} />
               </div>
             ) )}

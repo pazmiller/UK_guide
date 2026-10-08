@@ -42,6 +42,33 @@
   color: rgba(29, 53, 87, 0.55);
 }
 
+.playback {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border: 1px solid rgba(29, 53, 87, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  color: #1D3557;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.playback svg { width: 13px; height: 13px; }
+.playback:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.playback:disabled { opacity: 0.5; cursor: default; }
+
+@media (hover: hover) and (pointer: fine) {
+  .playback:not(:disabled):hover { background: #1D3557; color: #fff; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playback { transition: none; }
+}
+
 /* Amber dot-matrix destination board, same look as the welcome board */
 .led {
   position: relative;
@@ -121,6 +148,47 @@
 
 @keyframes tunnel-lights {
   to { background-position: -320px 0, 0 0; }
+}
+
+.tunnelMessage {
+  position: absolute;
+  inset: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #FFF9EC;
+  text-align: center;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tunnelCaption {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #FFD299;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+
+.tunnelCaption::before {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+}
+
+.tunnelText {
+  margin: 0;
+  font-size: clamp(1.1rem, 2vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.65;
+  letter-spacing: 0.03em;
+  white-space: pre-line;
 }
 
 .glass {
@@ -697,6 +765,14 @@
   50% { transform: translateY(2px) rotate(0.12deg); }
 }
 
+/* Share the panorama's progress: appear only while the tunnel fills the windows. */
+@keyframes tunnel-message {
+  0%, 53% { opacity: 0; transform: translateX(24px); }
+  59% { opacity: 1; transform: translateX(8px); }
+  68% { opacity: 1; transform: translateX(-8px); }
+  75%, 100% { opacity: 0; transform: translateX(-24px); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   /* Only the windows rock; the stop links below stay still so they're easy to hit */
   .windows {
@@ -706,6 +782,10 @@
   /* Timed ride where the page can't scrub it */
   .panorama {
     animation: ride 28s linear infinite alternate;
+  }
+
+  .tunnelMessage {
+    animation: tunnel-message 28s linear infinite alternate;
   }
 }
 
@@ -762,6 +842,7 @@
     }
 
     .panorama,
+    .tunnelMessage,
     .ledMessage,
     .stopItem,
     .stopDot,
@@ -777,6 +858,7 @@
     }
 
     .panorama { animation-name: ride; }
+    .tunnelMessage { animation-name: tunnel-message; }
     .ledMessage:nth-child(1) { animation-name: led-0; }
     .ledMessage:nth-child(2) { animation-name: led-1; }
     .ledMessage:nth-child(3) { animation-name: led-2; }
@@ -862,7 +944,9 @@
 .scroller[data-collapsed="true"] .dark,
 .scroller[data-collapsed="true"] .nextStop { animation: none; }
 .scroller[data-collapsed="true"] .build { display: none; }
+.scroller[data-collapsed="true"] .playback { display: none; }
 
 @media (prefers-reduced-motion: no-preference) {
   .scroller[data-collapsed="true"] .panorama { animation: ride 28s linear infinite alternate; }
+  .scroller[data-collapsed="true"] .tunnelMessage { animation: tunnel-message 28s linear infinite alternate; }
 }
