@@ -1,0 +1,161 @@
+.hero {
+  --paper: #f3f0e7;
+  --ink: #1d3557;
+  position: relative;
+  isolation: isolate;
+  height: min(850px, calc(100svh - 64px));
+  min-height: 600px;
+  overflow: hidden;
+  background: #c3323a;
+  color: var(--paper);
+}
+
+.artwork,
+.poster,
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.canvas { visibility: hidden; pointer-events: auto; }
+.hero[data-scene='ready'] .canvas { visibility: visible; }
+
+.heading {
+  position: absolute;
+  z-index: 1;
+  top: clamp(32px, 5vw, 72px);
+  left: clamp(24px, 5vw, 80px);
+  padding: 22px 28px 24px 0;
+  /* An opaque, poster-cut panel keeps moving windows out of the lettering. */
+  background: var(--ink);
+  box-shadow: -80px 0 var(--ink);
+  clip-path: polygon(-100% 0, 100% 0, 100% 85%, 91% 100%, -100% 100%);
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-family: var(--font-special-elite), monospace;
+  font-size: 12px;
+  letter-spacing: .09em;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(48px, 5.6vw, 84px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: .025em;
+}
+
+.fullStop { color: #e63946; }
+
+.subtitle {
+  margin: 23px 0 0;
+  font-size: clamp(12px, 1vw, 15px);
+  line-height: 1.9;
+  letter-spacing: .08em;
+}
+
+.corner {
+  position: absolute;
+  top: 46px;
+  right: clamp(24px, 4vw, 64px);
+}
+
+.roundel {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border: 9px solid var(--paper);
+  border-radius: 50%;
+  background: var(--ink);
+  transform: rotate(-9deg);
+}
+
+.roundel span {
+  padding: 5px 15px 3px;
+  background: var(--ink);
+  font: 800 13px var(--font-inter), sans-serif;
+  letter-spacing: .12em;
+}
+
+.footer {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  justify-content: center;
+  align-items: end;
+  gap: 24px;
+  padding: 24px clamp(24px, 4vw, 64px) 96px;
+}
+
+.destinations {
+  display: flex;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.destination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  min-width: 178px;
+  padding: 16px 20px;
+  font-size: 19px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.destination + .destination { border-left: 1px solid var(--ink); }
+.destination small {
+  display: block;
+  margin-bottom: 5px;
+  font: 10px var(--font-special-elite), monospace;
+  letter-spacing: .03em;
+}
+
+.destination:focus-visible { outline: 3px solid #e9b949; outline-offset: 5px; }
+
+/* Equivalent links for keyboard and screen-reader users of the canvas street. */
+.shopLinks a { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.shopLinks a:focus-visible {
+  z-index: 3; left: 24px; bottom: 200px; width: auto; height: auto;
+  clip-path: none; padding: 16px 24px; background: var(--paper); color: var(--ink);
+  outline: 3px solid var(--ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .destination:hover { background: var(--ink); color: var(--paper); }
+}
+
+@media (max-width: 760px) {
+  .hero { height: min(800px, calc(100svh - 64px)); min-height: 590px; }
+  .heading { top: 30px; left: 24px; padding: 20px 22px 20px 0; }
+  .title { font-size: clamp(38px, 8vw, 60px); }
+  .subtitle { margin-top: 16px; }
+  .corner { top: 43px; right: 24px; }
+  .roundel { width: 44px; height: 44px; border-width: 6px; }
+  .roundel span { font-size: 9px; padding: 4px 8px; }
+  .footer { padding: 20px 22px 96px; }
+  .destination { flex: 1; min-width: 0; padding: 14px 16px; gap: 10px; font-size: 17px; }
+}
+
+@media (max-width: 380px) {
+  .corner { display: none; }
+  .footer { padding-inline: 16px; gap: 12px; }
+  .destination { padding-inline: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .destination { transition: none; }
+  .canvas { visibility: hidden !important; }
+}
