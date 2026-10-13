@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -209,7 +210,7 @@ export default function LondonStreetHero()
       </div>
 
       <div className={styles.corner} aria-hidden="true">
-        <span className={styles.roundel}><span>CFFA</span></span>
+        <Image src="/logos/cffa-transparent.png" alt="" width={1103} height={1426} sizes="(max-width: 760px) 56px, 112px" className={styles.roundel} />
       </div>
 
       <div className={styles.footer}>

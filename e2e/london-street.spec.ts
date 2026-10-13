@@ -12,6 +12,18 @@ for ( const width of [ 1440, 768, 390, 320 ] )
     await expect( hero ).toHaveAttribute( 'data-scene', 'ready' );
     await expect( hero ).toHaveAttribute( 'data-motion', 'running' );
     await page.evaluate( () => document.fonts.ready );
+    const logo = hero.locator( 'img[src="/logos/cffa-transparent.png"]' );
+    await expect( logo ).toHaveCount( 1 );
+    if ( width > 380 )
+    {
+      await expect( logo ).toBeVisible();
+      await expect.poll( () => logo.evaluate( el => ( el as HTMLImageElement ).naturalWidth ) ).toBeGreaterThan( 0 );
+      const size = ( await logo.boundingBox() )!;
+      const ratio = await logo.evaluate( el => ( el as HTMLImageElement ).naturalWidth / ( el as HTMLImageElement ).naturalHeight );
+      expect( size.width / size.height ).toBeCloseTo( ratio, 2 );
+      const title = ( await hero.getByRole( 'heading' ).boundingBox() )!;
+      expect( size.x ).toBeGreaterThan( title.x + title.width );
+    } else await expect( logo ).toBeHidden();
     await expect( hero.getByRole( 'button', { name: /街景动画/ } ) ).toHaveCount( 0 );
     await expect( hero.getByText( '欢迎来到伦敦' ) ).toHaveCount( 0 );
     await expect( hero.getByRole( 'link', { name: /找餐厅/ } ) ).toHaveAttribute( 'href', '/london/restaurants' );
