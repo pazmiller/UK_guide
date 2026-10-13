@@ -53,6 +53,12 @@ test( 'eats receipts open the restaurant details and link to the full list', asy
   await receipts.scrollIntoViewIfNeeded();
   await expect( page.getByRole( 'heading', { level: 2, name: 'London 推荐餐厅' } ) ).toBeVisible();
   await expect( receipts.getByRole( 'button' ) ).toHaveCount( 3 );
+  await expect( receipts.getByText( '★ CFFA EATS ★', { exact: true } ) ).toHaveCount( 3 );
+  await expect( receipts.getByText( /^LONDON · 伦敦 · TABLE / ) ).toHaveCount( 3 );
+  await expect( receipts.getByText( '必点 Must try', { exact: true } ) ).toHaveCount( 3 );
+  await expect( receipts.locator( '[class*="note"]' ) ).toHaveCount( 3 );
+  await expect( receipts.locator( '[class*="barcode"]' ) ).toHaveCount( 3 );
+  await expect( receipts ).toContainText( 'TOTAL' );
   await receipts.getByRole( 'button', { name: /查看 CERU 的详情/ } ).click();
   await expect( page.getByRole( 'heading', { name: 'CERU', exact: true } ).last() ).toBeVisible();
   await page.keyboard.press( 'Escape' );
