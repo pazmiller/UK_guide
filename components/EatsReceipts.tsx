@@ -15,15 +15,19 @@ const TILTS = [ -2.5, 1.5, -1 ];
  * receipts feed out, one per featured restaurant. Tapping a receipt opens its details.
  */
 type Counts = { london: number; uk: number; europa: number };
+type Props = { restaurants: Restaurant[]; thumbnailBase?: string } & (
+  | { variant?: 'printer'; counts: Counts }
+  | { variant: 'receipts'; counts?: never }
+);
 
-export default function EatsReceipts( { restaurants, counts }: { restaurants: Restaurant[]; counts: Counts } )
+export default function EatsReceipts( { restaurants, counts, variant = 'printer', thumbnailBase }: Props )
 {
   const [ selected, setSelected ] = useState<Restaurant | null>( null );
 
   return (
-    <div className={styles.scroller}>
-      <div className={styles.stage}>
-        <div className={styles.header}>
+    <div className={variant === 'receipts' ? styles.receiptsOnly : styles.scroller}>
+      <div className={variant === 'printer' ? styles.stage : undefined}>
+        {counts && <div className={styles.header}>
           <div>
             <h2 className={styles.title}>London 推荐餐厅</h2>
             <p className={styles.subtitle}>精选伦敦美食推荐</p>
@@ -54,10 +58,10 @@ export default function EatsReceipts( { restaurants, counts }: { restaurants: Re
             </span>
             <span className={styles.tongue} aria-hidden="true">LONDON EATS ▸ ▸ ▸</span>
           </Link>
-        </div>
+        </div>}
 
         <div className={styles.printer}>
-          <span className={styles.ticket} aria-hidden="true">
+          {variant === 'printer' && <><span className={styles.ticket} aria-hidden="true">
             <b>UKCFFA LINE</b>
             <span>Explore → Eats</span>
             <small>Admit one</small>
@@ -66,12 +70,12 @@ export default function EatsReceipts( { restaurants, counts }: { restaurants: Re
             <span className={styles.brand}>CFFA · EATS</span>
             <span className={styles.inlet} />
             <span className={styles.led} />
-          </div>
+          </div></>}
 
           <ol className={styles.feeds} aria-label="推荐餐厅小票">
             {restaurants.map( ( restaurant, i ) => (
               <li key={restaurant.id} className={styles.feed} style={{ '--i': i, '--tilt': `${TILTS[ i % TILTS.length ]}deg` } as CSSProperties}>
-                <span className={styles.head} aria-hidden="true" />
+                {variant === 'printer' && <span className={styles.head} aria-hidden="true" />}
                 <div className={styles.window}>
                   <button
                     type="button"
@@ -80,28 +84,34 @@ export default function EatsReceipts( { restaurants, counts }: { restaurants: Re
                     aria-haspopup="dialog"
                     aria-label={`查看 ${restaurant.name} 的详情`}
                   >
-                    <span className={styles.receiptTop}>
-                      <b>★ CFFA EATS ★</b>
-                      <span>LONDON · 伦敦 · TABLE {String( i + 1 ).padStart( 2, '0' )}</span>
-                    </span>
+                    {variant === 'printer' && (
+                      <span className={styles.receiptTop}>
+                        <b>★ CFFA EATS ★</b>
+                        <span>LONDON · 伦敦 · TABLE {String( i + 1 ).padStart( 2, '0' )}</span>
+                      </span>
+                    )}
 
                     {restaurant.images[ 0 ] && (
                       <span className={styles.photo}>
-                        <Image src={restaurant.images[ 0 ]} alt="" fill sizes="(max-width: 768px) 90vw, 360px" className={styles.photoImage} />
+                        <Image src={thumbnailBase ? `${thumbnailBase}/${restaurant.slug}.webp` : restaurant.images[ 0 ]} alt="" fill sizes="(max-width: 768px) 90vw, 360px" className={styles.photoImage} />
                       </span>
                     )}
 
                     <span className={styles.name}>{restaurant.name}</span>
                     <span className={styles.cuisine}>{restaurant.cuisine} · {restaurant.shortDescription}</span>
 
-                    <span className={styles.rule} />
-                    <span className={styles.label}>必点 Must try</span>
-                    {restaurant.mustTry.slice( 0, 3 ).map( dish => (
-                      <span key={dish} className={styles.line}>
-                        <span>1 × {dish}</span>
-                        <span>✓</span>
-                      </span>
-                    ) )}
+                    {variant === 'printer' && (
+                      <>
+                        <span className={styles.rule} />
+                        <span className={styles.label}>必点 Must try</span>
+                        {restaurant.mustTry.slice( 0, 3 ).map( dish => (
+                          <span key={dish} className={styles.line}>
+                            <span>1 × {dish}</span>
+                            <span>✓</span>
+                          </span>
+                        ) )}
+                      </>
+                    )}
 
                     {restaurant.priceRange && (
                       <>
@@ -114,14 +124,18 @@ export default function EatsReceipts( { restaurants, counts }: { restaurants: Re
                     )}
 
                     <span className={styles.rule} />
-                    <span className={styles.note}>“{restaurant.recommendReason ?? restaurant.description}”</span>
+                    {variant === 'printer' && (
+                      <>
+                        <span className={styles.note}>“{restaurant.recommendReason ?? restaurant.description}”</span>
 
-                    <span className={styles.rule} />
-                    <span className={`${styles.line} ${styles.total}`}>
-                      <span>TOTAL</span>
-                      <b>好吃</b>
-                    </span>
-                    <span className={styles.barcode} aria-hidden="true" />
+                        <span className={styles.rule} />
+                        <span className={`${styles.line} ${styles.total}`}>
+                          <span>TOTAL</span>
+                          <b>好吃</b>
+                        </span>
+                        <span className={styles.barcode} aria-hidden="true" />
+                      </>
+                    )}
                     <span className={styles.thanks}>Thank you · 点击撕下看详情</span>
                   </button>
                 </div>

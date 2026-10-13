@@ -25,7 +25,8 @@ const londonFoodPlaces = [
   } ) ),
 ];
 
-export default function LondonRestaurantsPage() {
+export default async function LondonRestaurantsPage( { searchParams }: { searchParams: Promise<{ restaurant?: string }> } ) {
+  const { restaurant } = await searchParams;
   return (
     <div className="pt-16 bg-[#FBF8F1]">
       {/* Hero */}
@@ -63,7 +64,7 @@ export default function LondonRestaurantsPage() {
       {/* Restaurants Grid */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <RestaurantFilteredGrid restaurants={londonFoodPlaces} locationHint="London UK" />
+          <RestaurantFilteredGrid key={restaurant ?? 'all'} restaurants={londonFoodPlaces} locationHint="London UK" initialSlug={restaurant} />
         </div>
       </section>
 

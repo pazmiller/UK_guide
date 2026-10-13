@@ -1,4 +1,4 @@
-.scroller {
+.scroller, .receiptsOnly {
   --paper: #FBFAF4;
   --ink: #22252b;
   position: relative;
@@ -480,6 +480,15 @@
   opacity: 0.65;
 }
 
+.receiptsOnly .window {
+  margin-top: 0;
+  padding-block: 10px 24px;
+}
+
+.receiptsOnly .receipt {
+  animation: none;
+}
+
 /* ---- Motion ---- */
 
 /* Paper feeds out in small mechanical steps, then hangs at a slight angle */
@@ -514,7 +523,7 @@
     /* Pinned on large screens: one printer, three receipts in turn */
     @media (min-width: 1024px) and (min-height: 760px) {
       .scroller {
-        height: 300vh;
+        height: 220vh;
         view-timeline: --eats block;
       }
 

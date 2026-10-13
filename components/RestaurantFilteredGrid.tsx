@@ -9,14 +9,15 @@ interface Props {
   restaurants: Restaurant[];
   locationHint?: string;
   variant?: 'classic' | 'editorial';
+  initialSlug?: string;
 }
 
 const CAFE_CUISINE = '喝的和小甜甜';
 const CAFE_SUB_TAGS = [ 'Drinks', 'Desert' ];
 
-export default function RestaurantFilteredGrid({ restaurants, locationHint, variant = 'editorial' }: Props) {
+export default function RestaurantFilteredGrid({ restaurants, locationHint, variant = 'editorial', initialSlug }: Props) {
   const [active, setActive] = useState<string>('All');
-  const [selected, setSelected] = useState<Restaurant | null>(null);
+  const [selected, setSelected] = useState<Restaurant | null>(() => restaurants.find( item => item.slug === initialSlug ) ?? null);
 
   const cuisines = useMemo(() => {
     const seen = new Set<string>();
