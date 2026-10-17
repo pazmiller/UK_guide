@@ -1004,3 +1004,21 @@ The Bigger One 2027	June 12-13, 2027	Delta Hotels Somerset
 Somerset, NJ
 Anthrocon 2027	July 1-4, 2027	David L. Lawrence Convention Center
 Pittsburgh, PA
+
+
+Middlesbrough｜Middlesbrough（餐厅）
+城市标识： middlesbrough
+城市描述： Middlesbrough的投稿推荐。
+城市封面： /contributions/31/1.webp
+国家： uk
+导航顺序： 30
+My Karak Chai
+条目标识： submission-31
+简介： 香料很足，饭菜味道很香
+菜系： Indian
+推荐原因： 很好吃的印度菜
+推荐菜： 
+价位： 10-20
+地址： 124 Linthorpe Road, Middlesbrough, TS1 2JR
+营业时间： 
+图片： /contributions/31/1.webp、/contributions/31/2.webp、/contributions/31/3.webp、/contributions/31/4.webp

@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-01T04:00:59.016Z",
+  "generatedAt": "2026-10-16T10:46:31.428Z",
   "source": "src/DATA.md",
   "cities": [
     {
@@ -227,9 +227,42 @@
       ],
       "avoids": [],
       "tips": []
+    },
+    {
+      "slug": "middlesbrough",
+      "name": "Middlesbrough",
+      "nameEn": "Middlesbrough",
+      "description": "Middlesbrough的投稿推荐。",
+      "heroImage": "/contributions/31/1.webp",
+      "country": "uk",
+      "order": 30,
+      "restaurants": [
+        {
+          "id": "middlesbrough-restaurant-submission-31",
+          "slug": "submission-31",
+          "name": "My Karak Chai",
+          "cuisine": "Indian",
+          "shortDescription": "香料很足，饭菜味道很香",
+          "description": "香料很足，饭菜味道很香",
+          "recommendReason": "很好吃的印度菜",
+          "address": "124 Linthorpe Road, Middlesbrough, TS1 2JR",
+          "priceRange": "10-20",
+          "images": [
+            "/contributions/31/1.webp",
+            "/contributions/31/2.webp",
+            "/contributions/31/3.webp",
+            "/contributions/31/4.webp"
+          ],
+          "mustTry": []
+        }
+      ],
+      "cafes": [],
+      "attractions": [],
+      "avoids": [],
+      "tips": []
     }
   ],
-  "chunkCount": 134,
+  "chunkCount": 135,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -3134,6 +3167,32 @@
         "restaurant",
         "致谢名单",
         "致谢名单"
+      ]
+    },
+    {
+      "id": "0135-middlesbrough-restaurant-my-karak-chai",
+      "city": "Middlesbrough",
+      "category": "restaurant",
+      "section": "Middlesbrough｜Middlesbrough（餐厅）",
+      "title": "My Karak Chai",
+      "content": {
+        "summary": "香料很足，饭菜味道很香",
+        "type_cusine": "Indian",
+        "recommend_reason": "很好吃的印度菜",
+        "recommend_signatures": "",
+        "price": "10-20"
+      },
+      "details": {
+        "slug": "submission-31",
+        "address": "124 Linthorpe Road, Middlesbrough, TS1 2JR",
+        "images": "/contributions/31/1.webp、/contributions/31/2.webp、/contributions/31/3.webp、/contributions/31/4.webp"
+      },
+      "source": "src/DATA.md",
+      "tags": [
+        "Middlesbrough",
+        "restaurant",
+        "Middlesbrough｜Middlesbrough（餐厅）",
+        "My Karak Chai"
       ]
     }
   ]
