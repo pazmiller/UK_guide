@@ -151,6 +151,34 @@
         "body": "学校拉完了，老师很好，能不能毕业看敢不敢拼命。",
         "images": []
       }
+    ],
+    "university-of-bath": [
+      {
+        "id": "review-33",
+        "sourceIssueNumber": 33,
+        "author": {
+          "kind": "named",
+          "displayName": "青墨芷"
+        },
+        "studyStartYear": "2026",
+        "studyEndYear": "至今",
+        "studyStage": "硕士",
+        "studyProgram": "Msc Management",
+        "rating": 4,
+        "pros": "1.学生支持非常优秀，不论遇到什么问题或者需要求助任何事情，都感觉到有地可循 2.小班教学感觉不会人特别多",
+        "cons": "1.餐厅一般般 学校的超市meal deal比山下略贵 2.学校学院较少 3.巴斯市的网络太差了，坐车从山下到山上有时候没网络",
+        "body": "夯 小众留学宝藏地 感觉巴斯大学说出去都没人知道的有人懂吗， 人们的脑海中只会出现一个头戴紫色包皮的脑残宇航员（没绷住）",
+        "images": [
+          {
+            "src": "/contributions/universities/university-of-bath/review-33/1.webp",
+            "caption": "巴斯市"
+          },
+          {
+            "src": "/contributions/universities/university-of-bath/review-33/2.webp",
+            "caption": "市中心夜景"
+          }
+        ]
+      }
     ]
   }
 }
