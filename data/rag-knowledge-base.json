@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-16T10:46:31.574Z",
+  "generatedAt": "2026-10-22T13:46:30.939Z",
   "source": "src/DATA.json",
   "cities": [
     {
@@ -260,9 +260,43 @@
       "attractions": [],
       "avoids": [],
       "tips": []
+    },
+    {
+      "slug": "bath-ba1-2jn",
+      "name": "Bath BA1 2JN",
+      "nameEn": "Bath BA1 2JN",
+      "description": "Bath BA1 2JN的投稿推荐。",
+      "heroImage": "/contributions/34/1.webp",
+      "country": "uk",
+      "order": 40,
+      "restaurants": [
+        {
+          "id": "bath-ba1-2jn-restaurant-submission-34",
+          "slug": "submission-34",
+          "name": "PrimaVista",
+          "cuisine": "Italian",
+          "shortDescription": "意面感觉有点一般。",
+          "description": "意面感觉有点一般。",
+          "recommendReason": "披萨真的很好吃，上菜的时候有惊艳到我。超大的披萨，非常推荐选择薄饼底。",
+          "address": "8-9 Quiet Street, Bath BA1 2JN",
+          "openingHours": "Sun-Thu: 11:30AM-9:30PM; Fri-Sat: 11:30AM-10:00PM",
+          "priceRange": "20-30",
+          "images": [
+            "/contributions/34/1.webp",
+            "/contributions/34/2.webp"
+          ],
+          "mustTry": [
+            "玛格丽塔披萨"
+          ]
+        }
+      ],
+      "cafes": [],
+      "attractions": [],
+      "avoids": [],
+      "tips": []
     }
   ],
-  "chunkCount": 135,
+  "chunkCount": 136,
   "chunks": [
     {
       "id": "0001-london-restaurant-med-salleh-kopitiam",
@@ -2599,6 +2633,27 @@
         "restaurant",
         "Middlesbrough｜Middlesbrough（餐厅）",
         "My Karak Chai"
+      ]
+    },
+    {
+      "id": "0136-bath-ba1-2jn-restaurant-primavista",
+      "city": "Bath BA1 2JN",
+      "category": "restaurant",
+      "section": "Bath BA1 2JN｜Bath BA1 2JN（餐厅）",
+      "title": "PrimaVista",
+      "content": "城市/地区：Bath BA1 2JN\n分类：restaurant\n来源章节：Bath BA1 2JN｜Bath BA1 2JN（餐厅）\n条目：PrimaVista\n简介：意面感觉有点一般。\n菜系：Italian\n推荐原因：披萨真的很好吃，上菜的时候有惊艳到我。超大的披萨，非常推荐选择薄饼底。\n推荐菜：玛格丽塔披萨\n价位：20-30\n地址：8-9 Quiet Street, Bath BA1 2JN\n营业时间：Sun-Thu: 11:30AM-9:30PM; Fri-Sat: 11:30AM-10:00PM",
+      "details": {
+        "slug": "submission-34",
+        "address": "8-9 Quiet Street, Bath BA1 2JN",
+        "opening_hours": "Sun-Thu: 11:30AM-9:30PM; Fri-Sat: 11:30AM-10:00PM",
+        "images": "/contributions/34/1.webp、/contributions/34/2.webp"
+      },
+      "source": "src/DATA.json",
+      "tags": [
+        "Bath BA1 2JN",
+        "restaurant",
+        "Bath BA1 2JN｜Bath BA1 2JN（餐厅）",
+        "PrimaVista"
       ]
     }
   ]
