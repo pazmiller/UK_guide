@@ -9,7 +9,7 @@ import DetailModal from './DetailModal';
 const credits = [
   '赤夜', '鲁珀', '月桑', '葡萄柚', '成为裙',
   '雪麒', '啸羽', '米勒勒', '狮子', '恺', '枫霜',
-  '小D', '咕咕', '牧野黑助', '狼影', '不愿透露姓名的', '二十'
+  '小D', '咕咕', '牧野黑助', '狼影', '不愿透露姓名的', '二十', '羚羊', '青墨芷'
 ];
 
 export default function CreditsSection()
