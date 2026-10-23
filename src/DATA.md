@@ -1022,3 +1022,21 @@ My Karak Chai
 地址： 124 Linthorpe Road, Middlesbrough, TS1 2JR
 营业时间： 
 图片： /contributions/31/1.webp、/contributions/31/2.webp、/contributions/31/3.webp、/contributions/31/4.webp
+
+
+Bath｜Bath（餐厅）
+城市标识： bath
+城市描述： Bath的投稿推荐。
+城市封面： /contributions/34/1.webp
+国家： uk
+导航顺序： 40
+PrimaVista
+条目标识： submission-34
+简介： 意面感觉有点一般，披萨真的很好吃。Bath BA1 2JN
+菜系： Italian
+推荐原因： 披萨真的很好吃，上菜的时候有惊艳到我。超大的披萨，非常推荐选择薄饼底。
+推荐菜： 玛格丽塔披萨
+价位： 20-30
+地址： 8-9 Quiet Street, Bath, BA1 2JN
+营业时间： Sun-Thu: 11:30AM-09:30PM; Fri-Sat: 11:30AM-10:00PM
+图片： /contributions/34/1.webp、/contributions/34/2.webp
