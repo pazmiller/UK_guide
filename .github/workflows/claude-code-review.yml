@@ -46,3 +46,77 @@ jobs:
           claude_args: |
             --max-turns 8
             --allowedTools "Read,Grep,Glob,Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr comment:*),mcp__github_inline_comment__create_inline_comment"
+
+      - name: Summarize Claude failure
+        if: ${{ failure() && steps.claude-review.outcome == 'failure' }}
+        env:
+          EXECUTION_FILE: ${{ steps.claude-review.outputs.execution_file }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+
+          const candidates = [
+            process.env.EXECUTION_FILE,
+            path.join(process.env.RUNNER_TEMP, 'claude-execution-output.json'),
+          ].filter(Boolean);
+
+          const file = candidates.find(candidate => fs.existsSync(candidate));
+
+          if (!file) {
+            fs.writeSync(1, 'Claude diagnostic file was not available.\n');
+            process.exit(0);
+          }
+
+          let events;
+          try {
+            events = JSON.parse(fs.readFileSync(file, 'utf8'));
+          } catch {
+            fs.writeSync(1, 'Claude diagnostic file could not be parsed.\n');
+            process.exit(0);
+          }
+
+          if (!Array.isArray(events)) {
+            fs.writeSync(1, 'Claude diagnostic file has an unexpected format.\n');
+            process.exit(0);
+          }
+
+          const results = events.filter(event => event?.type === 'result');
+          const result = results.at(-1);
+
+          if (!result) {
+            fs.writeSync(1, 'No Claude result event was found.\n');
+            process.exit(0);
+          }
+
+          const codes = new Set();
+
+          for (const value of [
+            result.api_error_status,
+            result.error_status,
+            result.error?.status,
+          ]) {
+            const code = Number(value);
+            if (Number.isInteger(code) && code >= 400 && code <= 599) {
+              codes.add(code);
+            }
+          }
+
+          if (typeof result.result === 'string') {
+            const match = result.result.match(
+              /(?:API Error|HTTP|status(?: code)?)\s*[:=]?\s*(\d{3})/i
+            );
+            if (match) {
+              const code = Number(match[1]);
+              if (code >= 400 && code <= 599) codes.add(code);
+            }
+          }
+
+          fs.writeSync(1, `Claude reported an error: ${result.is_error === true}\n`);
+
+          if (codes.size) {
+            fs.writeSync(1, `Possible HTTP status: ${[...codes].join(', ')}\n`);
+          } else {
+            fs.writeSync(1, 'No HTTP status was found in the result.\n');
+          }
+          NODE
