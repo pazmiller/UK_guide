@@ -30,6 +30,7 @@
     "@vercel/analytics": "^2.0.1",
     "fast-xml-parser": "^5.11.1",
     "flagpack-core": "^2.1.0",
+    "ical.js": "^2.2.1",
     "langsmith": "^0.8.2",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.563.0",
