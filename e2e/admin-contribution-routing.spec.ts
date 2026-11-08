@@ -55,10 +55,10 @@ for ( const width of [360, 1280] ) test( `admin starts new submissions but keeps
   await expect.poll( () => actions.length ).toBe( 6 );
   expect( actions[5] ).toEqual( { issue: '33', body: { action: 'accept' } } );
   await expect( entry( 8 ).getByRole( 'button', { name: /交给 Agent|重新处理/ } ) ).toHaveCount( 0 );
-  await expect( entry( 9 ).getByText( '自动检查已通过，可以审核并合并', { exact: true } ) ).toBeVisible();
+  await expect( entry( 9 ).getByText( 'Agent 审核已通过 · 请核对 PR 合并条件', { exact: true } ) ).toBeVisible();
   await expect( entry( 9 ).getByRole( 'link', { name: '打开网站 PR，审核并合并' } ) ).toHaveAttribute( 'href', 'https://github.com/pazmiller/UK_guide/pull/40' );
   await expect( entry( 9 ).getByRole( 'link', { name: '打开网站 PR，审核并合并' } ) ).toHaveAttribute( 'target', '_blank' );
-  await expect( entry( 10 ).getByText( '已人工放行，可以审核并合并', { exact: true } ) ).toBeVisible();
+  await expect( entry( 10 ).getByText( '已人工放行 · 请核对 PR 合并条件', { exact: true } ) ).toBeVisible();
   await expect( entry( 10 ).getByText( /人工放行不代表 AI 评分通过/ ) ).toBeVisible();
   for ( const index of [11, 12] ) await expect( entry( index ).getByRole( 'link', { name: '打开网站 PR，审核并合并' } ) ).toHaveCount( 0 );
   await expect( entry( 11 ).getByText( '暂未找到可审核的 Ready PR，请刷新后重试。', { exact: true } ) ).toBeVisible();

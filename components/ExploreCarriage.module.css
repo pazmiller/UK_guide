@@ -2,7 +2,13 @@
   --gap: 14px;
   --blue: #5280FF;
   position: relative;
+  scroll-margin-top: 90px;
 }
+
+.viewChoice { display: flex; flex-wrap: wrap; gap: 4px; }
+.viewChoice button { min-height: 44px; padding: 8px 12px; border: 1px solid #1D355740; border-radius: 8px; color: #1D3557; font-size: 13px; background: #fff; cursor: pointer; }
+.viewChoice button[aria-pressed="true"] { color: white; background: #1D3557; }
+.viewChoice button:focus-visible { outline: 2px solid #315BEA; outline-offset: 3px; }
 
 /* ---- Carriage shell ---- */
 
@@ -43,6 +49,7 @@
 }
 
 .playback {
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -946,7 +953,24 @@
 .scroller[data-collapsed="true"] .build { display: none; }
 .scroller[data-collapsed="true"] .playback { display: none; }
 
+/* Quick browsing preserves the ordinary destination links, with no pinned journey. */
+.scroller[data-view="quick"] { height: auto; }
+.scroller[data-view="quick"] .stage { position: static; display: block; height: auto; padding-top: 0; }
+.scroller[data-view="quick"] .carriage { height: auto; }
+.scroller[data-view="quick"] .windows { flex: none; height: 180px; }
+.scroller[data-view="quick"] .build,
+.scroller[data-view="quick"] .dark,
+.scroller[data-view="quick"] .tunnelMessage { display: none; }
+.scroller[data-view="quick"] .panorama,
+.scroller[data-view="quick"] .windows,
+.scroller[data-view="quick"] .handles span,
+.scroller[data-view="quick"] .tunnel,
+.scroller[data-view="quick"] .ledMessage,
+.scroller[data-view="quick"] .stopItem,
+.scroller[data-view="quick"] .stopDot,
+.scroller[data-view="quick"] .nextStop { animation: none; }
+
 @media (prefers-reduced-motion: no-preference) {
-  .scroller[data-collapsed="true"] .panorama { animation: ride 28s linear infinite alternate; }
+  .scroller[data-collapsed="true"]:not([data-view="quick"]) .panorama { animation: ride 28s linear infinite alternate; }
   .scroller[data-collapsed="true"] .tunnelMessage { animation: tunnel-message 28s linear infinite alternate; }
 }

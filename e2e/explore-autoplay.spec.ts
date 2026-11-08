@@ -135,7 +135,7 @@ test( 'reduced motion and phones never scroll the page automatically', async ( {
   const reducedPosition = await scrollY( page );
   await page.clock.runFor( 2500 );
   expect( await scrollY( page ) ).toBe( reducedPosition );
-  await expect( carriage( page ).getByRole( 'button' ) ).toHaveCount( 0 );
+  await expect( carriage( page ).locator( '[data-carriage-playback]' ) ).toHaveCount( 0 );
 
   await page.emulateMedia( { reducedMotion: 'no-preference' } );
   await page.setViewportSize( { width: 390, height: 844 } );
@@ -143,5 +143,5 @@ test( 'reduced motion and phones never scroll the page automatically', async ( {
   const phonePosition = await scrollY( page );
   await page.clock.runFor( 2500 );
   expect( await scrollY( page ) ).toBe( phonePosition );
-  await expect( carriage( page ).getByRole( 'button' ) ).toHaveCount( 0 );
+  await expect( carriage( page ).locator( '[data-carriage-playback]' ) ).toHaveCount( 0 );
 } );

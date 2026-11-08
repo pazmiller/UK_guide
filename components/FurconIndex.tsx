@@ -1,7 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import FurconCalendar from './FurconCalendar';
+import { conventionCalendarEvent, downloadCalendar, type CalendarEvent } from '@/lib/furconCalendar';
 import millerIcon from '@/src/img/miller_icon.png';
 import styles from './FurconIndex.module.css';
 
@@ -153,7 +155,7 @@ function dateFromIso( value: string )
 
 function getToday()
 {
-  const today = new Date();
+  const today = new Date( new Intl.DateTimeFormat( 'en-CA', { timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit' } ).format( new Date() ) + 'T00:00:00' );
   today.setHours( 0, 0, 0, 0 );
   return today;
 }
@@ -181,13 +183,22 @@ function calendarDaysBetween( startIso: string, endIso: string )
   return Math.max( 0, Math.round( ( end - start ) / 86_400_000 ) );
 }
 
-export default function FurconIndex()
+export default function FurconIndex( { initialTodayIso }: { initialTodayIso: string } )
 {
   const [ region, setRegion ] = useState<RegionFilter>( 'all' );
   const [ month, setMonth ] = useState<string | null>( null );
   const [ query, setQuery ] = useState( '' );
 
-  const today = useMemo( () => getToday(), [] );
+  const [ today, setToday ] = useState( () => dateFromIso( initialTodayIso ) );
+  useEffect( () => {
+    const refresh = () => setToday( previous => {
+      const next = getToday();
+      return formatIso( previous ) === formatIso( next ) ? previous : next;
+    } );
+    const timer = setInterval( refresh, 60_000 );
+    document.addEventListener( 'visibilitychange', refresh );
+    return () => { clearInterval( timer ); document.removeEventListener( 'visibilitychange', refresh ); };
+  }, [] );
   const todayIso = formatIso( today );
 
   const events = useMemo( () => VERIFIED_DATA.map( ( event ) =>
@@ -210,7 +221,7 @@ export default function FurconIndex()
             ? '活动已结束，页面保留作历史参考'
             : '日期已公布，请在预订行程前再次核对官网',
     };
-  } ), [ today ] );
+  } ).filter( event => !event.past && !event.cancelled ), [ today ] );
 
   const statistics = useMemo( () =>
   {
@@ -250,6 +261,11 @@ export default function FurconIndex()
   const { asiaPacificNext, byRegion, cancelled, europeNext, maxRegionCount, nextUp, ukNext } = statistics;
   const nextLondonFursDate = LONDON_FURS_DATES.find( ( date ) => date.iso >= todayIso );
   const daysUntilLondonFurs = nextLondonFursDate ? calendarDaysBetween( todayIso, nextLondonFursDate.iso ) : null;
+  const nextMeet: CalendarEvent | undefined = nextLondonFursDate ? {
+    uid: `london-furmeets-${nextLondonFursDate.iso}@furcon.cffa.uk`, name: 'London Furmeets', start: nextLondonFursDate.iso, end: nextLondonFursDate.iso,
+    location: 'Tank & Paddle (Minster Court), London', url: 'https://londonfurs.org.uk/',
+    description: '来自网站收录的 2026 日期表，非实时订阅。需要提前预订免费票，地点与时间请以官网最新公布为准。https://londonfurs.org.uk/',
+  } : undefined;
   const selectedRegionLabel = REGION_FILTERS.find( ( filter ) => filter.value === region )?.label ?? '全部';
 
   return (
@@ -271,14 +287,14 @@ export default function FurconIndex()
           </div>
           <span className={styles.metaLabel}>Convention Index v.2026 — 全球兽展一览</span>
           <h1>兽展讯息 <em>news</em><br /><span className={styles.year2026}>2026</span> — <span className={styles.year2027}>2027</span></h1>
-
+          <p className={styles.metaLabel}>仅显示尚未结束的兽展（含进行中），不含已取消活动。</p>
         </header>
 
         <section className={styles.stats} aria-label="兽展统计">
           <div className={styles.square}>
             <span className={styles.num}>01</span>
             <div className={styles.figure}>{events.length}<span>场</span></div>
-            <span className={styles.metaLabel}>收录场次 / total</span>
+            <span className={styles.metaLabel}>未结束场次 / upcoming</span>
           </div>
           <div className={styles.square}>
             <span className={styles.num}>02</span>
@@ -379,7 +395,7 @@ export default function FurconIndex()
               <span className={styles.metaLabel}>2026 · 每三周星期六</span>
             </div>
             <div className={styles.dateGrid} aria-label="London Furs 2026 日期">
-              {LONDON_FURS_DATES.map( ( date ) => (
+              {LONDON_FURS_DATES.filter( date => date.iso >= todayIso ).map( ( date ) => (
                 <time key={date.iso} dateTime={date.iso}>
                   <strong>{date.day}</strong>
                   <span>{date.month}</span>
@@ -431,7 +447,7 @@ export default function FurconIndex()
               ? events.length
               : filter.value === 'uk'
                 ? events.filter( ( event ) => event.country === 'UK' ).length
-                : byRegion[ filter.value ];
+                : byRegion[ filter.value ] ?? 0;
 
             return (
               <button
@@ -456,6 +472,8 @@ export default function FurconIndex()
             当前显示 {filteredEvents.length} 场兽展；地区：{selectedRegionLabel}{month ? '；月份：' + month : ''}{query.trim() ? '；搜索：' + query.trim() : ''}。
           </p>
         </section>
+
+        <FurconCalendar nextMeet={nextMeet} events={filteredEvents.filter( event => !event.past && !event.cancelled ).map( conventionCalendarEvent )} />
 
         <section id="furcon-results" className={styles.list} aria-label="兽展列表">
           {filteredEvents.length === 0 ? (
@@ -488,6 +506,7 @@ export default function FurconIndex()
                           </h3>
                           <p>{event.venue}</p>
                           <p className={styles.verification}><span>{event.statusNote}</span><span>核对于 {event.lastVerified}</span></p>
+                          {!event.past && !event.cancelled && <button type="button" className="mt-2 min-h-11 border border-current px-3 text-xs" onClick={() => downloadCalendar( [conventionCalendarEvent( event )], 'furcon-event.ics' )}>加入日历 .ics</button>}
                         </div>
                         <p className={styles.when}>{event.dates}<br /><span>{event.days} {event.days > 1 ? 'days' : 'day'}</span></p>
                         <p className={styles.where}>{event.place}<span>{REGION_LABELS[ event.region ]}</span></p>

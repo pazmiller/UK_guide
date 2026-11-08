@@ -7,6 +7,8 @@ import ElizabethLineBuild from './ElizabethLineBuild';
 import styles from './ExploreCarriage.module.css';
 import { useCollapseOnReturn } from './useCollapseOnReturn';
 import { useCarriageAutoplay } from './useCarriageAutoplay';
+import { useCarriageView } from './useCarriageView';
+import { flushSync } from 'react-dom';
 
 const STOPS = [
   {
@@ -81,7 +83,17 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
   const [ dig, setDig ] = useState<'pending' | 'webgl' | 'static'>( 'pending' );
   // Phones and Firefox never see the dig, so they never download three.js for it
   const pinned = useSyncExternalStore( subscribePinned, isPinned, () => false );
-  const playback = useCarriageAutoplay( scrollerRef, pinned );
+  const view = useCarriageView();
+  const playback = useCarriageAutoplay( scrollerRef, pinned && !view.quick );
+  const directoryRef = useRef<HTMLOListElement>( null );
+
+  function chooseView( quick: boolean ) {
+    if ( !quick && scrollerRef.current ) delete scrollerRef.current.dataset.collapsed;
+    flushSync( () => view.setQuick( quick ) );
+    // Keep the reader at the controls when the six-screen ride changes height.
+    scrollerRef.current?.scrollIntoView( { behavior: 'instant', block: 'start' } );
+    if ( quick ) directoryRef.current?.focus( { preventScroll: true } );
+  }
 
   const panorama = (
     <div className={styles.panorama}>
@@ -93,7 +105,7 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
   );
 
   return (
-    <div ref={scrollerRef} className={styles.scroller} data-playback={playback.status}>
+    <div ref={scrollerRef} className={styles.scroller} data-playback={view.quick ? 'paused' : playback.status} data-view={view.quick ? 'quick' : 'immersive'}>
       <div className={styles.stage}>
         <div className={styles.carriage} data-carriage>
           <div className={styles.header}>
@@ -103,7 +115,11 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
                 <span key={message} className={styles.ledMessage} style={{ '--m': i } as CSSProperties}>{message}</span>
               ) )}
             </div>
-            {pinned && (
+            <div className={styles.viewChoice} role="group" aria-label="城市探索浏览方式">
+              <button type="button" aria-pressed={!view.quick} onClick={() => chooseView( false )}>沉浸漫游</button>
+              <button type="button" aria-pressed={view.quick} onClick={() => chooseView( true )}>快速浏览 · 跳过动画</button>
+            </div>
+            {pinned && !view.quick && (
               <button
                 type="button"
                 className={styles.playback}
@@ -135,7 +151,7 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
 
           {/* Last stretch (pinned layout only): the line the group has built so far, and the gap left for you */}
           <div className={styles.build} data-dig={dig} style={{ '--sleeper-count': sleepers.length } as CSSProperties}>
-            {pinned && dig !== 'static' && (
+            {pinned && !view.quick && dig !== 'static' && (
               <ElizabethLineBuild
                 stations={sleepers}
                 scrollerRef={scrollerRef}
@@ -174,7 +190,7 @@ export default function ExploreCarriage( { stations }: { stations: BuiltStation[
             </Link>
           </div>
 
-          <ol className={styles.stops} aria-label="城市探索路线">
+          <ol ref={directoryRef} tabIndex={-1} className={styles.stops} aria-label="城市探索路线">
             {STOPS.map( ( { href, title, blurb, Icon }, i ) => (
               <li key={href} className={styles.stopItem} style={{ '--s': i } as CSSProperties}>
                 {i === 2 && <span className={styles.tunnelSign} aria-hidden="true">Channel Tunnel</span>}

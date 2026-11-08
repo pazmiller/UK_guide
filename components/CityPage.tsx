@@ -87,7 +87,7 @@ export default function CityPage({ data, backLink, backLabel }: CityPageProps) {
             <h2 className="text-3xl font-bold text-[#1D3557] mb-8">
               甜品 / 咖啡 / 饮品
             </h2>
-            <RestaurantFilteredGrid restaurants={data.cafes} locationHint={locationHint} />
+            <RestaurantFilteredGrid restaurants={data.cafes} locationHint={locationHint} queryScope="cafe" />
           </div>
         </section>
       )}

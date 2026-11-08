@@ -11,6 +11,7 @@ import type { ManualReview } from '@/lib/server/manualContributionReview';
 import AdminContributionEditor from './AdminContributionEditor';
 import { editableSubmissionStatuses } from '@/lib/contributions/admin-edit';
 import { submissionRevision } from '@/lib/contributions/revision';
+import { contributionProgress, type Publication } from '@/lib/contributions/progress';
 
 export type AdminContributionIssue = {
   number: number;
@@ -22,6 +23,7 @@ export type AdminContributionIssue = {
   review?: ManualReview | null;
   readyPrUrl?: string | null;
   submissionHash?: string;
+  publication?: Publication | null;
 };
 
 const statusLabels: Record<string, string> = {
@@ -110,6 +112,7 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
         {issues.map( issue => {
           const submission = issue.submission;
           const status = issueStatus( issue.labels );
+          const progress = contributionProgress( status, issue.review?.report, issue.publication, issue.review?.eligible );
           const needsFieldApproval = submission && requiresApprovedChange( submission );
           const canStart = submission && !needsFieldApproval && ['status:submitted', 'status:failed'].includes( status );
           const closed = status === 'status:closed' || status === 'status:merged';
@@ -122,10 +125,18 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
                   <div className="flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-wide">
                     <span className="text-[#E63946]">Submission #{issue.number}</span>
                     {submissionRevision( submission ) > 1 && <span className="text-[#1D3557]/55">第 {submissionRevision( submission )} 版</span>}
-                    <span className="border border-[#1D3557]/16 px-2 py-1 text-[#1D3557]/68">{statusLabels[ status ] ?? status}</span>
+                    <span title={statusLabels[ status ] ?? status} className="border border-[#1D3557]/16 px-2 py-1 text-[#1D3557]/68">{progress.label}</span>
                     {submission && <span className="text-[#0F766E]">{contributionTypeLabels[ submission.type ]} · {contributionIntentLabels[ submission.intent ]}</span>}
                   </div>
                   <h2 className="mt-3 text-2xl font-black text-[#1D3557]">{submission?.name ?? issue.title}</h2>
+                  <section aria-label="投稿进度与下一步" className={`mt-4 border-l-4 p-4 text-sm leading-6 ${progress.tone === 'error' ? 'border-[#C92935] bg-[#FFF1ED]' : 'border-[#315BEA] bg-[#EDF2FC]'}`}>
+                    <h3 className="font-bold">下一步</h3>
+                    <p>{progress.next}</p>
+                    <p className="mt-2 text-xs text-[#1D3557]/65">程序检查 → AI 审核 → PR 合并 → 生产部署。每一步单独确认。</p>
+                    {issue.publication?.prUrl && <a href={issue.publication.prUrl} target="_blank" rel="noreferrer" className="mt-2 inline-flex min-h-11 items-center font-bold underline underline-offset-4">查看网站 PR ↗</a>}
+                    {issue.publication?.deploymentUrl && <a href={issue.publication.deploymentUrl} target="_blank" rel="noreferrer" className="ml-4 inline-flex min-h-11 items-center font-bold underline underline-offset-4">查看已核实的生产部署 ↗</a>}
+                    {['status:failed', 'status:manual-review', 'status:agent-running', 'status:draft-pr'].includes( status ) && <a href={`${issue.url.replace( /\/issues\/\d+$/, '' )}/actions${issue.review?.report ? `/runs/${issue.review.report.runId}` : ''}`} target="_blank" rel="noreferrer" className="mt-2 inline-flex min-h-11 items-center font-bold underline underline-offset-4">{issue.review?.report ? '查看本次 Agent 运行 ↗' : '查看 Agent 运行列表 ↗'}</a>}
+                  </section>
                   {editing && submission && issue.submissionHash && <AdminContributionEditor
                     key={`${issue.number}:${issue.submissionHash}`} issueNumber={issue.number} submission={submission} submissionHash={issue.submissionHash}
                     onCancel={() => setEditingIssueNumber( null )}
@@ -135,7 +146,7 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
                   {!editing && issue.review && <ContributionScoreReview
                     review={issue.review}
                     canApprove={status === 'status:manual-review'}
-                    showOverride={['status:failed', 'status:manual-review'].includes( status )}
+                    showOverride={status === 'status:manual-review' && issue.review.eligible}
                     canReevaluate={['status:failed', 'status:manual-review', 'status:manual-ready'].includes( status )}
                     busy={busy}
                     onApprove={( headSha, reason ) => void updateIssue( issue.number, 'manual-approve', undefined, { headSha, reason } )}
@@ -226,7 +237,7 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
 
                 {!closed && submission && (
                   <div className="flex shrink-0 flex-col gap-2 lg:w-80">
-                    {['status:failed', 'status:manual-review'].includes( status ) && <div className="border-l-4 border-[#1D3557]/25 bg-[#F6F8FC] p-4 text-sm leading-6 text-[#1D3557]">
+                    {status === 'status:manual-review' && issue.review?.eligible && <div className="border-l-4 border-[#1D3557]/25 bg-[#F6F8FC] p-4 text-sm leading-6 text-[#1D3557]">
                       <h3 className="font-bold">修改内容，或人工判断</h3>
                       <p className="mt-2">投稿有误：编辑并保存，再重新交给 AI。认可当前 PR：查看评分面板中的强制通过选项。</p>
                       <p className="mt-2 text-xs text-[#1D3557]/65">编辑后的新内容不能沿用旧评分放行。程序检查未通过时，请先修正问题。</p>
@@ -235,7 +246,7 @@ export default function AdminContributionQueue( { issues }: { issues: AdminContr
                     {!editing && ['status:ready', 'status:manual-ready'].includes( status ) && (
                       <div className="border-l-4 border-[#0F766E] bg-[#0F766E]/6 p-4 text-[#1D3557]">
                         {issue.readyPrUrl ? <>
-                          <p className="text-sm font-bold text-[#0F766E]">{status === 'status:ready' ? '自动检查已通过，可以审核并合并' : '已人工放行，可以审核并合并'}</p>
+                          <p className="text-sm font-bold text-[#0F766E]">{status === 'status:ready' ? 'Agent 审核已通过 · 请核对 PR 合并条件' : '已人工放行 · 请核对 PR 合并条件'}</p>
                           <p className="mt-2 text-xs leading-5 text-[#1D3557]/65">{status === 'status:ready' ? '前往公开网站仓库查看修改，确认无误后点击 Merge pull request。' : '人工放行不代表 AI 评分通过。前往公开网站仓库核对修改后，再决定是否合并。'}</p>
                           <a href={issue.readyPrUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex min-h-11 w-full items-center justify-center gap-2 bg-[#0F766E] px-3 text-sm font-bold text-white transition-colors hover:bg-[#0B625C] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F766E]">
                             打开网站 PR，审核并合并 <ExternalLink className="h-4 w-4 shrink-0" />
