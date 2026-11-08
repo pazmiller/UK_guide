@@ -1,6 +1,8 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useId } from 'react';
+import { matchesRestaurant } from '@/lib/restaurantSearch';
+import { useRestaurantQuery } from './useRestaurantQuery';
 import RestaurantCard from './RestaurantCard';
 import DetailModal from './DetailModal';
 import { Restaurant } from '@/data/types';
@@ -10,13 +12,16 @@ interface Props {
   locationHint?: string;
   variant?: 'classic' | 'editorial';
   initialSlug?: string;
+  queryScope?: string;
 }
 
 const CAFE_CUISINE = '喝的和小甜甜';
 const CAFE_SUB_TAGS = [ 'Drinks', 'Desert' ];
 
-export default function RestaurantFilteredGrid({ restaurants, locationHint, variant = 'editorial', initialSlug }: Props) {
-  const [active, setActive] = useState<string>('All');
+export default function RestaurantFilteredGrid({ restaurants, locationHint, variant = 'editorial', initialSlug, queryScope = '' }: Props) {
+  const filters = useRestaurantQuery( queryScope );
+  const active = filters.cuisine;
+  const searchId = useId();
   const [selected, setSelected] = useState<Restaurant | null>(() => restaurants.find( item => item.slug === initialSlug ) ?? null);
 
   const cuisines = useMemo(() => {
@@ -43,16 +48,27 @@ export default function RestaurantFilteredGrid({ restaurants, locationHint, vari
     ];
   }, [restaurants]);
 
-  const filtered = active === 'All'
-    ? restaurants
-    : restaurants.filter((r) => r.cuisine === active || r.tags?.includes( active ));
+  const filtered = restaurants.filter( r => matchesRestaurant( r, filters.query, active ) );
+  const search = <form role="search" aria-label="餐厅搜索" className="mb-6 text-[#1D3557]" onSubmit={event => {
+    event.preventDefault();
+    filters.update( String( new FormData( event.currentTarget ).get( 'query' ) ?? '' ), active );
+  }}>
+    <label htmlFor={searchId} className="mb-2 block text-sm font-semibold">搜索店名、菜系或标签</label>
+    <div className="flex gap-2">
+      <input key={filters.query} id={searchId} name="query" type="search" defaultValue={filters.query} placeholder="例如 Kiln、云南、Thai" className="min-h-11 min-w-0 flex-1 rounded-md border border-[#1D3557]/25 bg-white px-4 focus-visible:outline-2 focus-visible:outline-[#315BEA]" />
+      <button className="min-h-11 rounded-md bg-[#1D3557] px-5 font-semibold text-white" type="submit">搜索</button>
+      {(filters.query || active !== 'All') && <button type="button" onClick={() => filters.update( '', 'All' )} className="min-h-11 px-2 text-sm underline underline-offset-4">清空条件</button>}
+    </div>
+    <p role="status" className="mt-3 text-sm text-[#1D3557]/65">找到 {filtered.length} 家{filters.query ? ` · “${filters.query}”` : ''}{filtered.length === 0 ? '，试试其他关键词或清空条件。' : ''}</p>
+  </form>;
 
   // Only show the filter bar if there are multiple cuisines
   if (cuisines.length <= 1) {
     return (
       <>
+        {search}
         <div className={`grid md:grid-cols-2 lg:grid-cols-3 ${variant === 'editorial' ? 'gap-5' : 'gap-6'}`}>
-          {restaurants.map((r) => (
+          {filtered.map((r) => (
             <RestaurantCard key={r.id} restaurant={r} onClick={() => setSelected(r)} variant={variant} />
           ))}
         </div>
@@ -67,6 +83,7 @@ export default function RestaurantFilteredGrid({ restaurants, locationHint, vari
 
   return (
     <div>
+      {search}
       {/* Filter bar */}
       <div className="flex gap-2 flex-wrap mb-8">
         {['All', ...cuisines].map((c) => {
@@ -87,7 +104,9 @@ export default function RestaurantFilteredGrid({ restaurants, locationHint, vari
           return (
             <button
               key={c}
-              onClick={() => setActive(c)}
+              type="button"
+              aria-pressed={isActive}
+              onClick={() => filters.update( filters.query, c )}
               className={`px-4 py-1.5 ${shape} text-sm font-medium transition-colors whitespace-nowrap ${
                 isCafe ? cafeClass : isCafeSubTag ? cafeSubTagClass : normalClass
               }`}
