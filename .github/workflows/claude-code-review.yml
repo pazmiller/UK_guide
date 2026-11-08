@@ -64,7 +64,7 @@ jobs:
           const file = candidates.find(candidate => fs.existsSync(candidate));
 
           if (!file) {
-            console.log('Claude diagnostic file was not available.');
+            fs.writeSync(1, 'Claude diagnostic file was not available.\n');
             process.exit(0);
           }
 
@@ -72,12 +72,12 @@ jobs:
           try {
             events = JSON.parse(fs.readFileSync(file, 'utf8'));
           } catch {
-            console.log('Claude diagnostic file could not be parsed.');
+            fs.writeSync(1, 'Claude diagnostic file could not be parsed.\n');
             process.exit(0);
           }
 
           if (!Array.isArray(events)) {
-            console.log('Claude diagnostic file has an unexpected format.');
+            fs.writeSync(1, 'Claude diagnostic file has an unexpected format.\n');
             process.exit(0);
           }
 
@@ -85,7 +85,7 @@ jobs:
           const result = results.at(-1);
 
           if (!result) {
-            console.log('No Claude result event was found.');
+            fs.writeSync(1, 'No Claude result event was found.\n');
             process.exit(0);
           }
 
@@ -112,11 +112,11 @@ jobs:
             }
           }
 
-          console.log('Claude reported an error:', result.is_error === true);
+          fs.writeSync(1, `Claude reported an error: ${result.is_error === true}\n`);
 
           if (codes.size) {
-            console.log('Possible HTTP status:', [...codes].join(', '));
+            fs.writeSync(1, `Possible HTTP status: ${[...codes].join(', ')}\n`);
           } else {
-            console.log('No HTTP status was found in the result.');
+            fs.writeSync(1, 'No HTTP status was found in the result.\n');
           }
           NODE
