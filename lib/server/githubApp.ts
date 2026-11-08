@@ -7,6 +7,7 @@ import { requiresApprovedChange } from '@/lib/contributions/schema';
 import { loadManualReview } from './manualContributionReview';
 import type { ChangeRequest } from '@/lib/contributions/change-contract';
 import { submissionBranch, submissionRevision } from '@/lib/contributions/revision';
+import { latestProductionEvidence, loadContributionPublication } from './contributionPublication';
 
 const GITHUB_API_VERSION = '2026-03-10';
 const ISSUE_DATA_PREFIX = '<!-- contribution-data:';
@@ -291,6 +292,8 @@ export async function listContributionIssues()
   const issues = await githubRequest<GitHubIssue[]>(
     `/repos/${repository.owner}/${repository.repo}/issues?state=all&per_page=100&sort=created&direction=desc`,
   );
+  let production: ReturnType<typeof latestProductionEvidence> | undefined;
+  const readProduction = () => production ??= latestProductionEvidence();
 
   return Promise.all( issues.filter( issue => !issue.pull_request ).map( async issue => ( {
     number: issue.number,
@@ -300,6 +303,8 @@ export async function listContributionIssues()
     labels: issue.labels.map( label => typeof label === 'string' ? label : label.name ?? '' ).filter( Boolean ),
     submission: parseSubmissionFromIssue( issue.body ),
     submissionHash: submissionHashFromIssue( issue.body ),
+    publication: issue.labels.some( label => ['status:ready', 'status:manual-ready', 'status:merged', 'status:draft-pr'].includes( typeof label === 'string' ? label : label.name ?? '' ) )
+      ? await loadContributionPublication( issue.number, submissionRevision( parseSubmissionFromIssue( issue.body ) ), readProduction ).catch( () => ({ state: 'unknown' as const, prUrl: null, message: '无法核实当前 PR／部署状态，请刷新或到 GitHub 与 Vercel 查看；不会据此标记已上线。' }) ) : null,
     readyPrUrl: issue.labels.some( label => ['status:ready', 'status:manual-ready'].includes( typeof label === 'string' ? label : label.name ?? '' ) )
       ? await readyContributionPrUrl( issue.number, submissionRevision( parseSubmissionFromIssue( issue.body ) ) ).catch( error => { describeGitHubReadFailure( error, 'ready-pr', issue.number ); return null; } ) : null,
     review: issue.labels.some( label => [ 'status:manual-review', 'status:manual-ready', 'status:failed' ].includes( typeof label === 'string' ? label : label.name ?? '' ) )

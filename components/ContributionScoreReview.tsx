@@ -22,7 +22,8 @@ export default function ContributionScoreReview( { review, canApprove, showOverr
   const overrideAllowed = canApprove && review.eligible && Boolean( review.prUrl ) && Boolean( report );
   return (
     <section aria-label="AI 评分与人工审核" className="mt-5 rounded-xl border border-[#D9B46F]/60 bg-[#FFF8E8] p-5 text-[#1D3557]">
-      <h3 className="text-base font-bold">AI 评分与人工审核</h3>
+      <h3 className="text-base font-bold">{!report && review.message.startsWith( 'Agent run failed before completion:' ) ? '程序运行未完成' : 'AI 评分与人工审核'}</h3>
+      {!report && <p className="mt-2 text-sm">没有可用于本次放行的完整评分报告。先核对运行或读取错误，再重新处理；这不是 AI 给了低分。</p>}
       {report && <>
         {report.fidelity && <div className="mt-4 space-y-3">
           <p className="text-sm font-bold">投稿内容核对：{report.fidelity.result.verdict === 'pass' ? '通过' : '需要人工确认'} · {report.fidelity.target.city} / {report.fidelity.target.id}</p>
@@ -49,7 +50,10 @@ export default function ContributionScoreReview( { review, canApprove, showOverr
         <p className="mt-4 whitespace-pre-wrap border-l-2 border-[#D9B46F] pl-3 text-sm leading-6">{report.explanation}</p>
         <p className="mt-3 text-xs opacity-65">评估提交 {report.headSha.slice( 0, 12 )} · {new Date( report.evaluatedAt ).toLocaleString( 'zh-CN' )}</p>
       </>}
-      <p id={reviewMessageId} className="mt-3 text-sm leading-6">{review.message}</p>
+      <details className="mt-3" open={Boolean( report )}>
+        <summary className="min-h-11 cursor-pointer py-2 text-sm font-bold">技术详情与核验说明</summary>
+        <p id={reviewMessageId} className="whitespace-pre-wrap break-words text-sm leading-6">{review.message}</p>
+      </details>
       {showOverride && <p id={overrideScopeId} className="mt-3 text-sm leading-6">强制通过仅跳过 AI 评分／内容疑点；程序检查必须通过。只将当前 PR 标记 Ready，不会合并或上线。</p>}
       <div className="mt-4 flex flex-wrap gap-3">
         {review.prUrl && <a href={review.prUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center rounded-md border border-[#1D3557]/25 px-4 text-sm font-bold underline underline-offset-4">查看 PR 修改 ↗</a>}
